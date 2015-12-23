@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Skate Spots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skate_spots.each do |skate_spot| %>
+      <tr>
+        <td><%= link_to 'Show', skate_spot %></td>
+        <td><%= link_to 'Edit', edit_skate_spot_path(skate_spot) %></td>
+        <td><%= link_to 'Destroy', skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Skate spot', new_skate_spot_path %>
