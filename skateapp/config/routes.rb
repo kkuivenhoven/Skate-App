@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #get 'users/new'
+
   resources :ratings
   resources :locations
   resources :skate_spots
@@ -8,6 +10,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 #   root 'welcome#index'
   root 'skate_spots#index'
+  
+  get 'signup' => 'users#new'
+  get 'login' => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

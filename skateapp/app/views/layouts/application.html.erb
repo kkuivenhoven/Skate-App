@@ -1,3 +1,6 @@
+<!--Sources:
+https://www.railstutorial.org/book, Hartl Michael, 2014-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +11,13 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+    <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
 
 </body>
 </html>
