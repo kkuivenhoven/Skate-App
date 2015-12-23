@@ -1,3 +1,6 @@
+#Sources:
+#https://www.railstutorial.org/book, Hartl Michael, 2014
+
 #Note: this test comes from: https://www.railstutorial.org/book/log_in_log_out
 require 'test_helper'
 

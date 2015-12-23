@@ -1,3 +1,6 @@
+#Sources:
+#https://www.railstutorial.org/book, Hartl Michael, 2014
+
 #Note: these tests come from https://www.railstutorial.org/book/modeling_users
 require 'test_helper'
 

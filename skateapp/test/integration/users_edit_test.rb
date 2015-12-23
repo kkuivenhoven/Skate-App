@@ -1,3 +1,6 @@
+#Sources:
+#https://www.railstutorial.org/book, Hartl Michael, 2014
+
 require 'test_helper'
 
 class UsersEditTest < ActionDispatch::IntegrationTest

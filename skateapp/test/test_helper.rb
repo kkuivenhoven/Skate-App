@@ -1,3 +1,6 @@
+#Sources:
+#https://www.railstutorial.org/book, Hartl Michael, 2014
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
