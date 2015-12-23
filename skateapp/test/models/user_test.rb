@@ -1,7 +1,7 @@
 #Sources:
 #https://www.railstutorial.org/book, Hartl Michael, 2014
+#https://www.railstutorial.org/book/modeling_users
 
-#Note: these tests come from https://www.railstutorial.org/book/modeling_users
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
@@ -76,6 +76,8 @@ test "email addresses should be saved as lower-case" do
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
 
-
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?(:remember, '')
+  end
 
 end

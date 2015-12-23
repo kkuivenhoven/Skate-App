@@ -1,7 +1,6 @@
 #Sources:
 #https://www.railstutorial.org/book, Hartl Michael, 2014
-
-#Note: this test comes from: https://www.railstutorial.org/book/log_in_log_out
+#https://www.railstutorial.org/book/log_in_log_out
 
 require 'test_helper'
 
@@ -25,15 +24,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     post login_path, session: { email: @user.email, password: 'password' }
     assert is_logged_in?
-    assert_redirected_to @user
-    follow_redirect!
+    assert_redirected_to @user #verifies if correct redirect target
+    follow_redirect! #target page is actually visited
     assert_template 'users/show'
-    assert_select "a[href=?]", login_path, count: 0
+    assert_select "a[href=?]", login_path, count: 0 #checks if there exists 0 login path links on page
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
+    # simulate a user clicking logout in a 2nd window
     delete logout_path
     follow_redirect!
     assert_select "a[href=?]", login_path

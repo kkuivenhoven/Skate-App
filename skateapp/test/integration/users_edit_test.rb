@@ -1,5 +1,6 @@
 #Sources:
 #https://www.railstutorial.org/book, Hartl Michael, 2014
+#https://www.railstutorial.org/book/updating_and_deleting_users
 
 require 'test_helper'
 
@@ -36,7 +37,5 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal name,  @user.name
     assert_equal email, @user.email
   end
-
-
 
 end

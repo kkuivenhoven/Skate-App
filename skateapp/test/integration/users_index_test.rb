@@ -1,5 +1,6 @@
 #Sources:
 #https://www.railstutorial.org/book, Hartl Michael, 2014
+#https://www.railstutorial.org/book/updating_and_deleting_users
 
 require 'test_helper'
 

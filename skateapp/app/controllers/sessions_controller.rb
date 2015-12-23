@@ -4,7 +4,6 @@
 
 class SessionsController < ApplicationController
 
-#EIGHT.SIX-ONE 8.61
   def new
   end
 

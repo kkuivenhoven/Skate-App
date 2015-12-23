@@ -18,6 +18,7 @@ class ActiveSupport::TestCase
   def log_in_as(user, options = {})
     password    = options[:password]    || 'password'
     remember_me = options[:remember_me] || '1'
+     #the above evals to given option if present ^ to default o.w. (reason bc hashes return "nil" for nonexistent keys
     if integration_test?
       post login_path, session: { email:       user.email,
                                   password:    password,
