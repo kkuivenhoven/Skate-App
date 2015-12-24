@@ -6,6 +6,7 @@ https://www.railstutorial.org/book/updating_and_deleting_users-->
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
+    <!-- only admin users are able to see "delete" links for user accounts -->
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>

@@ -1,10 +1,14 @@
-Rails.application.routes.draw do
-  get 'password_resets/new'
+#Sources:
+#https://www.railstutorial.org/book, Hartl Michael, 2014
 
+Rails.application.routes.draw do
+  get 'static_pages/home'
+  get 'static_pages/help'
+
+  get 'password_resets/new'
   get 'password_resets/edit'
   get 'password_resets/index'
 
-  #get 'users/new'
 
   resources :ratings
   resources :locations
@@ -13,8 +17,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-#   root 'welcome#index'
-  root 'skate_spots#index'
+  # root 'welcome#index'
+  root 'static_pages#home'
   
   get 'signup' => 'users#new'
 

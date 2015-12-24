@@ -7,7 +7,10 @@ https://www.railstutorial.org/book/updating_and_deleting_users-->
 
 <%= will_paginate %>
 
+<!-- (inferred by RoR) @users is list of User objects; 
+& is automatically iterated through & each user is rendered w/ _user partial -->
 <ul class="users">
+  <!-- render is called directly on @users -->
   <%= render @users %>
 </ul>
 
