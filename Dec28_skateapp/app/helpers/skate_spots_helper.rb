@@ -1,0 +1,2 @@
+module SkateSpotsHelper
+end

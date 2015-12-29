@@ -1,0 +1,24 @@
+<!--Sources:
+   https://www.railstutorial.org/book, Hartl Michael, 2014
+   https://www.railstutorial.org/book/updating_and_deleting_users
+   http://stackoverflow.com/questions/18898947/rails-number-field-alternative-for-decimal-values-->
+   
+<% provide(:button_text, 'Submit') %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+  
+    <%= form_for(@skate_spot) do |f| %>
+      <!--%= render 'shared/error_messages', object: @skate_spot %>-->
+  
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+  
+      <%= f.label :zip_code %>
+      <%= f.text_field :zip_code, class: 'form-control' %>
+  
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<!--Sources:
+https://www.railstutorial.org/book, Hartl Michael, 2014
+https://www.railstutorial.org/book/updating_and_deleting_users-->
+
+<br><br>
+<div class="panel panel-default">
+  <div class="panel-heading">
+     <h4><%= yield(:title) %></h4>
+  </div>
+  <div class="panel-body">
+
+  <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages', object: @user %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <%= f.label :profile_picture %>
+    <br>
+      <a href="http://gravatar.com/emails" target="_blank">Change</a>
+      <%= gravatar_for @user %>
+    <br> <br> <br> <br> <br>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
+  <% end %>
+ </div>
+</div>
