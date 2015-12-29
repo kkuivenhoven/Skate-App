@@ -9,6 +9,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Location.create!(skate_spot_id: 1,
+ 			     latitude: 40.71209,
+  				 longitude: -73.95427)
+
+SkateSpot.create!(name: "Granite",
+                  user_id: 1,
+                  zip_code: "11211")
+
 User.create!(name:  "Vanessa Torres",
              email: "vanessa@torres.org",
              password:              "foobar",

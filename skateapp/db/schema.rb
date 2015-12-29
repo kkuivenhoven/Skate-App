@@ -1,7 +1,3 @@
-#Sources:
-#https://www.railstutorial.org/book, Hartl Michael, 2014
-#https://www.railstutorial.org/book/modeling_users
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -15,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223193607) do
+ActiveRecord::Schema.define(version: 20151229010609) do
 
   create_table "locations", force: :cascade do |t|
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "skate_spots_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "skate_spot_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
   end
+
+  add_index "locations", ["skate_spot_id"], name: "index_locations_on_skate_spot_id"
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "difficulty"
@@ -32,14 +33,22 @@ ActiveRecord::Schema.define(version: 20151223193607) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "skate_spots_id"
+    t.integer  "user_id"
   end
+
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "skate_spots", force: :cascade do |t|
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "location_id"
     t.string   "name"
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.string   "zip_code"
   end
+
+  add_index "skate_spots", ["location_id"], name: "index_skate_spots_on_location_id"
+  add_index "skate_spots", ["user_id"], name: "index_skate_spots_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -54,8 +63,12 @@ ActiveRecord::Schema.define(version: 20151223193607) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.integer  "rating_id"
+    t.integer  "skate_spot_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["rating_id"], name: "index_users_on_rating_id"
+  add_index "users", ["skate_spot_id"], name: "index_users_on_skate_spot_id"
 
 end
