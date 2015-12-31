@@ -9,7 +9,7 @@ https://www.railstutorial.org/book, Hartl Michael, 2014-->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 
   <%= render 'layouts/header' %>
   <div class="container">
@@ -21,4 +21,5 @@ https://www.railstutorial.org/book, Hartl Michael, 2014-->
   </div>
 
 </body>
+
 </html>
