@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<% @skate_spot = SkateSpot.find_by(@location.skate_spot_id) %>
+
+<p>Skate_spot_id: <%= @location.skate_spot_id %><br>
+location.id: <%= @location.id %><br>
+@location.address:            <%= @location.address %><br>
+@location.city:            <%= @location.city %><br>
+@location.state:            <%= @location.state %><br>
+@location.country:            <%= @location.country %><br>
+<!--@skate_spot.location.address: %= @skate_spot.location.address %>--></p>
+
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

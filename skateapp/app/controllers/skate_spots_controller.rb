@@ -19,17 +19,25 @@ class SkateSpotsController < ApplicationController
 
   def create
     @skate_spot = SkateSpot.new(skate_spot_params)
-
     if @skate_spot.save
-      sk8_lat = @skate_spot.zip_code.to_lat
-      sk8_lon = @skate_spot.zip_code.to_lon
-      #@location = Location.new(params[:sk8_lat, :sk8_long, @skate_spot.id])
-      @location = Location.new
-      @location.latitude = sk8_lat
-      @location.longitude = sk8_lon
-      @location.skate_spot_id = @skate_spot.id
-      if @location.save
-        @skate_spot.location_id = @location.id
+      @skate_spot.location = Location.new
+      @skate_spot.location.street = @skate_spot.street
+      @skate_spot.location.city = @skate_spot.city
+      @skate_spot.location.state = @skate_spot.state
+      @skate_spot.location.country = @skate_spot.country
+
+      total = Array.new(4)
+      total[0] = @skate_spot.street
+      total[1] = ' '+@skate_spot.city
+      total[2] = @skate_spot.state
+      total[3] = @skate_spot.country
+      jnd_total = total.join(',')
+      @skate_spot.address = jnd_total
+      @skate_spot.location.address = jnd_total
+
+      if @skate_spot.location.save
+        @location = @skate_spot.location
+        @location.skate_spot = @skate_spot
         redirect_to :action => 'index'
       end
     else
@@ -43,8 +51,27 @@ class SkateSpotsController < ApplicationController
 
   def update
     @skate_spot = SkateSpot.find(params[:id])
+    @location = @skate_spot.location
     if @skate_spot.update(params.require(:skate_spot).permit(:name, :zip_code))
-      redirect_to @skate_spot, notice: "Skatespot has been successfully updated!"
+      @skate_spot.location.street = @skate_spot.street
+      @skate_spot.location.city = @skate_spot.city
+      @skate_spot.location.state = @skate_spot.state
+      @skate_spot.location.country = @skate_spot.country
+
+      total = Array.new(4)
+      total[0] = @skate_spot.street
+      total[1] = ' '+@skate_spot.city
+      total[2] = @skate_spot.state
+      total[3] = @skate_spot.country
+      jnd_total = total.join(',')
+      @skate_spot.address = jnd_total
+      @skate_spot.location.address = jnd_total
+
+      if @skate_spot.location.save
+        @location = @skate_spot.location
+        redirect_to edit_location_path(@location.id)
+        #redirect_to @skate_spot, notice: "Skatespot has been successfully updated!"
+      end
     else
       render :edit
     end
@@ -62,6 +89,7 @@ class SkateSpotsController < ApplicationController
 #    end
 
     def skate_spot_params
-      params.require(:skate_spot).permit(:name, :zip_code)
+      params.require(:skate_spot).permit(:name, :street, :city, :state, :country)
+      #params.require(:skate_spot).permit(:name, :zip_code)
     end
 end

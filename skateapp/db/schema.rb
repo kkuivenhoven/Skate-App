@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229010609) do
+ActiveRecord::Schema.define(version: 20151231211335) do
 
   create_table "locations", force: :cascade do |t|
     t.datetime "created_at",    null: false
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20151229010609) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "street"
   end
 
   add_index "locations", ["skate_spot_id"], name: "index_locations_on_skate_spot_id"
@@ -39,12 +43,18 @@ ActiveRecord::Schema.define(version: 20151229010609) do
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "skate_spots", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "name"
     t.integer  "user_id"
     t.integer  "location_id"
     t.string   "zip_code"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "address"
+    t.string   "street"
+    t.string   "cross_street"
   end
 
   add_index "skate_spots", ["location_id"], name: "index_skate_spots_on_location_id"

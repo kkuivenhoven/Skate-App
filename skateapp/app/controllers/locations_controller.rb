@@ -28,8 +28,10 @@ class LocationsController < ApplicationController
 
   def update
     @location = Location.find(params[:id])
-    #if @location.update(params.require(:location_params)
-    if @location.update(params.require(:location).permit(:skatespot_id))
+    @skate_spot = SkateSpot.find_by(@location.skate_spot_id)
+    #if @skate_spot.location.update(params.require(:location).permit(:address))
+    #if @location.update(params.require(:location).permit(:address))
+    if @location.update_attribute('address', @location.address)
       redirect_to @location, notice: "Location has been successfully updated!"
     else
       render :edit

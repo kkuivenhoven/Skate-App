@@ -10,12 +10,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Location.create!(skate_spot_id: 1,
- 			     latitude: 40.71209,
-  				 longitude: -73.95427)
+ 			     latitude: 38.817508,
+  				 longitude: -121.17225)
 
-SkateSpot.create!(name: "Granite",
+SkateSpot.create!(name: "Loomis",
                   user_id: 1,
-                  zip_code: "11211")
+                  zip_code: "95650")
 
 User.create!(name:  "Vanessa Torres",
              email: "vanessa@torres.org",

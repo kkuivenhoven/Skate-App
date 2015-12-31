@@ -9,7 +9,12 @@
 Zip Code: <%= @skate_spot.zip_code %><br>
 Latitude: <%= @skate_spot.location.latitude %><br>
 Longitude: <%= @skate_spot.location.longitude %><br>
-Address: <%= @skate_spot.location.address %></p>
+Address: <%= @skate_spot.location.address %></br>
+City: <%= @skate_spot.location.city %></br>
+State: <%= @skate_spot.location.state %></br>
+Country: <%= @skate_spot.location.country %></br>
+Skate_spot.id: <%= @skate_spot.id %></br>
+Location_id: <%= @skate_spot.location.id %></p>
 
 <%= link_to 'Edit', edit_skate_spot_path(@skate_spot) %> |
 <%= link_to 'Back', skate_spots_path %>
