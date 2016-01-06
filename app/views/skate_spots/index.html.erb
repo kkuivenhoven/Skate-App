@@ -6,35 +6,49 @@
 
 <div class="btn-group btn-group-justified">
   <div class="btn-group">
-    <%= link_to('Home', root_path, class: 'btn btn-default btn') %></button>
+    <%= link_to('Home', root_path, class: 'btn btn-primary btn') %></button>
   </div>
   <div class="btn-group">
-    <%= link_to('New Skate Spot', new_skate_spot_path, class: 'btn btn-default btn') %></button>
+    <%= link_to('New Skate Spot', new_skate_spot_path, class: 'btn btn-primary btn') %></button>
   </div>
 </div>
 
-<h3>Posted Skate Spots</h3>
+<h2>Posted Skate Spots</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-hover">
+     <thead>
+       <tr>
+        <th>Name</th>
+        <th>Zip Code</th>
+       </tr>
+     </thead>
 
-  <tbody>
-    <% @skate_spots.each do |skate_spot| %>
-    <tr>
+     <tbody>
+      <% @skate_spots.each do |skate_spot| %>
       <tr>
-        <td><%= skate_spot.name %></td>
-        <td><%= skate_spot.zip_code %></td>
-        <td><%= link_to('Show', skate_spot, class: 'btn btn-default btn-xs') %></td>
-        <td><%= link_to('Edit', edit_skate_spot_path(skate_spot), class: 'btn btn-default btn-xs') %></td>
-        <td><%= link_to('Destroy', skate_spot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs') %></td>
+        <tr>
+          <td>
+            <li class="dropdown">
+              <%= link_to "#{skate_spot.name}", skate_spot %>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
+                <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+            </li>
+          </td>
+          <td><%= skate_spot.zip_code %></td>
+        </tr>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+     <% end %>
+   </tbody>
+  </table>
+ </div>
+</div>
 
 <br>
 

@@ -5,32 +5,71 @@
 
 <p id="notice"><%= notice %></p>
 
+<div class="row">
 <div class="btn-group btn-group-justified">
   <div class="btn-group">
-     <%= link_to('Home', root_path, class: 'btn btn-default') %>
+     <%= link_to('Back', skate_spots_path, class: 'btn btn-primary') %>
    </div>
   <div class="btn-group">
-     <!-- /skate_spots/:skate_spot_id/ratings/ -->
-     <%= link_to('Ratings', skate_spot_ratings_path(@skate_spot), class: 'btn btn-default') %>
-     <!--insteadof: %= link_to('Rate', new_rating_path(@skate_spot.id), class: 'btn btn-default') %>-->
+    <!-- /skate_spots/:skate_spot_id/ratings/new -->
+    <%= link_to('New Rating', new_skate_spot_rating_path(@skate_spot), class: 'btn btn-primary') %>
   </div>
   <div class="btn-group">
-     <%= link_to('Edit', edit_skate_spot_path(@skate_spot), class: 'btn btn-default') %>
+     <%= link_to('Edit', edit_skate_spot_path(@skate_spot), class: 'btn btn-primary') %>
   </div>
-  <div class="btn-group">
-     <%= link_to('Back', skate_spots_path, class: 'btn btn-default') %>
-   </div>
+</div>
 </div>
 
-<h4>Skate Spot: <p><%= @skate_spot.name %></p></h4>
-<h4>Location: <p><%= @skate_spot.location.address %></p></h4>
-<!--These commented lines are for building purposes
-Zip Code:%=#@skate_spot.zip_code%><br> Latitude:%=#@skate_spot.location.latitude%><br>
-Longitude:%=#@skate_spot.location.longitude%><br>Street:=#@skate_spot.location.street%><br>
-Cross street:%=#@skate_spot.cross_street%><br>City:%=#@skate_spot.location.city%></br>
-State:%=#@skate_spot.location.state%></br>Country:%=#@skate_spot.location.country%></br>
-Skate_spot.id:%=#@skate_spot.id%></br>Location_id:%= #@skate_spot.location.id%></p>-->
+<div class="row">
+ <div class="col-sm-4">
+   <h4>Skate Spot: <p><%= @skate_spot.name %></p></h4>
+   <h4>Location: <p><%= @skate_spot.location.address %></p></h4>
 
+   <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse1">Click to view ratings</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <ul class="list-group">
+         <% @skate_spot.ratings.each do |rating| %>
+          <li class="list-group-item">
+           <tr>
+            <td>
+              <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rating
+                <b class="caret"></b>
+               </a>
+               <ul class="dropdown-menu">
+                <li><%= link_to 'Show', [rating.skate_spot, rating] %></li>
+                <li><%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating) %></li>
+                <li><%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+               </ul>
+             </li>
+           <!--</td>-->
+           <td><%= rating.difficulty %></td>
+           <td><%= rating.police %></td>
+           <td><%= rating.pedestrian %></td>
+           <td><%= rating.time %></td>
+           <td><%= rating.description %></td>
+         </td>
+        </tr>
+       </li>
+      <% end %>
+     </ul>
+    <div class="panel-footer">Shred.</div>
+   </div>
+  </div> 
+ </div>
+
+</div>
+
+<br>
+
+<div class="col-sm-8">
+<div class="table-responsive">
 <!-- below 2 divs adds map div -->
 <div style='width: 800px;'>
   <div id="geolocation" style='width: 800px; height: 400px;'></div>
@@ -57,4 +96,5 @@ function displayOnMap(position){
 
 </script>
 
-<br><br><br>
+</div>
+</div>

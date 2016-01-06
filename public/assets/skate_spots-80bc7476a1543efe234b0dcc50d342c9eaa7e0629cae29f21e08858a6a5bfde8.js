@@ -1,1 +1,0 @@
-$("input").geocomplete({map:".map_canvas"}),$("input").geocomplete("find","NYC");var map=$("input").geocomplete("map");map.setZoom(3),$("#my_input").geocomplete({map:"#my_map"});
