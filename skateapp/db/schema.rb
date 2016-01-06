@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231211335) do
+ActiveRecord::Schema.define(version: 20160104202233) do
 
   create_table "locations", force: :cascade do |t|
     t.datetime "created_at",    null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20151231211335) do
     t.string   "state"
     t.string   "country"
     t.string   "street"
+    t.integer  "street_num"
   end
 
   add_index "locations", ["skate_spot_id"], name: "index_locations_on_skate_spot_id"
@@ -34,12 +35,13 @@ ActiveRecord::Schema.define(version: 20151231211335) do
     t.integer  "pedestrian"
     t.string   "time"
     t.string   "description"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "skate_spots_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
+    t.integer  "skate_spot_id"
   end
 
+  add_index "ratings", ["skate_spot_id"], name: "index_ratings_on_skate_spot_id"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "skate_spots", force: :cascade do |t|
@@ -55,9 +57,12 @@ ActiveRecord::Schema.define(version: 20151231211335) do
     t.string   "address"
     t.string   "street"
     t.string   "cross_street"
+    t.integer  "street_num"
+    t.integer  "rating_id"
   end
 
   add_index "skate_spots", ["location_id"], name: "index_skate_spots_on_location_id"
+  add_index "skate_spots", ["rating_id"], name: "index_skate_spots_on_rating_id"
   add_index "skate_spots", ["user_id"], name: "index_skate_spots_on_user_id"
 
   create_table "users", force: :cascade do |t|

@@ -45,6 +45,18 @@ class SkateSpotsController < ApplicationController
     end
   end
 
+  def new_spot_rating
+    #@skate_spot = SkateSpot.find(params[:id])
+    @rating = Rating.build(rating_params)
+    @skate_spot.ratings = @rating
+    #@skate_spot.ratings = Rating.build(rating_params)
+    if @skate_spot.ratings.save
+      redirect_to @skate_spot
+    else
+      render :action => 'new_spot_rating'
+    end
+  end
+
   def edit
     @skate_spot = SkateSpot.find(params[:id])
   end
@@ -91,5 +103,9 @@ class SkateSpotsController < ApplicationController
     def skate_spot_params
       params.require(:skate_spot).permit(:name, :street, :city, :state, :country)
       #params.require(:skate_spot).permit(:name, :zip_code)
+    end
+    
+    def rating_params
+      params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
     end
 end

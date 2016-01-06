@@ -2,5 +2,10 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @rating %> |
-<%= link_to 'Back', ratings_path %>
+<!-- /skate_spots/:skate_spot_id/ratings/:id -->
+<%= link_to 'Show', [@rating.skate_spot, @rating] %> |
+<!-- instead of: %= link_to 'Show', @rating %> |-->
+
+<!-- /skate_spots/:skate_spot_id/ratings/ -->
+<%= link_to 'Back', skate_spot_ratings_path(@rating.skate_spot) %>
+<!-- instead of: %= link_to 'Back', ratings_path %>-->

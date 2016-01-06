@@ -5,19 +5,31 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>Name: <%= @skate_spot.name %><br>
-Zip Code: <%= @skate_spot.zip_code %><br>
-Latitude: <%= @skate_spot.location.latitude %><br>
-Longitude: <%= @skate_spot.location.longitude %><br>
-Address: <%= @skate_spot.location.address %></br>
-City: <%= @skate_spot.location.city %></br>
-State: <%= @skate_spot.location.state %></br>
-Country: <%= @skate_spot.location.country %></br>
-Skate_spot.id: <%= @skate_spot.id %></br>
-Location_id: <%= @skate_spot.location.id %></p>
+<div class="btn-group btn-group-justified">
+  <div class="btn-group">
+     <%= link_to('Home', root_path, class: 'btn btn-default') %>
+   </div>
+  <div class="btn-group">
+     <!-- /skate_spots/:skate_spot_id/ratings/ -->
+     <%= link_to('Ratings', skate_spot_ratings_path(@skate_spot), class: 'btn btn-default') %>
+     <!--insteadof: %= link_to('Rate', new_rating_path(@skate_spot.id), class: 'btn btn-default') %>-->
+  </div>
+  <div class="btn-group">
+     <%= link_to('Edit', edit_skate_spot_path(@skate_spot), class: 'btn btn-default') %>
+  </div>
+  <div class="btn-group">
+     <%= link_to('Back', skate_spots_path, class: 'btn btn-default') %>
+   </div>
+</div>
 
-<%= link_to 'Edit', edit_skate_spot_path(@skate_spot) %> |
-<%= link_to 'Back', skate_spots_path %>
+<h4>Skate Spot: <p><%= @skate_spot.name %></p></h4>
+<h4>Location: <p><%= @skate_spot.location.address %></p></h4>
+<!--These commented lines are for building purposes
+Zip Code:%=#@skate_spot.zip_code%><br> Latitude:%=#@skate_spot.location.latitude%><br>
+Longitude:%=#@skate_spot.location.longitude%><br>Street:=#@skate_spot.location.street%><br>
+Cross street:%=#@skate_spot.cross_street%><br>City:%=#@skate_spot.location.city%></br>
+State:%=#@skate_spot.location.state%></br>Country:%=#@skate_spot.location.country%></br>
+Skate_spot.id:%=#@skate_spot.id%></br>Location_id:%= #@skate_spot.location.id%></p>-->
 
 <!-- below 2 divs adds map div -->
 <div style='width: 800px;'>

@@ -22,9 +22,18 @@
         <td><%= rating.pedestrian %></td>
         <td><%= rating.time %></td>
         <td><%= rating.description %></td>
-        <td><%= link_to 'Show', rating %></td>
-        <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
-        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   
+        <!-- /skate_spots/:skate_spot_id/ratings/:id -->
+        <td><%= link_to 'Show', [rating.skate_spot, rating] %></td>
+        <!-- instead of: <td>%= link_to 'Show', rating %></td> -->
+
+        <!-- /skate_spots/:skate_spot_id/ratings/:id/edit -->
+        <td><%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating) %></td>
+        <!-- instead of: <td>%= link_to 'Edit', edit_rating_path(rating) %></td> -->
+
+        <!-- /skate_spots/:skate_spot_id/ratings/:id -->
+        <td><%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- instead of: <td>%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +41,5 @@
 
 <br>
 
-<%= link_to 'New Rating', new_rating_path %>
+<!-- /skate_spots/:skate_spot_id/ratings/new -->
+<%= link_to 'New Rating', new_skate_spot_rating_path %>

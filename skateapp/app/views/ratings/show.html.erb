@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<p>Rating.skate_spot_id: <%= @rating.skate_spot_id %></p>
+<br>
+
 <p>
   <strong>Difficulty:</strong>
   <%= @rating.difficulty %>
@@ -25,5 +28,14 @@
   <%= @rating.description %>
 </p>
 
-<%= link_to 'Edit', edit_rating_path(@rating) %> |
-<%= link_to 'Back', ratings_path %>
+<!-- /skate_spots/:skate_spot_id/ratings/:id/edit -->
+<%= link_to 'Edit', edit_skate_spot_rating_path(@rating.skate_spot, @rating) %> |
+<!-- instead of: %= link_to 'Edit', edit_rating_path(@rating) %> | -->
+
+<!-- /skate_spots/:skate_spot_id/ratings/ -->
+<%= link_to 'Back', skate_spot_ratings_path(@rating.skate_spot) %>
+<!-- instead of: %= link_to 'Back', ratings_path %> -->
+
+
+
+
