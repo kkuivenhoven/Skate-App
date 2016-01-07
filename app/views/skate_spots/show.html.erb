@@ -32,10 +32,32 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse1">Click to view ratings</a>
+          <a data-toggle="collapse" href="#collapse1">
+          Click to view ratings.
+           </a>
         </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse">
+            <% if @skate_spot.ratings.count == 0 %>
+              <center>This spot hasn't been rated yet.</center>
+            <% else %>
+               Rating averages:<br>
+               - difficulty: <%= @skate_spot.ratings.average(:difficulty) %> <br>
+               - patrol:     <%= @skate_spot.ratings.average(:police) %> <br>
+               - pedestrian:     <%= @skate_spot.ratings.average(:pedestrian) %> <br>
+               - most frequented time of day: 
+               <% if @skate_spot.ratings.where(time: "morning").count > @skate_spot.ratings.where(time: "afternoon").count and @skate_spot.ratings.where(time: "morning").count > @skate_spot.ratings.where(time: "evening").count and @skate_spot.ratings.where(time: "morning").count > @skate_spot.ratings.where(time: "night").count %>
+                     morning
+               <% elsif @skate_spot.ratings.where(time: "afternoon").count > @skate_spot.ratings.where(time: "morning").count and @skate_spot.ratings.where(time: "afternoon").count > @skate_spot.ratings.where(time: "evening").count and @skate_spot.ratings.where(time: "afternoon").count > @skate_spot.ratings.where(time: "night").count %>
+                     afternoon
+               <% elsif @skate_spot.ratings.where(time: "evening").count > @skate_spot.ratings.where(time: "morning").count and @skate_spot.ratings.where(time: "evening").count > @skate_spot.ratings.where(time: "afternoon").count and @skate_spot.ratings.where(time: "evening").count > @skate_spot.ratings.where(time: "night").count %>
+                     evening 
+               <% elsif @skate_spot.ratings.where(time: "night").count > @skate_spot.ratings.where(time: "morning").count and @skate_spot.ratings.where(time: "night").count > @skate_spot.ratings.where(time: "afternoon").count and @skate_spot.ratings.where(time: "night").count > @skate_spot.ratings.where(time: "evening").count %>
+                     night
+               <% else %>
+                  none
+               <% end %>
+             <% end %>
         <ul class="list-group">
          <% @skate_spot.ratings.each do |rating| %>
           <li class="list-group-item">
@@ -63,9 +85,13 @@
       <% end %>
      </ul>
     <% if @skate_spot.ratings.count == 0 %>
-       <div class="panel-footer">This spot hasn't been rated yet.</div>
+       <div class="panel-footer">
+         <%= link_to 'Be the first to rate this spot!', new_skate_spot_rating_path(@skate_spot) %>
+       </div>
     <% else %>
-       <div class="panel-footer">Shred.</div>
+       <div class="panel-footer">
+         Shred.
+       </div>
     <% end %>
    </div>
   </div> 
