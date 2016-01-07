@@ -1,4 +1,11 @@
+#Sources:
+#https://www.railstutorial.org/book, Hartl Michael, 2014
+#http://blog.8thcolor.com/en/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
+
+
 class SkateSpotsController < ApplicationController
+  before_filter :login_required, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :created_by_this_user, only: [:edit, :update, :destroy]
 
   def index
     @skate_spots = SkateSpot.all
@@ -18,7 +25,9 @@ class SkateSpotsController < ApplicationController
   end
 
   def create
-    @skate_spot = SkateSpot.new(skate_spot_params)
+    @skate_spot = current_user.skate_spots.build(skate_spot_params)    
+    #@skate_spot = SkateSpot.new(skate_spot_params)
+
     if @skate_spot.save
       @skate_spot.location = Location.new
       @skate_spot.location.street = @skate_spot.street
@@ -38,6 +47,7 @@ class SkateSpotsController < ApplicationController
       if @skate_spot.location.save
         @location = @skate_spot.location
         @location.skate_spot = @skate_spot
+        flash[:success] = "Skate spot created!"
         redirect_to :action => 'index'
       end
     else
@@ -99,6 +109,16 @@ class SkateSpotsController < ApplicationController
 #    def set_skate_spot
 #      @skate_spot = SkateSpot.find(params[:id])
 #    end
+    def login_required
+      redirect_to login_path unless logged_in?
+    end
+ 
+    def created_by_this_user
+      if !current_user.nil?
+        @skate_spot = current_user.skate_spots.find_by(id: params[:id])
+        redirect_to(skate_spots_url) if @skate_spot.nil? 
+      end
+    end
 
     def skate_spot_params
       params.require(:skate_spot).permit(:name, :street, :city, :state, :country)

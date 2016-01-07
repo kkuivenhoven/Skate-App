@@ -1,5 +1,6 @@
 <!--Sources:
-https://www.railstutorial.org/book, Hartl Michael, 2014-->
+https://www.railstutorial.org/book, Hartl Michael, 2014
+http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flash-messages-for-twitter-bootstrap-defaults-->
 
 <!DOCTYPE html>
 <html>
@@ -13,9 +14,13 @@ https://www.railstutorial.org/book, Hartl Michael, 2014-->
 
   <%= render 'layouts/header' %>
   <div class="container">
+   <div>
     <% flash.each do |message_type, message| %>
+      <!--%=# content_tag(:div, message, class: "alert alert-#{message_type}") %>-->
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
+   </div>
     <%= yield %>
     <%= debug(params) if Rails.env.development? %>
   </div>

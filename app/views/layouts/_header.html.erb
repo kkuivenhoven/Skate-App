@@ -6,6 +6,7 @@ https://www.railstutorial.org/book, Hartl Michael, 2014-->
    <!--%= link_to "Skate Spot App", root_path, id: "logo" %>-->
     <nav>
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Skate Spots", skate_spots_path %></li>
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", static_pages_help_path %></li>
         <% if logged_in? %>

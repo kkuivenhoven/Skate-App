@@ -2,6 +2,8 @@
 #https://www.railstutorial.org/book, Hartl Michael, 2014
 #Note: this User model comes from https://www.railstutorial.org/book/modeling_users
 class User < ActiveRecord::Base
+  has_many :skate_spots
+  has_many :ratings, :through => :skate_spots
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

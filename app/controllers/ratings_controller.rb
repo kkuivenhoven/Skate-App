@@ -1,9 +1,12 @@
 #Sources:
 #http://blog.8thcolor.com/en/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
+#https://www.railstutorial.org/book, Hartl Michael, 2014
 
 class RatingsController < ApplicationController
+  before_action :login_required, only: [:new, :create, :edit, :update, :destroy]
   #first, obtain the skate_spot using set_skate_spot
   before_action :set_skate_spot
+  before_action :users_rating, only: [:edit, :update, :destroy]
 
   #GET /skate_spots/:skate_spot_id/ratings
   def index
@@ -27,8 +30,10 @@ class RatingsController < ApplicationController
   def create
     #create the rating
     @rating = @skate_spot.ratings.create(rating_params)
+    @rating.user_id = current_user.id
     if @rating.save
-      redirect_to :action => 'index'
+      #redirect_to :action => 'index'
+      redirect_to skate_spot_path(@skate_spot)
     else
       render :action => 'new'
     end
@@ -42,10 +47,11 @@ class RatingsController < ApplicationController
 
   #PUT /skate_spots/:skate_spot_id/ratings/:id
   def update
-    #fetch the rating
     @rating = @skate_spot.ratings.find(params[:id])
     if @rating.update(rating_params)
-      redirect_to([@rating.skate_spot, @rating], :notice => 'Rating has been successfully updated!') 
+      flash[:success] = "Rating has been successfully updated!"
+      redirect_to skate_spot_path(@skate_spot)
+      #redirect_to([@rating.skate_spot, @rating], :notice => 'Rating has been successfully updated!') 
     else
       render :edit
     end
@@ -53,13 +59,23 @@ class RatingsController < ApplicationController
 
   #DELETE /skate_spots/:skate_spot_id/ratings/1
   def destroy
-    #fetch the rating
     @rating = @skate_spot.ratings.find(params[:id])
     @rating.destroy
     redirect_to :action => 'index'
   end
 
   private
+
+    def login_required
+      redirect_to login_path unless logged_in?
+    end
+
+    def users_rating
+        @rating = Rating.find(params[:id])
+        redirect_to skate_spot_path(@skate_spot) unless @rating.user_id == current_user.id
+     end
+
+    
     def set_skate_spot
       @skate_spot = SkateSpot.find(params[:skate_spot_id])
     end

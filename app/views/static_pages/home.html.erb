@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <div class="btn-group btn-group-justified">
+   <% if !logged_in? %>
+    <div class="btn-group">
+       <%= link_to('Log in', login_path, class: 'btn btn-primary') %>
+     </div>
+   <% end %>
   <div class="btn-group">
      <%= link_to('Skate Spots', skate_spots_path, class: 'btn btn-primary') %>
    </div>
-  <div class="btn-group">
-     <%= link_to('Create Account', new_user_path, class: 'btn btn-primary') %>
-   </div>
+  <% if !logged_in? %>
+    <div class="btn-group">
+       <%= link_to('Create Account', new_user_path, class: 'btn btn-primary') %>
+     </div>
+  <% end %>
 </div>
 
 <br><br><br><br>
@@ -18,7 +25,9 @@
     Home page of the Skate Spot App.
   </h3>
 
-  <%= link_to new_user_path, class: 'btn btn-md btn-primary' do%>Create an account<% end %>
+  <!--% if !logged_in? %>
+    %= link_to new_user_path, class: 'btn btn-md btn-primary' do%>Create an account% end %>
+  % end %>-->
 
 </div>
 
