@@ -1,0 +1,9 @@
+<h1>as;dfjkl</h1>
+
+<% @skate_spots.each do |skate_spot| %>
+  <div class="skate-spot">
+     <h5 class="skate-spot-name"><%= link_to "#{skate_spot.name}", skate_spot %></h5>
+    <p class="skate-spot-zip-code"><%= skate_spot.zip_code %></p>
+  </div>
+<% end %>
+

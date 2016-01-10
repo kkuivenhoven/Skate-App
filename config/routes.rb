@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'static_pages/home'
   get 'static_pages/help'
+  get 'skate_spots/search_results'
+  get 'skate_spots/show'
 
   get 'password_resets/new'
   get 'password_resets/edit'

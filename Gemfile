@@ -24,9 +24,8 @@ gem 'fog',                     '1.36.0'
 gem 'rails-erd'
 gem 'geocoder' #needed for converting lat,long to address
 gem 'area' #needed for converting zipcode to lat,long
-#gem 'railties'
-#gem 'geocomplete_rails'
-gem 'gmaps4rails'
+gem 'gmaps4rails' #needed for maps on views/skate_spots/show.html.erb
+gem 'language_filter'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -32,10 +32,12 @@ class RatingsController < ApplicationController
     @rating = @skate_spot.ratings.create(rating_params)
     @rating.user_id = current_user.id
     if @rating.save
-      #redirect_to :action => 'index'
+      flash[:success] = "Rating has been successfully created!"
       redirect_to skate_spot_path(@skate_spot)
     else
-      render :action => 'new'
+      flash[:danger] = "Rating has been unsuccessfully created. Please try again."
+      redirect_to new_skate_spot_rating_path(@skate_spot)
+      #render :action => 'new'
     end
   end
 
@@ -53,15 +55,21 @@ class RatingsController < ApplicationController
       redirect_to skate_spot_path(@skate_spot)
       #redirect_to([@rating.skate_spot, @rating], :notice => 'Rating has been successfully updated!') 
     else
-      render :edit
+      flash[:danger] = "Rating has been unsuccesfully updated. Please try again."
+      redirect_to skate_spot_path(@skate_spot)
     end
   end
 
   #DELETE /skate_spots/:skate_spot_id/ratings/1
   def destroy
     @rating = @skate_spot.ratings.find(params[:id])
-    @rating.destroy
-    redirect_to :action => 'index'
+    if @rating.destroy
+      flash[:success] = "Rating has been successfully deleted!"
+      redirect_to skate_spot_path(@skate_spot)
+    else
+      flash[:danger] = "Deletion unsuccessful. Please try again."
+      redirect_to skate_spot_path(@skate_spot)
+    end
   end
 
   private
