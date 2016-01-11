@@ -1,12 +1,14 @@
 #Sources:
 #http://blog.8thcolor.com/en/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
 #https://www.railstutorial.org/book, Hartl Michael, 2014
+#https://github.com/chrisvfritz/language_filter
 
 class RatingsController < ApplicationController
   before_action :login_required, only: [:new, :create, :edit, :update, :destroy]
   #first, obtain the skate_spot using set_skate_spot
   before_action :set_skate_spot
   before_action :users_rating, only: [:edit, :update, :destroy]
+  after_action :filter, only: [:create]
 
   #GET /skate_spots/:skate_spot_id/ratings
   def index
@@ -79,10 +81,40 @@ class RatingsController < ApplicationController
     end
 
     def users_rating
-        @rating = Rating.find(params[:id])
-        redirect_to skate_spot_path(@skate_spot) unless @rating.user_id == current_user.id
-     end
+      @rating = Rating.find(params[:id])
+      redirect_to skate_spot_path(@skate_spot) unless @rating.user_id == current_user.id
+    end
 
+    def filter 
+      sex_filter = LanguageFilter::Filter.new(matchlist: :sex, exceptionlist: [], replacement: :vowels) 
+      hate_filter = LanguageFilter::Filter.new(matchlist: :hate, exceptionlist: [], replacement: :vowels) 
+      profanity_filter = LanguageFilter::Filter.new(matchlist: :profanity, exceptionlist: [], replacement: :vowels) 
+      violence_filter = LanguageFilter::Filter.new(matchlist: :violence, exceptionlist: [], replacement: :vowels) 
+      party_filter = LanguageFilter::Filter.new(matchlist: ['party','byob','booze','beer','joint','jay','j','weed','marijuana'], exceptionlist: [], replacement: :vowels) 
+      if profanity_filter.match?(@rating.description) 
+        flash[:warning] = "Your post has been sanitized for the following profane language: #{profanity_filter.matched(@rating.description)}."
+        @rating.description = profanity_filter.sanitize(@rating.description)
+        @rating.save 
+      elsif hate_filter.match?(@rating.description) 
+        flash[:warning] = "Your post has been sanitized for the following hate language: #{hate_filter.matched(@rating.description)}."
+        @rating.description = hate_filter.sanitize(@rating.description)
+        @rating.save 
+      elsif sex_filter.match?(@rating.description) 
+        flash[:warning] = "Your post has been sanitized for the following sex language: #{sex_filter.matched(@rating.description)}."
+        @rating.description = sex_filter.sanitize(@rating.description)
+        @rating.save 
+      elsif violence_filter.match?(@rating.description)
+        flash[:warning] = "Your post has been sanitized for the following violent language: #{violence_filter.matched(@rating.description)}."
+        @rating.description = violence_filter.sanitize(@rating.description)
+        @rating.save 
+      elsif party_filter.match?(@rating.description)
+        flash[:warning] = "Your post has been sanitized for the following party language: #{party_filter.matched(@rating.description)}."
+        flash[:danger] = "Your post has also been flagged for monitoring due to that party language."
+        @rating.description = violence_filter.sanitize(@rating.description)
+        @rating.save 
+      else
+      end
+    end
     
     def set_skate_spot
       @skate_spot = SkateSpot.find(params[:skate_spot_id])
@@ -91,4 +123,13 @@ class RatingsController < ApplicationController
     def rating_params
       params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
     end
+
+    def set_skate_spot
+      @skate_spot = SkateSpot.find(params[:skate_spot_id])
+    end
+      
+    def rating_params
+      params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
+    end
+
 end

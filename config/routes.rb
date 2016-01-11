@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
   get 'password_resets/index'
 
+  get 'users/search_results'
+
   resources :skate_spots do
     resources :ratings
   end
@@ -32,7 +34,7 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
-  resources :users
+  resources :users, 			  only: [:show, :index, :new, :create, :edit, :update, :destroy, :search_results]
   resources :account_activations, only: [:edit] #named route for edit action
   resources :password_resets,     only: [:new, :create, :edit, :update, :index]
 

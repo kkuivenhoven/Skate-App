@@ -1,6 +1,8 @@
 #Sources:
 #https://www.railstutorial.org/book, Hartl Michael, 2014
 #Note: this User model comes from https://www.railstutorial.org/book/modeling_users
+#http://www.jorgecoca.com/buils-search-form-ruby-rails/
+
 class User < ActiveRecord::Base
   has_many :skate_spots
   has_many :ratings, :through => :skate_spots
@@ -15,7 +17,12 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-
+  
+  # It returns the users whose names contain one or more words that form the query
+  def self.search(query)
+    # where(:name, query) -> This would return an exact match of the query
+    where("name like ?", "%#{query}%") 
+  end
 
   class << self
     # Returns the hash digest of the given string.

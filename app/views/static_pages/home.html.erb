@@ -15,14 +15,12 @@
   % end %>
 </div>-->
 
-<br><br>
-<div class="center jumbotron">
-  <h1>
-    Skate Spot App
-  </h1>
+<!--<br><br><br><br><br><br><br>-->
+<!--<br><br><br><br><br><br><br>-->
 
-  <h3>
-    Home page of the Skate Spot App.
+<% provide(:title, "Home") %>
+<% provide(:p, " Created by a skater, for skaters.") %>
+
   <!--<h4>
    - When submit the form, the view rendered will be the index view of our articles resource
      %= form_tag(skate_spots_path, :method => "get", class: "navbar-form", id: "search-form") do %>
@@ -34,15 +32,10 @@
        </div>
      % end %>
   </h4>-->
-  </h3>
-
-
-</div>
 
   <!--% if !logged_in? %>
     %= link_to new_user_path, class: 'btn btn-md btn-primary' do%>Create an account% end %>
   % end %>-->
 
-</div>
 
 

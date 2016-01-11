@@ -1,0 +1,9 @@
+<% provide(:title, "Results") %>
+<h1>;ladjksf</h1>
+
+<% @users.each do |user| %>
+    <div class="user">
+       <h5 class="user-name"><%= link_to "#{user.name}", user %></h5>
+    </div>
+<% end %>
+

@@ -11,7 +11,7 @@
 
 Rating.create!(difficulty: 1, police: 1,
                pedestrian: 3, time: "morning",
-               description: "3-stair near sidewalk")
+               description: "15-stair near sidewalk. fucked this spot up.")
 
 Rating.create!(difficulty: 3, police: 1,
                pedestrian: 5, time: "midday",
