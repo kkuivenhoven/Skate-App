@@ -5,9 +5,9 @@ class SkateSpot < ActiveRecord::Base
   has_one :location
 
 
-  # It returns the articles whose titles contain one or more words that form the query
+  #returns skatespots whose names contain >=1 words that form the query
   def self.search(query)
-    # where(:title, query) -> This would return an exact match of the query
+    #where(:name, query) -> returns an exact match of the query
     where("name like ?", "%#{query}%") 
   end
 

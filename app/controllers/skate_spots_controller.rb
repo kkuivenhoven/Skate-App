@@ -98,7 +98,7 @@ class SkateSpotsController < ApplicationController
       if @skate_spot.location.save
         @location = @skate_spot.location
         flash[:success] = "Update successful!"
-        redirect_to edit_location_path(@location.id)
+        redirect_to skate_spot_path(@skate_spot)
       else
         flash[:danger] = "Update unsuccessful. Please try again."
         render :edit

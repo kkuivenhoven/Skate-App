@@ -24,6 +24,13 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
      <% end %>  
      <br>
      <%= yield(:p) %></p>
+     <p-small>
+       <% if current_page?(controller: 'static_pages', action: 'home') %>
+         <!--Created by: a skater girl, :) 
+         <br-->
+         Inspired by: Humboldt Neighborhood Skateboard. 
+       <% end %>  
+     </p-small>
     <!--%= yield %-->
    </div>
 
