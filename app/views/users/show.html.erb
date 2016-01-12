@@ -3,6 +3,8 @@ https://www.railstutorial.org/book, Hartl Michael, 2014
 https://www.railstutorial.org/book/sign_up-->
 
 <% provide(:title, @user.name) %>
+<% provide(:p, "Documented street spots: #{@user.skate_spots.count}") %>
+
 <div class="row">
  <div class="col-sm-4">
   <!--<aside class="col-md-4">-->
@@ -10,8 +12,8 @@ https://www.railstutorial.org/book/sign_up-->
       <h3>
         <%= gravatar_for @user %>
         <div class="col-sm-2">
-          <%= @user.name %>
-          <%= @user.email %>
+          <!--%= @user.name %-->
+          <!--%= @user.email %-->
         </div>
       </h3>
     </section>

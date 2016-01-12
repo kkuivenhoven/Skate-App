@@ -4,12 +4,12 @@
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
 <p id="notice"><%= notice %></p>
+<% provide(:title, "#{@skate_spot.name}") %>
+<% provide(:p, "#{@skate_spot.location.address}") %>
 
 <div class="row">
  <div class="col-sm-4">
-   <h4>Skate Spot: <p><%= @skate_spot.name %></p></h4>
-   <h4>Location: <p><%= @skate_spot.location.address %></p></h4>
-
+<br>
    <div class="panel-group">
     <div class="panel panel-default">
       <div class="panel-heading">
