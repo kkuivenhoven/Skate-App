@@ -19,8 +19,8 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
    <div class="center jumbotron">
      <h1>Street Spot | <%= yield(:title) %></h1>
      <p>
-     <% if current_page?(controller: 'static_pages', action: 'home') %>
-     An app.
+     <% if current_page?(controller: 'sessions', action: 'new') %>
+        New user? <%= link_to "Sign up now!", signup_path %>
      <% end %>  
      <br>
      <%= yield(:p) %></p>
