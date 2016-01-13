@@ -16,7 +16,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                User Options <b class="caret"></b>
+                Account Options <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <!--%= form_tag(users_path, :method => "get", class: "navbar-form", id: "search-form") do %>
@@ -25,7 +25,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
                        <button class="btn btn-default btn-xs" type="submit"><i class="icon-search icon-white">Search >></i></button>
                    </div>
                 % end %>-->
-               <% if logged_in? %> <li><%= link_to "View all users", users_path %></li>
+               <% if logged_in? %> <li><%= link_to "View all accounts", users_path %></li>
                 <li class="divider"></li><% end %>
                 <li>
                <% if logged_in? %>
@@ -47,19 +47,19 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
          </a>
          <ul class="dropdown-menu">
             <% if logged_in? %>
-               <li><%= link_to "New Skate Spot", new_skate_spot_path %>
+               <li><%= link_to "New Street Spot", new_skate_spot_path %>
                </li>
              <% end %>
-           <li><%= link_to "View all Skate Spots", skate_spots_path %>
+           <li><%= link_to "View Documented Spots", skate_spots_path %>
            </li>
 
            <li>
-             <!--% if current_page?(controller: 'skate_spots', action: 'show') %>
-              % if @skate_spot.user_id == current_user.skate_spot_id %>
-                <li>%= link_to "Destroy", @skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-              % end %>
-             % end %-->
-          
+             <% if current_page?(controller: 'skate_spots', action: 'show') %>
+              <% if current_user.id == @skate_spot.user_id %>
+                <li><%= link_to "Delete #{@skate_spot.name} Street Spot", @skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <% end %>
+             <% end %>
+           
 		    </li>
 
 		 <!--% if !current_page?(controller: 'static_pages', action: 'home') %>-->

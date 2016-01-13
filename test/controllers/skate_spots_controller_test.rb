@@ -35,12 +35,12 @@ class SkateSpotsControllerTest < ActionController::TestCase
     assert_redirected_to skate_spots_path
   end
 
-  #test "should destroy skate_spot for correct user" do
-  #  log_in_as(users(:kendra))
-  #  assert_difference('SkateSpot.count') do
-  #     post :destroy, id: skate_spots(:one)
-  #    #delete :destroy, id: skate_spots(:one)
-  #  end
-  #end
+  test "should destroy skate_spot for correct user" do
+    log_in_as(users(:kendra))
+    assert_no_difference('SkateSpot.count') do
+       #post :destroy, id: skate_spots(:one)
+      delete :destroy, id: skate_spots(:one)
+    end
+  end
 
 end

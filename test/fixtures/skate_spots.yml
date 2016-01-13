@@ -4,14 +4,25 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-  name: Neighborhood
-  user: kendra
-  user_id: 1
-  zip_code: 95928
-  city: Chico
-  location_id: 1
-  rating_id: 1
+
+{
+  "one": {
+    "city": "Chico", 
+    "user_id": 1, 
+    "name": "Neighborhood", 
+    "rating_id": 1, 
+    "location_id": 1, 
+    "zip_code": 95928
+  }
+}
+
+#one:
+#  name: Neighborhood
+#  user_id: 1
+#  zip_code: 95928
+#  city: Chico
+#  location_id: 1
+#  rating_id: 1
 # column: value
 #
 #two: {}

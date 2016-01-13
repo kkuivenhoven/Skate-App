@@ -1,6 +1,7 @@
 #Sources:
 #https://www.railstutorial.org/book, Hartl Michael, 2014
 #http://blog.8thcolor.com/en/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
+#http://stackoverflow.com/questions/4835536/how-do-i-add-a-new-object-to-an-existing-array-in-ruby
 
 class SkateSpotsController < ApplicationController
   before_filter :login_required, only: [:new, :create, :edit, :update, :destroy]
@@ -40,8 +41,9 @@ class SkateSpotsController < ApplicationController
   def create
     @skate_spot = current_user.skate_spots.build(skate_spot_params)    
     #@skate_spot = SkateSpot.new(skate_spot_params)
-
+    
     if @skate_spot.save
+      #current_user.skate_spots << @skate_spot
       @skate_spot.location = Location.new
       @skate_spot.location.street = @skate_spot.street
       @skate_spot.location.city = @skate_spot.city
