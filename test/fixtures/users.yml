@@ -4,14 +4,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 kendra: 
+  id: 1
   name: Kendra Example
   email: kendra@example.com
   password_digest: <%= User.digest('password') %>
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
+  skate_spot_id: 1
 
 kimberly: 
+  id: 2
   name: Kimberly Example
   email: kimberly@example.com
   password_digest: <%= User.digest('password') %>
@@ -19,6 +22,7 @@ kimberly:
   activated_at: <%= Time.zone.now %>
   
 kevin:
+  id: 3
   name: Kevin Example
   email: kevin@example.com
   password_digest: <%= User.digest('password') %>

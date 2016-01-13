@@ -47,6 +47,7 @@ class SkateSpotsController < ApplicationController
       @skate_spot.location.city = @skate_spot.city
       @skate_spot.location.state = @skate_spot.state
       @skate_spot.location.country = @skate_spot.country
+      @skate_spot.city = @skate_spot.city.to_s
 
       total = Array.new(4)
       total[0] = @skate_spot.street

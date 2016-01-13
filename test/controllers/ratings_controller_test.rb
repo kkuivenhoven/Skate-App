@@ -1,14 +1,28 @@
 require 'test_helper'
 
 class RatingsControllerTest < ActionController::TestCase
-#  setup do
-#    @rating = ratings(:one)
+
+  setup do
+    @rating1 = ratings(:one)
+    @rating2 = ratings(:two)
+    @rating3 = ratings(:three)
+    @skate_spot = skate_spots(:one)
+  end
+
+#  test "should redirect destroy for wrong rating post" do
+#    log_in_as(users(:kimberly))
+#    get 'skate_spot'
+#    assert_no_difference 'Rating.count' do
+#     delete :destroy, id: ratings(:one)
+#    end
+#    assert_redirected_to skate_spot_path(@skate_spot)
 #  end
 
-#  test "should get index" do
-#    get :index
-#    assert_response :success
-#    assert_not_nil assigns(:ratings)
+
+  #test "should get index" do
+  #  get :index
+  #  assert_response :success
+  #  assert_not_nil assigns(:ratings)
   #end
 
   #test "should get new" do

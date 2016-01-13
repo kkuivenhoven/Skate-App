@@ -52,7 +52,17 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
              <% end %>
            <li><%= link_to "View all Skate Spots", skate_spots_path %>
            </li>
-             <!--% if !current_page?(controller: 'static_pages', action: 'home') %>-->
+
+           <li>
+             <!--% if current_page?(controller: 'skate_spots', action: 'show') %>
+              % if @skate_spot.user_id == current_user.skate_spot_id %>
+                <li>%= link_to "Destroy", @skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              % end %>
+             % end %-->
+          
+		    </li>
+
+		 <!--% if !current_page?(controller: 'static_pages', action: 'home') %>-->
               <li class="divider">
               </li>
                <%= form_tag(skate_spots_path, :method => "get", class: "navbar-form", id: "search-form") do %>
