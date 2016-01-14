@@ -12,7 +12,6 @@ class RatingsController < ApplicationController
 
   #GET /skate_spots/:skate_spot_id/ratings
   def index
-    #get all ratings of this skate_spot
     @ratings = @skate_spot.ratings
   end
 
@@ -31,7 +30,8 @@ class RatingsController < ApplicationController
   #POST /skate_spots/:skate_spot_id/ratings
   def create
     #create the rating
-    @rating = @skate_spot.ratings.create(rating_params)
+    @rating = @skate_spot.ratings.create(params[:rating_params])
+    #@rating = @skate_spot.ratings.create(rating_params)
     @rating.user_id = current_user.id
     if @rating.save
       flash[:success] = "Rating has been successfully created!"
@@ -39,7 +39,6 @@ class RatingsController < ApplicationController
     else
       flash[:danger] = "Rating has been unsuccessfully created. Please try again."
       redirect_to new_skate_spot_rating_path(@skate_spot)
-      #render :action => 'new'
     end
   end
 

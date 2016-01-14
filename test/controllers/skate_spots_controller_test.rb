@@ -4,6 +4,8 @@ class SkateSpotsControllerTest < ActionController::TestCase
 
   def setup
     @skate_spot = skate_spots(:one)
+#    @skate_spot2 = skate_spots(:two)
+    @user = users(:kendra)
   end
 
   test "should get index" do
@@ -27,7 +29,14 @@ class SkateSpotsControllerTest < ActionController::TestCase
     assert_redirected_to skate_spot_path(assigns(:skate_spot))
   end
 
-  test "should redirect destroy for wrong skate_spot" do
+  test "should redirect destroy skate_spot when not logged in" do
+    assert_no_difference 'SkateSpot.count' do
+      delete :destroy, id: skate_spots(:one)
+    end
+    assert_redirected_to login_url
+  end
+
+  test "should redirect destroy skate_spot for incorrect user" do
     log_in_as(users(:kimberly))
     assert_no_difference 'SkateSpot.count' do
       delete :destroy, id: skate_spots(:one)
@@ -36,10 +45,13 @@ class SkateSpotsControllerTest < ActionController::TestCase
   end
 
   test "should destroy skate_spot for correct user" do
-    log_in_as(users(:kendra))
-    assert_no_difference('SkateSpot.count') do
-       #post :destroy, id: skate_spots(:one)
-      delete :destroy, id: skate_spots(:one)
+    log_in_as(@user)
+    before = SkateSpot.count
+    if @skate_spot.user_id == @user.id
+      delete :destroy, id: @skate_spot
+      after = SkateSpot.count
+      assert_equal after, before-1
+      assert_redirected_to skate_spots_path
     end
   end
 

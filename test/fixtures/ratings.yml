@@ -5,32 +5,31 @@
   "one": {
     "id": 1,
     "skate_spot_id": 1, 
-    "police": 1, 
+    "police": "1", 
     "description": "10-stair", 
-    "pedestrian": 1, 
-    "difficulty": 1, 
+    "pedestrian": "1", 
+    "difficulty": "1", 
     "time": "morning", 
     "user_id": 1, 
-    "id": 1
-  }, 
-  "two": {
-    "id": 2,
-    "pedestrian": 1, 
-    "skate_spot_id": 1, 
-    "user_id": 2, 
-    "description": "city park ledge", 
-    "difficulty": 1, 
-    "police": 1, 
-    "time": "afternoon"
-  }, 
-  "three": {
-    "id": 3,
-    "pedestrian": 1, 
-    "skate_spot_id": 1, 
-    "user_id": 3, 
-    "description": "15-stair", 
-    "difficulty": 1, 
-    "police": 1, 
-    "time": "night"
-  }
+   }, 
+#  "two": {
+#    "id": 2,
+#    "pedestrian": 1, 
+#    "skate_spot_id": 1, 
+#    "user_id": 2, 
+#    "description": "city park ledge", 
+#    "difficulty": 1, 
+#    "police": 1, 
+#    "time": "afternoon"
+#  }, 
+#  "three": {
+#    "id": 3,
+#    "pedestrian": 1, 
+#    "skate_spot_id": 1, 
+#    "user_id": 3, 
+#    "description": "15-stair", 
+#    "difficulty": 1, 
+#    "police": 1, 
+#    "time": "night"
+#  }
 }

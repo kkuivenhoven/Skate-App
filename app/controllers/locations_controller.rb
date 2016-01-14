@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  before_filter :login_required, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :created_by_this_user, only: [:edit, :update, :destroy]
 
   def index
     @locations = Location.all
@@ -40,13 +42,22 @@ class LocationsController < ApplicationController
 
   def destroy
     Location.find(params[:id]).destroy
-    redirect_to :action => 'index'
+    #redirect_to :action => 'index'
+    redirect_to skate_spots_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    #def set_location
-    #end
+
+    def login_required
+      redirect_to login_path unless logged_in?
+    end
+
+    def created_by_this_user
+      if !current_user.nil?
+        @skate_spot = current_user.skate_spots.find_by(id: params[:id])
+        redirect_to(skate_spots_url) if @skate_spot.nil?
+      end
+    end
 
     def location_params
       params.require(:location).permit(:skate_spot_id)

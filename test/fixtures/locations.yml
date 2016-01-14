@@ -4,12 +4,46 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: 
-  skate_spot_id: 1
-  city: Chico
-  state: CA
-  country: USA
-  street: Humboldt Avenue
+
+{
+  "one": {
+    "city": "Chico", 
+    "skate_spot_id": 1, 
+    "street": "Humboldt Avenue", 
+    "country": "USA", 
+    "state": "CA", 
+    "id": 1
+  },
+  "two": {
+    "city": "Loomis", 
+    "skate_spot_id": 2, 
+    "street": "Horseshoe Bar Rd", 
+    "country": "USA", 
+    "state": "CA", 
+    "id": 2
+  },
+#  "one": {
+#    "city": "Chico", 
+#    "skate_spot_id": 1, 
+#    "street": "Humboldt Avenue", 
+#    "state": "CA", 
+#    "country": "USA"
+#  },
+#  "two": {
+#    "city": "Loomis", 
+#    "skate_spot_id": 2, 
+#    "street": "Horseshoe Bar Rd", 
+#    "state": "CA", 
+#    "country": "USA"
+#  },
+}
+
+#one: 
+#  skate_spot_id: 1
+#  city: Chico
+#  state: CA
+#  country: USA
+#  street: Humboldt Avenue
 
 # column: value
 #

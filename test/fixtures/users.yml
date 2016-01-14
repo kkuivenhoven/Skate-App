@@ -6,6 +6,7 @@
 
 {
   "kendra": {
+    "id": 1,
     "name": "Kendra Example", 
     "admin": true, 
     "password_digest": "<%= User.digest('password') %>", 
@@ -14,22 +15,209 @@
     "email": "kendra@example.com"
   },
   "kimberly": {
+    "id": 2,
     "password_digest": "<%= User.digest('password') %>", 
     "activated_at": "<%= Time.zone.now %>", 
     "activated": true, 
     "name": "Kimberly Example", 
     "email": "kimberly@example.com"
+  },
+  "kevin": {
+    "id": 3,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Kevin Example", 
+    "email": "kevin@example.com"
+  },
+  "dirk": {
+    "id": 4,
+    "name": "Dirk Example", 
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "email": "dirk@example.com"
+  },
+  "tigger": {
+    "id": 5,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Tigger Example", 
+    "email": "tigger@example.com"
+  },
+  "oreo": {
+    "id": 6,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Oreo Example", 
+    "email": "oreo@example.com"
+  },
+  "kendr": {
+    "id": 7,
+    "name": "Kendr Example", 
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "email": "kendr@example.com"
+  },
+  "kimberl": {
+    "id": 8,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Kimberl Example", 
+    "email": "kimberl@example.com"
+  },
+  "kevn": {
+    "id": 9,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Kevn Example", 
+    "email": "kevn@example.com"
+  },
+  "drk": {
+    "id": 10,
+    "name": "Drk Example", 
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "email": "drk@example.com"
+  },
+  "tiger": {
+    "id": 11,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Tiger Example", 
+    "email": "tiger@example.com"
+  },
+  "oro": {
+    "id": 12,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Oro Example", 
+    "email": "oro@example.com"
+  },
+  "endra": {
+    "id": 13,
+    "name": "endra Example", 
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "email": "endra@example.com"
+  },
+#}
+  "imerly": {
+    "id": 14,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "imerly Example", 
+    "email": "imerly@example.com"
+  },
+#}
+  "evin": {
+    "id": 15,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "evin Example", 
+    "email": "evin@example.com"
+  },
+#}
+  "irk": {
+    "id": 16,
+    "name": "irk Example", 
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "email": "irk@example.com"
+  },
+  "igger": {
+    "id": 17,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "igger Example", 
+    "email": "igger@example.com"
+  },
+#}
+  "oeo": {
+    "id": 18,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Oeo Example", 
+    "email": "oeo@example.com"
+  },
+#}
+  "endr": {
+    "id": 19,
+    "name": "endr Example", 
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "email": "endr@example.com"
+  },
+#}
+  "imberl": {
+    "id": 20,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "imberl Example", 
+    "email": "imberl@example.com"
+  },
+#}
+  "evn": {
+    "id": 21,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "evn Example", 
+    "email": "evn@example.com"
+  },
+#}
+  "rk": {
+    "id": 22,
+    "name": "rk Example", 
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "email": "rk@example.com"
+  },
+#}
+  "tigr": {
+    "id": 23,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "Tigr Example", 
+    "email": "tigr@example.com"
+  },
+#}
+  "ro": {
+    "id": 24,
+    "password_digest": "<%= User.digest('password') %>", 
+    "activated_at": "<%= Time.zone.now %>", 
+    "activated": true, 
+    "name": "ro Example", 
+    "email": "ro@example.com"
   }
 }
 
-<% 30.times do |n| %>
-user_<%= n %>:
-   name: <%= "User #{n}" %>
-   email: <%= "user-#{n}@example.com" %>
-   password_digest: <%= User.digest('password') %>
-   activated: true
-   activated_at: <%= Time.now %>
-<% end %>
+#<% 30.times do |n| %>
+#user_<%= n %>:
+#   name: <%= "User #{n}" %>
+#   email: <%= "user-#{n}@example.com" %>
+#   password_digest: <%= User.digest('password') %>
+#   activated: true
+#   activated_at: <%= Time.now %>
+#<% end %>
 
 ###########################
 
