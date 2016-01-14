@@ -1,6 +1,7 @@
 #Sources:
 #https://www.railstutorial.org/book, Hartl Michael, 2014
 #https://www.railstutorial.org/book/updating_and_deleting_users
+#http://stackoverflow.com/questions/29667842/railstutorial-chapter-9-user-index-test-raised-a-failure-after-modify-pagination
 
 require 'test_helper'
 
