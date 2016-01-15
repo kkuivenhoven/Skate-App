@@ -90,7 +90,6 @@ class RatingsController < ApplicationController
       hate_filter = LanguageFilter::Filter.new(matchlist: :hate, exceptionlist: [], replacement: :vowels) 
       profanity_filter = LanguageFilter::Filter.new(matchlist: :profanity, exceptionlist: [], replacement: :vowels) 
       violence_filter = LanguageFilter::Filter.new(matchlist: :violence, exceptionlist: [], replacement: :vowels) 
-      party_filter = LanguageFilter::Filter.new(matchlist: ['party','byob','booze','beer','joint','jay','j','weed','marijuana'], exceptionlist: [], replacement: :vowels) 
       if profanity_filter.match?(@rating.description) 
         flash[:warning] = "Your post has been sanitized for the following profane language: #{profanity_filter.matched(@rating.description)}."
         @rating.description = profanity_filter.sanitize(@rating.description)
@@ -105,11 +104,6 @@ class RatingsController < ApplicationController
         @rating.save 
       elsif violence_filter.match?(@rating.description)
         flash[:warning] = "Your post has been sanitized for the following violent language: #{violence_filter.matched(@rating.description)}."
-        @rating.description = violence_filter.sanitize(@rating.description)
-        @rating.save 
-      elsif party_filter.match?(@rating.description)
-        flash[:warning] = "Your post has been sanitized for the following party language: #{party_filter.matched(@rating.description)}."
-        flash[:danger] = "Your post has also been flagged for monitoring due to that party language."
         @rating.description = violence_filter.sanitize(@rating.description)
         @rating.save 
       else

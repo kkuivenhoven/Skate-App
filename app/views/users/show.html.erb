@@ -3,7 +3,7 @@ https://www.railstutorial.org/book, Hartl Michael, 2014
 https://www.railstutorial.org/book/sign_up-->
 
 <% provide(:title, @user.name) %>
-<% provide(:p, "Documented street spots: #{@user.skate_spots.count}") %>
+<% provide(:p, "Your documented street spots: #{@user.skate_spots.count}") %>
 
 <div class="row">
  <div class="col-sm-4">
@@ -21,7 +21,7 @@ https://www.railstutorial.org/book/sign_up-->
  </div>
 <!--</div>-->
 
-<h4>Your documented skate spots: <!--%= @user.name %--></h4>
+<!--<h4>Your documented skate spots: -%= @user.name %></h4-->
 <div class="container">
   <div class="table-responsive">
     <table class="table table-hover">

@@ -1,3 +1,6 @@
+#Sources:
+#http://www.rubytutorial.io/testing-rails-validations/
+
 require 'test_helper'
 
 class RatingTest < ActiveSupport::TestCase
@@ -61,4 +64,9 @@ class RatingTest < ActiveSupport::TestCase
     assert_not @rating.valid?
   end
 
+  test "should not save rating without difficulty, police, pedestrian, and description" do
+    rating = Rating.new
+    assert_not rating.valid?
+    assert_equal [:difficulty, :police, :pedestrian, :description], rating.errors.keys
+  end
 end
