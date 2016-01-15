@@ -10,20 +10,35 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Rating.create!(difficulty: 1, police: 1,
-               pedestrian: 3, time: "morning",
-               description: "15-stair near sidewalk. fucked this spot up.")
+               pedestrian: 3, 
+               description: "15-stair near sidewalk. fucked this spot up."#,
+               #skate_spot_id: 1,
+               #user_id: 1
+)
 
 Rating.create!(difficulty: 3, police: 1,
-               pedestrian: 5, time: "midday",
-               description: "ledge next to stair-set")
+               pedestrian: 5,
+               description: "ledge next to stair-set"#,
+               #skate_spot_id: 1,
+               #user_id: 2 
+)
+
 
 Rating.create!(difficulty: 4, police: 5,
-               pedestrian: 1,time: "night",
-               description: "7-stair near sidewalk")
+               pedestrian: 1,
+               description: "7-stair near sidewalk"#,
+               #skate_spot_id: 1,
+               #user_id: 3 
+)
+
 
 Rating.create!(difficulty: 5, police: 5,
-               pedestrian: 0, time: "morning",
-               description: "10-stair near sidewalk")
+               pedestrian: 0,
+               description: "10-stair near sidewalk"#,
+               #skate_spot_id: 1,
+               #user_id: 4 
+)
+
 
 Location.create!(skate_spot_id: 1,
  			     latitude: 38.817508,

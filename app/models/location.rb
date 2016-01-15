@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
 
-  has_one :skate_spot
+#  has_one :skate_spot
  
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude

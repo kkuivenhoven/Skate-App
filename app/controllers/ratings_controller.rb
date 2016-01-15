@@ -30,15 +30,16 @@ class RatingsController < ApplicationController
   #POST /skate_spots/:skate_spot_id/ratings
   def create
     #create the rating
-    @rating = @skate_spot.ratings.create(params[:rating_params])
-    #@rating = @skate_spot.ratings.create(rating_params)
+    #@rating = @skate_spot.ratings.create(params[:rating_params])
+    @rating = @skate_spot.ratings.create(rating_params)
     @rating.user_id = current_user.id
     if @rating.save
       flash[:success] = "Rating has been successfully created!"
       redirect_to skate_spot_path(@skate_spot)
     else
       flash[:danger] = "Rating has been unsuccessfully created. Please try again."
-      redirect_to new_skate_spot_rating_path(@skate_spot)
+      render 'new'
+      #redirect_to new_skate_spot_rating_path(@skate_spot)
     end
   end
 
@@ -128,7 +129,8 @@ class RatingsController < ApplicationController
     end
       
     def rating_params
-      params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
+      params.require(:rating).permit(:difficulty, :police, :pedestrian, :description)
+      #params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
     end
 
 end

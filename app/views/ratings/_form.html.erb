@@ -16,18 +16,29 @@
     <%= f.label :difficulty %><br>
     <%= f.number_field :difficulty %>
   </div>
+
   <div class="field">
     <%= f.label :police %><br>
     <%= f.number_field :police %>
   </div>
+
   <div class="field">
     <%= f.label :pedestrian %><br>
     <%= f.number_field :pedestrian %>
   </div>
-  <div class="field">
-    <%= f.label :time %><br>
-    <%= f.text_field :time %>
-  </div>
+
+  <!--div class="field">
+    %= f.label :time, "Time of day skated" %><br>
+    %= check_box_tag(:time) %>
+    %= label_tag(:time, "Morning") %>
+    %= check_box_tag(:time) %>
+    %= label_tag(:time, "Afternoon") %>
+    %= check_box_tag(:time) %>
+    %= label_tag(:time, "Evening") %>
+    %= check_box_tag(:time) %>
+    %= label_tag(:time, "Night") %>
+  </div-->
+
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>

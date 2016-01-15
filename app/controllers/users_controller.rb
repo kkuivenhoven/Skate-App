@@ -11,9 +11,10 @@ class UsersController < ApplicationController
     #@users = User.where(activated: true). paginate(page: params[:page], :per_page => 20)
     @users = User.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
     #if params[:search]
-    #  render 'search_results'
+      #@users = User.search(params[:search]). paginate(page: params[:page]. :per_page => 20).order('name') #order("created_at DESC")
+      #render 'search_results'
     #else
-    #  @users = User.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+      #@users = User.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
       #@users = User.order("created_at DESC")
     #end
   end

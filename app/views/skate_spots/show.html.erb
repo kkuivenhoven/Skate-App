@@ -27,18 +27,18 @@
                - difficulty: <%= @skate_spot.ratings.average(:difficulty) %> <br>
                - patrol:     <%= @skate_spot.ratings.average(:police) %> <br>
                - pedestrian:     <%= @skate_spot.ratings.average(:pedestrian) %> <br>
-               - most frequented time of day: 
-               <% if @skate_spot.ratings.where(time: "morning").count > @skate_spot.ratings.where(time: "afternoon").count and @skate_spot.ratings.where(time: "morning").count > @skate_spot.ratings.where(time: "evening").count and @skate_spot.ratings.where(time: "morning").count > @skate_spot.ratings.where(time: "night").count %>
+               <!--- most frequented time of day: 
+               % if @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Afternoon").count and @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Evening").count and @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Night").count %>
                      morning
-               <% elsif @skate_spot.ratings.where(time: "afternoon").count > @skate_spot.ratings.where(time: "morning").count and @skate_spot.ratings.where(time: "afternoon").count > @skate_spot.ratings.where(time: "evening").count and @skate_spot.ratings.where(time: "afternoon").count > @skate_spot.ratings.where(time: "night").count %>
+               % elsif @skate_spot.ratings.where(time: "Afternoon").count > @skate_spot.ratings.where(time: "Morning").count and @skate_spot.ratings.where(time: "Afternoon").count > @skate_spot.ratings.where(time: "Evening").count and @skate_spot.ratings.where(time: "Afternoon").count > @skate_spot.ratings.where(time: "Night").count %>
                      afternoon
-               <% elsif @skate_spot.ratings.where(time: "evening").count > @skate_spot.ratings.where(time: "morning").count and @skate_spot.ratings.where(time: "evening").count > @skate_spot.ratings.where(time: "afternoon").count and @skate_spot.ratings.where(time: "evening").count > @skate_spot.ratings.where(time: "night").count %>
+               % elsif @skate_spot.ratings.where(time: "Evening").count > @skate_spot.ratings.where(time: "Morning").count and @skate_spot.ratings.where(time: "Evening").count > @skate_spot.ratings.where(time: "Afternoon").count and @skate_spot.ratings.where(time: "Evening").count > @skate_spot.ratings.where(time: "Night").count %>
                      evening 
-               <% elsif @skate_spot.ratings.where(time: "night").count > @skate_spot.ratings.where(time: "morning").count and @skate_spot.ratings.where(time: "night").count > @skate_spot.ratings.where(time: "afternoon").count and @skate_spot.ratings.where(time: "night").count > @skate_spot.ratings.where(time: "evening").count %>
+               % elsif @skate_spot.ratings.where(time: "Night").count > @skate_spot.ratings.where(time: "Morning").count and @skate_spot.ratings.where(time: "Night").count > @skate_spot.ratings.where(time: "Afternoon").count and @skate_spot.ratings.where(time: "Night").count > @skate_spot.ratings.where(time: "Evening").count %>
                      night
-               <% else %>
+               % else %>
                   none
-               <% end %>
+               % end %-->
              <% end %>
         <ul class="list-group">
          <% @skate_spot.ratings.each do |rating| %>

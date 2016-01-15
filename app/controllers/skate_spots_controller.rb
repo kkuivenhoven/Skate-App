@@ -27,6 +27,11 @@ class SkateSpotsController < ApplicationController
 
   def show
     @skate_spot = SkateSpot.find(params[:id])
+    if logged_in?
+      if @skate_spot.user_id == current_user.id
+        flash[:warning] = "Location incorrect? Please delete this spot and create a new street spot."
+      end
+    end
     @hash = Gmaps4rails.build_markers(@skate_spots) do |skate_spot, marker|
       marker.lat skate_spot.location.latitude
       marker.lng skate_spot.location.longitude
@@ -62,7 +67,7 @@ class SkateSpotsController < ApplicationController
 
       if @skate_spot.location.save
         @location = @skate_spot.location
-        @location.skate_spot = @skate_spot
+        #@location.skate_spot = @skate_spot
         flash[:success] = "Creation successful!"
         redirect_to skate_spot_path(@skate_spot)
         #redirect_to :action => 'index'
@@ -136,7 +141,7 @@ class SkateSpotsController < ApplicationController
     end
 
     def skate_spot_params
-      params.require(:skate_spot).permit(:name, :street, :city, :state, :country)
+      params.require(:skate_spot).permit(:name, :zip_code, :street, :city, :state, :country)
       #params.require(:skate_spot).permit(:name, :zip_code)
     end
     

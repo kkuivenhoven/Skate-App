@@ -19,10 +19,10 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # It returns the users whose names contain one or more words that form the query
-  def self.search(query)
-    # where(:name, query) -> This would return an exact match of the query
-    where("name like ?", "%#{query}%") 
-  end
+  #def self.search(query)
+  #  # where(:name, query) -> This would return an exact match of the query
+  #  where("name like ?", "%#{query}%") 
+  #end
 
   class << self
     # Returns the hash digest of the given string.
