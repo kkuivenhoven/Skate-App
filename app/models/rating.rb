@@ -5,8 +5,8 @@ class Rating < ActiveRecord::Base
   belongs_to :user
   belongs_to :skate_spot  
  
-  validates :user_id, presence: true
-  validates :skate_spot_id, presence: true
+  #validates :user_id, presence: true
+  #validates :skate_spot_id, presence: true
 
   validates_presence_of :difficulty
   validates_numericality_of :difficulty, numericality: { only_integer: true }

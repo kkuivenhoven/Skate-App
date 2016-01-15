@@ -39,6 +39,7 @@
           <td>
             <li class="dropdown">
               <%= link_to "#{skate_spot.name}", skate_spot %>
+            <% if logged_in? %>
            <% if current_user.id == skate_spot.user_id %>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <b class="caret"></b>
@@ -47,6 +48,7 @@
                 <!--li>%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li-->
                 <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
               </ul>
+           <% end %>
            <% end %>
             </li>
           </td>

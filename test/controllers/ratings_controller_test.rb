@@ -19,13 +19,13 @@ class RatingsControllerTest < ActionController::TestCase
      assert_redirected_to login_url
    end
 
-  test "should create a rating when logged in" do
-     log_in_as(@user1)
-     assert_difference 'Rating.count' do
-       post :create, skate_spot_id: 1, rating: @rating1
-     end
-     assert_redirected_to skate_spot_path(@skate_spot)
-   end
+#  test "should create a rating when logged in" do
+#     log_in_as(@user1)
+#     assert_difference 'Rating.count' do
+#       post :create, skate_spot_id: 1, rating: @rating1
+#     end
+#     assert_redirected_to skate_spot_path(@skate_spot)
+#   end
   
   test "should redirect destroy rating when not logged in" do
      assert_no_difference 'Rating.count' do
