@@ -50,6 +50,11 @@ class SkateSpotsController < ApplicationController
     if @skate_spot.save
       #current_user.skate_spots << @skate_spot
       @skate_spot.location = Location.new
+      
+      @skate_spot.street = @skate_spot.street.titleize
+      @skate_spot.city = @skate_spot.city.titleize
+      @skate_spot.country = @skate_spot.country.upcase
+
       @skate_spot.location.street = @skate_spot.street
       @skate_spot.location.city = @skate_spot.city
       @skate_spot.location.state = @skate_spot.state
