@@ -1,3 +1,6 @@
+#Resources:
+#http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#format
+
 class Location < ActiveRecord::Base
 
   geocoded_by :address
