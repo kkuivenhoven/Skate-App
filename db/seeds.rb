@@ -41,24 +41,36 @@ Rating.create!(difficulty: 5, police: 5,
 
 
 Location.create!(skate_spot_id: 1,
+                 address: "265 Humboldt Ave",
+                 city: "Chico",
  			     latitude: 38.817508,
   				 longitude: -121.17225)
 
 Location.create!(skate_spot_id: 2,
+                 address: "Horseshoe Bar Road",
+                 city: "Loomis",
  			     latitude: 39.729464,
   				 longitude: -121.825026)
 
 Location.create!(skate_spot_id: 3,
+                 address: "West 8th Street",
+                 city: "Chico",
  			     latitude: 34.0723575,
   				 longitude: -118.390966)
 
-SkateSpot.create!(name: "Chico", user_id: 1,
+SkateSpot.create!(name: "Chico Seed Spot", user_id: 1,
+                  street: "265 Humboldt Ave",
+                  city: "Chico", state: "CA", country: "USA",
                   zip_code: "95928", location_id: 1)
 
-SkateSpot.create!(name: "Loomis", user_id: 1,
+SkateSpot.create!(name: "Loomis Seed Spot", user_id: 1,
+                  street: "8650 Horseshoe Bar Rd",
+                  city: "Loomis", state: "CA", country: "USA",
                   zip_code: "95650", location_id: 2)
 
-SkateSpot.create!(name: "Los Angeles", user_id: 1,
+SkateSpot.create!(name: "Los Angeles Seed Spot", user_id: 1,
+                  street: "Sunset Blvd",
+                  city: "Los Angeles", state: "CA", country: "USA",
                   zip_code: "90210", location_id: 3)
 
 User.create!(name:  "Vanessa Torres",

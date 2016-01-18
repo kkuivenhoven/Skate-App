@@ -4,11 +4,16 @@ class SkateSpot < ActiveRecord::Base
   has_many :ratings
   has_one :location
 
+  validates_presence_of :name
+  validates_presence_of :zip_code
+  validates :zip_code, :length => { :is => 5 }
+  validates_presence_of :street
+  validates_presence_of :city
+  validates_presence_of :state
+  validates_presence_of :country
+  validates :country, :length => { :is => 3 }
 
-  #returns skatespots whose names contain >=1 words that form the query
   def self.search(query)
-    #where(:name, query) -> returns an exact match of the query
-    ##where("name like ?", "%#{query}%") 
     where("zip_code like ?", "%#{query}%") 
   end
 

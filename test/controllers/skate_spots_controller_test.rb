@@ -24,7 +24,7 @@ class SkateSpotsControllerTest < ActionController::TestCase
   test "should create a skate spot when logged in" do
     log_in_as(users(:kendra))
     assert_difference('SkateSpot.count')do
-      post :create, skate_spot: { name: "Humboldt" }
+      post :create, skate_spot: { name: "Humboldt", street: "265 Humboldt Ave", city: "Chico", zip_code: "92928", state: "CA", country: "USA" }
     end
     assert_redirected_to skate_spot_path(assigns(:skate_spot))
   end

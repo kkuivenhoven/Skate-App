@@ -8,7 +8,10 @@
 {
   "one": {
     "id": 1,
-    "city": "Chico", 
+    #"street": "265 Humboldt Ave",
+    "city": "Chico",
+    #"state": "CA",
+    #"country": "USA",
     "user_id": 1, 
     "name": "Neighborhood", 
     "rating_id": 1, 
@@ -17,7 +20,7 @@
   },
   "two": {
     "id": 2,
-    "city": "Loomis", 
+    "city": "Loomis",
     "user_id": 2, 
     "name": "Horseshoe", 
     "rating_id": 2, 

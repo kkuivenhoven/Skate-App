@@ -60,7 +60,8 @@ class LocationsController < ApplicationController
     end
 
     def location_params
-      params.require(:location).permit(:skate_spot_id)
+      params.require(:location).permit(:address, :city, :state, :country)
+      #params.require(:location).permit(:skate_spot_id)
     end
  
 end
