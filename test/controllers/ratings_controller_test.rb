@@ -75,6 +75,7 @@ class RatingsControllerTest < ActionController::TestCase
        after = Rating.count
        assert_equal after, before-1
      assert_not flash.empty?
+     assert_equal 'Rating has been successfully deleted!', flash[:success]
      assert_redirected_to skate_spot_path(@skate_spot)
   end
 

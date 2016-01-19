@@ -14,12 +14,19 @@ class SkateSpotsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:skate_spots)
   end
   
+  test "should get show and flash for correct user" do
+    log_in_as(@user)
+    get :show, id: @skate_spot
+    assert_response :success
+    assert_equal 'Location incorrect? Please delete this spot and create a new street spot.', flash[:warning]
+  end
+  
   test "should get show" do
     get :show, id: @skate_spot
     assert_response :success
   end
   
-  test "should redirect for non-logged in user" do
+  test "should redirect new for non-logged in user" do
     get :new
     assert_redirected_to login_path
   end
@@ -43,6 +50,7 @@ class SkateSpotsControllerTest < ActionController::TestCase
       post :create, skate_spot: { name: "Humboldt", street: "265 Humboldt Ave", city: "Chico", zip_code: "92928", state: "CA", country: "USA" }
     end
     assert_not flash.empty?
+    assert_equal 'Creation successful!', flash[:success]
     assert_redirected_to skate_spot_path(assigns(:skate_spot))
   end
 
@@ -69,6 +77,7 @@ class SkateSpotsControllerTest < ActionController::TestCase
       after = SkateSpot.count
       assert_equal after, before-1
       assert_not flash.empty?
+      assert_equal 'Deletion successful!', flash[:success]
       assert_redirected_to skate_spots_path
     end
   end
