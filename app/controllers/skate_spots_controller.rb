@@ -144,7 +144,4 @@ class SkateSpotsController < ApplicationController
       #params.require(:skate_spot).permit(:name, :zip_code)
     end
     
-    def rating_params
-      params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
-    end
 end

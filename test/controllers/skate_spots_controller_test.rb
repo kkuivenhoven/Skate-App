@@ -14,6 +14,22 @@ class SkateSpotsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:skate_spots)
   end
   
+  test "should get show" do
+    get :show, id: @skate_spot
+    assert_response :success
+  end
+  
+  test "should redirect for non-logged in user" do
+    get :new
+    assert_redirected_to login_path
+  end
+
+  test "should get new for logged in user" do
+    log_in_as(@user)
+    get :new
+    assert_response :success
+  end
+
   test "should redirect create when not logged in" do
     assert_no_difference 'SkateSpot.count' do
       post :create, skate_spot: { name: "Humboldt" }
@@ -26,6 +42,7 @@ class SkateSpotsControllerTest < ActionController::TestCase
     assert_difference('SkateSpot.count')do
       post :create, skate_spot: { name: "Humboldt", street: "265 Humboldt Ave", city: "Chico", zip_code: "92928", state: "CA", country: "USA" }
     end
+    assert_not flash.empty?
     assert_redirected_to skate_spot_path(assigns(:skate_spot))
   end
 
@@ -51,6 +68,7 @@ class SkateSpotsControllerTest < ActionController::TestCase
       delete :destroy, id: @skate_spot
       after = SkateSpot.count
       assert_equal after, before-1
+      assert_not flash.empty?
       assert_redirected_to skate_spots_path
     end
   end

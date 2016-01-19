@@ -2,13 +2,13 @@ class LocationsController < ApplicationController
   before_filter :login_required, only: [:new, :create, :edit, :update, :destroy]
   before_filter :created_by_this_user, only: [:edit, :update, :destroy]
 
-  def index
-    @locations = Location.all
-  end
-
-  def show
-    @location = Location.find(params[:id])
-  end
+#  def index
+#    @locations = Location.all
+#  end
+#
+#  def show
+#    @location = Location.find(params[:id])
+#  end
 
   def new
     @location = Location.new
@@ -24,21 +24,21 @@ class LocationsController < ApplicationController
     end
   end
 
-  def edit
-    @location = Location.find(params[:id])
-  end
-
-  def update
-    @location = Location.find(params[:id])
-    @skate_spot = SkateSpot.find_by(@location.skate_spot_id)
-    #if @skate_spot.location.update(params.require(:location).permit(:address))
-    #if @location.update(params.require(:location).permit(:address))
-    if @location.update_attribute('address', @location.address)
-      redirect_to @location, notice: "Location has been successfully updated!"
-    else
-      render :edit
-    end
-  end
+#  def edit
+#    @location = Location.find(params[:id])
+#  end
+#
+#  def update
+#    @location = Location.find(params[:id])
+#    @skate_spot = SkateSpot.find_by(@location.skate_spot_id)
+#    #if @skate_spot.location.update(params.require(:location).permit(:address))
+#    #if @location.update(params.require(:location).permit(:address))
+#    if @location.update_attribute('address', @location.address)
+#      redirect_to @location, notice: "Location has been successfully updated!"
+#    else
+#      render :edit
+#    end
+#  end
 
   def destroy
     Location.find(params[:id]).destroy

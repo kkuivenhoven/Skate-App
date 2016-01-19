@@ -10,6 +10,19 @@ class RatingsControllerTest < ActionController::TestCase
     @skate_spot = skate_spots(:one)
     @user1 = users(:kendra)
     @user2 = users(:kimberly)
+
+    @rating2 = @skate_spot.ratings.build(police: 1, description: "10-stair", pedestrian: 1, difficulty: 1)
+  end
+
+  test "should redirect new when not logged in" do
+     get :new, skate_spot_id: 1
+     assert_redirected_to login_path 
+  end
+
+  test "should get new when logged in" do
+     log_in_as(@user1)
+     get :new, skate_spot_id: 1
+     assert_response :success
   end
 
   test "should redirect create when not logged in" do
@@ -21,15 +34,27 @@ class RatingsControllerTest < ActionController::TestCase
 
 #  test "should create a rating when logged in" do
 #     log_in_as(@user1)
-#     assert_difference 'Rating.count' do
-#       post :create, skate_spot_id: 1, rating: @rating1
-#     end
+#     #assert_difference 'Rating.count' do
+#     #  post :create, skate_spot_id: 1, id: @rating1
+#     #end
 #     assert_redirected_to skate_spot_path(@skate_spot)
 #   end
+
+  test "should redirect edit when not logged in" do
+    get :edit, skate_spot_id: 1, id: ratings(:one)
+    assert_redirected_to login_url
+  end
   
   test "should redirect destroy rating when not logged in" do
      assert_no_difference 'Rating.count' do
        delete :destroy, skate_spot_id: 1, id: ratings(:one)
+     end
+     assert_redirected_to login_url
+  end
+  
+  test "should redirect update rating when not logged in" do
+     assert_no_difference 'Rating.count' do
+       patch :update, skate_spot_id: 1, id: ratings(:one)
      end
      assert_redirected_to login_url
   end
@@ -49,48 +74,8 @@ class RatingsControllerTest < ActionController::TestCase
        delete :destroy, skate_spot_id: 1, id: @rating1
        after = Rating.count
        assert_equal after, before-1
+     assert_not flash.empty?
      assert_redirected_to skate_spot_path(@skate_spot)
   end
 
-  #test "should get index" do
-  #  get :index
-  #  assert_response :success
-  #  assert_not_nil assigns(:ratings)
-  #end
-
-  #test "should get new" do
-  #  get :new
-  #  assert_response :success
-  #end
-
-  #test "should create rating" do
-  #  assert_difference('Rating.count') do
-  #    post :create, rating: { description: @rating.description, difficulty: @rating.difficulty, pedestrian: @rating.pedestrian, police: @rating.police, time: @rating.time }
-  #  end
-
-  #  assert_redirected_to rating_path(assigns(:rating))
-  #end
-
-  #test "should show rating" do
-  #  get :show, id: @rating
-  ##  assert_response :success
-  #end
-
-  #test "should get edit" do
-  #  get :edit, id: @rating
-   # assert_response :success
-  #end
-
-  #test "should update rating" do
-  #  patch :update, id: @rating, rating: { description: @rating.description, difficulty: @rating.difficulty, pedestrian: @rating.pedestrian, police: @rating.police, time: @rating.time }
-  #  assert_redirected_to rating_path(assigns(:rating))
-  #end
-
-  #test "should destroy rating" do
-  #  assert_difference('Rating.count', -1) do
-   #   delete :destroy, id: @rating
-   # end
-
-   # assert_redirected_to ratings_path
-  #end
 end

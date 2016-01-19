@@ -11,15 +11,15 @@ class RatingsController < ApplicationController
   after_action :filter, only: [:create]
 
   #GET /skate_spots/:skate_spot_id/ratings
-  def index
-    @ratings = @skate_spot.ratings
-  end
+#  def index
+#    @ratings = @skate_spot.ratings
+#  end
 
   #GET /skate_spots/:skate_spot_id/ratings/:id
-  def show
-    #fetch the rating 
-    @rating = @skate_spot.ratings.find(params[:id])
-  end
+#  def show
+#    #fetch the rating 
+#    @rating = @skate_spot.ratings.find(params[:id])
+#  end
 
   #GET /skate_spots/:skate_spot_id/ratings/new
   def new
