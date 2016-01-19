@@ -26,11 +26,11 @@ Resources Used:
 > Heroku
 
 Testing code coverage statistics:
-Overall: 88.32%
-Controllers: 71.17%
-Models: 92.39%
-Helpers: 76.74%
-Mailers: 78.72%
+Overall: 89.92%, 
+Controllers: 75.05%, 
+Models: 92.39%, 
+Helpers: 76.74%, 
+Mailers: 78.72%, 
 
 Please note that I listed specific additional resources and sources that pertain to particular file are listed in comments at the top of that file.  
 
