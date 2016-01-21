@@ -5,9 +5,8 @@ class Rating < ActiveRecord::Base
   belongs_to :user
   belongs_to :skate_spot  
  
-  #validates :user_id, presence: true
-  #validates :skate_spot_id, presence: true
-
+  #validates_presence_of makes sure that the user has provided input for that specified attribute
+  #validates_numericality_of makes sure that the user has provided numbers for input that are between 0 and 10
   validates_presence_of :difficulty
   validates_numericality_of :difficulty, numericality: { only_integer: true }
   validates_numericality_of :difficulty, :less_than_or_equal_to => 10
@@ -25,5 +24,6 @@ class Rating < ActiveRecord::Base
 
   validates_presence_of :description
   validates :description, length: { minimum: 4 }
+  #the above makes sure that the user entered in a description of at least 4
 
 end

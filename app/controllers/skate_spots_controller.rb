@@ -7,6 +7,7 @@ class SkateSpotsController < ApplicationController
   before_filter :login_required, only: [:new, :create, :edit, :update, :destroy]
   before_filter :created_by_this_user, only: [:edit, :update, :destroy]
 
+  #all skatespots
   def index
     @skate_spots = SkateSpot.all
     if params[:search]
@@ -16,6 +17,7 @@ class SkateSpotsController < ApplicationController
     end
   end
 
+  #the function/method that is used to display the search results
   def search_results
     @skate_spots = SkateSpot.all
     if params[:search]
@@ -25,6 +27,7 @@ class SkateSpotsController < ApplicationController
     end
   end
 
+  #shows the specified skatespot
   def show
     @skate_spot = SkateSpot.find(params[:id])
     if logged_in?
@@ -39,10 +42,13 @@ class SkateSpotsController < ApplicationController
     end
   end
 
+  #creates a SkateSpot object
   def new
     @skate_spot = SkateSpot.new
   end
 
+  #creates a new skatespot and location spot
+  #fills in the necessary attributes in the User DB for that user
   def create
     @skate_spot = current_user.skate_spots.build(skate_spot_params)    
 
@@ -80,10 +86,12 @@ class SkateSpotsController < ApplicationController
     end
   end
 
+  #edit action
   def edit
     @skate_spot = SkateSpot.find(params[:id])
   end
 
+  #update the specified skatespot
   def update
     @skate_spot = SkateSpot.find(params[:id])
     @location = @skate_spot.location
@@ -116,6 +124,7 @@ class SkateSpotsController < ApplicationController
     end
   end
 
+  #delete the specified skatespot
   def destroy
     if SkateSpot.find(params[:id]).destroy
       flash[:success] = "Deletion successful!"
@@ -128,10 +137,12 @@ class SkateSpotsController < ApplicationController
 
   private
 
+    #requires a user to be logged in to have access to any of the above methods
     def login_required
       redirect_to login_path unless logged_in?
     end
  
+   #makes sure that the user accessing edit, update, and destroy methods actually created the skatespot
     def created_by_this_user
       if !current_user.nil?
         @skate_spot = current_user.skate_spots.find_by(id: params[:id])
@@ -139,9 +150,9 @@ class SkateSpotsController < ApplicationController
       end
     end
 
+    #the parameters that are required to build a skate_spot
     def skate_spot_params
       params.require(:skate_spot).permit(:name, :zip_code, :street, :city, :state, :country)
-      #params.require(:skate_spot).permit(:name, :zip_code)
     end
     
 end

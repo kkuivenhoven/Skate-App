@@ -8,18 +8,7 @@ class RatingsController < ApplicationController
   #first, obtain the skate_spot using set_skate_spot
   before_action :set_skate_spot
   before_action :users_rating, only: [:edit, :update, :destroy]
-  after_action :filter, only: [:create]
-
-  #GET /skate_spots/:skate_spot_id/ratings
-#  def index
-#    @ratings = @skate_spot.ratings
-#  end
-
-  #GET /skate_spots/:skate_spot_id/ratings/:id
-#  def show
-#    #fetch the rating 
-#    @rating = @skate_spot.ratings.find(params[:id])
-#  end
+  after_action :filter, only: [:create] 
 
   #GET /skate_spots/:skate_spot_id/ratings/new
   def new
@@ -30,7 +19,6 @@ class RatingsController < ApplicationController
   #POST /skate_spots/:skate_spot_id/ratings
   def create
     #create the rating
-    #@rating = @skate_spot.ratings.create(params[:rating_params])
     @rating = @skate_spot.ratings.create(rating_params)
     @rating.user_id = current_user.id
     if @rating.save
@@ -39,7 +27,6 @@ class RatingsController < ApplicationController
     else
       flash[:danger] = "Rating has been unsuccessfully created. Please try again."
       render 'new'
-      #redirect_to new_skate_spot_rating_path(@skate_spot)
     end
   end
 
@@ -49,6 +36,7 @@ class RatingsController < ApplicationController
     @rating = @skate_spot.ratings.find(params[:id])
   end
 
+  #update the rating
   #PUT /skate_spots/:skate_spot_id/ratings/:id
   def update
     @rating = @skate_spot.ratings.find(params[:id])
@@ -62,6 +50,7 @@ class RatingsController < ApplicationController
     end
   end
 
+  #destroy the specified rating
   #DELETE /skate_spots/:skate_spot_id/ratings/1
   def destroy
     @rating = @skate_spot.ratings.find(params[:id])
@@ -76,15 +65,18 @@ class RatingsController < ApplicationController
 
   private
 
+    #makes sure that the user is logged in
     def login_required
       redirect_to login_path unless logged_in?
     end
 
+    #makes sure that the user requesting one of the above methods is actually a user that created that rating
     def users_rating
       @rating = Rating.find(params[:id])
       redirect_to skate_spot_path(@skate_spot) unless @rating.user_id == current_user.id
     end
 
+    #filters the description to make sure that inappropriate words are not present.
     def filter 
       sex_filter = LanguageFilter::Filter.new(matchlist: :sex, exceptionlist: [], replacement: :vowels) 
       hate_filter = LanguageFilter::Filter.new(matchlist: :hate, exceptionlist: [], replacement: :vowels) 
@@ -110,18 +102,12 @@ class RatingsController < ApplicationController
       end
     end
     
+    #gets the specified skate_spot
     def set_skate_spot
       @skate_spot = SkateSpot.find(params[:skate_spot_id])
     end
       
-    def rating_params
-      params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
-    end
-
-    def set_skate_spot
-      @skate_spot = SkateSpot.find(params[:skate_spot_id])
-    end
-      
+    #the attributes the the rating table that are needed for create edit and update
     def rating_params
       params.require(:rating).permit(:difficulty, :police, :pedestrian, :description)
       #params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)

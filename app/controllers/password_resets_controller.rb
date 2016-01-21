@@ -9,6 +9,7 @@ class PasswordResetsController < ApplicationController
   def new
   end
 
+  #sends email to user with reset password instructions
   def create
     #find user by email address
     @user = User.find_by(email: params[:password_reset][:email].downcase)
@@ -27,6 +28,8 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
+  #updates the users password
+  #makes sure the the users password field is not empty
   def update
     if params[:user][:password].empty?
       @user.errors.add(:password, "can't be empty")
@@ -42,10 +45,12 @@ class PasswordResetsController < ApplicationController
 
   private
 
+    #the user table attributes that are needed to be updated
     def user_params
       params.require(:user).permit(:password, :password_confirmation)
     end
 
+    #gets the email of the user that specified the email address
     def get_user
       @user = User.find_by(email: params[:email])
     end

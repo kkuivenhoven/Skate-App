@@ -68,7 +68,7 @@ group :development do
 end
 
 group :production do
-#  gem 'pg', '0.18.4'
+  gem 'pg', '0.18.4'
   # Decided against gem 'pg' due to this stackoverflow answer: http://stackoverflow.com/questions/21122358/rails-4-how-to-use-sqlite3-in-development-and-postgresql-in-production-w-herok
   gem 'rails_12factor', '0.0.2'
   gem 'puma', '2.11.1'

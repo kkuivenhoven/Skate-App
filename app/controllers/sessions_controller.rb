@@ -4,9 +4,11 @@
 
 class SessionsController < ApplicationController
 
+  #starts a new login session
   def new
   end
 
+  #creates a new login session with the email and password, makes sure that the user is activated first
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
@@ -26,6 +28,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  #if the user logs out, destroys the current session
   def destroy
     log_out if logged_in?
     redirect_to root_url

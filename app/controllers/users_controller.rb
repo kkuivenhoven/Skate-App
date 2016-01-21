@@ -7,18 +7,23 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
  
+  #this function shows all activated users, in alphabetical order. Paginate has been set to 20 to allow 20 users per page
   def index
     @users = User.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
   end
   
+  #this function shows a users profile; user has been found by id
   def show
     @user = User.find(params[:id])
   end
   
+  #this function creates a User object 
   def new
     @user = User.new
   end
   
+  #fills in the necessary attributes in the User DB for that user
+  #filters out any inappropriate usernames
   def create
     @user = User.new(user_params)
     hate_filter = LanguageFilter::Filter.new matchlist: :hate, replacement: :garbled
@@ -37,10 +42,13 @@ class UsersController < ApplicationController
     end
   end
   
+  #edit action 
   def edit
     @user = User.find(params[:id])
   end
   
+  #updates users via update_attributes based on what is defined in user_params
+  #renders a view to edit users
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -51,6 +59,7 @@ class UsersController < ApplicationController
     end
   end
   
+  #destroys/deletes a specified user account
   def destroy
     User.find(params[:id]).destroy #method chaining combines find & destroy
     flash[:success] = "User deleted"
@@ -59,6 +68,7 @@ class UsersController < ApplicationController
   
   private
  
+    #attributes for user for above actions
     def user_params 
       params.require(:user).permit(:name, :email, :password, :password_confirmation    )
     end
