@@ -15,13 +15,6 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
   <%= render 'layouts/header' %>
 
   <div class="container">
-   <!--div>
-    % flash.each do |message_type, message| %>
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        %= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    % end %>
-   </div-->
-
    <div class="center jumbotron">
      <h1>Street Spot | <%= yield(:title) %></h1>
      <p>
@@ -32,7 +25,7 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
      <%= yield(:p) %></p>
      <p-small>
        <% if current_page?(controller: 'static_pages', action: 'home') %>
-         Inspired by my experiences at the Humboldt Neighborhood Skatepark. 
+         Inspired by: Humboldt Neighborhood Skatepark. 
        <% end %>  
      </p-small>
    </div>
