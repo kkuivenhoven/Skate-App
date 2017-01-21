@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+#gem 'therubyracer', platforms: :ruby
 
 gem 'bootstrap-sass',          '3.2.0.0'
 gem 'faker',                   '1.4.2'
@@ -69,6 +69,6 @@ end
 
 group :production do
   #gem 'pg', '0.18.4'
-  gem 'rails_12factor', '0.0.2'
-  gem 'puma', '2.11.1'
+  #gem 'rails_12factor', '0.0.2'
+  #gem 'puma', '2.11.1'
 end

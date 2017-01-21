@@ -1,40 +1,11 @@
-#Sources:
-#https://www.railstutorial.org/book, Hartl Michael, 2014
-#http://blog.8thcolor.com/en/2011/08/nested-resources-with-independent-views-in-ruby-on-rails/
-#http://stackoverflow.com/questions/4835536/how-do-i-add-a-new-object-to-an-existing-array-in-ruby
-
 class SkateSpotsController < ApplicationController
-  before_filter :login_required, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :created_by_this_user, only: [:edit, :update, :destroy]
 
-  #all skatespots
   def index
     @skate_spots = SkateSpot.all
-    if params[:search]
-      @skate_spots = SkateSpot.search(params[:search]).order("created_at DESC")
-    else
-      @skate_spots = SkateSpot.order("created_at DESC")
-    end
   end
 
-  #the function/method that is used to display the search results
-  def search_results
-    @skate_spots = SkateSpot.all
-    if params[:search]
-      @skate_spots = SkateSpot.search(params[:search]).order("created_at DESC")
-    else
-      @skate_spots = SkateSpot.order("created_at DESC")
-    end
-  end
-
-  #shows the specified skatespot
   def show
     @skate_spot = SkateSpot.find(params[:id])
-    if logged_in?
-      if @skate_spot.user_id == current_user.id
-        flash[:warning] = "Location incorrect? Please delete this spot and create a new street spot."
-      end
-    end
     @hash = Gmaps4rails.build_markers(@skate_spots) do |skate_spot, marker|
       marker.lat skate_spot.location.latitude
       marker.lng skate_spot.location.longitude
@@ -42,117 +13,55 @@ class SkateSpotsController < ApplicationController
     end
   end
 
-  #creates a SkateSpot object
   def new
     @skate_spot = SkateSpot.new
   end
 
-  #creates a new skatespot and location spot
-  #fills in the necessary attributes in the User DB for that user
   def create
-    @skate_spot = current_user.skate_spots.build(skate_spot_params)    
+    @skate_spot = SkateSpot.new(skate_spot_params)
 
     if @skate_spot.save
-      @skate_spot.location = Location.new
-      
-      @skate_spot.location.street = @skate_spot.street
-      @skate_spot.location.city = @skate_spot.city
-      @skate_spot.location.state = @skate_spot.state
-      @skate_spot.location.country = @skate_spot.country
-      @skate_spot.city = @skate_spot.city.to_s
-
-      total = Array.new(4)
-      total[0] = @skate_spot.street
-      total[1] = ' '+@skate_spot.city
-      total[2] = @skate_spot.state
-      total[3] = @skate_spot.country
-      jnd_total = total.join(',')
-      @skate_spot.address = jnd_total
-      @skate_spot.location.address = jnd_total
-
-      if @skate_spot.location.save
-        @location = @skate_spot.location
-        #@location.skate_spot = @skate_spot
-        flash[:success] = "Creation successful!"
-        redirect_to skate_spot_path(@skate_spot)
-        #redirect_to :action => 'index'
-      else
-        flash[:danger] = "Creation unsuccessful. Please try again."
-        render :action => 'new'
+      sk8_lat = @skate_spot.zip_code.to_lat
+      sk8_lon = @skate_spot.zip_code.to_lon
+      #@location = Location.new(params[:sk8_lat, :sk8_long, @skate_spot.id])
+      @location = Location.new
+      @location.latitude = sk8_lat
+      @location.longitude = sk8_lon
+      @location.skate_spot_id = @skate_spot.id
+      if @location.save
+        @skate_spot.location_id = @location.id
+        redirect_to :action => 'index'
       end
     else
-      flash[:danger] = "Creation unsuccessful. Please try again."
       render :action => 'new'
     end
   end
 
-  #edit action
   def edit
     @skate_spot = SkateSpot.find(params[:id])
   end
 
-  #update the specified skatespot
   def update
     @skate_spot = SkateSpot.find(params[:id])
-    @location = @skate_spot.location
-    if @skate_spot.update(params.require(:skate_spot).permit(:name, :zip_code))
-      @skate_spot.location.street = @skate_spot.street
-      @skate_spot.location.city = @skate_spot.city
-      @skate_spot.location.state = @skate_spot.state
-      @skate_spot.location.country = @skate_spot.country
-
-      total = Array.new(4)
-      total[0] = @skate_spot.street
-      total[1] = ' '+@skate_spot.city
-      total[2] = @skate_spot.state
-      total[3] = @skate_spot.country
-      jnd_total = total.join(',')
-      @skate_spot.address = jnd_total
-      @skate_spot.location.address = jnd_total
-
-      if @skate_spot.location.save
-        @location = @skate_spot.location
-        flash[:success] = "Update successful!"
-        redirect_to skate_spot_path(@skate_spot)
-      else
-        flash[:danger] = "Update unsuccessful. Please try again."
-        render :edit
-      end
+    if @skate_spot.update(params.require(:skatespot).permit(:name, :zip_code))
+      redirect_to @skate_spot, notice: "Skatespot has been successfully updated!"
     else
-      flash[:danger] = "Update unsuccessful. Please try again."
       render :edit
     end
   end
 
-  #delete the specified skatespot
   def destroy
-    if SkateSpot.find(params[:id]).destroy
-      flash[:success] = "Deletion successful!"
-      redirect_to :action => 'index'
-    else
-      flash[:danger] = "Deletion unsuccessful. Please try again."
-      redirect_to skate_spot_path(@skate_spot)
-    end
+    Skatespot.find(params[:id]).destroy
+    redirect_to :action => 'index'
   end
 
   private
+    #Use callbacks to share common setup or constraints between actions
+#    def set_skate_spot
+#      @skate_spot = SkateSpot.find(params[:id])
+#    end
 
-    #requires a user to be logged in to have access to any of the above methods
-    def login_required
-      redirect_to login_path unless logged_in?
-    end
- 
-   #makes sure that the user accessing edit, update, and destroy methods actually created the skatespot
-    def created_by_this_user
-      if !current_user.nil?
-        @skate_spot = current_user.skate_spots.find_by(id: params[:id])
-        redirect_to(skate_spots_url) if @skate_spot.nil? 
-      end
-    end
-
-    #the parameters that are required to build a skate_spot
     def skate_spot_params
-      params.require(:skate_spot).permit(:name, :zip_code, :street, :city, :state, :country)
+      params.require(:skate_spot).permit(:name, :zip_code)
     end
-    
 end
