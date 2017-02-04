@@ -1,4 +1,4 @@
-# The Street Spot App:
+# Skate Spot App:
 
 ## Developed by: 
  Kendra Kuivenhoven
