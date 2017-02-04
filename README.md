@@ -30,5 +30,5 @@ This app allows users to document and rate skate spots in urban and rural areas.
 * Helpers: 76.74%, 
 * Mailers: 78.72%, 
 
-Please note that I listed specific additional resources and sources that pertain to particular file are listed in comments at the top of that file.  
+If used, specific additional resources and sources that pertain to particular file are listed in comments at the top of the file.  
 
