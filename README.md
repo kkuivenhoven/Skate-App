@@ -4,6 +4,7 @@
 
 ## Developer: 
  Kendra Kuivenhoven
+		* asldfkj
 
 ## Overview:
 This app allows users to document and rate skate spots in urban and rural areas. Users will be able to search skate spots within a certain zip code. Users will also be able to rate and see other ratings of documented skate spots.
