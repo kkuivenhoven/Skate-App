@@ -4,6 +4,10 @@ class SkateSpot < ActiveRecord::Base
   has_many :ratings
   has_one :location
 
+  geocoded_by :complete_address
+  #given lat & long coordinates, geocode the address of those coordinates
+  reverse_geocoded_by :latitude, :longitude
+
  #validates_presence_of makes sure that the user provided input for that specified attribute
   validates_presence_of :name
   validates_presence_of :zip_code
@@ -20,5 +24,9 @@ class SkateSpot < ActiveRecord::Base
   def self.search(query)
     where("zip_code like ?", "%#{query}%") 
   end
+
+	def complete_address
+		[number, street, city, state, country].join(',')
+	end
 
 end

@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   end
 
   #resources :skate_spots
-  resources :locations
   #resources :ratings
   
   get 'signup' => 'users#new'

@@ -11,23 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104202233) do
-
-  create_table "locations", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "skate_spot_id"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "street"
-    t.integer  "street_num"
-  end
-
-  add_index "locations", ["skate_spot_id"], name: "index_locations_on_skate_spot_id"
+ActiveRecord::Schema.define(version: 20170121120320) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "difficulty"
@@ -59,6 +43,9 @@ ActiveRecord::Schema.define(version: 20160104202233) do
     t.string   "cross_street"
     t.integer  "street_num"
     t.integer  "rating_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "number"
   end
 
   add_index "skate_spots", ["location_id"], name: "index_skate_spots_on_location_id"
