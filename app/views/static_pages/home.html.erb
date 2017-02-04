@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<% provide(:title, "Home") %>
-<% provide(:p, " Created by a skater, for skaters.") %>
+<!--<div class="btn-group btn-group-justified">
+   % if !logged_in? %>
+    <div class="btn-group">
+       %= link_to('Log in', login_path, class: 'btn btn-primary') %>
+     </div>
+   % end %>
+  <div class="btn-group">
+     %= link_to('Skate Spots', skate_spots_path, class: 'btn btn-primary') %>
+   </div>
+  % if !logged_in? %>
+    <div class="btn-group">
+       %= link_to('Create Account', new_user_path, class: 'btn btn-primary') %>
+     </div>
+  % end %>
+</div>-->
+
+<br><br>
+<div class="center jumbotron">
+  <h1>
+    Skate Spot App
+  </h1>
+
+  <h3>
+    Home page of the Skate Spot App.
+  <!--<h4>
+   - When submit the form, the view rendered will be the index view of our articles resource
+     %= form_tag(skate_spots_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+       <div class="input-append">
+         %= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Skate Spots" %>
+          -In order to have the "search" icon int the button, we need to use plain HTML instead 
+             of using a Rails form helper 
+         <button class="btn btn-default btn-sm" type="submit"><i class="icon-search">Search</i></button>
+       </div>
+     % end %>
+  </h4>-->
+  </h3>
 
 
-<div class="panel-group">
- <div class="panel panel-default">
-   <div class="panel-heading">
-     <h4 class="panel-title">
-       <a data-toggle="collapse" href="#collapse1">
-         About
-       </a>
-     </h4>
-   </div>
-   <div id="collapse1" class="panel-collapse collapse">
-     <p>This app allows users to document street spots by address.
-        Any user is able to rate any street spot based on difficulty, likelihood of getting kicked out, the pedestrian level and to give a brief description of the spot.
-        Users are also able to see other users documented street spots and to search for street spots by zip code.</p>
-   </div>
- </div>
 </div>
+
+  <!--% if !logged_in? %>
+    %= link_to new_user_path, class: 'btn btn-md btn-primary' do%>Create an account% end %>
+  % end %>-->
+
+</div>
+
 
