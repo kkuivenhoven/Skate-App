@@ -1,0 +1,46 @@
+<h6>map</h6>
+
+<% if @address != nil %>
+<h1>a;lsdkfj;alksdjf</h1>
+<%= @skate_spot.get_long %>
+<%= @skate_spot.get_lat %>
+<%= @address %>
+<% if @skate_spot.latitude == nil %>
+<h1>supsup</h1>
+<%= @skate_spot.get_coords %>
+<%= @skate_spot.longitude %>
+ <% end %>
+ <% end %>
+
+<script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script> 
+<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+
+<div style='width: 800px;'>
+    <div id="geolocation" style='width: 800px; height: 400px;'></div>
+  </div>
+
+<% if @skate_spot.gmaps4rails_address != nil %>
+				<%= @skate_spot.gmaps4rails_address %>
+<%= @skate_spot.latitude %>
+ <% end %>
+
+<script>
+
+var handler = Gmaps.build('Google');
+handler.buildMap({ internal: {id: 'geolocation'} }, function(){
+  // be aware chrome >= 50 requires https for geolocation to work
+  if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(displayOnMap);
+});
+
+function displayOnMap(position){
+  var marker = handler.addMarker({
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  });
+  handler.map.centerOn(marker);
+};
+</script>
+
+
+

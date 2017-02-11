@@ -26,6 +26,7 @@ gem 'geocoder' #needed for converting lat,long to address
 gem 'area' #needed for converting zipcode to lat,long
 gem 'gmaps4rails' #needed for maps on views/skate_spots/show.html.erb
 gem 'language_filter'
+gem 'markerclustererplus-rails'
 #gem 'simplecov', :group => :test
 
 # Use jquery as the JavaScript library

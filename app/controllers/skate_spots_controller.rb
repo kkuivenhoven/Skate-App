@@ -7,11 +7,14 @@ class SkateSpotsController < ApplicationController
   def show
     @skate_spot = SkateSpot.find(params[:id])
 		@address = @skate_spot.get_coords
-    #@hash = Gmaps4rails.build_markers(@skate_spot) do |skate_spot, marker|
-      #marker.lat 
+		lat = @skate_spot.get_lat
+		long = @skate_spot.get_long
+    @hash = Gmaps4rails.build_markers(@skate_spot) do |skate_spot, marker|
+      marker.lat lat
+      marker.lat long
       #marker.lng address[1]
       #marker.title skate_spot.name
-    #end
+    end
   end
 
   def new

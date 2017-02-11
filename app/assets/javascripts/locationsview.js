@@ -1,4 +1,4 @@
-$("input").geocomplete({ details: "form" });
+/*$("input").geocomplete({ details: "form" });
 
 $(".pages.contact").ready ->
-  alert "My example alert box."
+  alert "My example alert box."*/
