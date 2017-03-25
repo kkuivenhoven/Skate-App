@@ -2,6 +2,18 @@
 <% provide(:title, "#{@skate_spot.name}") %>
 <% provide(:p, "#{@skate_spot.complete_address}") %>
 
+<div class="btn-group btn-group-justified">
+  <div class="btn-group">
+	  <%= link_to('Edit', edit_skate_spot_path(@skate_spot), class: 'btn btn-primary') %>
+    <!--%= link_to('Show', @skate_spot, class: 'btn btn-primary') %--> 
+  </div>
+  <div class="btn-group">
+    <!--%= link_to('Back', skate_spots_path, class: 'btn btn-primary') %-->
+	  <%= link_to('Destroy', @skate_spot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary') %>
+  </div>
+</div>
+<br>
+
 <div id="map"></div>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=initMap">

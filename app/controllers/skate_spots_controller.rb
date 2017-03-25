@@ -33,15 +33,18 @@ class SkateSpotsController < ApplicationController
 
   def update
     @skate_spot = SkateSpot.find(params[:id])
-    if @skate_spot.update(params.require(:skatespot).permit(:name, :zip_code))
-      redirect_to @skate_spot, notice: "Skatespot has been successfully updated!"
+    #if @skate_spot.update(params.require(:skatespot).permit(:name, :zip_code))
+    if @skate_spot.update(skate_spot_params)
+      #redirect_to @skate_spot, notice: "Skatespot has been successfully updated!"
+			flash[:success] = "Skatespot has been successfully updated!"
+      redirect_to @skate_spot
     else
       render :edit
     end
   end
 
   def destroy
-    Skatespot.find(params[:id]).destroy
+    SkateSpot.find(params[:id]).destroy
     redirect_to :action => 'index'
   end
 

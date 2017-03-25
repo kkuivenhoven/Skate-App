@@ -1,0 +1,55 @@
+.skate_table {
+		background-color: #a0a0a0;
+		border-radius: 6px;
+		color: inherit;
+}
+
+.skate_table > tbody > tr:hover {
+	background-color: #b7b7b7; }
+
+
+#skate_link {
+		//color: red;
+    //border-bottom: 1px solid red;
+    a {
+        color: inherit;
+    }
+		a:hover {
+				color: inherit;
+				background-color: #b7b7b7;
+				text-decoration: none;
+		}
+}
+
+/*li {
+    overflow: auto;
+    padding: 10px 0;
+		color: red;
+    border-bottom: 1px solid red;
+    a {
+        color: red;
+    }
+  }*/
+
+
+.skate_caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px; 
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent; 
+}
+
+.caret_link:hover {
+	background-color: #b7b7b7;
+	color: inherit;
+}
+
+.skate_caret:hover {
+	background-color: #b7b7b7;
+	color: inherit;
+}
+

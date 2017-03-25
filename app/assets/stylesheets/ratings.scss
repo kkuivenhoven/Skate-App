@@ -1,3 +1,29 @@
 // Place all the styles related to the Ratings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#skate_rating {
+    a {
+        color: inherit;
+    }
+		a:hover {
+				color: inherit;
+				background-color: #b7b7b7;
+				text-decoration: none;
+		}
+    .panel-title {
+				color: inherit;
+				background-color: none;
+				text-decoration: none;
+				a:hover {
+								color: inherit;
+								background-color: #f5f5f5;
+								text-decoration: none;
+				}
+		}
+		.panel-default > .panel-heading:hover {
+				color: inherit;
+				background-color: #f5f5f5;
+				text-decoration: none;
+		}
+}
