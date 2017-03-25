@@ -3,6 +3,7 @@ class SkateSpotsController < ApplicationController
   def index
     @skate_spots = SkateSpot.all
 		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
+    @skate_spots = @skate_spots.order(:name)
   end
 
   def show
