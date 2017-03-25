@@ -32,8 +32,11 @@ class SkateSpot < ActiveRecord::Base
 		return number_street
 	end
 
+	def basic_address
+		[num_and_st, city].join(', ')
+	end
+
 	def complete_address
-		#[num_and_st, city, state, country].join(', ')
 		[num_and_st, city, state, zip_code].join(', ')
 	end
 
