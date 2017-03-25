@@ -56,7 +56,7 @@ SkateSpot.create!(name: "Los Angeles Seed Spot", user_id: 1,
                   city: "Los Angeles", state: "CA", country: "USA",
                   zip_code: "90210", latitude: 34.0810165, longitude: -118.41264519999999)
 
-SkateSpot.create!(name: "Brentwood Skate Park", user_id: 1,
+SkateSpot.create!(name: "Brentwood Skate Park", user_id: 2,
                   street: "Griffith Lane",
                   city: "Brentwood", state: "CA", country: "USA",
                   zip_code: "94513", latitude: 37.926398, longitude: -121.707277)
