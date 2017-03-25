@@ -44,17 +44,17 @@ Rating.create!(difficulty: 5, police: 5,
 SkateSpot.create!(name: "Chico Seed Spot", user_id: 1, number: 265,
                   street: "Humboldt Ave",
                   city: "Chico", state: "CA", country: "USA",
-                  zip_code: "95928")
+                  zip_code: "95928", latitude: 39.7256124, longitude: -121.83296989999997)
 
 SkateSpot.create!(name: "Loomis Seed Spot", user_id: 1, number: 8650,
                   street: "Horseshoe Bar Rd",
                   city: "Loomis", state: "CA", country: "USA",
-                  zip_code: "95650")
+                  zip_code: "95650", latitude: 38.808222, longitude: 121.14308399999999)
 
 SkateSpot.create!(name: "Los Angeles Seed Spot", user_id: 1,
                   street: "Sunset Blvd",
                   city: "Los Angeles", state: "CA", country: "USA",
-                  zip_code: "90210")
+                  zip_code: "90210", latitude: 34.0810165, longitude: -118.41264519999999)
 
 User.create!(name:  "Vanessa Torres",
              email: "vanessa@torres.org",

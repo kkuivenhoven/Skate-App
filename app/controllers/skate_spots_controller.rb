@@ -2,19 +2,15 @@ class SkateSpotsController < ApplicationController
 
   def index
     @skate_spots = SkateSpot.all
+		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
   end
 
   def show
     @skate_spot = SkateSpot.find(params[:id])
 		@address = @skate_spot.get_coords
-		lat = @skate_spot.get_lat
-		long = @skate_spot.get_long
-    @hash = Gmaps4rails.build_markers(@skate_spot) do |skate_spot, marker|
-      marker.lat lat
-      marker.lat long
-      #marker.lng address[1]
-      #marker.title skate_spot.name
-    end
+		@latlng = Array.new
+		@latlng << @skate_spot.latitude
+		@latlng << @skate_spot.longitude
   end
 
   def new
@@ -25,9 +21,6 @@ class SkateSpotsController < ApplicationController
     @skate_spot = SkateSpot.new(skate_spot_params)
 
     if @skate_spot.save
-	      #@skate_spot.latitude = @skate_spot.get_lat
-	      #@skate_spot.longitude = @skate_spot.get_long
-			  #@skate_spot.save 
         redirect_to :action => 'index'
     else
       render :action => 'new'

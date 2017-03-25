@@ -1,13 +1,14 @@
 class SkateSpot < ActiveRecord::Base
 
-
   belongs_to :user
   has_many :ratings
   has_one :location
 
-  geocoded_by :complete_address
+  #geocoded_by :complete_address
+  geocoded_by :gmaps4rails_address
 	after_validation :geocode
   #reverse_geocoded_by :latitude, :longitude
+	#acts_as_gmappable
 
  #validates_presence_of makes sure that the user provided input for that specified attribute
   validates_presence_of :name

@@ -498,8 +498,8 @@ th {
 .glyphicon-picture:before {
   content: "\e060"; }
 
-/*.glyphicon-map-marker:before {
-  content: "\e062"; }*/
+.glyphicon-map-marker:before {
+  content: "\e062"; }
 
 .glyphicon-adjust:before {
   content: "\e063"; }
@@ -2205,8 +2205,7 @@ pre {
   .col-lg-offset-12 {
     margin-left: 100%; } }
 table {
-	border-radius: 4px;
-  background-color: #A0A0A0; }
+  background-color: transparent; }
 
 caption {
   padding-top: 8px;
