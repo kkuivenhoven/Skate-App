@@ -4,11 +4,17 @@ class SkateSpotsController < ApplicationController
     @skate_spots = SkateSpot.all
 		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
     @skate_spots = @skate_spots.order(:name)
+		@all_latlng = Array.new
+		@skate_spots.each do |s|
+						@all_latlng << s.name
+						@all_latlng << s.latitude
+						@all_latlng << s.longitude
+		end
   end
 
   def show
     @skate_spot = SkateSpot.find(params[:id])
-		@address = @skate_spot.get_coords
+		#@address = @skate_spot.get_coords
 		@latlng = Array.new
 		@latlng << @skate_spot.latitude
 		@latlng << @skate_spot.longitude
