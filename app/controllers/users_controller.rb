@@ -15,6 +15,13 @@ class UsersController < ApplicationController
   #this function shows a users profile; user has been found by id
   def show
     @user = User.find(params[:id])
+    @all_latlng = Array.new
+		@skate_spots = @user.skate_spots
+    @skate_spots.each do |s| 
+            @all_latlng << s.name
+            @all_latlng << s.latitude
+            @all_latlng << s.longitude
+    end 
   end
   
   #this function creates a User object 
