@@ -5,6 +5,7 @@ https://www.railstutorial.org/book/sign_up-->
 <% provide(:title, @user.name) %>
 <% provide(:p, "Your documented street spots: #{@user.skate_spots.count}") %>
 
+
 <div class="row">
  <div class="col-sm-4">
   <!--<aside class="col-md-4">-->
@@ -62,9 +63,9 @@ https://www.railstutorial.org/book/sign_up-->
 </div>
 
 
-<div id="index_map"></div>
+<div id="user_index_map"></div>
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=allinitMap">
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=userinitMap">
 </script>
 <br>
 
