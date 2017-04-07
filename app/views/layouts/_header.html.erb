@@ -66,8 +66,8 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
                % end %-->
             <!--% end %>-->
             <% if logged_in? %>
-               <li><%= link_to "New Skate Spot", new_skate_spot_path %>
-               </li>
+							 <li><%= link_to "New Skate Spot", new_skate_spot_path %></li>
+							 <li><%= link_to "New Skate Spot by Geolocation", new_by_geo_path %></li>
              <% end %>
 
            </ul>
@@ -96,7 +96,12 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
             </ul>
          </li>
         <% end %>
+
+        <li><%= link_to "Test Page", test_page_path %></li>
+				
        <% end %>
+
+
 
              <% if !current_page?(controller: 'static_pages', action: 'help') %>
         <li><%= link_to "Help", static_pages_help_path %></li>

@@ -1,0 +1,37 @@
+<% provide(:title, "New Spot by Geolocation") %>
+<% provide(:p, "Click the button to generate coordinates") %>
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <button onclick="new_getLocation()">Set coords</button>
+    <p id="new_demo"></p>
+	</div>
+</div>
+
+
+<% provide(:button_text, 'Submit') %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+  
+    <!--%= form_for :skate_spot do |f| %-->
+    <%= form_for(@skate_spot, url: create_by_geo_path) do |f| %>
+    <!--%= form_for(@skate_spot), url: {action: "create_by_geo"} do |f| %-->
+      <!--%= render 'shared/error_messages', object: @skate_spot %>-->
+  
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :latitude %>
+      <%= f.text_field :latitude, class: 'form-control' %>
+
+      <%= f.label :longitude %>
+      <%= f.text_field :longitude, class: 'form-control' %>
+
+      <br>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

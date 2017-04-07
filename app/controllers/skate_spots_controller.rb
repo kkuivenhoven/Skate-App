@@ -20,13 +20,28 @@ class SkateSpotsController < ApplicationController
 		@latlng << @skate_spot.longitude
   end
 
+  def new_by_geo
+    @skate_spot = SkateSpot.new
+  end
+
+  def create_by_geo
+    @skate_spot = SkateSpot.new(geo_skate_spot_params)
+		geo_localization = "#{@skate_spot.latitude},#{@skate_spot.longitude}"
+		query = Geocoder.search(geo_localization).first
+		byebug
+    if @skate_spot.save
+        redirect_to :action => 'index'
+    else
+      render :action => 'new_by_geo'
+    end
+  end
+
   def new
     @skate_spot = SkateSpot.new
   end
 
   def create
     @skate_spot = SkateSpot.new(skate_spot_params)
-
     if @skate_spot.save
         redirect_to :action => 'index'
     else
@@ -55,11 +70,19 @@ class SkateSpotsController < ApplicationController
     redirect_to :action => 'index'
   end
 
+	def test_page
+
+	end
+
   private
     #Use callbacks to share common setup or constraints between actions
 #    def set_skate_spot
 #      @skate_spot = SkateSpot.find(params[:id])
 #    end
+
+    def geo_skate_spot_params
+      params.require(:skate_spot).permit(:name, :latitude, :longitude)
+    end
 
     def skate_spot_params
       params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code)
