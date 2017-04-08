@@ -95,6 +95,7 @@ class SkateSpotsController < ApplicationController
   end
 
 	def test_page
+		@skate_spots = SkateSpot.all
 
 	end
 

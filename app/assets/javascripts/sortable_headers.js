@@ -1,45 +1,6 @@
-<% provide(:title, "Test page") %>
-<% provide(:p, "For testing purposes") %>
-
-<div class="container" style="background-color: white">
-				<span style="color:black">
-				</span>
-</div>
-
-
-<!DOCTYPE html>
-<html>
-<title>Sort a HTML Table Alphabetically</title>
-<body>
-
-<p>Click the headers to sort the table.</p>
-<p>The first time you click, the sorting direction is ascending (A to Z).</p>
-<p>Click again, and the sorting direction will be descending (Z to A):</p>
-
-<table border="1" id="myTable" style="background-color:white">
-  <tr>
-   <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
-    <th onclick="sortTable(0)">Name</th>
-    <th onclick="sortTable(1)">Country</th>
-  </tr>
-  <tr>
-    <td><%= @skate_spots.first.name %></td>
-    <td><%= @skate_spots.first.zip_code %></td>
-  </tr>
-  <tr>
-    <td><%= @skate_spots.second.name %></td>
-    <td><%= @skate_spots.second.zip_code %></td>
-  </tr>
-  <tr>
-    <td><%= @skate_spots.third.name %></td>
-    <td><%= @skate_spots.third.zip_code %></td>
-  </tr>
-</table>
-
-<script>
-function sortTable(n) {
+function skate_sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
+  table = document.getElementById("ind_table");
   switching = true;
   //Set the sorting direction to ascending:
   dir = "asc"; 
@@ -89,11 +50,5 @@ function sortTable(n) {
         switching = true;
       }
     }
-  }
+	}
 }
-</script>
-
-</body>
-</html>
-
-
