@@ -35,22 +35,22 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 				<br>
 				<center><h5>Documented skate spots that are within a 60 mile radius.</h5></center>
 
-  <!--div class="table-responsive"-->
+				<div class="table-responsive">
    <!--table class="table table-hover skate_table"-->
-   <!--table class="table skate_table" id="ind_table"-->
-     <!--thead-->
-	<table border="1" id="ind_table">
+   <table class="table skate_table" id="ind_table">
+     <thead>
+	<!--table border="1" id="ind_table"-->
        <tr>
         <th>Name</th>
-        <th onclick="skate_sortTable(0)">testing Name</th>
+        <!--th onclick="skate_sortTable(0)">testing Name</th-->
         <th>Less than 60 miles away</th>
         <th>Address</th>
         <th>Zip Code</th>
         <th onclick="skate_sortTable(1)">Country</th>
        </tr>
-     <!--/thead-->
+     </thead>
 
-     <!--tbody-->
+     <tbody>
       <% @others.each do |skate_spot| %>
       <tr>
         <tr>
@@ -70,7 +70,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
            <% end %>
             </li>
           </td>
-					<td><%= skate_spot.name %></td>
+					<!--td>%= skate_spot.name %></td-->
 				  <td><%= (@skate_spot.distance_from([skate_spot.latitude, skate_spot.longitude])).round(2) %> miles</td>
           <td><%= skate_spot.basic_address %></td>
           <td><%= skate_spot.zip_code %></td>
@@ -78,11 +78,11 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
         </tr>
       </tr>
      <% end %>
-   <!--/tbody-->
-  <!--/table>
- </div-->
+   </tbody>
+  </table>
+ </div>
 
 
 
-</div>
+<!--/div-->
 </div>

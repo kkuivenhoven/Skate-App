@@ -9,6 +9,31 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+SkateSpot.create!(name: "Santa Rosa Park", user_id: 1, 
+                  street: "Santa Rosa St & Oak St",
+                  city: "San Luis Obispo", state: "CA", country: "USA",
+                  zip_code: "93405", latitude: 35.289092, longitude: -120.665690)
+
+SkateSpot.create!(name: "Las Animas Skateboard Park", user_id: 1, 
+                  street: "Mantelli Dr",
+                  city: "Gilroy", state: "CA", country: "USA",
+                  zip_code: "95020", latitude: 37.020605, longitude: -121.602261)
+
+SkateSpot.create!(name: "El Estero Skate Park", user_id: 1, number: 725,
+                  street: "Pearl St",
+                  city: "Monterey", state: "CA", country: "USA",
+                  zip_code: "93940", latitude: 36.597348, longitude: -121.887265)
+
+SkateSpot.create!(name: "Delano Skate Park", user_id: 1, number: 1221,
+                  street: "Cecil Ave",
+                  city: "Delano", state: "CA", country: "USA",
+                  zip_code: "93215", latitude: 35.776270, longitude: -119.242268)
+
+SkateSpot.create!(name: "Applegate Skate Park", user_id: 1, number: 1045,
+                  street: "W 25th St",
+                  city: "Merced", state: "CA", country: "USA",
+                  zip_code: "95340", latitude: 37.312461, longitude: -120.483005)
+
 SkateSpot.create!(name: "Patterson Skatepark", user_id: 1, number: 1010,
                   street: "W Las Palmas Ave",
                   city: "Patterson", state: "CA", country: "USA",
