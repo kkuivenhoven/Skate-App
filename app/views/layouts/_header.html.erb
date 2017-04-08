@@ -70,7 +70,9 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
             <!--% end %>-->
             <% if logged_in? %>
 							 <li><%= link_to "New Skate Spot", new_skate_spot_path %></li>
-							 <li><%= link_to "New Skate Spot by Geolocation", new_by_geo_path %></li>
+               <% if logged_in? %>
+											 <li><%= link_to "New Skate Spot by Geolocation", new_by_geo_path %></li>
+               <% end %>
              <% end %>
 
            </ul>
