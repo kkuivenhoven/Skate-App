@@ -4,6 +4,22 @@
 <% provide(:p, "The skate spots are ordered alphabetically. 
 					 Click one to view more details.") %>
 
+<div class="container">
+  <div class="row">
+				<%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
+				<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>
+				<%= submit_tag "Search" %>
+				<% end %>
+
+				<!--% if @skate_spots.present? %>
+					%= render @skate_spots %>
+				% else %>
+					<p>There are no skate spots containing the term(s) %= params[:search] %>.</p>
+				% end -->
+  </div>
+</div>
+
+
   <div class="table-responsive">
 	 <!--table class="table table-hover skate_table"-->
 	 <table class="table skate_table">

@@ -2,6 +2,7 @@
 <% provide(:title, "#{@skate_spot.name}") %>
 <% provide(:p, "#{@skate_spot.complete_address}") %>
 
+<% if current_user != nil %>
 <% if current_user.id == @skate_spot.user_id %>
 <div class="btn-group btn-group-justified">
   <div class="btn-group">
@@ -14,6 +15,7 @@
   </div>
 </div>
 <br>
+<% end %>
 <% end %>
 
 

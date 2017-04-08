@@ -23,9 +23,12 @@ class SkateSpot < ActiveRecord::Base
   #validates :country, :length => { :is => 3 }, :on => :create
 
   #searches the SkateSpot DB for skate_spots with that zip_code that has been specified by the user
-  def self.search(query)
-    where("zip_code like ?", "%#{query}%") 
-  end
+  #def self.search(query)
+  #  where("zip_code like ?", "%#{query}%") 
+  #end
+def self.search(search)
+  where("name LIKE ?", "%#{search}%") 
+end
 
 	def num_and_st
 		number_street = "#{number} #{street}"

@@ -10,6 +10,17 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.latitude
 						@all_latlng << s.longitude
 		end
+		if params[:search]
+						@skate_spots = @skate_spots.search(params[:search])
+						@all_latlng = Array.new
+						@skate_spots.each do |s|
+										@all_latlng << s.name
+										@all_latlng << s.latitude
+										@all_latlng << s.longitude
+						end
+		else
+					  @skate_spots = @skate_spots.order(:name)
+		end
   end
 
   def show
@@ -18,6 +29,8 @@ class SkateSpotsController < ApplicationController
 		@latlng = Array.new
 		@latlng << @skate_spot.latitude
 		@latlng << @skate_spot.longitude
+		geo_localization = "#{@skate_spot.latitude},#{@skate_spot.longitude}"
+		@query = Geocoder.search(geo_localization).first
   end
 
   def new_by_geo
@@ -27,8 +40,14 @@ class SkateSpotsController < ApplicationController
   def create_by_geo
     @skate_spot = SkateSpot.new(geo_skate_spot_params)
 		geo_localization = "#{@skate_spot.latitude},#{@skate_spot.longitude}"
-		query = Geocoder.search(geo_localization).first
-		byebug
+		@query = Geocoder.search(geo_localization).first
+		@addr_comp = @query.data["address_components"]
+		@skate_spot.number = @addr_comp.first["long_name"]
+		@skate_spot.street = @addr_comp.second["long_name"]
+		@skate_spot.city = @addr_comp.fourth["long_name"]
+		@skate_spot.state = @addr_comp[5]["short_name"]
+		@skate_spot.zip_code = @addr_comp[7]["long_name"]
+		@skate_spot.country = @addr_comp[6]["short_name"]
     if @skate_spot.save
         redirect_to :action => 'index'
     else
