@@ -26,9 +26,10 @@ class SkateSpot < ActiveRecord::Base
   #def self.search(query)
   #  where("zip_code like ?", "%#{query}%") 
   #end
-def self.search(search)
-  where("name LIKE ?", "%#{search}%") 
-end
+
+  def self.search(search)
+    where("name LIKE ? OR street LIKE ? OR city LIKE ? OR zip_code LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%") 
+  end
 
 	def num_and_st
 		number_street = "#{number} #{street}"

@@ -31,6 +31,11 @@ class SkateSpotsController < ApplicationController
 		@latlng << @skate_spot.longitude
 		geo_localization = "#{@skate_spot.latitude},#{@skate_spot.longitude}"
 		@query = Geocoder.search(geo_localization).first
+		if @skate_spot.geocoded?
+						#@others = SkateSpot.near(@latlng, 100)
+						@others = @skate_spot.nearbys(60)
+						@others = @others.order(:name)
+		end
   end
 
   def new_by_geo

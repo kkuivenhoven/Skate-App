@@ -24,8 +24,9 @@ Rails.application.routes.draw do
   get 'users/search_results'
 
   resources :skate_spots do
-    resources :ratings
+    resources :ratings, :except => :index
   end
+  get 'ratings/index', to: 'ratings#index', as: 'ratings'
 
   #resources :skate_spots
   #resources :ratings

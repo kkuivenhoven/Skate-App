@@ -9,39 +9,27 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Rating.create!(difficulty: 1, police: 1,
-               pedestrian: 3, 
-               description: "15-stair near sidewalk. fucked this spot up."#,
-               #skate_spot_id: 1,
-               #user_id: 1
-)
+SkateSpot.create!(name: "Pedlow Skate Park", user_id: 1, number: 17334,
+                  street: "Victory Blvd",
+                  city: "Encino", state: "CA", country: "USA",
+                  zip_code: "91316", latitude: 34.185850, longitude: -118.511441)
 
-Rating.create!(difficulty: 3, police: 1,
-               pedestrian: 5,
-               description: "ledge next to stair-set"#,
-               #skate_spot_id: 1,
-               #user_id: 2 
-)
+SkateSpot.create!(name: "Corning Community Park and Skate Park", user_id: 1, number: 1485,
+                  street: "Toomes Ave",
+                  city: "Corning", state: "CA", country: "USA",
+                  zip_code: "96021", latitude: 39.921631, longitude: -122.191405)
 
+SkateSpot.create!(name: "Sunken Gardens Neighborhood Park", user_id: 1, number: 3800,
+                  street: "Pacific Ave",
+                  city: "Livermore", state: "CA", country: "USA",
+                  zip_code: "94550", latitude: 37.676079, longitude: 121.750087)
 
-Rating.create!(difficulty: 4, police: 5,
-               pedestrian: 1,
-               description: "7-stair near sidewalk"#,
-               #skate_spot_id: 1,
-               #user_id: 3 
-)
+SkateSpot.create!(name: "28th & B Skate Park", user_id: 1, number: 20,
+                  street: "28th Street",
+                  city: "Sacramento", state: "CA", country: "USA",
+                  zip_code: "95816", latitude: 38.586446, longitude: -121.458924)
 
-
-Rating.create!(difficulty: 5, police: 5,
-               pedestrian: 0,
-               description: "10-stair near sidewalk"#,
-               #skate_spot_id: 1,
-               #user_id: 4 
-)
-
-
-
-SkateSpot.create!(name: "Chico Skate Park", user_id: 1, number: 265,
+SkateSpot.create!(name: "Humboldt Neighborhood Skate Park", user_id: 1, number: 265,
                   street: "Humboldt Ave",
                   city: "Chico", state: "CA", country: "USA",
                   zip_code: "95928", latitude: 39.7256124, longitude: -121.83296989999997)
@@ -88,3 +76,34 @@ User.create!(name:  "Kendra",
                activated: true,
  		       activated_at: Time.zone.now)
 end
+
+
+
+Rating.create!(difficulty: 1, police: 1,
+               pedestrian: 3, 
+               description: "15-stair near sidewalk. Tore this spot up.",
+               skate_spot_id: SkateSpot.first.id,
+               #user_id: 1
+)
+
+Rating.create!(difficulty: 3, police: 1,
+               pedestrian: 5,
+               description: "ledge next to stair-set",
+               skate_spot_id: SkateSpot.second.id,
+               #user_id: 2 
+)
+Rating.create!(difficulty: 4, police: 5,
+               pedestrian: 1,
+               description: "7-stair near sidewalk",
+               skate_spot_id: SkateSpot.third.id,
+               #user_id: 3 
+)
+Rating.create!(difficulty: 5, police: 5,
+               pedestrian: 0,
+               description: "10-stair near sidewalk",
+               skate_spot_id: SkateSpot.fourth.id,
+               #user_id: 4 
+)
+
+
+

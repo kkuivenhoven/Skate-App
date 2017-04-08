@@ -6,6 +6,19 @@ https://www.railstutorial.org/book/updating_and_deleting_users-->
 <% provide(:p, 'Street Spot App users') %>
 <!--<h1>All users</h1>-->
 
+<div class="container">
+	<div class="row">
+				<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+				<%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+				<%= submit_tag "Search" %>
+				<% end %>
+
+				<% if !@users.present? %>
+					<p>There are no users under the name <%= params[:search] %>.</p>
+				<% end %>
+  </div>
+</div>
+
 <%= will_paginate %>
 
 <!-- (inferred by RoR) @users is list of User objects; 

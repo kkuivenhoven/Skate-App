@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%") 
+  end
+
   # Logs out the current user.
   def log_out
     #forget(current_user)

@@ -10,6 +10,12 @@ class UsersController < ApplicationController
   #this function shows all activated users, in alphabetical order. Paginate has been set to 20 to allow 20 users per page
   def index
     @users = User.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+		if params[:search]
+						@users = @users.search(params[:search])
+		else
+					  @users = @users.order(:name)
+						@users = @users.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+		end
   end
   
   #this function shows a users profile; user has been found by id
