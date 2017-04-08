@@ -21,17 +21,6 @@
 		}
 }
 
-/*li {
-    overflow: auto;
-    padding: 10px 0;
-		color: red;
-    border-bottom: 1px solid red;
-    a {
-        color: red;
-    }
-  }*/
-
-
 .skate_caret {
   display: inline-block;
   width: 0;
@@ -53,3 +42,10 @@
 	color: inherit;
 }
 
+.skate_show_header{
+				border-radius: 5px;
+				background-color: #a0a0a0;
+				h5 {
+						font-size: 1.1em;
+				}
+}
