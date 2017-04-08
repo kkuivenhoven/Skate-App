@@ -9,6 +9,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+SkateSpot.create!(name: "Patterson Skatepark", user_id: 1, number: 1010,
+                  street: "W Las Palmas Ave",
+                  city: "Patterson", state: "CA", country: "USA",
+                  zip_code: "95363", latitude: 37.466275, longitude: -121.141329)
+
+SkateSpot.create!(name: "El Pescadero Park", user_id: 1, number: 301,
+                  street: "Grant Line Rd",
+                  city: "Tracy", state: "CA", country: "USA",
+                  zip_code: "95376", latitude: 37.754186, longitude: -121.430193)
+
+SkateSpot.create!(name: "Yuba City Skate Park", user_id: 1, number: 806,
+                  street: "Gray Ave",
+                  city: "Yuba City", state: "CA", country: "USA",
+                  zip_code: "95991", latitude: 39.135354, longitude: -121.630077)
+
 SkateSpot.create!(name: "Pedlow Skate Park", user_id: 1, number: 17334,
                   street: "Victory Blvd",
                   city: "Encino", state: "CA", country: "USA",
@@ -23,6 +38,46 @@ SkateSpot.create!(name: "Sunken Gardens Neighborhood Park", user_id: 1, number: 
                   street: "Pacific Ave",
                   city: "Livermore", state: "CA", country: "USA",
                   zip_code: "94550", latitude: 37.676079, longitude: 121.750087)
+
+SkateSpot.create!(name: "Zero Gravity Skatepark", user_id: 1, number: 920,
+                  street: "N Gateway Dr",
+                  city: "Madera", state: "CA", country: "USA",
+                  zip_code: "93637", latitude: 36.968082, longitude: -120.067529)
+
+SkateSpot.create!(name: "Los Osos Skate park", user_id: 1, number: 2180,
+                  street: "Paslisades Ave",
+                  city: "Los Osos", state: "CA", country: "USA",
+                  zip_code: "93402", latitude: 35.312961, longitude: -120.836267)
+
+SkateSpot.create!(name: "Provident Skate Park", user_id: 1, number: 1035,
+                  street: "W Murray Ave",
+                  city: "Visalia", state: "CA", country: "USA",
+                  zip_code: "93291", latitude: 36.333393, longitude: -119.303081)
+
+SkateSpot.create!(name: "Melody Park", user_id: 1, number: 5935,
+                  street: "E Shields Ave",
+                  city: "Fresno", state: "CA", country: "USA",
+                  zip_code: "93727", latitude: 36.779950, longitude: -119.685225)
+
+SkateSpot.create!(name: "Woodward West", user_id: 1, number: 28400,
+                  street: "Stallion Springs Dr",
+                  city: "Tehachapi", state: "CA", country: "USA",
+                  zip_code: "93561", latitude: 35.080790, longitude: -118.635479)
+
+SkateSpot.create!(name: "Ronka Underground Skatepark", user_id: 1, number: 4404,
+                  street: "Wible Rd",
+                  city: "Bakersfield", state: "CA", country: "USA",
+                  zip_code: "93313", latitude: 35.315111, longitude: -119.038961)
+
+SkateSpot.create!(name: "Belvedere Skatepark", user_id: 1, number: 4914,
+                  street: "East Cesar E Chavez Avenue",
+                  city: "East Los Angeles", state: "CA", country: "USA",
+                  zip_code: "90022", latitude: 34.040176, longitude: -118.159259)
+
+SkateSpot.create!(name: "Sheldon Skate Park", user_id: 1, number: 12511,
+                  street: "Sheldon St",
+                  city: "Sun Valley", state: "CA", country: "USA",
+                  zip_code: "91352", latitude: 34.230936, longitude: -118.406091)
 
 SkateSpot.create!(name: "28th & B Skate Park", user_id: 1, number: 20,
                   street: "28th Street",
