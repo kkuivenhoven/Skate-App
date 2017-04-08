@@ -9,6 +9,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+SkateSpot.create!(name: "South County Skate Park", user_id: 1, number: 1750, 
+                  street: "Ramonda Ave",
+                  city: "Grover Beach", state: "CA", country: "USA",
+                  zip_code: "93433", latitude: 35.121738, longitude: -120.609989)
+
+SkateSpot.create!(name: "Gonzales Skate Park", user_id: 1, 
+                  street: "1st St",
+                  city: "Gonzales", state: "CA", country: "USA",
+                  zip_code: "93926", latitude: 36.505976, longitude: -121.440160)
+
 SkateSpot.create!(name: "Santa Rosa Park", user_id: 1, 
                   street: "Santa Rosa St & Oak St",
                   city: "San Luis Obispo", state: "CA", country: "USA",
