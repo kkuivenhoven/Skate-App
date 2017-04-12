@@ -40,6 +40,10 @@ class SkateSpot < ActiveRecord::Base
 		[num_and_st, city].join(', ')
 	end
 
+	def just_city
+		return "#{city}"
+	end
+
 	def complete_address
 		[num_and_st, city, state, zip_code].join(', ')
 	end
