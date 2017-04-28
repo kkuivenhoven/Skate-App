@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'static_pages/home'
   get 'static_pages/help'
+  get 'static_pages/skate_links'
   get 'skate_spots/search_results'
   get 'skate_spots/show'
   get 'skate_spots/test_page', to: 'skate_spots#test_page', as: 'test_page'

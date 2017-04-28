@@ -13,7 +13,7 @@ http://www.w3schools.com/bootstrap/bootstrap_panels.asp-->
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :password %>
-      <%= link_to "Forgot password?", new_password_reset_path %>
+			<span class="session_link"><%= link_to "Forgot password?", new_password_reset_path %></span>
       <%= f.password_field :password, class: 'form-control' %>
 
       <!--%= f.label :remember_me, class: "checkbox inline" do %-->

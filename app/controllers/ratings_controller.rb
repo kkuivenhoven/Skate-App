@@ -12,6 +12,8 @@ class RatingsController < ApplicationController
 
   #GET /skate_spots/:skate_spot_id/ratings/new
   def new
+		#@user = User.find_by(id: params[:user_id])
+		@user = current_user.id
     #build a new rating
     @rating = @skate_spot.ratings.build
   end

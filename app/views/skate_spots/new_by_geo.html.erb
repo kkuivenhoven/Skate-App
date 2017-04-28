@@ -14,10 +14,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
   
-    <!--%= form_for :skate_spot do |f| %-->
     <%= form_for(@skate_spot, url: create_by_geo_path) do |f| %>
-    <!--%= form_for(@skate_spot), url: {action: "create_by_geo"} do |f| %-->
-      <!--%= render 'shared/error_messages', object: @skate_spot %>-->
   
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
