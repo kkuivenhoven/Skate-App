@@ -8,9 +8,9 @@ https://www.railstutorial.org/book/updating_and_deleting_users-->
 
 <div class="container">
 	<div class="row">
-				<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+				<%= form_tag(users_path, :method => "get", id: "search-form", class: 'input-group') do %>
 				<%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
-				<%= submit_tag "Search" %>
+				<%= submit_tag "Search", class: "btn btn-default btn-sm" %>
 				<% end %>
 
 				<% if !@users.present? %>
