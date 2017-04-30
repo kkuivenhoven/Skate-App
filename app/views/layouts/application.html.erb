@@ -19,8 +19,10 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
 <script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
 <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> 
-<!--%= javascript_include_tag "jquery", "jquery-ui","rails" %>
-= javascript_include_tag "application" %-->
+<% if Rails.env.production? == false %>
+	<%= javascript_include_tag "jquery", "jquery-ui","rails" %>
+	<%= javascript_include_tag "application" %>
+<% end %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
 
