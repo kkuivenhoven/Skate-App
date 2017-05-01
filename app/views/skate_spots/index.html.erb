@@ -6,14 +6,14 @@
 
 <div class="container">
   <div class="row">
-				<%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
-				<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>
-				<%= submit_tag "Search", class: "btn btn-default btn-sm" %>
-				<% end %>
+	 <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
+	 <%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>
+	 <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
+	 <% end %>
 
-				<% if !@skate_spots.present? %>
-					<p>There are no skate spots containing the term(s) <%= params[:search] %>.</p>
-				<% end %>
+	 <% if !@skate_spots.present? %>
+		 <p>There are no skate spots containing the term(s) <%= params[:search] %>.</p>
+	 <% end %>
   </div>
 </div>
 
@@ -28,27 +28,27 @@
   </thead>
   <tbody>
   <% @skate_spots.each do |skate_spot| %>
-          <tr>
-            <td>
-							<span style="display:none"><%= skate_spot.name %></span>
-              <li class="dropdown">
-                <span id="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
-                <% if logged_in? %>
-                  <% if current_user.id == skate_spot.user_id %>
-                    <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
-                      <b class="skate_caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
-                      <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-                    </ul>
-                 <% end %>
-                <% end %>
-              </li>
-            </td>
-            <td><%= skate_spot.basic_address %></td>
-            <td><%= skate_spot.zip_code %></td>
-          </tr>
+  <tr>
+	 <td>
+	  <span style="display:none"><%= skate_spot.name %></span>
+		<li class="dropdown">
+		  <span id="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
+		  <% if logged_in? %>
+			 <% if current_user.id == skate_spot.user_id %>
+				<a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
+				  <b class="skate_caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+				  <li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
+				  <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+				</ul>
+			<% end %>
+		  <% end %>
+		</li>
+	 </td>
+	 <td><%= skate_spot.basic_address %></td>
+	 <td><%= skate_spot.zip_code %></td>
+  </tr>
   <% end %>
   </tbody>
 </table>

@@ -3,7 +3,7 @@ class SkateSpotsController < ApplicationController
   def index
     @skate_spots = SkateSpot.all
 		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
-    @skate_spots = @skate_spots.order(:name)
+      @skate_spots = @skate_spots.order(:name)
 		@all_latlng = Array.new
 		@skate_spots.each do |s|
 						@all_latlng << s.name
@@ -11,15 +11,15 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.longitude
 		end
 		if params[:search]
-						@skate_spots = @skate_spots.search(params[:search])
-						@all_latlng = Array.new
-						@skate_spots.each do |s|
-										@all_latlng << s.name
-										@all_latlng << s.latitude
-										@all_latlng << s.longitude
-						end
+			 @skate_spots = @skate_spots.search(params[:search])
+			 @all_latlng = Array.new
+			 @skate_spots.each do |s|
+							 @all_latlng << s.name
+							 @all_latlng << s.latitude
+							 @all_latlng << s.longitude
+			 end
 		else
-					  @skate_spots = @skate_spots.order(:name)
+			@skate_spots = @skate_spots.order(:name)
 		end
   end
 
@@ -35,6 +35,15 @@ class SkateSpotsController < ApplicationController
 						#@others = SkateSpot.near(@latlng, 100)
 						@others = @skate_spot.nearbys(60)
 						@others = @others.order(:name)
+		end
+		@show_latlng = Array.new
+		@show_latlng << @skate_spot.name
+		@show_latlng << @skate_spot.latitude
+		@show_latlng << @skate_spot.longitude
+		@others.each do |s|
+			 @show_latlng << s.name
+			 @show_latlng << s.latitude
+			 @show_latlng << s.longitude
 		end
   end
 
