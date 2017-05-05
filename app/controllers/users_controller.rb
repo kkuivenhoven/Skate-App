@@ -28,6 +28,7 @@ class UsersController < ApplicationController
             @all_latlng << s.latitude
             @all_latlng << s.longitude
     end 
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
   
   #this function creates a User object 

@@ -1,83 +1,104 @@
-<% provide(:title, "Test page") %>
-<% provide(:p, "For testing purposes") %>
+<!-- http://stackoverflow.com/questions/29642295/sorting-html-table-by-two-columns -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<input type="button" id="button1" value="sortByColumn3">
+<input type="button" id="button2" value="sortByColumn3And5">
 
-<!--table border="1" id="myTable" style="background-color:white"-->
-<div class="table-responsive">
-<table class="table skate_table" border="1" id="myTable">
- <thead>
-  <tr>
-    <th onclick="sortTable(0)">Name</th>
-		<th>Address</th>
-    <th onclick="sortTable(1)">Zip Code</th>
-  </tr>
+<table style="background-color:white" id="table1" border="1" width="100%">
+  <thead>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
   </thead>
-	<tbody>
-	<% @skate_spots.each do |skate_spot| %>
-					<tr>
-				    <td>
-              <li class="dropdown">
-                <span id="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
-                <% if logged_in? %>
-                  <% if current_user.id == skate_spot.user_id %>
-                    <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
-                      <b class="skate_caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
-                      <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-                    </ul>
-                 <% end %>
-                <% end %>
-              </li>
-						</td>
-				    <td><%= skate_spot.basic_address %></td>
-				    <td><%= skate_spot.zip_code %></td>
-					</tr>
-	<% end %>
-	</tbody>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td>y</td>
+      <td>2</td>
+      <td>z</td>
+      <td>Fish</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>z</td>
+      <td>1</td>
+      <td>x</td>
+      <td>Box</td>
+    </tr>
+    <tr>
+      <td>z</td>
+      <td>x</td>
+      <td>7</td>
+      <td>y</td>
+      <td>Cat</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>y</td>
+      <td>2</td>
+      <td>z</td>
+      <td>Dog</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>z</td>
+      <td>1</td>
+      <td>x</td>
+      <td>Apple</td>
+    </tr>
+    <tr>
+      <td>z</td>
+      <td>x</td>
+      <td>2</td>
+      <td>y</td>
+      <td>Box</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>y</td>
+      <td>2</td>
+      <td>z</td>
+      <td>Axe</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>z</td>
+      <td>7</td>
+      <td>x</td>
+      <td>Box</td>
+    </tr>
+    <tr>
+      <td>z</td>
+      <td>x</td>
+      <td>2</td>
+      <td>y</td>
+      <td>Answer</td>
+    </tr>
+    <tr>
+      <td>x</td>
+      <td>y</td>
+      <td>7</td>
+      <td>z</td>
+      <td>Apple</td>
+    </tr>
+    <tr>
+      <td>y</td>
+      <td>z</td>
+      <td>6</td>
+      <td>x</td>
+      <td>Year</td>
+    </tr>
+    <tr>
+      <td>z</td>
+      <td>x</td>
+      <td>2</td>
+      <td>y</td>
+      <td>Goat</td>
+    </tr>
+  </tbody>
 </table>
-</div>
-
-<script>
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  dir = "asc"; 
-  while (switching) {
-    switching = false;
-    rows = table.getElementsByTagName("TR");
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch= true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;      
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
-</script>
-
-</body>
-</html>
 
 
