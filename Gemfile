@@ -21,7 +21,6 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'carrierwave',             '0.10.0'
 gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.36.0'
-gem 'rails-erd'
 gem 'geocoder' #needed for converting lat,long to address
 gem 'area' #needed for converting zipcode to lat,long
 #gem 'gmaps4rails', '2.1.2' #needed for maps on views/skate_spots/show.html.erb
@@ -52,6 +51,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+	gem 'rails-erd'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
