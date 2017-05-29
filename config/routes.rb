@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/help'
   get 'static_pages/skate_links'
+  get 'static_pages/testing'
   get 'skate_spots/search_results'
   get 'skate_spots/show'
   get 'skate_spots/test_page', to: 'skate_spots#test_page', as: 'test_page'
@@ -28,10 +29,8 @@ Rails.application.routes.draw do
     resources :ratings, :except => :index
   end
   get 'ratings/index', to: 'ratings#index', as: 'ratings'
+  get 'ratings/testing_this', to: 'ratings#testing_this', as: 'testing_this'
 
-  #resources :skate_spots
-  #resources :ratings
-  
   get 'signup' => 'users#new'
 
   get 'login' => 'sessions#new'
@@ -43,6 +42,8 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
+	get 'microposts/news_feed' => 'microposts#news_feed'
 
   resources :users, 			  only: [:show, :index, :new, :create, :edit, :update, :destroy, :search_results]
   resources :account_activations, only: [:edit] #named route for edit action

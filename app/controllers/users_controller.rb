@@ -79,7 +79,17 @@ class UsersController < ApplicationController
     flash[:success] = "User deleted"
     redirect_to users_url
   end
+
+	def followers
+    @user = User.find(params[:id])
+    @users = @user.followers.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+	end
   
+	def following
+    @user = User.find(params[:id])
+    @users = @user.following.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+	end
+
   private
  
     #attributes for user for above actions

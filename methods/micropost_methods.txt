@@ -1,0 +1,20 @@
+/* Source: https://www.railstutorial.org/book/user_microposts */
+Method and Purpose
+
+1. micropost.user
+	- returns the User object associated with the micropost
+
+2. user.microposts
+	- returns a collection of the user's microposts
+
+3. user.microposts.create(arg)
+	- creates a micropost associated with user
+
+4. user.microposts.create!(arg)
+	- creates a micropost associated with user (exception on failure)
+
+5. user.microposts.build(arg)
+	- returns a new Micropost object associated with user
+
+6. user.microposts.find_by(id: 1)
+	- finds the micropost with id 1 and user_id equal to user.id

@@ -1,0 +1,8 @@
+<% provide(:title, 'Followers') %>
+<% provide(:p, "Followers of #{@user.name}") %>
+
+<%= will_paginate %>
+
+<%= render 'user' %>
+<%= will_paginate %>
+

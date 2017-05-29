@@ -14,4 +14,7 @@ class StaticPagesController < ApplicationController
 	def skate_links
   end
 
+	def testing
+	end
+
 end

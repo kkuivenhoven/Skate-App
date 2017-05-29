@@ -17,7 +17,8 @@ $grayLighter: #eee;
     }
     &:hover {
       text-decoration: none;
-      color: blue;
+      color: inherit;
+      background-color: #b7b7b7;
     }
   }
   strong {

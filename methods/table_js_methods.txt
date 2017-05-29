@@ -1,0 +1,8 @@
+Method and Description
+
+1. getElementsByTagName()
+	- returns a collection  of an element's child elements with the specified tag name, as a NodeList object
+	- the NodeList object represents a collection of nodes
+		. nodes can be accessed by index numbers
+		. 0 is the start of the index
+	- https://www.w3schools.com/jsref/met_element_getelementsbytagname.asp 

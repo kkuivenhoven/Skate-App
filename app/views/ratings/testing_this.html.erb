@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<% provide(:title, "Ratings") %>
+<% provide(:p, "Below are the skate spots that have been rated by users.") %>
+
+<div class="table-responsive">
+<!--table class="table table-hover skate_table"-->
+<table class="table skate_table" id="testingrateTable">
+  <thead>
+    <tr>
+      <th onclick="sortnameTable(0)">Name</th>
+      <th onclick="testingnums(2); okay(2)">Difficulty</th>
+      <th onclick="testingnums(3)">Security</th>
+      <th onclick="testingnums(4)">Pedestrian</th>
+		  <th><center>Description</center></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ratings.each do |rating| %>
+		<% @s_rate = @skate_spots.find_by(:id => rating.skate_spot_id) %> 
+      <tr>
+					<td style="display: none"><%= @s_rate.name %></td>
+					<td><span id="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>
+					<td><%= rating.difficulty %></td>
+					<td><%= rating.police %></td>
+					<td><%= rating.pedestrian %></td>
+			    <td><%= rating.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+

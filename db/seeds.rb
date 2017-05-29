@@ -139,8 +139,8 @@ SkateSpot.create!(name: "Brentwood Skate Park", user_id: 2,
                   city: "Brentwood", state: "CA", country: "USA",
                   zip_code: "94513", latitude: 37.926398, longitude: -121.707277)
 
-User.create!(name:  "Vanessa Torres",
-             email: "vanessa@torres.org",
+User.create!(name:  "Jamie Thomas",
+             email: "jamiethomas@example.org",
              password:              "foobar",
              password_confirmation: "foobar",
    			 admin: true,

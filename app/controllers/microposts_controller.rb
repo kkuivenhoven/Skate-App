@@ -19,6 +19,14 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+	def news_feed
+    if logged_in?
+      @micropost  = current_user.microposts.build
+      # @users = User.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+      @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
+    end
+	end
+  
   private
 
     def micropost_params

@@ -6,7 +6,7 @@
 class RatingsController < ApplicationController
   before_action :login_required, only: [:new, :create, :edit, :update, :destroy]
   #first, obtain the skate_spot using set_skate_spot
-  before_action :set_skate_spot, except: [:index]
+  before_action :set_skate_spot, except: [:index, :testing_this]
   before_action :users_rating, only: [:edit, :update, :destroy]
   after_action :filter, only: [:create] 
 
@@ -66,6 +66,11 @@ class RatingsController < ApplicationController
   end
 
 	def index
+		 @skate_spots = SkateSpot.all
+		 @ratings = Rating.all
+	end
+
+	def testing_this
 		 @skate_spots = SkateSpot.all
 		 @ratings = Rating.all
 	end
