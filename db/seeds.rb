@@ -9,7 +9,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-SkateSpot.create!(name: "South County Skate Park", user_id: 1, number: 1750, 
+SkateSpot.create!(name: "South County Skate Park", user_id: 2, number: 1750, 
                   street: "Ramonda Ave",
                   city: "Grover Beach", state: "CA", country: "USA",
                   zip_code: "93433", latitude: 35.121738, longitude: -120.609989)
@@ -24,7 +24,7 @@ SkateSpot.create!(name: "Santa Rosa Park", user_id: 1,
                   city: "San Luis Obispo", state: "CA", country: "USA",
                   zip_code: "93405", latitude: 35.289092, longitude: -120.665690)
 
-SkateSpot.create!(name: "Las Animas Skateboard Park", user_id: 1, 
+SkateSpot.create!(name: "Las Animas Skateboard Park", user_id: 2, 
                   street: "Mantelli Dr",
                   city: "Gilroy", state: "CA", country: "USA",
                   zip_code: "95020", latitude: 37.020605, longitude: -121.602261)
@@ -44,12 +44,12 @@ SkateSpot.create!(name: "Applegate Skate Park", user_id: 1, number: 1045,
                   city: "Merced", state: "CA", country: "USA",
                   zip_code: "95340", latitude: 37.312461, longitude: -120.483005)
 
-SkateSpot.create!(name: "Patterson Skatepark", user_id: 1, number: 1010,
+SkateSpot.create!(name: "Patterson Skatepark", user_id: 2, number: 1010,
                   street: "W Las Palmas Ave",
                   city: "Patterson", state: "CA", country: "USA",
                   zip_code: "95363", latitude: 37.466275, longitude: -121.141329)
 
-SkateSpot.create!(name: "El Pescadero Park", user_id: 1, number: 301,
+SkateSpot.create!(name: "El Pescadero Park", user_id: 2, number: 301,
                   street: "Grant Line Rd",
                   city: "Tracy", state: "CA", country: "USA",
                   zip_code: "95376", latitude: 37.754186, longitude: -121.430193)
@@ -59,7 +59,7 @@ SkateSpot.create!(name: "Yuba City Skate Park", user_id: 1, number: 806,
                   city: "Yuba City", state: "CA", country: "USA",
                   zip_code: "95991", latitude: 39.135354, longitude: -121.630077)
 
-SkateSpot.create!(name: "Pedlow Skate Park", user_id: 1, number: 17334,
+SkateSpot.create!(name: "Pedlow Skate Park", user_id: 2, number: 17334,
                   street: "Victory Blvd",
                   city: "Encino", state: "CA", country: "USA",
                   zip_code: "91316", latitude: 34.185850, longitude: -118.511441)
@@ -84,7 +84,7 @@ SkateSpot.create!(name: "Los Osos Skate park", user_id: 1, number: 2180,
                   city: "Los Osos", state: "CA", country: "USA",
                   zip_code: "93402", latitude: 35.312961, longitude: -120.836267)
 
-SkateSpot.create!(name: "Provident Skate Park", user_id: 1, number: 1035,
+SkateSpot.create!(name: "Provident Skate Park", user_id: 2, number: 1035,
                   street: "W Murray Ave",
                   city: "Visalia", state: "CA", country: "USA",
                   zip_code: "93291", latitude: 36.333393, longitude: -119.303081)
@@ -173,28 +173,27 @@ Rating.create!(difficulty: 1, police: 1,
                pedestrian: 3, 
                description: "15-stair near sidewalk. Tore this spot up.",
                skate_spot_id: SkateSpot.first.id,
-               #user_id: 1
+               user_id: 1
 )
 
 Rating.create!(difficulty: 3, police: 1,
                pedestrian: 5,
                description: "ledge next to stair-set",
                skate_spot_id: SkateSpot.second.id,
-               #user_id: 2 
+               user_id: 2 
 )
 Rating.create!(difficulty: 4, police: 5,
                pedestrian: 1,
                description: "7-stair near sidewalk",
                skate_spot_id: SkateSpot.third.id,
-               #user_id: 3 
+               user_id: 1
 )
 Rating.create!(difficulty: 5, police: 5,
                pedestrian: 0,
                description: "10-stair near sidewalk",
                skate_spot_id: SkateSpot.fourth.id,
-               #user_id: 4 
+               user_id: 2 
 )
-
 
 # Microposts
 users = User.order(:created_at).take(6)
