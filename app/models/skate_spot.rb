@@ -3,6 +3,7 @@ class SkateSpot < ActiveRecord::Base
   belongs_to :user
   has_many :ratings
   has_one :location
+	has_many :microposts, dependent: :destroy
 
   #geocoded_by :complete_address
   geocoded_by :gmaps4rails_address

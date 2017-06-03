@@ -25,6 +25,19 @@ class SkateSpotsController < ApplicationController
 
   def show
     @skate_spot = SkateSpot.find(params[:id])
+    @micropost  = @skate_spot.microposts.build
+		puts " "
+		puts " "
+		puts " "
+		puts "we are in show"
+		puts " "
+		puts " "
+		puts " "
+		if @micropost.save
+			flash[:success] = "Skatespot has been successfully updated!"
+      redirect_to :action => 'show'
+	  end
+
 		#@address = @skate_spot.get_coords
 		@latlng = Array.new
 		@latlng << @skate_spot.latitude

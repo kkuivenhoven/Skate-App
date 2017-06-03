@@ -2,6 +2,13 @@
 <% provide(:title, "#{@skate_spot.name}") %>
 <% provide(:p, "#{@skate_spot.complete_address}") %>
 
+<h1>
+here are: 
+<% @skate_spot.microposts %>
+</h1>
+
+<%= render 'shared/micropost_form' %>
+
 <% if current_user != nil %>
 <% if current_user.id == @skate_spot.user_id %>
 <div class="btn-group btn-group-justified">
