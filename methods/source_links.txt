@@ -1,0 +1,2 @@
+This is where I found source links for javascripts that need to be included:
+https://cdnjs.com/libraries/jquery.tablesorter
