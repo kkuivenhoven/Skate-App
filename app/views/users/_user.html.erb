@@ -4,36 +4,36 @@ https://www.railstutorial.org/book/updating_and_deleting_users
 http://stackoverflow.com/questions/31620546/accordion-doesnt-collapse-properly-when-having-multiple-accordions-->
 
 <% @users.each_with_index do |user, index| %>
-
-
 <div class="panel-group" id="accordion-<%= index %>"> <!--role="tablist" aria-multiselectable="true">-->
   <div class="panel panel-default">
 
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= index %>">
-         <%= user.name %></a>
+				<span class="user_link">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= index %>">
+							<%= user.name %>
+					</a>
+				</span>
       </h4>
     </div>
 
     <div id="collapse-<%= index %>" class="panel-collapse collapse">
     <!--<div id="collapse1" class="panel-collapse collapse">-->
-     <div class="panel-body">
-           <li>
-             <%= link_to user.name, user %><br>
-             <%= gravatar_for user, size: 50 %>
-             <% if current_user.admin? && !current_user?(user) %>
-               <!-- only admin users are able to see "delete" links for user accounts -->
-               | <%= link_to "delete", user, method: :delete,
-                                             data: { confirm: "You sure?" } %>
-             <% end %>
-           </li>
-      </div>
+      <div class="panel-body">
+        <li>
+					 <span class="user_link"><%= link_to user.name, user %></span><br>
+           <%= gravatar_for user, size: 50 %>
+           <% if current_user.admin? && !current_user?(user) %>
+             <!-- only admin users are able to see "delete" links for user accounts -->
+						 | <span class="user_link"><%= link_to "delete", user, method: :delete,
+										 data: { confirm: "You sure?" } %></span>
+           <% end %>
+         </li>
+       </div>
      </div>
   
-
  </div>
-  <% end %>
 </div>
+<% end %>
 
 

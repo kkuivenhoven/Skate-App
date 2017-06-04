@@ -1206,7 +1206,8 @@ h1, h2, h3, h4, h5, h6,
   .h6 .small {
     font-weight: normal;
     line-height: 1;
-    color: #595959; }
+		color: #3d3c3c; }
+    //color: #595959; }
 
 h1, .h1,
 h2, .h2,
@@ -4228,9 +4229,12 @@ a.badge:hover, a.badge:focus {
   margin-bottom: 30px;
   color: inherit;
   background-color: #A0A0A0; }
+  //background-color: #ffd896; }
   .jumbotron h1,
   .jumbotron .h1 {
-    color: inherit; }
+    //color: inherit; }
+    //color: #c5ff68; }
+    color: #b7ff44; }
   .jumbotron p {
     margin-bottom: 15px;
     font-size: 21px;

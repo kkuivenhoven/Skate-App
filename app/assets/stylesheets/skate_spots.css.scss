@@ -7,10 +7,18 @@
 .skate_table > tbody > tr:hover {
 	background-color: #b7b7b7; }
 
+.user_link {
+   a {
+       color: inherit;
+   }
+		a:hover {
+				color: inherit;
+				background-color: #b7b7b7;
+				text-decoration: none;
+		}
+}
 
 #skate_link {
-		//color: red;
-    //border-bottom: 1px solid red;
     a {
         color: inherit;
     }
