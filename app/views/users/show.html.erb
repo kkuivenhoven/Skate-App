@@ -5,8 +5,10 @@ https://www.railstutorial.org/book/sign_up-->
 <% provide(:title, @user.name) %>
 <% if current_user.id == @user.id %>
     <% provide(:p, "Your documented street spots: #{@user.skate_spots.count}") %>
-<% else %>
+<% elsif current_user.following?(@user) %>
 		<% provide(:p, "#{@user.name}'s documented street spots: #{@user.skate_spots.count}") %>
+<% else %>
+		<% provide(:p, "Follow #{@user.name}'s to see documented street spots, ratings, and more.") %>
 <% end %>
 
 <div class="row">
@@ -29,45 +31,45 @@ https://www.railstutorial.org/book/sign_up-->
  </div>
 <!--</div>-->
 
-<!--<h4>Your documented skate spots: -%= @user.name %></h4-->
-<div class="container">
-  <div class="table-responsive">
-    <table class="table skate_table">
-     <thead>
-       <tr>
-         <th>Name</th>
-         <th>Address</th>
-         <th>Zip Code</th>
-       </tr>
-     </thead>
- 
-    <tbody>
-     <% @user.skate_spots.each do |skate_spot| %>
-       <tr>
-        <tr>
-          <td>
-            <li class="dropdown">
-							<span id="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
-              <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
-                <b class="skate_caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
-               <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-             </ul>
-           </li>
-         </td>
-         <td><%= skate_spot.basic_address %></td>
-         <td><%= skate_spot.zip_code %></td>
-       </tr>
-     </tr>
-    <% end %>
-   </tbody>
-  </table>
- </div>
-</div>
+<% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
+				<div class="container">
+					<div class="table-responsive">
+						<table class="table skate_table">
+						 <thead>
+							 <tr>
+								 <th>Name</th>
+								 <th>Address</th>
+								 <th>Zip Code</th>
+							 </tr>
+						 </thead>
+				 
+						<tbody>
+						 <% @user.skate_spots.each do |skate_spot| %>
+							 <tr>
+								<tr>
+									<td>
+										<li class="dropdown">
+											<span id="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
+											<a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
+												<b class="skate_caret"></b>
+											</a>
+											<ul class="dropdown-menu">
+												<li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
+											 <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+										 </ul>
+									 </li>
+								 </td>
+								 <td><%= skate_spot.basic_address %></td>
+								 <td><%= skate_spot.zip_code %></td>
+							 </tr>
+						 </tr>
+						<% end %>
+					 </tbody>
+					</table>
+				 </div>
+				</div>
 
-</div>
+				</div>
 
 
 <div id="user_index_map"></div>
@@ -104,6 +106,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
   	</tbody>
   </table>
 </div>
+
+<% end %>
 
 <!--div class="container">
   <aside class="col-md-4">

@@ -1,0 +1,6 @@
+<% if @rating_items.any? %>
+  <ol class="microposts">
+    <%= render @rating_items %>
+  </ol>
+  <%= will_paginate @rating_items %>
+<% end %>

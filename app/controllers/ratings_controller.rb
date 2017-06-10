@@ -68,6 +68,7 @@ class RatingsController < ApplicationController
 	def index
 		 @skate_spots = SkateSpot.all
 		 @ratings = Rating.all
+		 @rating = Rating.first
 	end
 
 	def testing_this

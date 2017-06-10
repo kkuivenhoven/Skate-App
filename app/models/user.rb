@@ -105,6 +105,13 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  def rating_feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Rating.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
+
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"

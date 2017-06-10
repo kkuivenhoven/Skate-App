@@ -134,28 +134,36 @@ SkateSpot.create!(name: "Los Angeles Seed Spot", user_id: 1,
                   city: "Los Angeles", state: "CA", country: "USA",
                   zip_code: "90210", latitude: 34.0810165, longitude: -118.41264519999999)
 
-SkateSpot.create!(name: "Brentwood Skate Park", user_id: 2,
+SkateSpot.create!(name: "Brentwood Skate Park", user_id: 3,
                   street: "Griffith Lane",
                   city: "Brentwood", state: "CA", country: "USA",
                   zip_code: "94513", latitude: 37.926398, longitude: -121.707277)
+
+User.create!(name:  "Hanna Zanzi",
+             email: "hannazanzi@example.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+						 admin: true,
+             activated: true,
+ 		         activated_at: Time.zone.now)
 
 User.create!(name:  "Jamie Thomas",
              email: "jamiethomas@example.org",
              password:              "foobar",
              password_confirmation: "foobar",
-   			 admin: true,
+						 admin: true,
              activated: true,
- 		     activated_at: Time.zone.now)
+ 		         activated_at: Time.zone.now)
 
 User.create!(name:  "Kendra",
              email: "kendra@example.org",
              password:              "foobar",
              password_confirmation: "foobar",
-   			 admin: true,
+   			     admin: true,
              activated: true,
- 		     activated_at: Time.zone.now)
+ 		         activated_at: Time.zone.now)
 
-30.times do |n|
+15.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -173,14 +181,14 @@ Rating.create!(difficulty: 1, police: 1,
                pedestrian: 3, 
                description: "15-stair near sidewalk. Tore this spot up.",
                skate_spot_id: SkateSpot.first.id,
-               user_id: 1
+               user_id: 3
 )
 
 Rating.create!(difficulty: 3, police: 1,
                pedestrian: 5,
                description: "ledge next to stair-set",
                skate_spot_id: SkateSpot.second.id,
-               user_id: 2 
+               user_id: 3 
 )
 Rating.create!(difficulty: 4, police: 5,
                pedestrian: 1,

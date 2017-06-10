@@ -3,13 +3,6 @@ class MicropostsController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def create
-		puts " "
-		puts " "
-		puts " "
-		puts "we are in create"
-		puts " "
-		puts " "
-		puts " "
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"

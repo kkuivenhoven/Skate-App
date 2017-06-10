@@ -10,9 +10,10 @@ http://stackoverflow.com/questions/31620546/accordion-doesnt-collapse-properly-w
     <div class="panel-heading">
       <h4 class="panel-title">
 				<span class="user_link">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= index %>">
-						<a href="#" data-toggle="tooltip" title="Expand for more details"><%= user.name %></a>
-					</a>
+          <!--a data-toggle="collapse" data-parent="#accordion" href="#collapse-%= index %>">
+						<a href="#" data-toggle="tooltip" title="Expand for more details">%= user.name %></a>
+					</a-->
+					<%= link_to user.name, user %>
 				</span>
       </h4>
     </div>
