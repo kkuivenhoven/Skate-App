@@ -4,6 +4,7 @@
 # http://www.jorgecoca.com/buils-search-form-ruby-rails/
 
 class User < ActiveRecord::Base
+	has_friendship
   has_many :skate_spots
   has_many :ratings, :through => :skate_spots
 	has_many :microposts, dependent: :destroy

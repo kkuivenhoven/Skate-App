@@ -56,7 +56,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
         <tr>
           <td>
             <li class="dropdown">
-            <span id="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
+            <span class="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
             <% if logged_in? %>
            <% if current_user.id == skate_spot.user_id %>
               <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">

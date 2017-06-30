@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 #
+#
+# For friendship relationships
+gem 'has_friendship'
 
 gem 'bootstrap-sass',          '3.2.0.0'
 gem 'faker',                   '1.4.2'

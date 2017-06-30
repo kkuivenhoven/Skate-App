@@ -18,7 +18,7 @@
 		}
 }
 
-#skate_link {
+.skate_link {
     a {
         color: inherit;
     }
@@ -27,27 +27,6 @@
 				background-color: #b7b7b7;
 				text-decoration: none;
 		}
-}
-
-.skate_caret {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px; 
-  vertical-align: middle;
-  border-top: 4px dashed;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent; 
-}
-
-.caret_link:hover {
-	background-color: #b7b7b7;
-	color: inherit;
-}
-
-.skate_caret:hover {
-	background-color: #b7b7b7;
-	color: inherit;
 }
 
 .skate_show_header{
