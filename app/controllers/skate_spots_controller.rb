@@ -23,6 +23,52 @@ class SkateSpotsController < ApplicationController
 		end
   end
 
+  def park_spots_index
+    @skate_spots = SkateSpot.where(:park_spot => true)
+		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
+      @skate_spots = @skate_spots.order(:name)
+		@all_latlng = Array.new
+		@skate_spots.each do |s|
+						@all_latlng << s.name
+						@all_latlng << s.latitude
+						@all_latlng << s.longitude
+		end
+		if params[:search]
+			 @skate_spots = @skate_spots.search(params[:search])
+			 @all_latlng = Array.new
+			 @skate_spots.each do |s|
+							 @all_latlng << s.name
+							 @all_latlng << s.latitude
+							 @all_latlng << s.longitude
+			 end
+		else
+			@skate_spots = @skate_spots.order(:name)
+		end
+  end
+
+  def street_spots_index
+    @skate_spots = SkateSpot.where(:street_spot => true)
+		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
+      @skate_spots = @skate_spots.order(:name)
+		@all_latlng = Array.new
+		@skate_spots.each do |s|
+						@all_latlng << s.name
+						@all_latlng << s.latitude
+						@all_latlng << s.longitude
+		end
+		if params[:search]
+			 @skate_spots = @skate_spots.search(params[:search])
+			 @all_latlng = Array.new
+			 @skate_spots.each do |s|
+							 @all_latlng << s.name
+							 @all_latlng << s.latitude
+							 @all_latlng << s.longitude
+			 end
+		else
+			@skate_spots = @skate_spots.order(:name)
+		end
+  end
+
   def show
     @skate_spot = SkateSpot.find(params[:id])
     # @micropost  = @skate_spot.microposts.build
@@ -128,11 +174,11 @@ class SkateSpotsController < ApplicationController
 #    end
 
     def geo_skate_spot_params
-      params.require(:skate_spot).permit(:name, :latitude, :longitude)
+      params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot)
     end
 
     def skate_spot_params
-      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code)
+      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot)
     end
 
 end

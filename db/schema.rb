@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610151355) do
+ActiveRecord::Schema.define(version: 20170702144922) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "friendable_id"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 20170610151355) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "number"
+    t.boolean  "street_spot"
+    t.boolean  "park_spot"
   end
 
   add_index "skate_spots", ["location_id"], name: "index_skate_spots_on_location_id"

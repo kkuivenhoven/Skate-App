@@ -135,6 +135,7 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+
   private
 
     # Converts email to all lower-case.

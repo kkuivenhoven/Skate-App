@@ -31,6 +31,13 @@
       <%= f.label :country %>
       <%= f.text_field :country, class: 'form-control' %>
 
+      <%= f.label :park_spot, "Check if new spot is a park spot" %>
+			<%= f.check_box :park_spot %>
+
+			<br>
+      <%= f.label :street_spot, "Check if new spot is a street spot" %>
+			<%= f.check_box :street_spot %>
+
       <br>
 
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
