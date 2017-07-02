@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   end
   get 'ratings/index', to: 'ratings#index', as: 'ratings'
   get 'ratings/testing_this', to: 'ratings#testing_this', as: 'testing_this'
+  get 'ratings/index_park_spot'
+  get 'ratings/index_street_spot'
 
   get 'signup' => 'users#new'
 

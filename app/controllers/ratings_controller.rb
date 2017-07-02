@@ -6,7 +6,7 @@
 class RatingsController < ApplicationController
   before_action :login_required, only: [:new, :create, :edit, :update, :destroy]
   #first, obtain the skate_spot using set_skate_spot
-  before_action :set_skate_spot, except: [:index, :testing_this]
+  before_action :set_skate_spot, except: [:index, :testing_this, :index_park_spot, :index_street_spot]
   before_action :users_rating, only: [:edit, :update, :destroy]
   after_action :filter, only: [:create] 
 
@@ -64,6 +64,16 @@ class RatingsController < ApplicationController
       redirect_to skate_spot_path(@skate_spot)
     end
   end
+
+	def index_park_spot
+		 @skate_spots = SkateSpot.where(:park_spot => true)
+		 @ratings = Rating.joins(:skate_spot).where(skate_spots: {park_spot: true})
+	end
+
+	def index_street_spot
+		 @skate_spots = SkateSpot.where(:street_spot => true)
+		 @ratings = Rating.joins(:skate_spot).where(skate_spots: {street_spot: true})
+	end
 
 	def index
 		 @skate_spots = SkateSpot.all
