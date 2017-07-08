@@ -31,7 +31,7 @@
                   <center>Type of spot&nbsp;not indicated</center>
               <% end %>
           </td>
-          <td><%= @rating.description %></td>
+          <td><%= @rating.description %><br><%=Rating.average(:difficulty) %></td>
    
       </tr>
   </tbody>

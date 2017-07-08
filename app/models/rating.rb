@@ -25,5 +25,6 @@ class Rating < ActiveRecord::Base
   validates_presence_of :description
   validates :description, length: { minimum: 4 }
   #the above makes sure that the user entered in a description of at least 4
+	
 
 end

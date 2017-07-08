@@ -86,6 +86,11 @@ class RatingsController < ApplicationController
 		 @ratings = Rating.all
 	end
 
+	def show
+    @rating = Rating.find(params[:id])
+    @skate_spot = SkateSpot.find_by(:id => @rating.skate_spot_id)
+	end
+
   private
 
     #makes sure that the user is logged in
