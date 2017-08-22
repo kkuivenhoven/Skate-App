@@ -115,12 +115,18 @@ class SkateSpotsController < ApplicationController
 		geo_localization = "#{@skate_spot.latitude},#{@skate_spot.longitude}"
 		@query = Geocoder.search(geo_localization).first
 		@addr_comp = @query.data["address_components"]
-		@skate_spot.number = @addr_comp.first["long_name"]
-		@skate_spot.street = @addr_comp.second["long_name"]
-		@skate_spot.city = @addr_comp.fourth["long_name"]
-		@skate_spot.state = @addr_comp[5]["short_name"]
-		@skate_spot.zip_code = @addr_comp[7]["long_name"]
-		@skate_spot.country = @addr_comp[6]["short_name"]
+		# @skate_spot.number = @addr_comp.first["long_name"]
+		@skate_spot.number = @addr_comp[0]["long_name"]
+		# @skate_spot.street = @addr_comp.second["long_name"]
+		@skate_spot.street = @addr_comp[1]["long_name"]
+		# @skate_spot.city = @addr_comp.fourth["long_name"]
+		@skate_spot.city = @addr_comp[2]["long_name"]
+		# @skate_spot.state = @addr_comp[5]["short_name"]
+		@skate_spot.state = @addr_comp[4]["short_name"]
+		# @skate_spot.zip_code = @addr_comp[7]["long_name"]
+		@skate_spot.zip_code = @addr_comp[6]["long_name"]
+		# @skate_spot.country = @addr_comp[6]["short_name"]
+		@skate_spot.country = @addr_comp[5]["short_name"]
     if @skate_spot.save
         redirect_to :action => 'index'
     else
@@ -174,11 +180,12 @@ class SkateSpotsController < ApplicationController
 #    end
 
     def geo_skate_spot_params
-      params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot)
+      # params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot)
+      params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size)
     end
 
     def skate_spot_params
-      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot)
+      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size)
     end
 
 end

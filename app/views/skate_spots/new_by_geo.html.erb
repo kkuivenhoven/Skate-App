@@ -24,7 +24,40 @@
 
       <%= f.label :longitude %>
       <%= f.text_field :longitude, class: 'form-control' %>
+			<br>
 
+			<b>Skate Spot is a...</b><br>
+			<%= f.check_box :park_spot %>
+      <%= f.label :park_spot, "Park spot" %>&nbsp;
+			<%= f.check_box :street_spot %>
+      <%= f.label :street_spot, "Street spot" %>
+			<br>
+			
+			<b>Skate Spot Material is...</b><br>
+			<%= f.check_box :gated %>
+      <%= f.label :gated, "Gated" %>&nbsp;
+			<%= f.check_box :wood %>
+      <%= f.label :wood, "Wooden" %>&nbsp;
+			<%= f.check_box :metal %>
+      <%= f.label :metal, "Metal" %>
+			<br>
+			
+			<b>Skate Spot contains...</b><br>
+			<%= f.check_box :transition %>
+      <%= f.label :transition, "Transition" %>&nbsp;
+			<%= f.check_box :street_plaza %>
+      <%= f.label :street_plaza, "Street Plaza" %>
+			<br>
+
+			<b>Skate Spot size is...</b><br>
+			<%= f.check_box :skate_spot_size %>
+      <%= f.label :skate_spot_size, "Skate spot size" %>&nbsp;
+			<%= f.check_box :neighborhood_spot_size %>
+      <%= f.label :neighborhood_spot_size, "Neighborhood spot size" %>&nbsp;
+			<%= f.check_box :regional_spot_size %>
+      <%= f.label :regional_spot_size, "Regional spot size" %>
+      <br>
+			
       <br>
 
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
