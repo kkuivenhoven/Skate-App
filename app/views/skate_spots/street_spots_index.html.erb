@@ -23,8 +23,12 @@
  <thead>
   <tr>
     <th onclick="sortTable(0)">Name</th>
+    <th>Gated</th>
+    <th>Material</th>
+    <th>Type</th>
+    <th>Size</th>
     <th>Address</th>
-    <th onclick="sortNumsTable(2)">Zip Code</th>
+    <!--th onclick="sortNumsTable(2)">Zip Code</th-->
   </tr>
   </thead>
   <tbody>
@@ -47,52 +51,42 @@
 		  <% end %>
 		</li>
 	 </td>
-	 <td><%= skate_spot.basic_address %></td>
-	 <td><%= skate_spot.zip_code %></td>
+
+	 <td>
+	 		<% if skate_spot.gated %>Yes
+			<% else %>No
+		  <% end %>
+	 </td>
+	 <td>
+	 		<% if skate_spot.wood %>Wooden
+		  <% elsif skate_spot.metal %>Metal
+      <% elsif skate_spot.concrete %>Concrete
+			<% else %>No material listed
+		  <% end %>
+	 </td>
+	 <td>
+	 		<% if skate_spot.transition %>Transition
+      <% elsif skate_spot.street_plaza %>Street Plaza
+      <% else %>Not listed
+		  <% end %>
+	 </td>
+	 <td>
+	 		<% if skate_spot.skate_spot_size %>Skate spot size
+		  <% elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
+      <% elsif skate_spot.regional_spot_size %>Regional spot size
+			<% else %>No size listed
+		  <% end %>
+	 </td>
+
+
+
+	 <td><%= skate_spot.complete_address %></td>
   </tr>
   <% end %>
   </tbody>
 </table>
 </div>
 
-  <!--div class="table-responsive">
-	 <table class="table skate_table">
-     <thead>
-       <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Zip Code</th>
-       </tr>
-     </thead>
-
-     <tbody>
-      % @skate_spots.each do |skate_spot| %>
-      <tr>
-        <tr>
-          <td>
-            <li class="dropdown">
-				  		<span class="skate_link">%= link_to "#{skate_spot.name}", skate_spot %></span>
-              % if logged_in? %>
-                % if current_user.id == skate_spot.user_id %>
-                  <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
-                    <b class="skate_caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
-                    <li>%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-                  </ul>
-               % end %>
-             % end %>
-            </li>
-          </td>
-          <td>%= skate_spot.basic_address %></td>
-          <td>%= skate_spot.zip_code %></td>
-        </tr>
-      </tr>
-     % end %>
-   </tbody>
-  </table>
- </div-->
 
 <br>
 

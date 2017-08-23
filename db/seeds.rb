@@ -13,7 +13,8 @@ SkateSpot.create!(name: "Creekside Park", user_id: 2, number: 1010,
                   street: "Claremont Dr",
                   city: "Brentwood", state: "CA", country: "USA",
                   zip_code: "94513", latitude: 35.121738, longitude: -120.609989, 
-								  street_spot: 1, park_spot: 0)
+								  street_spot: 1, park_spot: 0, gated: 0, concrete: 1, 
+								 	skate_spot_size: 1, street_plaza: 1)
 
 SkateSpot.create!(name: "South County Skate Park", user_id: 2, number: 1750, 
                   street: "Ramonda Ave",
@@ -168,7 +169,7 @@ SkateSpot.create!(name: "Los Angeles Seed Spot", user_id: 1,
 SkateSpot.create!(name: "Brentwood Skate Park", user_id: 3,
                   street: "Griffith Lane",
                   city: "Brentwood", state: "CA", country: "USA",
-								  street_spot: false, park_spot: true,
+								  street_spot: false, park_spot: true, gated: true,
                   zip_code: "94513", latitude: 37.926398, longitude: -121.707277)
 
 User.create!(name:  "Hanna Zanzi",
