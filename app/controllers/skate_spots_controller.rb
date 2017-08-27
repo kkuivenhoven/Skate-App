@@ -17,11 +17,86 @@ class SkateSpotsController < ApplicationController
 		if params[:search]
 			 if params[:upvotes][:upvoteFilter] == "1"
 					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+				  if params[:metal][:metal] == "1"
+						@skate_spots = @skate_spots.where("metal = ?", true)
+					end
+				  if params[:wood][:wood] == "1"
+						@skate_spots = @skate_spots.where("wood = ?", true)
+				  end
+				  if params[:concrete][:concrete] == "1"
+						@skate_spots = @skate_spots.where("concrete = ?", true)
+					end
+					if params[:gated][:gated] == "1"
+						@skate_spots = @skate_spots.where("gated = ?", true)
+					end
+					if params[:spotSize][:spotSize] == "1"
+						@skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+					elsif params[:neighSize][:neighspotSize] == "1"
+						@skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+					elsif params[:regSize][:regSize] == "1"
+						@skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+					end
+					if params[:transition][:transition] == "1"
+						@skate_spots = @skate_spots.where("transition = ?", true)
+					end
+					if params[:streetPlaza][:streetPlaza] == "1"
+						@skate_spots = @skate_spots.where("street_plaza = ?", true)
+				  end
 					@skate_spots = @skate_spots.search(params[:search])
 			 elsif params[:downvotes][:downvoteFilter] == "1"
 					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+				  if params[:metal][:metal] == "1"
+						@skate_spots = @skate_spots.where("metal = ?", true)
+					end
+				  if params[:wood][:wood] == "1"
+						@skate_spots = @skate_spots.where("wood = ?", true)
+					end
+				  if params[:concrete][:concrete] == "1"
+						@skate_spots = @skate_spots.where("concrete = ?", true)
+					end
+					if params[:gated][:gated] == "1"
+						@skate_spots = @skate_spots.where("gated = ?", true)
+					end
+					if params[:spotSize][:spotSize] == "1"
+						@skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+					elsif params[:neighSize][:neighspotSize] == "1"
+						@skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+					elsif params[:regSize][:regSize] == "1"
+						@skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+					end
+					if params[:transition][:transition] == "1"
+						@skate_spots = @skate_spots.where("transition = ?", true)
+					end
+					if params[:streetPlaza][:streetPlaza] == "1"
+						@skate_spots = @skate_spots.where("street_plaza = ?", true)
+				  end
 					@skate_spots = @skate_spots.search(params[:search])
 			 else
+				  if params[:metal][:metal] == "1"
+						@skate_spots = @skate_spots.where("metal = ?", true)
+				  end
+				  if params[:wood][:wood] == "1"
+						@skate_spots = @skate_spots.where("wood = ?", true)
+				  end
+				  if params[:concrete][:concrete] == "1"
+						@skate_spots = @skate_spots.where("concrete = ?", true)
+					end
+					if params[:gated][:gated] == "1"
+						@skate_spots = @skate_spots.where("gated = ?", true)
+					end
+					if params[:spotSize][:spotSize] == "1"
+						@skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+					elsif params[:neighSize][:neighspotSize] == "1"
+						@skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+					elsif params[:regSize][:regSize] == "1"
+						@skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+					end
+					if params[:transition][:transition] == "1"
+						@skate_spots = @skate_spots.where("transition = ?", true)
+					end
+					if params[:streetPlaza][:streetPlaza] == "1"
+						@skate_spots = @skate_spots.where("street_plaza = ?", true)
+				  end
 					@skate_spots = @skate_spots.search(params[:search])
 			 end
 			 @all_latlng = Array.new
@@ -51,12 +126,92 @@ class SkateSpotsController < ApplicationController
 		@downCount = "%.2f" % @downCount
 		if params[:search]
 			 if params[:upvotes][:upvoteFilter] == "1"
+
 					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
-					@skate_spots = @skate_spots.search(params[:search])
+
+
+
+          if params[:metal][:metal] == "1" 
+            @skate_spots = @skate_spots.where("metal = ?", true)
+          end 
+          if params[:wood][:wood] == "1" 
+            @skate_spots = @skate_spots.where("wood = ?", true)
+          end 
+          if params[:concrete][:concrete] == "1" 
+            @skate_spots = @skate_spots.where("concrete = ?", true)
+          end 
+          if params[:gated][:gated] == "1" 
+            @skate_spots = @skate_spots.where("gated = ?", true)
+          end 
+          if params[:spotSize][:spotSize] == "1" 
+            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+          elsif params[:neighSize][:neighspotSize] == "1" 
+            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+          elsif params[:regSize][:regSize] == "1" 
+            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+          end 
+          if params[:transition][:transition] == "1" 
+            @skate_spots = @skate_spots.where("transition = ?", true)
+          end 
+          if params[:streetPlaza][:streetPlaza] == "1" 
+            @skate_spots = @skate_spots.where("street_plaza = ?", true)
+          end 
+          @skate_spots = @skate_spots.search(params[:search])
 			 elsif params[:downvotes][:downvoteFilter] == "1"
 					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+
+          if params[:metal][:metal] == "1" 
+            @skate_spots = @skate_spots.where("metal = ?", true)
+          end 
+          if params[:wood][:wood] == "1" 
+            @skate_spots = @skate_spots.where("wood = ?", true)
+          end 
+          if params[:concrete][:concrete] == "1" 
+            @skate_spots = @skate_spots.where("concrete = ?", true)
+          end 
+          if params[:gated][:gated] == "1" 
+            @skate_spots = @skate_spots.where("gated = ?", true)
+          end 
+          if params[:spotSize][:spotSize] == "1" 
+            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+          elsif params[:neighSize][:neighspotSize] == "1" 
+            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+          elsif params[:regSize][:regSize] == "1" 
+            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+          end 
+          if params[:transition][:transition] == "1" 
+            @skate_spots = @skate_spots.where("transition = ?", true)
+          end 
+          if params[:streetPlaza][:streetPlaza] == "1" 
+            @skate_spots = @skate_spots.where("street_plaza = ?", true)
+          end 
 					@skate_spots = @skate_spots.search(params[:search])
 			 else
+          if params[:metal][:metal] == "1" 
+            @skate_spots = @skate_spots.where("metal = ?", true)
+          end 
+          if params[:wood][:wood] == "1" 
+            @skate_spots = @skate_spots.where("wood = ?", true)
+          end 
+          if params[:concrete][:concrete] == "1" 
+            @skate_spots = @skate_spots.where("concrete = ?", true)
+          end 
+          if params[:gated][:gated] == "1" 
+            @skate_spots = @skate_spots.where("gated = ?", true)
+          end 
+          if params[:spotSize][:spotSize] == "1" 
+            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+          elsif params[:neighSize][:neighspotSize] == "1" 
+            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+          elsif params[:regSize][:regSize] == "1" 
+            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+          end 
+          if params[:transition][:transition] == "1" 
+            @skate_spots = @skate_spots.where("transition = ?", true)
+          end 
+          if params[:streetPlaza][:streetPlaza] == "1" 
+            @skate_spots = @skate_spots.where("street_plaza = ?", true)
+          end 
 					@skate_spots = @skate_spots.search(params[:search])
 			 end
 			 @all_latlng = Array.new
@@ -87,11 +242,86 @@ class SkateSpotsController < ApplicationController
 		if params[:search]
 			 if params[:upvotes][:upvoteFilter] == "1"
 					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+         if params[:metal][:metal] == "1"
+            @skate_spots = @skate_spots.where("metal = ?", true)
+          end
+          if params[:wood][:wood] == "1"
+            @skate_spots = @skate_spots.where("wood = ?", true)
+          end
+          if params[:concrete][:concrete] == "1"
+            @skate_spots = @skate_spots.where("concrete = ?", true)
+          end
+          if params[:gated][:gated] == "1"
+            @skate_spots = @skate_spots.where("gated = ?", true)
+          end
+          if params[:spotSize][:spotSize] == "1"
+            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+          elsif params[:neighSize][:neighspotSize] == "1"
+            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+          elsif params[:regSize][:regSize] == "1"
+            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+          end
+          if params[:transition][:transition] == "1"
+            @skate_spots = @skate_spots.where("transition = ?", true)
+          end
+          if params[:streetPlaza][:streetPlaza] == "1"
+            @skate_spots = @skate_spots.where("street_plaza = ?", true)
+          end
 					@skate_spots = @skate_spots.search(params[:search])
 			 elsif params[:downvotes][:downvoteFilter] == "1"
 					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+          if params[:metal][:metal] == "1" 
+            @skate_spots = @skate_spots.where("metal = ?", true)
+          end 
+          if params[:wood][:wood] == "1" 
+            @skate_spots = @skate_spots.where("wood = ?", true)
+          end 
+          if params[:concrete][:concrete] == "1" 
+            @skate_spots = @skate_spots.where("concrete = ?", true)
+          end 
+          if params[:gated][:gated] == "1" 
+            @skate_spots = @skate_spots.where("gated = ?", true)
+          end 
+          if params[:spotSize][:spotSize] == "1" 
+            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+          elsif params[:neighSize][:neighspotSize] == "1" 
+            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+          elsif params[:regSize][:regSize] == "1" 
+            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+          end 
+          if params[:transition][:transition] == "1" 
+            @skate_spots = @skate_spots.where("transition = ?", true)
+          end 
+          if params[:streetPlaza][:streetPlaza] == "1" 
+            @skate_spots = @skate_spots.where("street_plaza = ?", true)
+          end 
 					@skate_spots = @skate_spots.search(params[:search])
 			 else
+          if params[:metal][:metal] == "1" 
+            @skate_spots = @skate_spots.where("metal = ?", true)
+          end 
+          if params[:wood][:wood] == "1" 
+            @skate_spots = @skate_spots.where("wood = ?", true)
+          end 
+          if params[:concrete][:concrete] == "1" 
+            @skate_spots = @skate_spots.where("concrete = ?", true)
+          end 
+          if params[:gated][:gated] == "1" 
+            @skate_spots = @skate_spots.where("gated = ?", true)
+          end 
+          if params[:spotSize][:spotSize] == "1" 
+            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
+          elsif params[:neighSize][:neighspotSize] == "1" 
+            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
+          elsif params[:regSize][:regSize] == "1" 
+            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
+          end 
+          if params[:transition][:transition] == "1" 
+            @skate_spots = @skate_spots.where("transition = ?", true)
+          end 
+          if params[:streetPlaza][:streetPlaza] == "1" 
+            @skate_spots = @skate_spots.where("street_plaza = ?", true)
+          end 
 					@skate_spots = @skate_spots.search(params[:search])
 			 end
 			 @all_latlng = Array.new

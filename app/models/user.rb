@@ -130,6 +130,12 @@ class User < ActiveRecord::Base
     following.delete(other_user)
   end
 
+  # Blocks a user.
+  def block(other_user)
+    following.delete(other_user)
+		self.update_columns(blocked_users: other_user.id)
+  end
+
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)

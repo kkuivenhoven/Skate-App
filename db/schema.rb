@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827040907) do
+ActiveRecord::Schema.define(version: 20170827200251) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(version: 20170827040907) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",             default: false
@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 20170827040907) do
     t.datetime "reset_sent_at"
     t.integer  "rating_id"
     t.integer  "skate_spot_id"
+    t.string   "blocked_users",     default: "--- []\n"
+    t.string   "hidden_users",      default: "--- []\n"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

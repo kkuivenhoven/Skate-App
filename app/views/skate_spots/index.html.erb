@@ -11,23 +11,59 @@
 	   <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
 			
 			 <table>
+			 	<tr>
+					<td>&nbsp;&nbsp;Filter by...</td>
+					<td></td>
+				</tr>
 				<tr>
+					<td>&nbsp;&nbsp;<%= label_tag "Highest upvoted" %></td>
+					<td>&nbsp;<%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br></td>
+				</tr>
+				<tr>
+					<td>&nbsp;&nbsp;<%= label_tag "Lowest downvoted" %></td>
+					<td>&nbsp;<%= check_box "downvotes", "downvoteFilter" %>&nbsp;</td>
+				</tr>
+				<tr>
+  				<td>&nbsp;&nbsp;<%= label_tag "Material..." %><br>
+					   &nbsp;&nbsp;&nbsp;<%= label_tag "Wood" %><br>
+					   &nbsp;&nbsp;&nbsp;<%= label_tag "Concrete" %><br>
+					   &nbsp;&nbsp;&nbsp;<%= label_tag "metal" %><br>
+			  	</td>
 					<td>
-								 &nbsp;&nbsp;<%= label_tag "Filter by highest upvoted" %>
-					</td>
-					<td>
-								 &nbsp;<%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br>
+						<br>
+						 <%= check_box "wood", "wood" %><br>
+						 <%= check_box "concrete", "concrete" %><br>
+						 <%= check_box "metal", "metal" %><br>
 					</td>
 				</tr>
 				<tr>
+					<td>&nbsp;&nbsp;<%= label_tag "Gated" %><br></td>
+					<td><%= check_box "gated", "gated" %></td>
+				</tr>
+				<tr>
+  				<td>&nbsp;&nbsp;<%= label_tag "Size..." %><br>
+					   &nbsp;&nbsp;&nbsp;<%= label_tag "Skate spot size" %><br>
+					   &nbsp;&nbsp;&nbsp;<%= label_tag "Neighborhood spot size" %><br>
+					   &nbsp;&nbsp;&nbsp;<%= label_tag "Regional spot size" %><br>
+			  	</td>
 					<td>
-								 &nbsp;&nbsp;<%= label_tag "Filter by lowest downvoted" %>
+						<br>
+						 <%= check_box "spotSize", "spotSize" %><br>
+						 <%= check_box "neighSize", "neighSize" %><br>
+						 <%= check_box "regSize", "regSize" %><br>
 					</td>
-					<td>
-								 &nbsp;<%= check_box "downvotes", "downvoteFilter" %>&nbsp;
-					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;&nbsp;<%= label_tag "Transition" %></td>
+					<td>&nbsp;<%= check_box "transition", "transition" %>&nbsp;<br></td>
+				</tr>
+				<tr>
+					<td>&nbsp;&nbsp;<%= label_tag "Street plaza" %></td>
+					<td>&nbsp;<%= check_box "streetPlaza", "streetPlaza" %>&nbsp;</td>
 				</tr>
 			</table>
+
+
 	 <% end %>
 	 <% if !@skate_spots.present? %>
 		 <p>There are no skate spots containing the term(s) <%= params[:search] %>.</p>

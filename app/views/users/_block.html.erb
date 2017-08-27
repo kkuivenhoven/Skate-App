@@ -1,0 +1,6 @@
+<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+             html: { method: :destroy },
+             remote: true) do |f| %>
+						 <%= f.submit "Block", class: "btn" %>
+			
+<% end %>
