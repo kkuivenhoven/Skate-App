@@ -27,4 +27,8 @@ class Rating < ActiveRecord::Base
   #the above makes sure that the user entered in a description of at least 4
 	
 
+  def self.search(search)
+    where("description LIKE ?", "%#{search}%") 
+  end
+
 end
