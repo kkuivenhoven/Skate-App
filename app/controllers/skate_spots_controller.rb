@@ -10,8 +10,20 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.latitude
 						@all_latlng << s.longitude
 		end
+		@upCount = @skate_spots.average(:up_vote).truncate(2)
+		@downCount = @skate_spots.average(:down_vote).truncate(2)
+		@upCount = "%.2f" % @upCount
+		@downCount = "%.2f" % @downCount
 		if params[:search]
-			 @skate_spots = @skate_spots.search(params[:search])
+			 if params[:upvotes][:upvoteFilter] == "1"
+					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+					@skate_spots = @skate_spots.search(params[:search])
+			 elsif params[:downvotes][:downvoteFilter] == "1"
+					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+					@skate_spots = @skate_spots.search(params[:search])
+			 else
+					@skate_spots = @skate_spots.search(params[:search])
+			 end
 			 @all_latlng = Array.new
 			 @skate_spots.each do |s|
 							 @all_latlng << s.name
@@ -33,8 +45,20 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.latitude
 						@all_latlng << s.longitude
 		end
+		@upCount = @skate_spots.average(:up_vote).truncate(2)
+		@downCount = @skate_spots.average(:down_vote).truncate(2)
+		@upCount = "%.2f" % @upCount
+		@downCount = "%.2f" % @downCount
 		if params[:search]
-			 @skate_spots = @skate_spots.search(params[:search])
+			 if params[:upvotes][:upvoteFilter] == "1"
+					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+					@skate_spots = @skate_spots.search(params[:search])
+			 elsif params[:downvotes][:downvoteFilter] == "1"
+					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+					@skate_spots = @skate_spots.search(params[:search])
+			 else
+					@skate_spots = @skate_spots.search(params[:search])
+			 end
 			 @all_latlng = Array.new
 			 @skate_spots.each do |s|
 							 @all_latlng << s.name
@@ -56,8 +80,20 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.latitude
 						@all_latlng << s.longitude
 		end
+		@upCount = @skate_spots.average(:up_vote).truncate(2)
+		@downCount = @skate_spots.average(:down_vote).truncate(2)
+		@upCount = "%.2f" % @upCount
+		@downCount = "%.2f" % @downCount
 		if params[:search]
-			 @skate_spots = @skate_spots.search(params[:search])
+			 if params[:upvotes][:upvoteFilter] == "1"
+					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+					@skate_spots = @skate_spots.search(params[:search])
+			 elsif params[:downvotes][:downvoteFilter] == "1"
+					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+					@skate_spots = @skate_spots.search(params[:search])
+			 else
+					@skate_spots = @skate_spots.search(params[:search])
+			 end
 			 @all_latlng = Array.new
 			 @skate_spots.each do |s|
 							 @all_latlng << s.name

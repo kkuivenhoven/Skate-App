@@ -4,18 +4,45 @@
 <% provide(:p, "The park spots are ordered alphabetically. 
 					 Click one to view more details.") %>
 
-<div class="container">
+<div class="container" id="skateSearch">
   <div class="row">
 	 <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
-	 <%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>
-	 <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
-	 <% end %>
+     &nbsp;&nbsp;<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>&nbsp;
+     <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
+    
+       <table>
+        <tr>
+          <td>
+                 &nbsp;&nbsp;<%= label_tag "Filter by highest upvoted" %>
+          </td>
+          <td>
+                 &nbsp;<%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                 &nbsp;&nbsp;<%= label_tag "Filter by lowest downvoted" %>
+          </td>
+          <td>
+                 &nbsp;<%= check_box "downvotes", "downvoteFilter" %>&nbsp;
+          </td>
+        </tr>
+      </table>
+   <% end %>
 
 	 <% if !@skate_spots.present? %>
 		 <p>There are no skate spots containing the term(s) <%= params[:search] %>.</p>
 	 <% end %>
   </div>
 </div>
+
+
+<div class="container" id="spaceDiv">
+  <div class="row">
+    <p style="visibility:hidden">This text is a placeholder to separate the search div from the skate table div.</p>
+  </div>
+</div>
+
 
 <div class="table-responsive">
 <!--table class="table skate_table" id="myTable"-->
