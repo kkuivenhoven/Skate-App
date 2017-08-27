@@ -85,15 +85,16 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 						   <li><%= link_to "Street Spot Ratings", ratings_index_street_spot_path %></li>
 						   <li><%= link_to "Park Spot Ratings", ratings_index_park_spot_path %></li>
 						   <li><%= link_to "Testing Ratings", testing_this_path %></li>
-              <!--<li class="divider">
-              </li>
-             <li class="dropdown-submenu">
-                <a tabindex="-1" href="#">Hover me for more options</a>
-                <ul class="dropdown-menu">
-                  <li><a tabindex="-1" href="#">Second level</a></li> 
-                  <li>%= link_to "New Rating", new_skate_spot_rating_path(@skate_spot) %></li>
-                </ul>
-             </li>-->
+            </ul>
+         </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Event Options<b class="skate_caret"></b>
+            </a>
+            <!-- <ul class="dropdown-menu"> -->
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+						   <li><%= link_to "All Events", events_path %></li>
             </ul>
          </li>
 

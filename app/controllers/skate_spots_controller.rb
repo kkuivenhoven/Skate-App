@@ -71,20 +71,6 @@ class SkateSpotsController < ApplicationController
 
   def show
     @skate_spot = SkateSpot.find(params[:id])
-    # @micropost  = @skate_spot.microposts.build
-		puts " "
-		puts " "
-		puts " "
-		puts "we are in show"
-		puts " "
-		puts " "
-		puts " "
-		# if @micropost.save
-	  # 	flash[:success] = "Skatespot has been successfully updated!"
-    #  redirect_to :action => 'show'
-	  # end
-
-		#@address = @skate_spot.get_coords
 		@latlng = Array.new
 		@latlng << @skate_spot.latitude
 		@latlng << @skate_spot.longitude
@@ -103,6 +89,7 @@ class SkateSpotsController < ApplicationController
 			 @show_latlng << s.name
 			 @show_latlng << s.latitude
 			 @show_latlng << s.longitude
+		@events = @skate_spot.events
 		end
   end
 
@@ -170,7 +157,20 @@ class SkateSpotsController < ApplicationController
 
 	def test_page
 		@skate_spots = SkateSpot.all
+	end
 
+	def like_ss
+    @skate_spot = SkateSpot.find(params[:skate_spot])
+		@skate_spot.up_vote += 1
+		@skate_spot.update_columns(up_vote: @skate_spot.up_vote)
+    redirect_to @skate_spot
+	end
+
+	def dislike_ss
+    @skate_spot = SkateSpot.find(params[:skate_spot])
+		@skate_spot.down_vote += 1
+		@skate_spot.update_columns(down_vote: @skate_spot.down_vote)
+    redirect_to @skate_spot
 	end
 
   private

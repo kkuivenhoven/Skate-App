@@ -210,6 +210,20 @@ end
 
 
 
+Event.create!(name: "All Genders Competition", date: Time.zone.now,
+               description: "For all ages",
+               skate_spot_id: SkateSpot.second.id, user_id: 1,
+							 zip_code: SkateSpot.second.zip_code,
+							 city: SkateSpot.second.city
+)
+
+Event.create!(name: "Girls Competition", date: Time.zone.now,
+               description: "For all ages",
+               skate_spot_id: SkateSpot.first.id, user_id: 1,
+							 zip_code: SkateSpot.first.zip_code,
+							 city: SkateSpot.first.city
+)
+
 Rating.create!(difficulty: 1, police: 1,
                pedestrian: 3, 
                description: "15-stair near sidewalk. Tore this spot up.",

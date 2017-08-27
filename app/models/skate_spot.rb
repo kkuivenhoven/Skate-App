@@ -4,6 +4,7 @@ class SkateSpot < ActiveRecord::Base
   has_many :skate_comments
   has_many :ratings
   has_one :location
+  has_many :events
 	has_many :microposts, dependent: :destroy
 
   #geocoded_by :complete_address

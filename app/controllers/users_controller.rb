@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     end 
     @microposts = @user.microposts.paginate(page: params[:page])
 		@ratings = @user.ratings
+		@events = Event.all
   end
   
   #this function creates a User object 

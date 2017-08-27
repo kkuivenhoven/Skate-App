@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<% provide(:title, "Events") %>
+<% provide(:p, "Below are all the posted events.") %>
+
+<div class="container">
+  <div class="row">
+	 <%= form_tag(events_path, :method => "get", id: "search-form") do %>
+	 <%= text_field_tag :search, params[:search], placeholder: "Search Events" %>
+	 <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
+	 <% end %>
+
+	 <% if !@events.present? %>
+		 <p>There are no events containing the term(s) <%= params[:search] %>.</p>
+	 <% end %>
+  </div>
+</div>
+
+
+<div class="table-responsive">
+<table class="table skate_table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Skate Spot</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+		<% @s_event = @skate_spots.find_by(:id => event.skate_spot_id) %> 
+      <tr>
+					<td><%= event.name %></td>
+					<td><%= event.description %></td>
+					<td><%= event.date %></td>
+					<td><span class="skate_link"><%= link_to "#{@s_event.name}", @s_event %></span></td>
+   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+

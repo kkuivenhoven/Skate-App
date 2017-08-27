@@ -31,6 +31,8 @@ https://www.railstutorial.org/book/sign_up-->
  </div>
 <!--</div>-->
 
+<%= render partial: 'skate_spots/event' %>
+
 <% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
 				<div class="container">
 					<div class="table-responsive">

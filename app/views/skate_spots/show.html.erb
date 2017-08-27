@@ -2,6 +2,15 @@
 <% provide(:title, "#{@skate_spot.name}") %>
 <% provide(:p, "#{@skate_spot.complete_address}") %>
 
+<!--div class="container" style="background-color:white">
+  <i class="glyphicon glyphicon-thumbs-up"></i>
+	<i class="glyphicon glyphicon-thumbs-down"></i><br>
+			%= link_to "Upvote", {:controller => "skate_spots", :action => "like_ss", :skate_spot => @skate_spot.id }%>
+			%= link_to "Downvote", {:controller => "skate_spots", :action => "dislike_ss", :skate_spot => @skate_spot.id }%>
+	<br>
+</div>
+<br-->
+
 <% if current_user != nil %>
 <% if current_user.id == @skate_spot.user_id %>
 <div class="btn-group btn-group-justified">
@@ -27,6 +36,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 </script>
 
 <%= render partial: 'skate_spots/rating' %>
+<%= render partial: 'users/event' %>
 
 <span style="display: none" id="skate_latlng"><%= @latlng%></span>
 

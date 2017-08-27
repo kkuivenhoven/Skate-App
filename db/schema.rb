@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822193146) do
+ActiveRecord::Schema.define(version: 20170827040907) do
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "date"
+    t.string   "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "skate_spot_id"
+    t.integer  "user_id"
+    t.string   "zip_code"
+    t.string   "city"
+    t.float    "latitude"
+    t.float    "longitude"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "friendable_id"
@@ -43,6 +57,8 @@ ActiveRecord::Schema.define(version: 20170822193146) do
     t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.integer  "skate_spot_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
   end
 
   add_index "ratings", ["skate_spot_id"], name: "index_ratings_on_skate_spot_id"
@@ -60,8 +76,8 @@ ActiveRecord::Schema.define(version: 20170822193146) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "skate_spots", force: :cascade do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "name"
     t.integer  "user_id"
     t.integer  "location_id"
@@ -88,6 +104,8 @@ ActiveRecord::Schema.define(version: 20170822193146) do
     t.boolean  "skate_spot_size"
     t.boolean  "neighborhood_spot_size"
     t.boolean  "regional_spot_size"
+    t.integer  "up_vote",                default: 0, null: false
+    t.integer  "down_vote",              default: 0, null: false
   end
 
   add_index "skate_spots", ["location_id"], name: "index_skate_spots_on_location_id"

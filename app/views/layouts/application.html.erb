@@ -42,6 +42,21 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
      <% end %>  
      <br>
      <%= yield(:p) %></p>
+
+     <% if current_page?(controller: 'skate_spots', action: 'index') || current_page?(controller: 'skate_spots', action: 'park_spots_index') || current_page?(controller: 'skate_spots', action: 'street_spots_index') %>
+						 <p-small>Confused on skate spot sizing? Visit our <%= link_to "Help", static_pages_help_path, :title => "Click for skate spot size info" %> page to learn about skate spot sizes.</p>
+     <% end %>  
+
+     <% if current_page?(controller: 'skate_spots', action: 'show') %>
+             <% if logged_in? %>
+                 <%= link_to "<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id }%><%= @skate_spot.up_vote %>&nbsp;
+                 <%= link_to "<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id }%><%= @skate_spot.down_vote %>&nbsp;
+						 <% else %>
+                 <i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.up_vote %>&nbsp;
+						 		<i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.down_vote %>&nbsp;
+             <% end %>  
+     <% end %>  
+
      <p-small>
        <% if current_page?(controller: 'static_pages', action: 'home') %>
          Developed by: Kendra Kuivenhoven

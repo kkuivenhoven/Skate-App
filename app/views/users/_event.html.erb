@@ -1,0 +1,31 @@
+<div class="page-header skate_show_header">
+ <br>
+ <center><h5>Skate Spot Events</h5>
+		<% if logged_in? %>
+		 <%= link_to 'Create an Event', new_skate_spot_event_path(@skate_spot) %>
+		<% end %>
+ </center>
+ <div class="table-responsive">
+   <table class="table skate_table">
+     <thead>
+       <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Date</th>
+       </tr>
+     </thead>
+
+     <tbody>
+      <% @events.each do |event| %>
+      <tr>
+        <tr>
+          <td><%= event.name %></td>
+          <td><%= event.description %></td>
+          <td><%= event.date %></td>
+        </tr>
+      </tr>
+     <% end %>
+   </tbody>
+  </table>
+ </div>
+</div>

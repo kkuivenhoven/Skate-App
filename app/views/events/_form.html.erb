@@ -1,0 +1,20 @@
+<% provide(:button_text, 'Submit') %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+    <%= form_for([@event.skate_spot,@event]) do |f| %>  
+
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :description %><br>
+    <%= f.text_field :description, class: 'form-control' %>
+
+		<%= f.label :date %><br>
+		<%= f.datetime_select :date, class: 'form-control' %><br>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
+		<!--%= f.hidden_field "user_id", current_user.id %-->
+<% end %>
+

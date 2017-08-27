@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post 'skate_spots/create_by_geo', to: 'skate_spots#create_by_geo', as: 'create_by_geo'
   get 'skate_spots/street_spots_index'
   get 'skate_spots/park_spots_index'
+  get 'skate_spots/like_ss'
+  get 'skate_spots/dislike_ss'
 
   get 'password_resets/new'
   get 'password_resets/edit'
@@ -29,11 +31,14 @@ Rails.application.routes.draw do
 
   resources :skate_spots do
     resources :ratings, :except => :index
+    resources :events, :except => :index
   end
   get 'ratings/index', to: 'ratings#index', as: 'ratings'
   get 'ratings/testing_this', to: 'ratings#testing_this', as: 'testing_this'
   get 'ratings/index_park_spot'
   get 'ratings/index_street_spot'
+
+  get 'events/index', to: 'events#index', as: 'events'
 
   get 'signup' => 'users#new'
 
