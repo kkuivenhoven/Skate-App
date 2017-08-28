@@ -63,17 +63,33 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
        <% end %>  
      </p-small>
 
-     <% if current_page?(controller: 'ratings', action: 'index') %>
-				<%= form_tag(ratings_path, :method => "get", id: "search-form") do %>
-								<!--&nbsp;&nbsp;%= text_field_tag :search, params[:search], placeholder: "Search Ratings" %>&nbsp;-->
-     <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
-			<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-			<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-			<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-     <% end %>  
+     <!--% if current_page?(controller: 'ratings', action: 'index') || current_page?(controller: 'ratings', action: 'index_park_spot') %-->
+					<% if current_page?(controller: 'ratings', action: 'index') %>
+				        <%= form_tag(ratings_path, :method => "get", id: "search-form") do %>
+										 <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
+											<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+											<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+											<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+									<% end %>
+					<% end %>
+				 <% if current_page?(controller: 'ratings', action: 'index_park_spot') %>
+				        <%= form_tag(ratings_index_park_spot_path, :method => "get", id: "search-form") do %>
+										 <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
+											<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+											<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+											<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+									<% end %>
+					<% end %>
 
-<br>
-     <% end %>  
+								<!--&nbsp;&nbsp;%= text_field_tag :search, params[:search], placeholder: "Search Ratings" %>&nbsp;-->
+     <!--%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
+			%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+			%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+			%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+			% end %> --> 
+
+<!--br>
+end --> 
 
 			
 

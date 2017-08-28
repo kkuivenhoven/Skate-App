@@ -237,15 +237,38 @@ Rating.create!(difficulty: 3, police: 1,
                skate_spot_id: SkateSpot.second.id,
                user_id: 3 
 )
+
 Rating.create!(difficulty: 4, police: 5,
                pedestrian: 1,
                description: "7-stair near sidewalk",
                skate_spot_id: SkateSpot.third.id,
                user_id: 1
 )
+
 Rating.create!(difficulty: 5, police: 5,
                pedestrian: 0,
                description: "10-stair near sidewalk",
+               skate_spot_id: SkateSpot.fourth.id,
+               user_id: 2 
+)
+
+Rating.create!(difficulty: 5, police: 5,
+               pedestrian: 1,
+               description: "3-stair",
+               skate_spot_id: SkateSpot.fourth.id,
+               user_id: 2 
+)
+
+Rating.create!(difficulty: 5, police: 5,
+               pedestrian: 2,
+               description: "ledge, people sitting",
+               skate_spot_id: SkateSpot.fourth.id,
+               user_id: 2 
+)
+
+Rating.create!(difficulty: 5, police: 5,
+               pedestrian: 3,
+               description: "ledge, lots of people sitting",
                skate_spot_id: SkateSpot.fourth.id,
                user_id: 2 
 )

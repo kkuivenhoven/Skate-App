@@ -68,6 +68,25 @@ class RatingsController < ApplicationController
 	def index_park_spot
 		 @skate_spots = SkateSpot.where(:park_spot => true)
 		 @ratings = Rating.joins(:skate_spot).where(skate_spots: {park_spot: true})
+		 # if params[:search]
+		 if params[:commit] == "Search"
+						 # byebug
+			  if params[:first] == "Difficulty(HighLow)"
+						# @ratings = @ratings.order(difficulty: :desc)
+						# @ratings = @ratings(:order => 'difficulty')
+						# @ratings = @ratings.sort_by{ |t| [t.difficulty] }
+				    if params[:second] == "Security(HighLow)"
+				        if params[:third] == "Pedestrian(HighLow)"
+										@ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :desc)
+										# @ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :asc)
+				        elsif params[:third] == "Pedestrian(LowHigh)"
+										# @ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :asc)
+								else
+								end
+						end
+				end
+		    # redirect_to ratings_index_park_spot_path
+			end
 	end
 
 	def index_street_spot
@@ -79,7 +98,8 @@ class RatingsController < ApplicationController
 		 @skate_spots = SkateSpot.all
 		 @ratings = Rating.all
 		 @rating = Rating.first
-		 if params[:search]
+		 if params[:commit] == "Search"
+		 # if params[:search]
 			  if params[:first] == "Difficulty(HighLow)"
 				    if params[:second] == "Security(HighLow)"
 				        if params[:third] == "Pedestrian(HighLow)"
