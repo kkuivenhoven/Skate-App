@@ -1,5 +1,8 @@
 class SkateSpotsController < ApplicationController
 
+	def recommender
+	end
+
   def index
     @skate_spots = SkateSpot.all
 		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
@@ -355,7 +358,10 @@ class SkateSpotsController < ApplicationController
 			 @show_latlng << s.name
 			 @show_latlng << s.latitude
 			 @show_latlng << s.longitude
+		end
 		@events = @skate_spot.events
+		byebug
+		if @skate_spot.ratings.count != 0
 		end
   end
 
