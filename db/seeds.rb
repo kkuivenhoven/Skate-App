@@ -224,54 +224,45 @@ Event.create!(name: "Girls Competition", date: Time.zone.now,
 							 city: SkateSpot.first.city
 )
 
-Rating.create!(difficulty: 1, police: 1,
-               pedestrian: 3, 
+Rating.create!(difficulty: 1, police: 1, pedestrian: 3, 
                description: "15-stair near sidewalk. Tore this spot up.",
-               skate_spot_id: SkateSpot.first.id,
-               user_id: 3
-)
+               skate_spot_id: SkateSpot.first.id, user_id: 3)
 
-Rating.create!(difficulty: 3, police: 1,
-               pedestrian: 5,
+Rating.create!(difficulty: 3, police: 1, pedestrian: 5,
                description: "ledge next to stair-set",
-               skate_spot_id: SkateSpot.second.id,
-               user_id: 3 
-)
+               skate_spot_id: SkateSpot.second.id, user_id: 3)
 
-Rating.create!(difficulty: 4, police: 5,
-               pedestrian: 1,
+Rating.create!(difficulty: 4, police: 5, pedestrian: 1,
                description: "7-stair near sidewalk",
-               skate_spot_id: SkateSpot.third.id,
-               user_id: 1
-)
+               skate_spot_id: SkateSpot.third.id, user_id: 1)
 
-Rating.create!(difficulty: 5, police: 5,
-               pedestrian: 0,
+Rating.create!(difficulty: 5, police: 5, pedestrian: 0,
                description: "10-stair near sidewalk",
-               skate_spot_id: SkateSpot.fourth.id,
-               user_id: 2 
-)
+               skate_spot_id: SkateSpot.fourth.id, user_id: 2)
 
-Rating.create!(difficulty: 5, police: 5,
-               pedestrian: 1,
+Rating.create!(difficulty: 5, police: 3, pedestrian: 1,
                description: "3-stair",
-               skate_spot_id: SkateSpot.fourth.id,
-               user_id: 2 
-)
+               skate_spot_id: SkateSpot.fourth.id, user_id: 2)
 
-Rating.create!(difficulty: 5, police: 5,
-               pedestrian: 2,
+Rating.create!(difficulty: 5, police: 2, pedestrian: 2,
                description: "ledge, people sitting",
-               skate_spot_id: SkateSpot.fourth.id,
-               user_id: 2 
-)
+               skate_spot_id: SkateSpot.fourth.id, user_id: 2)
 
-Rating.create!(difficulty: 5, police: 5,
-               pedestrian: 3,
-               description: "ledge, lots of people sitting",
-               skate_spot_id: SkateSpot.fourth.id,
-               user_id: 2 
-)
+Rating.create!(difficulty: 5, police: 3, pedestrian: 3,
+               description: "few people sitting",
+               skate_spot_id: SkateSpot.fifth.id, user_id: 4)
+
+Rating.create!(difficulty: 4, police: 4, pedestrian: 4,
+               description: "lots of people sitting",
+               skate_spot_id: SkateSpot.first.id, user_id: 4)
+
+Rating.create!(difficulty: 3, police: 4, pedestrian: 0,
+               description: "no one here except for security",
+               skate_spot_id: SkateSpot.second.id, user_id: 5)
+
+Rating.create!(difficulty: 1, police: 2, pedestrian: 5,
+               description: "easy skate spot, lots of people",
+               skate_spot_id: SkateSpot.first.id, user_id: 1)
 
 # Microposts
 users = User.order(:created_at).take(6)

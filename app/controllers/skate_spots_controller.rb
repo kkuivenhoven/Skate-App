@@ -360,9 +360,36 @@ class SkateSpotsController < ApplicationController
 			 @show_latlng << s.longitude
 		end
 		@events = @skate_spot.events
-		byebug
+
+		@rate_skate = Array.new
+		@ratings = @skate_spot.ratings
+
+		@diffAvg = @ratings.average(:difficulty).truncate(2)
+		@diffAvg = "%.2f" % @diffAvg
+		@securityAvg = @ratings.average(:police).truncate(2)
+		@securityAvg = "%.2f" % @securityAvg
+		@pedAvg = @ratings.average(:pedestrian).truncate(2)
+		@pedAvg = "%.2f" % @pedAvg
+
 		if @skate_spot.ratings.count != 0
+			@skate_spots = SkateSpot.all
+			@skate_spots.each do |s|
+					if s.ratings.count != 0
+						if s.id != @skate_spot.id
+								@rate_skate << s.ratings
+					  end
+					end
+			end
 		end
+		byebug
+		if @rate_skate.count > 0
+				# @rate_skate.delete_if { |difficulty| difficulty != @diffAvg }
+				@rate_skate.each do |r_s|
+					  
+								byebug
+				    # r_s.delete_if { |difficulty| difficulty != @diffAvg }
+        end
+    end
   end
 
   def new_by_geo
