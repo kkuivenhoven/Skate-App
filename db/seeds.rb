@@ -16,7 +16,7 @@ SkateSpot.create!(name: "Creekside Park", user_id: 2, number: 1010,
 								  street_spot: 1, park_spot: 0, gated: 0, concrete: 1, 
 								 	skate_spot_size: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "South County Skate Park", user_id: 2, number: 1750, 
+SkateSpot.create!(name: "South County Skatepark", user_id: 2, number: 1750, 
                   street: "Ramonda Ave",
                   city: "Grover Beach", state: "CA", country: "USA",
 								  street_spot: 0, park_spot: 1,
@@ -24,7 +24,7 @@ SkateSpot.create!(name: "South County Skate Park", user_id: 2, number: 1750,
 								  gated: 0, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1)
 
-SkateSpot.create!(name: "Gonzales Skate Park", user_id: 1, 
+SkateSpot.create!(name: "Gonzales Skatepark", user_id: 1, 
                   street: "1st St",
                   city: "Gonzales", state: "CA", country: "USA",
 								  street_spot: false, park_spot: true,
@@ -48,7 +48,7 @@ SkateSpot.create!(name: "Las Animas Skateboard Park", user_id: 2,
 								  gated: 1, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "El Estero Skate Park", user_id: 1, number: 725,
+SkateSpot.create!(name: "El Estero Skatepark", user_id: 1, number: 725,
                   street: "Pearl St",
                   city: "Monterey", state: "CA", country: "USA",
 								  street_spot: false, park_spot: true,
@@ -56,7 +56,7 @@ SkateSpot.create!(name: "El Estero Skate Park", user_id: 1, number: 725,
 								  gated: 1, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
-SkateSpot.create!(name: "Delano Skate Park", user_id: 1, number: 1221,
+SkateSpot.create!(name: "Delano Skatepark", user_id: 1, number: 1221,
                   street: "Cecil Ave",
                   city: "Delano", state: "CA", country: "USA",
 								  street_spot: false, park_spot: true,
@@ -64,7 +64,7 @@ SkateSpot.create!(name: "Delano Skate Park", user_id: 1, number: 1221,
 								  gated: 1, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
-SkateSpot.create!(name: "Applegate Skate Park", user_id: 1, number: 1045,
+SkateSpot.create!(name: "Applegate Skatepark", user_id: 1, number: 1045,
                   street: "W 25th St",
                   city: "Merced", state: "CA", country: "USA",
                   zip_code: "95340", latitude: 37.312461, longitude: -120.483005,
@@ -85,21 +85,21 @@ SkateSpot.create!(name: "El Pescadero Park", user_id: 2, number: 301,
 								  street_spot: false, park_spot: true, gated: 0, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "Yuba City Skate Park", user_id: 1, number: 806,
+SkateSpot.create!(name: "Yuba City Skatepark", user_id: 1, number: 806,
                   street: "Gray Ave",
                   city: "Yuba City", state: "CA", country: "USA",
                   zip_code: "95991", latitude: 39.135354, longitude: -121.630077,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
-SkateSpot.create!(name: "Pedlow Skate Park", user_id: 2, number: 17334,
+SkateSpot.create!(name: "Pedlow Skatepark", user_id: 2, number: 17334,
                   street: "Victory Blvd",
                   city: "Encino", state: "CA", country: "USA",
                   zip_code: "91316", latitude: 34.185850, longitude: -118.511441,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, 
 								 	regional_spot_size: 1, transition: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "Corning Community Park and Skate Park", user_id: 1, number: 1485,
+SkateSpot.create!(name: "Corning Community Park and Skatepark", user_id: 1, number: 1485,
                   street: "Toomes Ave",
                   city: "Corning", state: "CA", country: "USA",
                   zip_code: "96021", latitude: 39.921631, longitude: -122.191405,
@@ -127,7 +127,7 @@ SkateSpot.create!(name: "Los Osos Skate park", user_id: 1, number: 2180,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, wood: 0, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
-SkateSpot.create!(name: "Provident Skate Park", user_id: 2, number: 1035,
+SkateSpot.create!(name: "Provident Skatepark", user_id: 2, number: 1035,
                   street: "W Murray Ave",
                   city: "Visalia", state: "CA", country: "USA",
                   zip_code: "93291", latitude: 36.333393, longitude: -119.303081,
@@ -162,21 +162,21 @@ SkateSpot.create!(name: "Belvedere Skatepark", user_id: 1, number: 4914,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, wood: 0, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
-SkateSpot.create!(name: "Sheldon Skate Park", user_id: 1, number: 12511,
+SkateSpot.create!(name: "Sheldon Skatepark", user_id: 1, number: 12511,
                   street: "Sheldon St",
                   city: "Sun Valley", state: "CA", country: "USA",
                   zip_code: "91352", latitude: 34.230936, longitude: -118.406091,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, wood: 0, 
 								 	regional_spot_size: 1, transition: 0, street_plaza: 1)
 
-SkateSpot.create!(name: "28th & B Skate Park", user_id: 1, number: 20,
+SkateSpot.create!(name: "28th & B Skatepark", user_id: 1, number: 20,
                   street: "28th Street",
                   city: "Sacramento", state: "CA", country: "USA",
                   zip_code: "95816", latitude: 38.586446, longitude: -121.458924,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, wood: 1, metal: 1, 
 								 	regional_spot_size: 1, transition: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "Humboldt Neighborhood Skate Park", user_id: 1, number: 265,
+SkateSpot.create!(name: "Humboldt Neighborhood Skatepark", user_id: 1, number: 265,
                   street: "Humboldt Ave",
                   city: "Chico", state: "CA", country: "USA",
                   zip_code: "95928", latitude: 39.7256124, longitude: -121.83296989999997,
@@ -190,7 +190,7 @@ SkateSpot.create!(name: "Loomis Seed Spot", user_id: 1, number: 8650,
 								  street_spot: false, park_spot: true, gated: 0, concrete: 1, wood: 0, metal: 0, 
 								 	skate_spot_size: 1, transition: 0, street_plaza: 1)
 
-SkateSpot.create!(name: "Brentwood Skate Park", user_id: 3,
+SkateSpot.create!(name: "Brentwood Skatepark", user_id: 3,
                   street: "Griffith Lane",
                   city: "Brentwood", state: "CA", country: "USA",
                   zip_code: "94513", latitude: 37.926398, longitude: -121.707277,

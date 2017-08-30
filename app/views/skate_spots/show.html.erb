@@ -59,11 +59,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 	<!--table border="1" id="ind_table"-->
        <tr>
         <th>Name</th>
-        <!--th onclick="skate_sortTable(0)">testing Name</th-->
-        <th>Less than 60 miles away</th>
+        <th>Distance away</th>
         <th>Address</th>
-        <th>Zip Code</th>
-        <th onclick="skate_sortTable(1)">Country</th>
        </tr>
      </thead>
 
@@ -89,9 +86,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
           </td>
 					<!--td>%= skate_spot.name %></td-->
 		    <td><%= (@skate_spot.distance_from([skate_spot.latitude, skate_spot.longitude])).round(2) %> miles</td>
-          <td><%= skate_spot.basic_address %></td>
-          <td><%= skate_spot.zip_code %></td>
-          <td><%= skate_spot.country %></td>
+          <td><%= skate_spot.complete_address %></td>
         </tr>
       </tr>
      <% end %>

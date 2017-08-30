@@ -124,15 +124,20 @@
 	 <td><%= skate_spot.down_vote %></td>
 
 	 <td>
-	 		<% if skate_spot.wood %>Wooden
+      <% if skate_spot.wood && skate_spot.concrete && skate_spot.metal%>Wood, Concrete, Metal
+      <% elsif skate_spot.wood && skate_spot.concrete %>Wood, Concrete
+      <% elsif skate_spot.wood && skate_spot.metal %>Wood, Metal
+      <% elsif skate_spot.concrete && skate_spot.metal %>Concrete, Metal
+	 		<% elsif skate_spot.wood %>Wooden
 		  <% elsif skate_spot.metal %>Metal
-      <% elsif skate_spot.concrete %>Concrete
+			<% elsif skate_spot.concrete %>Concrete
 			<% else %>No material listed
 		  <% end %>
 	 </td>
 
 	 <td>
-	 		<% if skate_spot.transition %>Transition
+	 		<% if skate_spot.transition && skate_spot.street_plaza %>Transition, Street Plaza
+	 		<% elsif skate_spot.transition %>Transition
       <% elsif skate_spot.street_plaza %>Street Plaza
       <% else %>Not listed
 		  <% end %>
