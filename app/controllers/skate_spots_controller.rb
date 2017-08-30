@@ -364,31 +364,115 @@ class SkateSpotsController < ApplicationController
 		@rate_skate = Array.new
 		@ratings = @skate_spot.ratings
 
-		@diffAvg = @ratings.average(:difficulty).truncate(2)
-		@diffAvg = "%.2f" % @diffAvg
-		@securityAvg = @ratings.average(:police).truncate(2)
-		@securityAvg = "%.2f" % @securityAvg
-		@pedAvg = @ratings.average(:pedestrian).truncate(2)
-		@pedAvg = "%.2f" % @pedAvg
-
+		@skate_spots = SkateSpot.all
 		if @skate_spot.ratings.count != 0
-			@skate_spots = SkateSpot.all
+
+		  @diffAvg = @ratings.average(:difficulty).truncate(2)
+		  # @diffAvg = "%.2f" % @diffAvg
+			@lowdiff = @diffAvg - 1
+		  @lowdiff = "%.2f" % @lowdiff
+			@highdiff = @diffAvg + 1
+		  @highdiff = "%.2f" % @highdiff
+
+		  @secAvg = @ratings.average(:police).truncate(2)
+		  # @securityAvg = "%.2f" % @securityAvg
+			@lowSec = @secAvg - 1
+		  @lowSec = "%.2f" % @lowSec
+			@highSec = @secAvg + 1
+		  @highSec = "%.2f" % @highSec
+
+		  @pedAvg = @ratings.average(:pedestrian).truncate(2)
+		  # @pedAvg = "%.2f" % @pedAvg
+			@lowPed = @pedAvg - 1
+		  @lowPed = "%.2f" % @lowPed
+			@highPed = @pedAvg + 1
+		  @highPed = "%.2f" % @highPed
+
 			@skate_spots.each do |s|
 					if s.ratings.count != 0
 						if s.id != @skate_spot.id
-								@rate_skate << s.ratings
+								@filter_diff = s.ratings.where(:difficulty => @lowdiff..@highdiff)
+								if @filter_diff.count != 0
+										@filter_sec = @filter_diff.where(:police => @lowSec..@highSec)
+										if @filter_sec.count != 0
+										    @filter_ped = @filter_sec.where(:pedestrian => @lowPed..@highPed)
+										    if @filter_ped.count != 0
+															@rate_skate << s.ratings
+					              end
+					          end
+					      end
 					  end
 					end
 			end
 		end
-		byebug
+		@ss_ids = Array.new
 		if @rate_skate.count > 0
 				# @rate_skate.delete_if { |difficulty| difficulty != @diffAvg }
 				@rate_skate.each do |r_s|
-					  
-								byebug
+						@ss_ids << r_s[0].skate_spot_id
 				    # r_s.delete_if { |difficulty| difficulty != @diffAvg }
         end
+    end
+		if @ss_ids.count > 0 
+			@final_spots = SkateSpot.where(id: @ss_ids)
+		end
+		if @final_spots.count > 0 
+			 @final_spots.each do |f_s|
+					# removes SS if category of f_s doesn't match @skate_spot category
+				  if f_s.street_spot != @skate_spot.street_spot	
+						  @ss_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @ss_to_delete}
+			    end
+				  if f_s.park_spot != @skate_spot.park_spot	
+						  @ps_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @ps_to_delete}
+			    end
+
+					# removes SS if gated of f_s doesn't match @skate_spot gated
+				  if f_s.gated != @skate_spot.gated	
+						  @g_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @g_to_delete}
+			    end
+
+					# removes SS if material of f_s doesn't match @skate_spot material
+				  if f_s.wood != @skate_spot.wood	
+						  @w_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @w_to_delete}
+			    end
+				  if f_s.metal != @skate_spot.metal	
+						  @m_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @m_to_delete}
+			    end
+				  if f_s.concrete != @skate_spot.concrete	
+						  @c_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @c_to_delete}
+			    end
+
+					# removes SS if type of f_s doesn't match @skate_spot type
+				  if f_s.transition != @skate_spot.transition	
+						  @t_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @t_to_delete}
+			    end
+				  if f_s.street_plaza != @skate_spot.street_plaza	
+						  @sp_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @sp_to_delete}
+			    end
+
+					# removes SS if spot size of f_s doesn't match @skate_spot spot size
+				  if f_s.neighborhood_spot_size != @skate_spot.neighborhood_spot_size	
+						  @nss_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @nss_to_delete}
+			    end
+				  if f_s.regional_spot_size != @skate_spot.regional_spot_size	
+						  @rss_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @rss_to_delete}
+			    end
+				  if f_s.skate_spot_size != @skate_spot.skate_spot_size	
+						  @sSize_to_delete = f_s
+							@final_spots.reject!{|ss| ss == @sSize_to_delete}
+			    end
+
+			 end
     end
   end
 

@@ -11,12 +11,6 @@
 </div>
 <br-->
 
-<div class="container" style="background: white;">
-	<p>Recommender</p>
-
-
-</div>
-
 <% if current_user != nil %>
 <% if current_user.id == @skate_spot.user_id %>
 <div class="btn-group btn-group-justified">
@@ -43,6 +37,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 
 <%= render partial: 'skate_spots/rating' %>
 <%= render partial: 'users/event' %>
+<%= render partial: 'skate_spots/recommender' %>
+<div class="container" id="RecSpaceDiv">
+  <div class="row">
+  </div>
+</div>
+
+
 
 <span style="display: none" id="skate_latlng"><%= @latlng%></span>
 
