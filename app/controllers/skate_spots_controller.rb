@@ -416,60 +416,53 @@ class SkateSpotsController < ApplicationController
 		if @ss_ids.count > 0 
 			@final_spots = SkateSpot.where(id: @ss_ids)
 		end
-		if @final_spots.count > 0 
+		# if @final_spots.count > 0 
+		if !@final_spots.nil?
 			 @final_spots.each do |f_s|
 					# removes SS if category of f_s doesn't match @skate_spot category
 				  if f_s.street_spot != @skate_spot.street_spot	
-						  @ss_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @ss_to_delete}
+							@final_spots.delete(f_s)
 			    end
 				  if f_s.park_spot != @skate_spot.park_spot	
-						  @ps_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @ps_to_delete}
+							@final_spots.delete(f_s)
 			    end
 
 					# removes SS if gated of f_s doesn't match @skate_spot gated
 				  if f_s.gated != @skate_spot.gated	
-						  @g_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @g_to_delete}
+						  # @g_to_delete = f_s
+							# @final_spots.reject!{|ss| ss == @g_to_delete}
+							# @index = @final_spots.index(f_s)
+							@final_spots.delete(f_s)
 			    end
 
 					# removes SS if material of f_s doesn't match @skate_spot material
 				  if f_s.wood != @skate_spot.wood	
-						  @w_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @w_to_delete}
+							@final_spots.delete(f_s)
 			    end
 				  if f_s.metal != @skate_spot.metal	
-						  @m_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @m_to_delete}
+							@final_spots.delete(f_s)
 			    end
 				  if f_s.concrete != @skate_spot.concrete	
-						  @c_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @c_to_delete}
+							@final_spots.delete(f_s)
 			    end
 
 					# removes SS if type of f_s doesn't match @skate_spot type
 				  if f_s.transition != @skate_spot.transition	
-						  @t_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @t_to_delete}
+							@final_spots.delete(f_s)
 			    end
 				  if f_s.street_plaza != @skate_spot.street_plaza	
-						  @sp_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @sp_to_delete}
+							@final_spots.delete(f_s)
 			    end
 
 					# removes SS if spot size of f_s doesn't match @skate_spot spot size
 				  if f_s.neighborhood_spot_size != @skate_spot.neighborhood_spot_size	
-						  @nss_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @nss_to_delete}
+							@final_spots.delete(f_s)
 			    end
 				  if f_s.regional_spot_size != @skate_spot.regional_spot_size	
-						  @rss_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @rss_to_delete}
+							@final_spots.delete(f_s)
 			    end
 				  if f_s.skate_spot_size != @skate_spot.skate_spot_size	
-						  @sSize_to_delete = f_s
-							@final_spots.reject!{|ss| ss == @sSize_to_delete}
+							@final_spots.delete(f_s)
 			    end
 
 			 end

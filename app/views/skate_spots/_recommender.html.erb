@@ -1,10 +1,12 @@
 <div class="container" id="skateRec">
 <h4>Recommended Skate Spots</h4>
 <p>These skate spots are based on skate spots with similar ratings, material, and skate spot size.</p>
+<% if !@final_spots.nil? %>
 <table class="table skate_table" id="myTable">
  <thead>
   <tr>
     <th onclick="sortTable(0)">Name</th>
+    <th>Distance Away</th>
     <th>Gated</th>
     <th onclick="skate_sortthenums(2)">Upvotes</th>
     <th onclick="skate_sortthenums(3)">Downvotes</th>
@@ -35,6 +37,8 @@
       <% end %>
     </li>
    </td>
+
+		<td><%= (@skate_spot.distance_from([skate_spot.latitude, skate_spot.longitude])).round(2) %> miles</td>
 
    <td>
       <% if skate_spot.gated %>Yes
@@ -72,5 +76,7 @@
   <% end %>
   </tbody>
 </table>
-</div>
+<% else %>
+					<center>There are no recommendations for this skate spot.</center>
+<% end %>
 </div>
