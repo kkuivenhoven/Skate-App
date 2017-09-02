@@ -5,7 +5,7 @@ class SkateSpot < ActiveRecord::Base
   has_many :ratings
   has_one :location
   has_many :events
-	has_many :microposts, dependent: :destroy
+	# has_many :microposts, dependent: :destroy
 
   #geocoded_by :complete_address
   geocoded_by :gmaps4rails_address

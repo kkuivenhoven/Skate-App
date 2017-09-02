@@ -1,18 +1,24 @@
 <% provide(:title, "New Spot by Geolocation") %>
-<% provide(:p, "Click the button to generate coordinates") %>
+<% provide(:p, "Click the button to generate coordinates or you may enter in the GPS coordinates yourself") %>
 
 
-<div class="panel panel-default">
+<!--div class="panel panel-default">
   <div class="panel-body">
     <button onclick="new_getLocation()">Set coords</button>
     <p id="new_demo"></p>
 	</div>
-</div>
+</div-->
 
 
 <% provide(:button_text, 'Submit') %>
   <div class="panel panel-default">
+		<div class="panel-heading">
+			<h4><%= yield(:title) %></h4>
+		</div>
     <div class="panel-body">
+
+    <button class="btn btn-default" onclick="new_getLocation()">Click to set coordinates</button>
+    <p id="new_demo"></p>
   
     <%= form_for(@skate_spot, url: create_by_geo_path) do |f| %>
   

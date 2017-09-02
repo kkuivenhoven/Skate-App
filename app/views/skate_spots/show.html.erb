@@ -20,7 +20,8 @@
   </div>
   <div class="btn-group">
     <!--%= link_to('Back', skate_spots_path, class: 'btn btn-primary') %-->
-	  <%= link_to('Destroy', @skate_spot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary') %>
+	  <!--%= link_to('Destroy', @skate_spot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary') %-->
+		<%= link_to 'Destroy', skate_spot_path(@skate_spot), method: :delete, class: 'btn btn-primary' %>
   </div>
 </div>
 <br>

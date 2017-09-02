@@ -1,11 +1,10 @@
-<div class="page-header skate_show_header">
+<!--div class="page-header skate_show_header">
  <br>
  <center><h5>Skate Spot Events</h5>
-		<% if logged_in? %>
-		 <!--%= link_to 'Create an Event', new_skate_spot_event_path(@skate_spot) %-->
-		<% end %>
  </center>
+</div-->
 <% if @events.count > 0 %>
+				<center><h5>Skate Spot Events</h5></center>
  <div class="table-responsive">
    <table class="table skate_table">
      <thead>
@@ -32,4 +31,3 @@
 <% else %>
 		<center>There are no events posted.</center>
 <% end %>
-</div>

@@ -5,6 +5,9 @@
    
 <% provide(:button_text, 'Submit') %>
   <div class="panel panel-default">
+		<div class="panel-heading">
+			<h4><%= yield(:title) %></h4>
+		</div>
     <div class="panel-body">
   
     <%= form_for(@skate_spot) do |f| %>

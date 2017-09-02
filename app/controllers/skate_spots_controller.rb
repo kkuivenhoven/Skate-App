@@ -490,6 +490,7 @@ class SkateSpotsController < ApplicationController
 		@skate_spot.zip_code = @addr_comp[6]["long_name"]
 		# @skate_spot.country = @addr_comp[6]["short_name"]
 		@skate_spot.country = @addr_comp[5]["short_name"]
+		@skate_spot.user_id = current_user.id
     if @skate_spot.save
         redirect_to :action => 'index'
     else
@@ -503,6 +504,7 @@ class SkateSpotsController < ApplicationController
 
   def create
     @skate_spot = SkateSpot.new(skate_spot_params)
+		@skate_spot.user_id = current_user.id
     if @skate_spot.save
         redirect_to :action => 'index'
     else
