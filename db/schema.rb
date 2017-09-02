@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170902192407) do
+ActiveRecord::Schema.define(version: 20170902222234) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -137,6 +137,8 @@ ActiveRecord::Schema.define(version: 20170902192407) do
     t.integer  "skate_spot_id"
     t.string   "blocked_users",     default: "--- []\n"
     t.string   "hidden_users",      default: "--- []\n"
+    t.text     "blocked_by"
+    t.text     "user_blocked"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+	
+	serialize :blocked_by
+	serialize :user_blocked
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -142,6 +145,28 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+	def user_has_blocked(other_user)
+		blocked_id = self.user_blocked[other_user.id]
+		if blocked_id.nil?
+				# user has not blocked by other_user
+				return false
+		else
+				# user has blocked by other_user
+				return true
+		end
+	end
+
+
+	def user_blocked_by?(other_user)
+		blocked_id = self.blocked_by[other_user.id]
+		if blocked_id.nil?
+				# user is not blocked by other_user
+				return false
+		else
+				# user is blocked by other_user
+				return true
+		end
+	end
 
 
 

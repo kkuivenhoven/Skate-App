@@ -4,6 +4,7 @@ https://www.railstutorial.org/book/updating_and_deleting_users
 http://stackoverflow.com/questions/31620546/accordion-doesnt-collapse-properly-when-having-multiple-accordions-->
 
 <% @users.each_with_index do |user, index| %>
+<% if !current_user.user_blocked_by?(user) %>
 <div class="panel-group" id="accordion-<%= index %>"> <!--role="tablist" aria-multiselectable="true">-->
   <div class="panel panel-default">
 
@@ -35,6 +36,7 @@ http://stackoverflow.com/questions/31620546/accordion-doesnt-collapse-properly-w
   
  </div>
 </div>
+<% end %>
 <% end %>
 
 

@@ -20,8 +20,9 @@ class UsersController < ApplicationController
   
   #this function shows a users profile; user has been found by id
   def show
+   @user = User.find(params[:id])
+	 if !current_user.user_blocked_by?(@user)
     @rating_items = current_user.rating_feed.paginate(page: params[:page])
-    @user = User.find(params[:id])
     @all_latlng = Array.new
 		@skate_spots = @user.skate_spots
     @skate_spots.each do |s| 
@@ -33,6 +34,9 @@ class UsersController < ApplicationController
 		@ratings = @user.ratings
 		@events = Event.all
     # @rating = @skate_spot.ratings.build
+	 else
+			redirect_to users_url
+	 end
   end
   
   #this function creates a User object 
@@ -92,6 +96,20 @@ class UsersController < ApplicationController
 	def following
     @user = User.find(params[:id])
     @users = @user.following.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+	end
+
+	def block_user
+    @other_user = User.find(params[:other_user])
+		if current_user.user_blocked.nil?
+		  current_user.user_blocked = {}
+		end
+		if @other_user.blocked_by.nil?
+		  @other_user.blocked_by = {}
+		end
+		current_user.update_attribute(:user_blocked, current_user.user_blocked.merge!(@other_user.id => @other_user.id))
+		@other_user.update_attribute(:blocked_by, @other_user.blocked_by.merge!(current_user.id => current_user.id))
+    redirect_to users_url
+    flash[:success] = "You have successfully blocked #{@other_user.name}"
 	end
 
   private

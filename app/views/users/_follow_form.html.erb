@@ -1,8 +1,8 @@
 <% unless current_user?(@user) %>
   <div id="follow_form">
   <% if current_user.following?(@user) %>
-					<%= render 'unfollow' %><br>
-    <%= render 'block' %>
+		<%= render 'unfollow' %><br>
+		<%= link_to "Block", users_block_user_url(:user_id => current_user.id, :other_user => @user.id) %>
   <% else %>
     <%= render 'follow' %>
   <% end %>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'static_pages/skate_links'
   get 'static_pages/testing'
 
+  get 'users/block_user', to: 'users#block_user'
   get 'skate_spots/recommender'
   get 'skate_spots/search_results'
   get 'skate_spots/show'
