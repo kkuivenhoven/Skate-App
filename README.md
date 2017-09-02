@@ -4,7 +4,7 @@
  Kendra Kuivenhoven
 
 ## Overview:
-This app allows users to document and rate skate spots in urban and rural areas. Users will also be able to rate and see other ratings of documented skate spots.
+This app allows users to document and rate skate spots in urban and rural areas. Users will also be able to rate and see other ratings of documented skate spots. Users can also follow and unfollow other users. Users can sort through the ratings and view the highest rated skate spots and lowest rated skate spots.
 
 ## Gems Used:
 * bootstrap-sass

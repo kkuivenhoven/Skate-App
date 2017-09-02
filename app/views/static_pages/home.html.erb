@@ -1,7 +1,6 @@
 <% provide(:title, "Home") %>
 <% provide(:p, " Created by a skater, for skaters.") %>
 
-
 <% if logged_in? %>
   <div class="container">
 					<div class="row">
@@ -16,11 +15,11 @@
 								<!--%= render 'shared/micropost_form' %-->
 							</section>
 						</aside>
-				    <%= render partial: 'skate_spots/event' %>
+				    <%= render partial: 'users/event' %>
 						<div class="col-md-8" style="background:white">
 							<h3>Rating Feed</h3>
 							<%= render 'shared/rating_feed' %>
 						</div>
 					</div>
   </div>
- <% end %>
+<% end %>

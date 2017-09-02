@@ -4,6 +4,37 @@
 <% provide(:p, "Below are the skate spots that have been rated by users.") %>
 <% provide(:text, "Select how you would like to sort the ratings") %>
 
+<div class="container" style="background: white;">
+	<div class="row">
+
+	<!--%= @testing.average('difficulty') %><br><br>
+		% @testing.each do |t| %>
+						%= t.inspect %><br><br>
+		% end %-->
+
+		<% @grouped_ratings.each do |key, g_r| %>
+						<% @diff = g_r.collect { |h| h.values_at("difficulty") } %>
+						<% @diff = @diff.flatten %>
+						<!--% @diff.mean %-->
+						<% g_r.collect { |h| h.values_at("difficulty") } %>
+						<br>
+
+		  <!--% @g_rate = @skate_spots.find_by(:id => key) %> 
+			% @diff = Array.new %>
+			%= g_r %><br><br-->
+			<!--%= @g_rate.name %><br>
+			%= g_r %><br>
+			%= g_r.class %><br>
+			% g_r.each do |g| %>
+				% @diff << g.difficulty %>
+				%= g.class %><br>
+			% end %>
+			%= @diff %>
+			<br><br-->
+		<% end %>
+	</div>
+</div>	
+
 <div class="table-responsive">
 <table class="table skate_table" id="rateTable">
   <thead>
@@ -20,6 +51,8 @@
 
   <tbody>
     <% @ratings.each do |rating| %>
+    <!--% @grouped_ratings.each do |key, g_r| %>
+		% g_r.each do |rating| %-->
 		<% @s_rate = @skate_spots.find_by(:id => rating.skate_spot_id) %> 
       <tr>
 					<td style="display: none"><%= @s_rate.name %></td>
@@ -48,6 +81,7 @@
         <!--td>%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %></td-->
         <!-- instead of: <td>%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
+    <!--% end %-->
     <% end %>
   </tbody>
 </table>
