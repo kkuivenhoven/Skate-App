@@ -6,7 +6,7 @@
 class RatingsController < ApplicationController
   before_action :login_required, only: [:new, :create, :edit, :update, :destroy]
   #first, obtain the skate_spot using set_skate_spot
-  before_action :set_skate_spot, except: [:index, :testing_this, :index_park_spot, :index_street_spot]
+  before_action :set_skate_spot, except: [:index, :testing_this, :index_park_spot, :index_street_spot, :reply, :delete_reply]
   before_action :users_rating, only: [:edit, :update, :destroy]
   after_action :filter, only: [:create] 
 
@@ -722,6 +722,34 @@ class RatingsController < ApplicationController
     @skate_spot = SkateSpot.find_by(:id => @rating.skate_spot_id)
 	end
 
+	def reply
+    @rating = Rating.find(params[:id])
+		@response = @rating.responses.create(response_params)
+		@response.user_id = current_user.id
+		@response.rating_id = @rating.id
+		@user = User.find_by(id: params[:user_id])
+    if @response.save
+      flash[:success] = "Response has been successfully created!"
+		  redirect_to @user
+    else
+      flash[:danger] = "Response has been unsuccessfully created. Please try again."
+		  redirect_to @user
+    end
+	end
+
+	def delete_reply
+		@rating = Rating.find(params[:rating_id])
+		@user = User.find_by(id: params[:user_id])
+    @response = @rating.responses.find(params[:resp_id])
+    if @response.destroy
+      flash[:success] = "Response has been successfully deleted!"
+		  redirect_to @user
+    else
+      flash[:danger] = "Deletion unsuccessful. Please try again."
+		  redirect_to @user
+    end
+	end
+
   private
 
     #makes sure that the user is logged in
@@ -771,5 +799,10 @@ class RatingsController < ApplicationController
       params.require(:rating).permit(:difficulty, :police, :pedestrian, :description)
       #params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
     end
+
+    def response_params
+      params.require(:response).permit(:message)
+    end
+
 
 end

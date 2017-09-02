@@ -4,6 +4,7 @@
 class Rating < ActiveRecord::Base
   belongs_to :user
   belongs_to :skate_spot  
+	has_many :responses
  
   #validates_presence_of makes sure that the user has provided input for that specified attribute
   #validates_numericality_of makes sure that the user has provided numbers for input that are between 0 and 10
@@ -30,5 +31,6 @@ class Rating < ActiveRecord::Base
   def self.search(search)
     where("description LIKE ?", "%#{search}%") 
   end
+
 
 end

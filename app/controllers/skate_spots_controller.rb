@@ -339,6 +339,7 @@ class SkateSpotsController < ApplicationController
   end
 
   def show
+    @rating_items = current_user.rating_feed.paginate(page: params[:page])
     @skate_spot = SkateSpot.find(params[:id])
 		@latlng = Array.new
 		@latlng << @skate_spot.latitude

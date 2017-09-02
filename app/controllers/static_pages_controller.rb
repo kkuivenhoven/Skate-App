@@ -9,7 +9,8 @@ class StaticPagesController < ApplicationController
 			# @events = Event.all
 			@time = Time.now + 60.days
 			@start = Time.now - 1.days
-			@events = Event.where(:date => @start..@time)
+			# @events = Event.where(:date => @start..@time)
+			@events = Event.all
     end
   end
 

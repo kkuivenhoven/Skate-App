@@ -31,6 +31,22 @@ https://www.railstutorial.org/book/sign_up-->
  </div>
 <!--</div>-->
 
+<div class="container">
+	<div class="row">
+	</div>
+</div>
+
+<% if current_user.following?(@user) %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+							<h4>Rating Feed</h4>
+			</div>
+			<div class="panel-body">
+							<%= render 'shared/rating_feed' %>
+			</div>
+		</div>
+<% end %>
+
 <div class="container" id="RecSpaceDiv">
 	<div class="row">
 	</div>

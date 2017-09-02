@@ -1,13 +1,73 @@
+<div class="container">
+<div class="row">
 <li id="rating-<%= rating.id %>">
   <%= link_to gravatar_for(rating.user, size: 50), rating.user %>
 	<span class="user"><%= link_to rating.user.name, rating.user %> at <%= link_to "#{rating.skate_spot.name}", skate_spot_url(rating.skate_spot.id) %></span>
   <span class="content"><%= rating.description %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(rating.created_at) %> ago.
+    <% if current_user.following?(rating.user) %>
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Reply</button>
+		<% else %>
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" disabled>Reply</button>
+		<% end %>
     <% if current_user?(rating.user) %>
 			<%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
   </span>
 </li>
+</div>
 
+<div class="row" style="margin-left: 50px;">
+		<% if rating.responses.count > 0 %>
+			<% rating.responses.each do |resp| %>
+				<li id="response-<%= resp.id %>">
+								<% @resp_user = User.find_by(id: resp.user_id) %>
+								<%= link_to gravatar_for(@resp_user, size: 50), @resp_user %>
+									<span class="user"><%= link_to @resp_user.name, @resp_user %></span>
+									<span class="content"><%= resp.message %></span>
+									<span class="timestamp">
+										Posted <%= time_ago_in_words(resp.created_at) %> ago.
+										<% if current_user?(@resp_user) %>
+											<%= link_to 'Destroy', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+										<% end %>
+									</span>
+				</li>
+			<% end %>
+	  <% end %>
+</div>
+</div>
 
+<!-- Trigger the modal with a button -->
+<!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button-->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+				<% @response = rating.responses.new %>
+        <%= form_for([rating,@response]) do |f| %>
+	
+				<%= f.label :message %><br>
+				<%= f.text_field :message, class: 'form-control' %>
+
+				<%= hidden_field_tag "user_id", @user.id %>
+			  <!--%= link_to 'Reply', [rating.skate_spot, rating], method: :reply %-->
+				<%= f.submit "Submit", class: "btn btn-primary" %>
+				<% end %>
+      </div>
+      <div class="modal-footer">
+			<!--%= link_to 'Reply', [rating.skate_spot, rating], method: :reply %-->
+        <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+      </div>
+    </div>
+
+  </div>
+</div>

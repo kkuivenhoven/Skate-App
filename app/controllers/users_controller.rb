@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   
   #this function shows a users profile; user has been found by id
   def show
+    @rating_items = current_user.rating_feed.paginate(page: params[:page])
     @user = User.find(params[:id])
     @all_latlng = Array.new
 		@skate_spots = @user.skate_spots
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.paginate(page: params[:page])
 		@ratings = @user.ratings
 		@events = Event.all
+    # @rating = @skate_spot.ratings.build
   end
   
   #this function creates a User object 

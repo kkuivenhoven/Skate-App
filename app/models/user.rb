@@ -5,6 +5,7 @@
 
 class User < ActiveRecord::Base
 	has_friendship
+  has_many :responses
   has_many :skate_spots
   has_many :ratings, :through => :skate_spots
 	has_many :microposts, dependent: :destroy
@@ -140,6 +141,8 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+
 
 
   private
