@@ -493,17 +493,9 @@ class RatingsController < ApplicationController
 		 @skate_spots = SkateSpot.all
 		 @ratings = Rating.all
 		 @grouped_ratings = @ratings.group_by(&:skate_spot_id)
-		 @grouped_ratings.each do |key, g_r|
-						 @tmp = g_r.map(&:attributes)
-						 @grouped_ratings[key] = nil
-						 @grouped_ratings[key] = @tmp
-		 end
-		 @grouped_ratings.each do |key, g_r|
-						 # byebug
-		 end
-		 @testing = @ratings.group('skate_spot_id')
 		 @rating = Rating.first
-		 if params[:commit] == "Search"
+		 # if params[:commit] == "Search"
+		 if params[:commit] == "Filter"
 		 # if params[:search]
 			  if params[:first] == "Difficulty(HighLow)"
 				    if params[:second] == "Security(HighLow)"

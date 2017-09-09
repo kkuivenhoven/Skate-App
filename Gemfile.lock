@@ -66,6 +66,7 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
     debug_inspector (0.0.2)
+    docile (1.1.5)
     erubis (2.7.0)
     excon (0.45.4)
     execjs (2.6.0)
@@ -296,6 +297,11 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slop (3.6.0)
     spring (1.6.0)
     sprockets (3.5.2)
@@ -354,6 +360,7 @@ DEPENDENCIES
   rails-erd
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simplecov
   spring
   sqlite3
   turbolinks
@@ -363,4 +370,4 @@ DEPENDENCIES
   will_paginate (= 3.0.7)
 
 BUNDLED WITH
-   1.13.6
+   1.15.1

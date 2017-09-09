@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'static_pages/skate_links'
   get 'static_pages/testing'
 
+  get 'users/unblock_user', to: 'users#unblock_user'
   get 'users/block_user', to: 'users#block_user'
   get 'skate_spots/recommender'
   get 'skate_spots/search_results'
@@ -56,7 +57,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :blocked
     end
   end
 

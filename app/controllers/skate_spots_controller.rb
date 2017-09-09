@@ -417,6 +417,7 @@ class SkateSpotsController < ApplicationController
 		if @ss_ids.count > 0 
 			@final_spots = SkateSpot.where(id: @ss_ids)
 		end
+=begin
 		# if @final_spots.count > 0 
 		if !@final_spots.nil?
 			 @final_spots.each do |f_s|
@@ -468,6 +469,7 @@ class SkateSpotsController < ApplicationController
 
 			 end
     end
+=end
   end
 
   def new_by_geo

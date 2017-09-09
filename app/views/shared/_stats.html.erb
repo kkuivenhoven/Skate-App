@@ -12,4 +12,12 @@
     </strong>
     followers
   </a>
+	<% if current_user.id == @user.id %>
+					<a href="<%= blocked_user_path(@user) %>">
+						<strong id="blocked" class="stat">
+							<%= @user.user_blocked.count %>
+						</strong>
+						blocked
+					</a>
+	<% end %>
 </div>

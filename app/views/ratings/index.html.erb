@@ -4,20 +4,22 @@
 <% provide(:p, "Below are the skate spots that have been rated by users.") %>
 <% provide(:text, "Select how you would like to sort the ratings") %>
 
-<div class="container" style="background: white;">
-	<div class="row">
+	<!--% @grouped_ratings.each do |key, g_r| %>
+					% @avgDiff = g_r.map {|i| i.difficulty} %><br>
+					%= @avgDiff.reduce(:+) / @avgDiff.size.to_f %>
+	% end %-->
 
 	<!--%= @testing.average('difficulty') %><br><br>
 		% @testing.each do |t| %>
 						%= t.inspect %><br><br>
 		% end %-->
 
-		<% @grouped_ratings.each do |key, g_r| %>
-						<% @diff = g_r.collect { |h| h.values_at("difficulty") } %>
-						<% @diff = @diff.flatten %>
+		<!--% @grouped_ratings.each do |key, g_r| %>
+						% @diff = g_r.collect { |h| h.values_at("difficulty") } %>
+						% @diff = @diff.flatten %-->
 						<!--% @diff.mean %-->
-						<% g_r.collect { |h| h.values_at("difficulty") } %>
-						<br>
+						<!--% g_r.collect { |h| h.values_at("difficulty") } %>
+						<br-->
 
 		  <!--% @g_rate = @skate_spots.find_by(:id => key) %> 
 			% @diff = Array.new %>
@@ -30,10 +32,8 @@
 				%= g.class %><br>
 			% end %>
 			%= @diff %>
-			<br><br-->
-		<% end %>
-	</div>
-</div>	
+			<br><br>
+		% end %-->
 
 <div class="table-responsive">
 <table class="table skate_table" id="rateTable">

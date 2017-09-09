@@ -2,9 +2,16 @@
   <div id="follow_form">
   <% if current_user.following?(@user) %>
 		<%= render 'unfollow' %><br>
-		<%= link_to "Block", users_block_user_url(:user_id => current_user.id, :other_user => @user.id) %>
+		<% if current_user.user_has_blocked(@user) %>
+		<% else %>
+						<%= link_to "Block", users_block_user_url(:user_id => current_user.id, :other_user => @user.id), :class => "btn btn-primary" %>
+		<% end %>
   <% else %>
-    <%= render 'follow' %>
+		<% if current_user.user_has_blocked(@user) %>
+						<%= link_to "Unblock", users_unblock_user_url(:user_id => current_user.id, :other_user => @user.id), :class => "btn btn-default" %>
+		<% else %>
+						<%= render 'follow' %>
+    <% end %>
   <% end %>
   </div>
 <% end %>
