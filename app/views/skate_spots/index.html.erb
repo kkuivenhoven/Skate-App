@@ -8,6 +8,8 @@
   <div class="row">
 	 <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
 	   &nbsp;&nbsp;<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>&nbsp;
+	   <%= text_field_tag :zip_code, params[:zip_code], placeholder: "Restrict to distance away from your zip code?" %>
+		 <%= select_tag "mileage", options_for_select(["30", "60", "90", "120"]) %>
 	   <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
 			
 			 <table>

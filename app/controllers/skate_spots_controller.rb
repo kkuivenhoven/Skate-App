@@ -4,9 +4,13 @@ class SkateSpotsController < ApplicationController
 	end
 
   def index
-    @skate_spots = SkateSpot.all
+	 if (params[:zip_code].length == 5) and (params[:mileage].length > 1)
+      @skate_spots = SkateSpot.near(Geocoder.coordinates("#{params[:zip_code]}"), params[:mileage])
+	 else
+			@skate_spots = SkateSpot.all
+	 end
 		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
-      @skate_spots = @skate_spots.order(:name)
+    @skate_spots = @skate_spots.order(:name)
 		@all_latlng = Array.new
 		@skate_spots.each do |s|
 						@all_latlng << s.name
@@ -100,6 +104,12 @@ class SkateSpotsController < ApplicationController
 					if params[:streetPlaza][:streetPlaza] == "1"
 						@skate_spots = @skate_spots.where("street_plaza = ?", true)
 				  end
+					# @skate_spots = @skate_spots.search(params[:search])
+					# if params[:zip_code].length == 5
+					# 	 if params[:mileage].length > 1
+					# 			@skate_spots = @skate_spots.near(Geocoder.coordinates("#{params[:mileage]}"))
+					# 	 end
+					# end
 					@skate_spots = @skate_spots.search(params[:search])
 			 end
 			 @all_latlng = Array.new
