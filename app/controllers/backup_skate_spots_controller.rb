@@ -406,17 +406,17 @@ class SkateSpotsController < ApplicationController
 			@skate_spots.each do |s|
 					if s.ratings.count != 0
 						if s.id != @skate_spot.id
-								@stuff = s.ratings.where(:difficulty => @lowdiff..@highdiff, :police => @lowSec..@highSec)
-								# @filter_diff = s.ratings.where(:difficulty => @lowdiff..@highdiff)
-								# if @filter_diff.count != 0
-							# 			@filter_sec = @filter_diff.where(:police => @lowSec..@highSec)
-							# 			if @filter_sec.count != 0
-							# 			    @filter_ped = @filter_sec.where(:pedestrian => @lowPed..@highPed)
-							# 			    if @filter_ped.count != 0
-							# 								@rate_skate << s.ratings
-					     #          end
-					      #     end
-					      # end
+								@filter_diff = s.ratings.where(:difficulty => @lowdiff..@highdiff)
+			byebug
+								if @filter_diff.count != 0
+										@filter_sec = @filter_diff.where(:police => @lowSec..@highSec)
+										if @filter_sec.count != 0
+										    @filter_ped = @filter_sec.where(:pedestrian => @lowPed..@highPed)
+										    if @filter_ped.count != 0
+															@rate_skate << s.ratings
+					              end
+					          end
+					      end
 					  end
 					end
 			end

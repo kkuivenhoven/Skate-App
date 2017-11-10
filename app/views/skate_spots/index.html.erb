@@ -8,25 +8,26 @@
   <div class="row">
 	 <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
 	   &nbsp;&nbsp;<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>&nbsp;
-	   <%= text_field_tag :zip_code, params[:zip_code], placeholder: "Restrict to distance away from your zip code?" %>
+	   <%= text_field_tag :zip_code, params[:zip_code], placeholder: "Distance away" %>
 		 <%= select_tag "mileage", options_for_select(["30", "60", "90", "120"]) %>
 	   <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
 			
-			 <table>
+			 <!--table class="filterTable">
 			 	<tr>
-					<td>&nbsp;&nbsp;Filter by...</td>
+				<td class="filterCell">&nbsp;&nbsp;--><center><b>Filter by...</b></center><!--/td>
 					<td></td>
+				</tr-->
+			 <table class="filterTable1">
+				<tr>
+					<td class="filterCell">&nbsp;&nbsp;<%= label_tag "Highest upvoted" %></td>
+					<td><%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br></td>
 				</tr>
 				<tr>
-					<td>&nbsp;&nbsp;<%= label_tag "Highest upvoted" %></td>
-					<td>&nbsp;<%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br></td>
+					<td class="filterCell">&nbsp;&nbsp;<%= label_tag "Lowest downvoted" %></td>
+					<td><%= check_box "downvotes", "downvoteFilter" %>&nbsp;</td>
 				</tr>
 				<tr>
-					<td>&nbsp;&nbsp;<%= label_tag "Lowest downvoted" %></td>
-					<td>&nbsp;<%= check_box "downvotes", "downvoteFilter" %>&nbsp;</td>
-				</tr>
-				<tr>
-  				<td>&nbsp;&nbsp;<%= label_tag "Material..." %><br>
+  				<td class="filterCell">&nbsp;&nbsp;<%= label_tag "Material..." %><br>
 					   &nbsp;&nbsp;&nbsp;<%= label_tag "Wood" %><br>
 					   &nbsp;&nbsp;&nbsp;<%= label_tag "Concrete" %><br>
 					   &nbsp;&nbsp;&nbsp;<%= label_tag "metal" %><br>
@@ -39,11 +40,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td>&nbsp;&nbsp;<%= label_tag "Gated" %><br></td>
+					<td class="filterCell">&nbsp;&nbsp;<%= label_tag "Gated" %><br></td>
 					<td><%= check_box "gated", "gated" %></td>
 				</tr>
+			</table>
+			<table class="filterTable2">
 				<tr>
-  				<td>&nbsp;&nbsp;<%= label_tag "Size..." %><br>
+  				<td class="filterCell">&nbsp;&nbsp;<%= label_tag "Size..." %><br>
 					   &nbsp;&nbsp;&nbsp;<%= label_tag "Skate spot size" %><br>
 					   &nbsp;&nbsp;&nbsp;<%= label_tag "Neighborhood spot size" %><br>
 					   &nbsp;&nbsp;&nbsp;<%= label_tag "Regional spot size" %><br>
@@ -56,12 +59,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td>&nbsp;&nbsp;<%= label_tag "Transition" %></td>
-					<td>&nbsp;<%= check_box "transition", "transition" %>&nbsp;<br></td>
+					<td class="filterCell">&nbsp;&nbsp;<%= label_tag "Transition" %></td>
+					<td><%= check_box "transition", "transition" %>&nbsp;<br></td>
 				</tr>
 				<tr>
-					<td>&nbsp;&nbsp;<%= label_tag "Street plaza" %></td>
-					<td>&nbsp;<%= check_box "streetPlaza", "streetPlaza" %>&nbsp;</td>
+					<td class="filterCell">&nbsp;&nbsp;<%= label_tag "Street plaza" %></td>
+					<td><%= check_box "streetPlaza", "streetPlaza" %>&nbsp;</td>
 				</tr>
 			</table>
 

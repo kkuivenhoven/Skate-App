@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20170902222234) do
     t.datetime "updated_at",                         null: false
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "location_id"
     t.string   "zip_code"
     t.string   "city"
     t.string   "state"
@@ -116,7 +115,6 @@ ActiveRecord::Schema.define(version: 20170902222234) do
     t.integer  "down_vote",              default: 0, null: false
   end
 
-  add_index "skate_spots", ["location_id"], name: "index_skate_spots_on_location_id"
   add_index "skate_spots", ["rating_id"], name: "index_skate_spots_on_rating_id"
   add_index "skate_spots", ["user_id"], name: "index_skate_spots_on_user_id"
 
