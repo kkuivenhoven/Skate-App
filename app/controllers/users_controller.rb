@@ -52,14 +52,15 @@ class UsersController < ApplicationController
   #filters out any inappropriate usernames
   def create
     @user = User.new(user_params)
-    hate_filter = LanguageFilter::Filter.new matchlist: :hate, replacement: :garbled
-    prof_filter = LanguageFilter::Filter.new matchlist: :profanity, replacement: :garbled 
-    sex_filter = LanguageFilter::Filter.new matchlist: :sex, replacement: :garbled 
-    viol_filter = LanguageFilter::Filter.new matchlist: :violence, replacement: :garbled 
-    if hate_filter.match?(@user.name) or prof_filter.match?(@user.name) or sex_filter.match?(@user.name) or viol_filter.match?(@user.name)
-      flash[:warning] = "Please pick a more appropriate user name."
-      render 'new'
-    elsif @user.save
+    # hate_filter = LanguageFilter::Filter.new matchlist: :hate, replacement: :garbled
+    # prof_filter = LanguageFilter::Filter.new matchlist: :profanity, replacement: :garbled 
+    # sex_filter = LanguageFilter::Filter.new matchlist: :sex, replacement: :garbled 
+    # viol_filter = LanguageFilter::Filter.new matchlist: :violence, replacement: :garbled 
+    # if hate_filter.match?(@user.name) or prof_filter.match?(@user.name) or sex_filter.match?(@user.name) or viol_filter.match?(@user.name)
+      #  flash[:warning] = "Please pick a more appropriate user name."
+      # render 'new'
+    # elsif @user.save
+    if @user.save
        @user.send_activation_email
        flash[:info] = "Please check your email to activate your account."
        redirect_to root_url
