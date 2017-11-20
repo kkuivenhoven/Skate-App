@@ -248,6 +248,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
@@ -286,6 +288,7 @@ GEM
     rdoc (4.2.0)
     ruby-graphviz (1.2.2)
     ruby-progressbar (1.7.5)
+    ruby_http_client (3.3.0)
     sass (3.4.20)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -296,12 +299,19 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sendgrid-ruby (5.2.0)
+      ruby_http_client (~> 3.2)
+      sinatra (>= 1.4.7, < 3)
     shellany (0.0.1)
     simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sinatra (1.4.8)
+      rack (~> 1.5)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     slop (3.6.0)
     spring (1.6.0)
     sprockets (3.5.2)
@@ -360,6 +370,7 @@ DEPENDENCIES
   rails-erd
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sendgrid-ruby
   simplecov
   spring
   sqlite3
