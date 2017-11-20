@@ -3,7 +3,7 @@ class SkateSpot < ActiveRecord::Base
   belongs_to :user
   has_many :skate_comments
   has_many :ratings
-  has_one :location
+  # has_one :location
   has_many :events
 	# has_many :microposts, dependent: :destroy
 

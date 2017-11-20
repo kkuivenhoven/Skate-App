@@ -9,14 +9,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-SkateSpot.create!(name: "Creekside Park", user_id: 2, number: 1010, 
+SkateSpot.create!(name: "Creekside Park", user_id: 1, number: 1010, 
                   street: "Claremont Dr",
                   city: "Brentwood", state: "CA", country: "USA",
                   zip_code: "94513", latitude: 35.121738, longitude: -120.609989, 
 								  street_spot: 1, park_spot: 0, gated: 0, concrete: 1, 
 								 	skate_spot_size: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "South County Skatepark", user_id: 2, number: 1750, 
+SkateSpot.create!(name: "South County Skatepark", user_id: 1, number: 1750, 
                   street: "Ramonda Ave",
                   city: "Grover Beach", state: "CA", country: "USA",
 								  street_spot: 0, park_spot: 1,
@@ -40,7 +40,7 @@ SkateSpot.create!(name: "Santa Rosa Park", user_id: 1,
 								  gated: 1, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "Las Animas Skateboard Park", user_id: 2, 
+SkateSpot.create!(name: "Las Animas Skateboard Park", user_id: 1, 
                   street: "Mantelli Dr",
                   city: "Gilroy", state: "CA", country: "USA",
 								  street_spot: false, park_spot: true,
@@ -71,14 +71,14 @@ SkateSpot.create!(name: "Applegate Skatepark", user_id: 1, number: 1045,
 								  street_spot: false, park_spot: true, gated: 0, concrete: 1, 
 								 	skate_spot_size: 1, transition: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "Patterson Skatepark", user_id: 2, number: 1010,
+SkateSpot.create!(name: "Patterson Skatepark", user_id: 1, number: 1010,
                   street: "W Las Palmas Ave",
                   city: "Patterson", state: "CA", country: "USA",
                   zip_code: "95363", latitude: 37.466275, longitude: -121.141329,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, 
 								 	skate_spot_size: 1, transition: 1, street_plaza: 1)
 
-SkateSpot.create!(name: "El Pescadero Park", user_id: 2, number: 301,
+SkateSpot.create!(name: "El Pescadero Park", user_id: 1, number: 301,
                   street: "Grant Line Rd",
                   city: "Tracy", state: "CA", country: "USA",
                   zip_code: "95376", latitude: 37.754186, longitude: -121.430193,
@@ -92,7 +92,7 @@ SkateSpot.create!(name: "Yuba City Skatepark", user_id: 1, number: 806,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
-SkateSpot.create!(name: "Pedlow Skatepark", user_id: 2, number: 17334,
+SkateSpot.create!(name: "Pedlow Skatepark", user_id: 1, number: 17334,
                   street: "Victory Blvd",
                   city: "Encino", state: "CA", country: "USA",
                   zip_code: "91316", latitude: 34.185850, longitude: -118.511441,
@@ -127,7 +127,7 @@ SkateSpot.create!(name: "Los Osos Skate park", user_id: 1, number: 2180,
 								  street_spot: false, park_spot: true, gated: 1, concrete: 1, wood: 0, 
 								 	neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
-SkateSpot.create!(name: "Provident Skatepark", user_id: 2, number: 1035,
+SkateSpot.create!(name: "Provident Skatepark", user_id: 1, number: 1035,
                   street: "W Murray Ave",
                   city: "Visalia", state: "CA", country: "USA",
                   zip_code: "93291", latitude: 36.333393, longitude: -119.303081,
@@ -263,15 +263,15 @@ Rating.create!(difficulty: 4, police: 5, pedestrian: 1,
 
 Rating.create!(difficulty: 5, police: 5, pedestrian: 0,
                description: "10-stair near sidewalk",
-               skate_spot_id: SkateSpot.fourth.id, user_id: 2)
+               skate_spot_id: SkateSpot.fourth.id, user_id: 1)
 
 Rating.create!(difficulty: 5, police: 3, pedestrian: 1,
                description: "3-stair",
-               skate_spot_id: SkateSpot.fourth.id, user_id: 2)
+               skate_spot_id: SkateSpot.fourth.id, user_id: 1)
 
 Rating.create!(difficulty: 5, police: 2, pedestrian: 2,
                description: "ledge, people sitting",
-               skate_spot_id: SkateSpot.fourth.id, user_id: 2)
+               skate_spot_id: SkateSpot.fourth.id, user_id: 1)
 
 Rating.create!(difficulty: 5, police: 3, pedestrian: 3,
                description: "few people sitting",
