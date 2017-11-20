@@ -6,6 +6,7 @@ https://www.railstutorial.org/book/account_activation_password_reset-->
 
 <p>Hello <%= @user.name %>,</p>
 
+<br>
 <p>
 Welcome to the Skate Spot App! To activate your account, click on the link below:
 </p>
@@ -13,7 +14,13 @@ Welcome to the Skate Spot App! To activate your account, click on the link below
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>
 
+<br>
+<br>
 <p>Enjoy the App!</p>
-<small>Note: there are still problems with the app so just sit tight.<br>
+<br>
+
+<br>
+<small>P.S. there are still problems with the app so just sit tight.<br>
 Working out the kinks now.</small>
+
 

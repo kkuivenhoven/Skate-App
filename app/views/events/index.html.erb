@@ -10,9 +10,9 @@
 	 <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
 	 <% end %>
 
-	 <% if !@events.present? %>
-		 <p>There are no events containing the term(s) <%= params[:search] %>.</p>
-	 <% end %>
+	 <!--% if (!@events.present?) and (!params[:search].nil?) %>
+		 <p>There are no events containing the term(s) %= params[:search] %>.</p>
+	 % end %-->
   </div>
 </div>
 
@@ -29,6 +29,17 @@
   </thead>
 
   <tbody>
+	 <% if (!@events.present?) or (!params[:search].nil?) %>
+		<tr>
+			<td>
+			  <% if (!params[:search].nil?) %> 
+				 <p>There are no events containing the term(s) <%= params[:search] %>.</p>
+				<% else %>
+				 <p>There are no events posted.</p>
+				<% end %>
+			</td>
+		</tr>
+	 <% else %>
     <% @events.each do |event| %>
 		<% @s_event = @skate_spots.find_by(:id => event.skate_spot_id) %> 
       <tr>
@@ -39,6 +50,7 @@
    
       </tr>
     <% end %>
+	<% end %>
   </tbody>
 </table>
 
