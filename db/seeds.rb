@@ -9,6 +9,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+=begin
 SkateSpot.create!(name: "Creekside Park", user_id: 1, number: 1010, 
                   street: "Claremont Dr",
                   city: "Brentwood", state: "CA", country: "USA",
@@ -303,3 +304,4 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+=end
