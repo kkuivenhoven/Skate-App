@@ -29,7 +29,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # SO said to add this so here it is
-  config.serve_static_assets = true
+  # config.serve_static_assets = true
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
