@@ -44,7 +44,7 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
      <br>
      <%= yield(:p) %></p>
 
-     <% if current_page?(controller: 'skate_spots', action: 'index') || current_page?(controller: 'skate_spots', action: 'park_spots_index') || current_page?(controller: 'skate_spots', action: 'street_spots_index') %>
+     <% if current_page?(controller: 'skate_spots', action: 'index') %>
 						 <p-small>Confused on skate spot sizing? Visit our <%= link_to "Help", static_pages_help_path, :title => "Click for skate spot size info" %> page to learn about skate spot sizes.</p>
      <% end %>  
 

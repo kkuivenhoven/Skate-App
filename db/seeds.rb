@@ -18,6 +18,7 @@ if Rails.env.development?
 										street_spot: 1, park_spot: 0, gated: 0, concrete: 1, 
 										skate_spot_size: 1, street_plaza: 1)
 
+=begin
 	SkateSpot.create!(name: "South County Skatepark", user_id: 1, number: 1750, 
 										street: "Ramonda Ave",
 										city: "Grover Beach", state: "CA", country: "USA",
@@ -86,6 +87,7 @@ if Rails.env.development?
 										zip_code: "95376", latitude: 37.754186, longitude: -121.430193,
 										street_spot: false, park_spot: true, gated: 0, concrete: 1, 
 										neighborhood_spot_size: 1, transition: 1, street_plaza: 1)
+=end
 
 	SkateSpot.create!(name: "Yuba City Skatepark", user_id: 1, number: 806,
 										street: "Gray Ave",

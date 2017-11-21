@@ -44,9 +44,9 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
            Skate Spot Options<b class="skate_caret"></b>
          </a>
          <ul class="dropdown-menu">
-			    <li><%= link_to "View all Skate Spots", skate_spots_path %></li>
-			    <li><%= link_to "View all Street Spots", skate_spots_street_spots_index_path %></li>
-			    <li><%= link_to "View all Park Spots", skate_spots_park_spots_index_path %></li>
+			    <li><%= link_to "View all Skate Spots", skate_spots_path(street: 0, park: 0) %></li>
+			    <li><%= link_to "View all Street Spots", skate_spots_path(street: 1, park: 0) %></li>
+			    <li><%= link_to "View all Park Spots", skate_spots_path(street: 0, park: 1)%></li>
 			    <!--li><= link_to "Recommender", skate_spots_recommender_path %></li-->
              <!--% if !current_page?(controller: 'static_pages', action: 'home') %>-->
               <!--li class="divider">

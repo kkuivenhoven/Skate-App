@@ -22,8 +22,6 @@ Rails.application.routes.draw do
   get 'skate_spots/test_page', to: 'skate_spots#test_page', as: 'test_page'
   get 'skate_spots/new_by_geo', to: 'skate_spots#new_by_geo', as: 'new_by_geo'
   post 'skate_spots/create_by_geo', to: 'skate_spots#create_by_geo', as: 'create_by_geo'
-  get 'skate_spots/street_spots_index'
-  get 'skate_spots/park_spots_index'
   get 'skate_spots/like_ss'
   get 'skate_spots/dislike_ss'
 

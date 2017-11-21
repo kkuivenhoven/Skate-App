@@ -1,0 +1,45 @@
+
+<div class="table-responsive">
+<table class="table skate_table" id="rateTable">
+  <thead>
+    <tr>
+      <th onclick="sortnameTable(0)">Name</th>
+      <th onclick="sortthenums(2)">Difficulty</th>
+      <th onclick="sortthenums(3)">Security</th>
+      <th onclick="sortthenums(4)">Pedestrian</th>
+      <th>Spot&nbsp;type</th>
+      <th style="max-width: 250px; word-wrap: break-word;"><center>Descriptions</center></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sortedRatings.each do |key, val| %>
+    <% @s_rate = @skate_spots.find(key) %>  
+      <tr>
+          <td style="display: none"><%= @s_rate.name %></td>
+          <td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>
+          <td><%= @s_rate.ratings.average(:difficulty).truncate(2) %></td>
+          <td><%= @s_rate.ratings.average(:police).truncate(2) %></td>
+          <td><%= @s_rate.ratings.average(:pedestrian).truncate(2) %></td>
+          <td>
+              <% if @s_rate.park_spot %>
+                  <center>Park&nbsp;spot</center>
+              <% elsif @s_rate.street_spot %>
+                  <center>Street&nbsp;spot</center>
+              <% else %>
+                  <center>Type of spot&nbsp;not indicated</center>
+              <% end %>
+          </td>
+          <td style="width: 250px; height: 75px;"><!--%= rating.description %-->
+            <div style="width: 250px; height: 75px; overflow: auto">
+              <% @s_rate.ratings.each do |r| %>
+                &#8226;&nbsp;<%= r.description %><br>
+              <% end %>
+            </div>
+
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

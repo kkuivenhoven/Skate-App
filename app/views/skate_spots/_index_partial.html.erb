@@ -1,0 +1,156 @@
+<div class="container" id="skateSearch">
+  <div class="row">
+   <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
+     &nbsp;&nbsp;<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>&nbsp;
+     <%= text_field_tag :zip_code, params[:zip_code], placeholder: "Zip code" %>
+     <%= select_tag "mileage", options_for_select(["30", "60", "90", "120"]) %>
+     <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
+    
+       <!--table class="filterTable">
+        <tr>
+        <td class="filterCell">&nbsp;&nbsp;--><center><b>Filter by...</b></center><!--/td>
+          <td></td>
+        </tr-->
+       <table class="filterTable1">
+        <tr>
+          <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Highest upvoted" %></td>
+          <td><%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br></td>
+        </tr>
+        <tr>
+          <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Lowest downvoted" %></td>
+          <td><%= check_box "downvotes", "downvoteFilter" %>&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Material..." %><br>
+             &nbsp;&nbsp;&nbsp;<%= label_tag "Wood" %><br>
+             &nbsp;&nbsp;&nbsp;<%= label_tag "Concrete" %><br>
+             &nbsp;&nbsp;&nbsp;<%= label_tag "metal" %><br>
+          </td>
+          <td>
+            <br>
+             <%= check_box "wood", "wood" %><br>
+             <%= check_box "concrete", "concrete" %><br>
+             <%= check_box "metal", "metal" %><br>
+          </td>
+        </tr>
+        <tr>
+          <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Gated" %><br></td>
+          <td><%= check_box "gated", "gated" %></td>
+        </tr>
+      </table>
+      <table class="filterTable2">
+        <tr>
+          <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Size..." %><br>
+             &nbsp;&nbsp;&nbsp;<%= label_tag "Skate spot size" %><br>
+             &nbsp;&nbsp;&nbsp;<%= label_tag "Neighborhood spot size" %><br>
+             &nbsp;&nbsp;&nbsp;<%= label_tag "Regional spot size" %><br>
+          </td>
+          <td>
+            <br>
+             <%= check_box "spotSize", "spotSize" %><br>
+             <%= check_box "neighSize", "neighSize" %><br>
+             <%= check_box "regSize", "regSize" %><br>
+          </td>
+        </tr>
+        <tr>
+          <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Transition" %></td>
+          <td><%= check_box "transition", "transition" %>&nbsp;<br></td>
+        </tr>
+        <tr>
+          <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Street plaza" %></td>
+          <td><%= check_box "streetPlaza", "streetPlaza" %>&nbsp;</td>
+        </tr>
+      </table>
+
+
+   <% end %>
+   <% if !@skate_spots.present? %>
+     <p>There are no skate spots containing the term(s) <%= params[:search] %>.</p>
+   <% end %>
+  </div>
+</div>
+
+<div class="container" id="spaceDiv">
+  <div class="row">
+    <p style="visibility:hidden">This text is a placeholder to separate the search div from the skate table div.</p>
+  </div>
+</div>
+
+
+<div class="table-responsive">
+<!--table class="table skate_table" id="myTable"-->
+<table class="table skate_table" id="myTable">
+ <thead>
+  <tr>
+    <th onclick="sortTable(0)">Name</th>
+    <th>Gated</th>
+    <th onclick="skate_sortthenums(2)">Upvotes</th>
+    <th onclick="skate_sortthenums(3)">Downvotes</th>
+    <th>Material</th>
+    <th>Type</th>
+    <th>Size</th>
+    <th>Address</th>
+    <!--th onclick="sortNumsTable(2)">Zip Code</th-->
+  </tr>
+  </thead>
+  <tbody>
+  <% @skate_spots.each do |skate_spot| %>
+  <tr>
+   <td>
+    <span style="display:none"><%= skate_spot.name %></span>
+    <li class="dropdown">
+      <span class="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
+      <% if logged_in? %>
+       <% if current_user.id == skate_spot.user_id %>
+        <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
+          <b class="skate_caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
+          <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      <% end %>
+      <% end %>
+    </li>
+   </td>
+
+   <td><% if skate_spot.gated %>Yes<% else %>No<% end %></td>
+
+   <td><%= skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %></td>
+   <td><%= skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %></td>
+
+   <td>
+      <% if skate_spot.wood && skate_spot.concrete && skate_spot.metal%>Wood, Concrete, Metal
+      <% elsif skate_spot.wood && skate_spot.concrete %>Wood, Concrete
+      <% elsif skate_spot.wood && skate_spot.metal %>Wood, Metal
+      <% elsif skate_spot.concrete && skate_spot.metal %>Concrete, Metal
+      <% elsif skate_spot.wood %>Wooden
+      <% elsif skate_spot.metal %>Metal
+      <% elsif skate_spot.concrete %>Concrete
+      <% else %>No material listed
+      <% end %>
+   </td>
+
+   <td>
+      <% if skate_spot.transition && skate_spot.street_plaza %>Transition, Street Plaza
+      <% elsif skate_spot.transition %>Transition
+      <% elsif skate_spot.street_plaza %>Street Plaza
+      <% else %>Not listed
+      <% end %>
+   </td>
+   <td>
+      <% if skate_spot.skate_spot_size %>Skate spot size
+      <% elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
+      <% elsif skate_spot.regional_spot_size %>Regional spot size
+      <% else %>No size listed
+      <% end %>
+   </td>
+
+   <td><%= skate_spot.complete_address %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+

@@ -7,11 +7,29 @@ class SkateSpotsController < ApplicationController
 	 if (!params[:zip_code].nil?) and (!params[:mileage].nil?)
 		 if (params[:zip_code].length == 5) and (params[:mileage].length > 1)
 				@skate_spots = SkateSpot.near(Geocoder.coordinates("#{params[:zip_code]}"), params[:mileage])
+				if params[:street] == "1"
+					@skate_spots = @skate_spots.where(:street_spot => true)
+				elsif params[:park] == "1"
+					@skate_spots = @skate_spots.where(:park_spot => true)
+				end
 		 else
-				@skate_spots = SkateSpot.all
+				if params[:street] == "1"
+					@skate_spots = @skate_spots.where(:street_spot => true)
+				elsif params[:park] == "1"
+					@skate_spots = @skate_spots.where(:park_spot => true)
+				else
+					@skate_spots = SkateSpot.all
+				end
 		 end
 	 else
-			@skate_spots = SkateSpot.all
+			if params[:street] == "1"
+				@skate_spots = SkateSpot.where(:street_spot => true)
+			elsif params[:park] == "1"
+				@skate_spots = SkateSpot.where(:park_spot => true)
+			else
+				@skate_spots = SkateSpot.all
+			end
+			# @skate_spots = SkateSpot.all
 	 end
 		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
     @skate_spots = @skate_spots.order(:name)
@@ -167,310 +185,7 @@ class SkateSpotsController < ApplicationController
 		end
   end
 
-  def park_spots_index
-    @skate_spots = SkateSpot.where(:park_spot => true)
-		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
-      @skate_spots = @skate_spots.order(:name)
-		@all_latlng = Array.new
-		@skate_spots.each do |s|
-						@all_latlng << s.name
-						@all_latlng << s.latitude
-						@all_latlng << s.longitude
-		end
-		
-		@upCount = 0
-		@downCount = 0
-		@UV_vals = @skate_spots.pluck(:user_votes)
-		@UV_vals.delete_if &:empty?
-    @UV_vals.each do |uv| 
-      uv.each do |k,v|
-			 if v == "1" 
-				@upCount += 1
-			 elsif v == "0" 
-				@downCount += 1
-			 end 
-      end
-    end
 
-		@notNil = @skate_spots.where.not(user_votes: nil)
-		@values = @notNil.pluck(:id, :user_votes)
-		@up_IDs = Array.new 
-		@down_IDs = Array.new
-		@values.each do |v|
-			@up_Tot = 0
-			@down_Tot = 0
-			v[1].each do |k, val|
-				if val == "1" 
-					@up_Tot += 1
-				end 
-				if val == "0" 
-					@down_Tot += 1
-				end
-			end
-			if @up_Tot > @upCount.to_i
-					 @up_IDs << v[0]
-			end 
-			if @down_Tot > @downCount.to_i
-					 @down_IDs << v[0]
-			end
-		end
-
-
-		@upCount = "%.2f" % @upCount
-		@downCount = "%.2f" % @downCount
-		@upCount = @upCount.to_f/SkateSpot.count
-		@downCount = @downCount.to_f/SkateSpot.count
-
-
-		if params[:search]
-			 if params[:upvotes][:upvoteFilter] == "1"
-
-					@skate_spots = @skate_spots.find(@upIds)
-
-
-
-          if params[:metal][:metal] == "1" 
-            @skate_spots = @skate_spots.where("metal = ?", true)
-          end 
-          if params[:wood][:wood] == "1" 
-            @skate_spots = @skate_spots.where("wood = ?", true)
-          end 
-          if params[:concrete][:concrete] == "1" 
-            @skate_spots = @skate_spots.where("concrete = ?", true)
-          end 
-          if params[:gated][:gated] == "1" 
-            @skate_spots = @skate_spots.where("gated = ?", true)
-          end 
-          if params[:spotSize][:spotSize] == "1" 
-            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
-          elsif params[:neighSize][:neighspotSize] == "1" 
-            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
-          elsif params[:regSize][:regSize] == "1" 
-            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
-          end 
-          if params[:transition][:transition] == "1" 
-            @skate_spots = @skate_spots.where("transition = ?", true)
-          end 
-          if params[:streetPlaza][:streetPlaza] == "1" 
-            @skate_spots = @skate_spots.where("street_plaza = ?", true)
-          end 
-          @skate_spots = @skate_spots.search(params[:search])
-			 elsif params[:downvotes][:downvoteFilter] == "1"
-					@skate_spots = @skate_spots.find(@downIds)
-
-          if params[:metal][:metal] == "1" 
-            @skate_spots = @skate_spots.where("metal = ?", true)
-          end 
-          if params[:wood][:wood] == "1" 
-            @skate_spots = @skate_spots.where("wood = ?", true)
-          end 
-          if params[:concrete][:concrete] == "1" 
-            @skate_spots = @skate_spots.where("concrete = ?", true)
-          end 
-          if params[:gated][:gated] == "1" 
-            @skate_spots = @skate_spots.where("gated = ?", true)
-          end 
-          if params[:spotSize][:spotSize] == "1" 
-            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
-          elsif params[:neighSize][:neighspotSize] == "1" 
-            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
-          elsif params[:regSize][:regSize] == "1" 
-            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
-          end 
-          if params[:transition][:transition] == "1" 
-            @skate_spots = @skate_spots.where("transition = ?", true)
-          end 
-          if params[:streetPlaza][:streetPlaza] == "1" 
-            @skate_spots = @skate_spots.where("street_plaza = ?", true)
-          end 
-					@skate_spots = @skate_spots.search(params[:search])
-			 else
-          if params[:metal][:metal] == "1" 
-            @skate_spots = @skate_spots.where("metal = ?", true)
-          end 
-          if params[:wood][:wood] == "1" 
-            @skate_spots = @skate_spots.where("wood = ?", true)
-          end 
-          if params[:concrete][:concrete] == "1" 
-            @skate_spots = @skate_spots.where("concrete = ?", true)
-          end 
-          if params[:gated][:gated] == "1" 
-            @skate_spots = @skate_spots.where("gated = ?", true)
-          end 
-          if params[:spotSize][:spotSize] == "1" 
-            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
-          elsif params[:neighSize][:neighspotSize] == "1" 
-            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
-          elsif params[:regSize][:regSize] == "1" 
-            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
-          end 
-          if params[:transition][:transition] == "1" 
-            @skate_spots = @skate_spots.where("transition = ?", true)
-          end 
-          if params[:streetPlaza][:streetPlaza] == "1" 
-            @skate_spots = @skate_spots.where("street_plaza = ?", true)
-          end 
-					@skate_spots = @skate_spots.search(params[:search])
-			 end
-			 @all_latlng = Array.new
-			 @skate_spots.each do |s|
-							 @all_latlng << s.name
-							 @all_latlng << s.latitude
-							 @all_latlng << s.longitude
-			 end
-		else
-			@skate_spots = @skate_spots.order(:name)
-		end
-  end
-
-  def street_spots_index
-    @skate_spots = SkateSpot.where(:street_spot => true)
-		@hash = @skate_spots.map {|a| {lat: a.latitude, long: a.longitude} }
-      @skate_spots = @skate_spots.order(:name)
-		@all_latlng = Array.new
-		@skate_spots.each do |s|
-						@all_latlng << s.name
-						@all_latlng << s.latitude
-						@all_latlng << s.longitude
-		end
-		@upCount = 0
-		@downCount = 0
-		@UV_vals = @skate_spots.pluck(:user_votes)
-		@UV_vals.delete_if &:empty?
-    @UV_vals.each do |uv| 
-      uv.each do |k,v|
-			 if v == "1" 
-				@upCount += 1
-			 elsif v == "0" 
-				@downCount += 1
-			 end 
-      end
-    end
-
-		@notNil = @skate_spots.where.not(user_votes: nil)
-		@values = @notNil.pluck(:id, :user_votes)
-		@up_IDs = Array.new 
-		@down_IDs = Array.new
-		@values.each do |v|
-			@up_Tot = 0
-			@down_Tot = 0
-			v[1].each do |k, val|
-				if val == "1" 
-					@up_Tot += 1
-				end 
-				if val == "0" 
-					@down_Tot += 1
-				end
-			end
-			if @up_Tot > @upCount.to_i
-					 @up_IDs << v[0]
-			end 
-			if @down_Tot > @downCount.to_i
-					 @down_IDs << v[0]
-			end
-		end
-
-
-		@upCount = "%.2f" % @upCount
-		@downCount = "%.2f" % @downCount
-		@upCount = @upCount.to_f/SkateSpot.count
-		@downCount = @downCount.to_f/SkateSpot.count
-
-		if params[:search]
-			 if params[:upvotes][:upvoteFilter] == "1"
-					@skate_spots = @skate_spots.find(@upIds)
-         if params[:metal][:metal] == "1"
-            @skate_spots = @skate_spots.where("metal = ?", true)
-          end
-          if params[:wood][:wood] == "1"
-            @skate_spots = @skate_spots.where("wood = ?", true)
-          end
-          if params[:concrete][:concrete] == "1"
-            @skate_spots = @skate_spots.where("concrete = ?", true)
-          end
-          if params[:gated][:gated] == "1"
-            @skate_spots = @skate_spots.where("gated = ?", true)
-          end
-          if params[:spotSize][:spotSize] == "1"
-            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
-          elsif params[:neighSize][:neighspotSize] == "1"
-            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
-          elsif params[:regSize][:regSize] == "1"
-            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
-          end
-          if params[:transition][:transition] == "1"
-            @skate_spots = @skate_spots.where("transition = ?", true)
-          end
-          if params[:streetPlaza][:streetPlaza] == "1"
-            @skate_spots = @skate_spots.where("street_plaza = ?", true)
-          end
-					@skate_spots = @skate_spots.search(params[:search])
-			 elsif params[:downvotes][:downvoteFilter] == "1"
-					@skate_spots = @skate_spots.find(@downIds)
-          if params[:metal][:metal] == "1" 
-            @skate_spots = @skate_spots.where("metal = ?", true)
-          end 
-          if params[:wood][:wood] == "1" 
-            @skate_spots = @skate_spots.where("wood = ?", true)
-          end 
-          if params[:concrete][:concrete] == "1" 
-            @skate_spots = @skate_spots.where("concrete = ?", true)
-          end 
-          if params[:gated][:gated] == "1" 
-            @skate_spots = @skate_spots.where("gated = ?", true)
-          end 
-          if params[:spotSize][:spotSize] == "1" 
-            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
-          elsif params[:neighSize][:neighspotSize] == "1" 
-            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
-          elsif params[:regSize][:regSize] == "1" 
-            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
-          end 
-          if params[:transition][:transition] == "1" 
-            @skate_spots = @skate_spots.where("transition = ?", true)
-          end 
-          if params[:streetPlaza][:streetPlaza] == "1" 
-            @skate_spots = @skate_spots.where("street_plaza = ?", true)
-          end 
-					@skate_spots = @skate_spots.search(params[:search])
-			 else
-          if params[:metal][:metal] == "1" 
-            @skate_spots = @skate_spots.where("metal = ?", true)
-          end 
-          if params[:wood][:wood] == "1" 
-            @skate_spots = @skate_spots.where("wood = ?", true)
-          end 
-          if params[:concrete][:concrete] == "1" 
-            @skate_spots = @skate_spots.where("concrete = ?", true)
-          end 
-          if params[:gated][:gated] == "1" 
-            @skate_spots = @skate_spots.where("gated = ?", true)
-          end 
-          if params[:spotSize][:spotSize] == "1" 
-            @skate_spots = @skate_spots.where("skate_spot_size = ?", true)
-          elsif params[:neighSize][:neighspotSize] == "1" 
-            @skate_spots = @skate_spots.where("neighborhood_spot_size = ?", true)
-          elsif params[:regSize][:regSize] == "1" 
-            @skate_spots = @skate_spots.where("regional_spot_size = ?", true)
-          end 
-          if params[:transition][:transition] == "1" 
-            @skate_spots = @skate_spots.where("transition = ?", true)
-          end 
-          if params[:streetPlaza][:streetPlaza] == "1" 
-            @skate_spots = @skate_spots.where("street_plaza = ?", true)
-          end 
-					@skate_spots = @skate_spots.search(params[:search])
-			 end
-			 @all_latlng = Array.new
-			 @skate_spots.each do |s|
-							 @all_latlng << s.name
-							 @all_latlng << s.latitude
-							 @all_latlng << s.longitude
-			 end
-		else
-			@skate_spots = @skate_spots.order(:name)
-		end
-  end
 
   def show
     @rating_items = current_user.rating_feed.paginate(page: params[:page])
