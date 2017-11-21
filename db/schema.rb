@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170902222234) do
+ActiveRecord::Schema.define(version: 20171121004048) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20170902222234) do
   end
 
   create_table "skate_spots", force: :cascade do |t|
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "name"
     t.integer  "user_id"
     t.string   "zip_code"
@@ -111,8 +111,7 @@ ActiveRecord::Schema.define(version: 20170902222234) do
     t.boolean  "skate_spot_size"
     t.boolean  "neighborhood_spot_size"
     t.boolean  "regional_spot_size"
-    t.integer  "up_vote",                default: 0, null: false
-    t.integer  "down_vote",              default: 0, null: false
+    t.text     "user_votes"
   end
 
   add_index "skate_spots", ["rating_id"], name: "index_skate_spots_on_rating_id"

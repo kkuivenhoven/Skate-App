@@ -28,7 +28,8 @@
     <%= f.number_field :pedestrian, class: 'form-control' %>
 
     <%= f.label :description %><br>
-    <%= f.text_field :description, class: 'form-control' %>
+    <!--%= f.text_field :description, class: 'form-control' %-->
+    <%= f.text_field :description, class: 'form-control', :maxlength=>"140" %>
 
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 

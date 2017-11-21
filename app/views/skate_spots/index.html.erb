@@ -4,6 +4,7 @@
 <% provide(:p, "The skate spots are ordered alphabetically. 
 					 Click one to view more details.") %>
 
+
 <div class="container" id="skateSearch">
   <div class="row">
 	 <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
@@ -125,8 +126,8 @@
 		  <% end %>
 	 </td>
 
-	 <td><%= skate_spot.up_vote %></td>
-	 <td><%= skate_spot.down_vote %></td>
+	 <td><%= skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %></td>
+	 <td><%= skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %></td>
 
 	 <td>
       <% if skate_spot.wood && skate_spot.concrete && skate_spot.metal%>Wood, Concrete, Metal

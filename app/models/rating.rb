@@ -32,6 +32,46 @@ class Rating < ActiveRecord::Base
     where("description LIKE ?", "%#{search}%") 
   end
 
+  def self.ratings_sort(first_p, second_p, third_p, useSort)
+		first_p = first_p.split('(')
+		first_p[1] = first_p[1].chop
+		second_p = second_p.split('(')
+		second_p[1] = second_p[1].chop
+		third_p = third_p.split('(')
+		third_p[1] = third_p[1].chop
+    @equals = { "Difficulty" => "avgDiff", "Security" => "avgSec", "Pedestrian" => "avgPed" }
+		if first_p[1] == "LowHigh"
+			if second_p[1] == "LowHigh"
+				if third_p[1] == "LowHigh"
+					@sorted = useSort.sort_by{ |k,v| [v[@equals[first_p[0]]], v[@equals[second_p[0]]], v[@equals[third_p[0]]]] }
+				elsif third_p[1] == "HighLow"
+					@sorted = useSort.sort_by{ |k,v| [v[@equals[first_p[0]]], v[@equals[second_p[0]]], -v[@equals[third_p[0]]]] }
+				end
+			elsif second_p[1] == "HighLow"
+				if third_p[1] == "LowHigh"
+					@sorted = useSort.sort_by{ |k,v| [v[@equals[first_p[0]]], -v[@equals[second_p[0]]], v[@equals[third_p[0]]]] }
+				elsif third_p[1] == "HighLow"
+					@sorted = useSort.sort_by{ |k,v| [v[@equals[first_p[0]]], -v[@equals[second_p[0]]], -v[@equals[third_p[0]]]] }
+				end
+			end
+		elsif first_p[1] == "HighLow"
+			if second_p[1] == "LowHigh"
+				if third_p[1] == "LowHigh"
+					@sorted = useSort.sort_by{ |k,v| [-v[@equals[first_p[0]]], v[@equals[second_p[0]]], v[@equals[third_p[0]]]] }
+				elsif third_p[1] == "HighLow"
+					@sorted = useSort.sort_by{ |k,v| [-v[@equals[first_p[0]]], v[@equals[second_p[0]]], -v[@equals[third_p[0]]]] }
+				end
+			elsif second_p[1] == "HighLow"
+				if third_p[1] == "LowHigh"
+					@sorted = useSort.sort_by{ |k,v| [-v[@equals[first_p[0]]], -v[@equals[second_p[0]]], v[@equals[third_p[0]]]] }
+				elsif third_p[1] == "HighLow"
+					@sorted = useSort.sort_by{ |k,v| [-v[@equals[first_p[0]]], -v[@equals[second_p[0]]], -v[@equals[third_p[0]]]] }
+				end
+			end
+		end
+		return @sorted
+  end
+
 
 
 end

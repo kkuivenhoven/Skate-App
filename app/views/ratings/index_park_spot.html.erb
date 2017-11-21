@@ -19,34 +19,33 @@
   </thead>
 
   <tbody>
-    <% @ratings.each do |rating| %>
-		<% @s_rate = @skate_spots.find_by(:id => rating.skate_spot_id) %> 
+		<% @sortedRatings.each do |key, val| %>
+     <% @s_rate = @skate_spots.find(key) %>  
       <tr>
-					<td style="display: none"><%= @s_rate.name %></td>
-					<td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>
-					<td><%= rating.difficulty %></td>
-					<td><%= rating.police %></td>
-					<td><%= rating.pedestrian %></td>
-					<td>
-							<% if @s_rate.park_spot %>
-									<center>Park&nbsp;spot</center>
-							<% elsif @s_rate.street_spot %>
-									<center>Street&nbsp;spot</center>
-							<% else %>
-									<center>Type of spot&nbsp;not indicated</center>
-							<% end %>
-					</td>
-			    <td><%= rating.description %></td>
+          <td style="display: none"><%= @s_rate.name %></td>
+          <td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>
+          <td><%= @s_rate.ratings.average(:difficulty).truncate(2) %></td>
+          <td><%= @s_rate.ratings.average(:police).truncate(2) %></td>
+          <td><%= @s_rate.ratings.average(:pedestrian).truncate(2) %></td>
+          <td>
+              <% if @s_rate.park_spot %>
+                  <center>Park&nbsp;spot</center>
+              <% elsif @s_rate.street_spot %>
+                  <center>Street&nbsp;spot</center>
+              <% else %>
+                  <center>Type of spot&nbsp;not indicated</center>
+              <% end %>
+          </td>
+          <td style="width: 250px; height: 75px;"><!--%= rating.description %-->
+            <div style="width: 250px; height: 75px; overflow: auto">
+              <% @s_rate.ratings.each do |r| %>
+                &#8226;&nbsp;<%= r.description %><br>
+              <% end %>
+            </div>
+
+          </td>
    
-        <!-- /skate_spots/:skate_spot_id/ratings/:id -->
-        <!--td>%= link_to 'Show', [rating.skate_spot, rating] %></td-->
-        <!-- instead of: <td>%= link_to 'Show', rating %></td> -->
-        <!-- /skate_spots/:skate_spot_id/ratings/:id/edit -->
-        <!--td>%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating) %></td-->
-        <!-- instead of: <td>%= link_to 'Edit', edit_rating_path(rating) %></td> -->
-        <!-- /skate_spots/:skate_spot_id/ratings/:id -->
-        <!--td>%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %></td-->
-        <!-- instead of: <td>%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr> 
       </tr>
     <% end %>
   </tbody>

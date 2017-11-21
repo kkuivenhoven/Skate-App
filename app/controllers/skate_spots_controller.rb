@@ -21,13 +21,53 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.latitude
 						@all_latlng << s.longitude
 		end
-		@upCount = @skate_spots.average(:up_vote).truncate(2)
-		@downCount = @skate_spots.average(:down_vote).truncate(2)
+
+		@upCount = 0
+		@downCount = 0
+		@UV_vals = @skate_spots.pluck(:user_votes)
+		@UV_vals.delete_if &:empty?
+    @UV_vals.each do |uv| 
+      uv.each do |k,v|
+			 if v == "1" 
+				@upCount += 1
+			 elsif v == "0" 
+				@downCount += 1
+			 end 
+      end
+    end
+
+		@notNil = @skate_spots.where.not(user_votes: nil)
+		@values = @notNil.pluck(:id, :user_votes)
+		@up_IDs = Array.new 
+		@down_IDs = Array.new
+		@values.each do |v|
+			@up_Tot = 0
+			@down_Tot = 0
+			v[1].each do |k, val|
+				if val == "1" 
+					@up_Tot += 1
+				end 
+				if val == "0" 
+					@down_Tot += 1
+				end
+			end
+			if @up_Tot > @upCount.to_i
+					 @up_IDs << v[0]
+			end 
+			if @down_Tot > @downCount.to_i
+					 @down_IDs << v[0]
+			end
+		end
+
+
 		@upCount = "%.2f" % @upCount
 		@downCount = "%.2f" % @downCount
+		@upCount = @upCount.to_f/SkateSpot.count
+		@downCount = @downCount.to_f/SkateSpot.count
+
 		if params[:search]
 			 if params[:upvotes][:upvoteFilter] == "1"
-					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+					@skate_spots = @skate_spots.find(@up_IDs)
 				  if params[:metal][:metal] == "1"
 						@skate_spots = @skate_spots.where("metal = ?", true)
 					end
@@ -55,7 +95,7 @@ class SkateSpotsController < ApplicationController
 				  end
 					@skate_spots = @skate_spots.search(params[:search])
 			 elsif params[:downvotes][:downvoteFilter] == "1"
-					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+					@skate_spots = @skate_spots.find(@down_IDs)
 				  if params[:metal][:metal] == "1"
 						@skate_spots = @skate_spots.where("metal = ?", true)
 					end
@@ -137,14 +177,55 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.latitude
 						@all_latlng << s.longitude
 		end
-		@upCount = @skate_spots.average(:up_vote).truncate(2)
-		@downCount = @skate_spots.average(:down_vote).truncate(2)
+		
+		@upCount = 0
+		@downCount = 0
+		@UV_vals = @skate_spots.pluck(:user_votes)
+		@UV_vals.delete_if &:empty?
+    @UV_vals.each do |uv| 
+      uv.each do |k,v|
+			 if v == "1" 
+				@upCount += 1
+			 elsif v == "0" 
+				@downCount += 1
+			 end 
+      end
+    end
+
+		@notNil = @skate_spots.where.not(user_votes: nil)
+		@values = @notNil.pluck(:id, :user_votes)
+		@up_IDs = Array.new 
+		@down_IDs = Array.new
+		@values.each do |v|
+			@up_Tot = 0
+			@down_Tot = 0
+			v[1].each do |k, val|
+				if val == "1" 
+					@up_Tot += 1
+				end 
+				if val == "0" 
+					@down_Tot += 1
+				end
+			end
+			if @up_Tot > @upCount.to_i
+					 @up_IDs << v[0]
+			end 
+			if @down_Tot > @downCount.to_i
+					 @down_IDs << v[0]
+			end
+		end
+
+
 		@upCount = "%.2f" % @upCount
 		@downCount = "%.2f" % @downCount
+		@upCount = @upCount.to_f/SkateSpot.count
+		@downCount = @downCount.to_f/SkateSpot.count
+
+
 		if params[:search]
 			 if params[:upvotes][:upvoteFilter] == "1"
 
-					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+					@skate_spots = @skate_spots.find(@upIds)
 
 
 
@@ -175,7 +256,7 @@ class SkateSpotsController < ApplicationController
           end 
           @skate_spots = @skate_spots.search(params[:search])
 			 elsif params[:downvotes][:downvoteFilter] == "1"
-					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+					@skate_spots = @skate_spots.find(@downIds)
 
           if params[:metal][:metal] == "1" 
             @skate_spots = @skate_spots.where("metal = ?", true)
@@ -252,13 +333,52 @@ class SkateSpotsController < ApplicationController
 						@all_latlng << s.latitude
 						@all_latlng << s.longitude
 		end
-		@upCount = @skate_spots.average(:up_vote).truncate(2)
-		@downCount = @skate_spots.average(:down_vote).truncate(2)
+		@upCount = 0
+		@downCount = 0
+		@UV_vals = @skate_spots.pluck(:user_votes)
+		@UV_vals.delete_if &:empty?
+    @UV_vals.each do |uv| 
+      uv.each do |k,v|
+			 if v == "1" 
+				@upCount += 1
+			 elsif v == "0" 
+				@downCount += 1
+			 end 
+      end
+    end
+
+		@notNil = @skate_spots.where.not(user_votes: nil)
+		@values = @notNil.pluck(:id, :user_votes)
+		@up_IDs = Array.new 
+		@down_IDs = Array.new
+		@values.each do |v|
+			@up_Tot = 0
+			@down_Tot = 0
+			v[1].each do |k, val|
+				if val == "1" 
+					@up_Tot += 1
+				end 
+				if val == "0" 
+					@down_Tot += 1
+				end
+			end
+			if @up_Tot > @upCount.to_i
+					 @up_IDs << v[0]
+			end 
+			if @down_Tot > @downCount.to_i
+					 @down_IDs << v[0]
+			end
+		end
+
+
 		@upCount = "%.2f" % @upCount
 		@downCount = "%.2f" % @downCount
+		@upCount = @upCount.to_f/SkateSpot.count
+		@downCount = @downCount.to_f/SkateSpot.count
+
 		if params[:search]
 			 if params[:upvotes][:upvoteFilter] == "1"
-					@skate_spots = @skate_spots.where("up_vote > ?", @upCount)
+					@skate_spots = @skate_spots.find(@upIds)
          if params[:metal][:metal] == "1"
             @skate_spots = @skate_spots.where("metal = ?", true)
           end
@@ -286,7 +406,7 @@ class SkateSpotsController < ApplicationController
           end
 					@skate_spots = @skate_spots.search(params[:search])
 			 elsif params[:downvotes][:downvoteFilter] == "1"
-					@skate_spots = @skate_spots.where("down_vote > ?", @downCount)
+					@skate_spots = @skate_spots.find(@downIds)
           if params[:metal][:metal] == "1" 
             @skate_spots = @skate_spots.where("metal = ?", true)
           end 
@@ -557,15 +677,13 @@ class SkateSpotsController < ApplicationController
 
 	def like_ss
     @skate_spot = SkateSpot.find(params[:skate_spot])
-		@skate_spot.up_vote += 1
-		@skate_spot.update_columns(up_vote: @skate_spot.up_vote)
+		@skate_spot.update_attribute(:user_votes, @skate_spot.user_votes.merge!(current_user.id => params[:vote_value]))
     redirect_to @skate_spot
 	end
 
 	def dislike_ss
     @skate_spot = SkateSpot.find(params[:skate_spot])
-		@skate_spot.down_vote += 1
-		@skate_spot.update_columns(down_vote: @skate_spot.down_vote)
+		@skate_spot.update_attribute(:user_votes, @skate_spot.user_votes.merge!(current_user.id => params[:vote_value]))
     redirect_to @skate_spot
 	end
 

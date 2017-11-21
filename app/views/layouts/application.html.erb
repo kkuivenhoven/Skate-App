@@ -48,15 +48,15 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 						 <p-small>Confused on skate spot sizing? Visit our <%= link_to "Help", static_pages_help_path, :title => "Click for skate spot size info" %> page to learn about skate spot sizes.</p>
      <% end %>  
 
-     <% if current_page?(controller: 'skate_spots', action: 'show') %>
-             <% if logged_in? %>
-                 <%= link_to "<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id }%><%= @skate_spot.up_vote %>&nbsp;
-                 <%= link_to "<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id }%><%= @skate_spot.down_vote %>&nbsp;
-						 <% else %>
-                 <i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.up_vote %>&nbsp;
-						 		<i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.down_vote %>&nbsp;
-             <% end %>  
-     <% end %>  
+<% if current_page?(controller: 'skate_spots', action: 'show') %>
+ <% if logged_in? %>
+  <%=link_to"<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
+ <%=link_to"<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
+ <% else %>
+  <i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
+  <i class='glyphicon glyphicon-thumbs-down'></i><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
+ <% end %>  
+<% end %>  
 
      <p-small>
        <% if current_page?(controller: 'static_pages', action: 'home') %>

@@ -68,640 +68,86 @@ class RatingsController < ApplicationController
 	def index_park_spot
 		 @skate_spots = SkateSpot.where(:park_spot => true)
 		 @ratings = Rating.joins(:skate_spot).where(skate_spots: {park_spot: true})
-		 if params[:commit] == "Search"
-		 # if params[:search]
-			  if params[:first] == "Difficulty(HighLow)"
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, police: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, police: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Difficulty(LowHigh)"
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, police: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, police: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, police: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, police: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :asc, police: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Security(HighLow)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :desc, difficulty: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :desc, difficulty: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :desc, difficulty: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :desc, difficulty: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Security(LowHigh)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :asc, difficulty: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :asc, difficulty: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :asc, difficulty: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :asc, difficulty: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Pedestrian(HighLow)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :asc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Pedestrian(LowHigh)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :asc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :desc, police: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :asc, police: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :asc, police: :asc)
-								else
-								end
-						end
-		    end
+		 @grouped = @ratings.group_by(&:skate_spot_id)
+
+	 	 @useSort = Hash.new
+	 	 @testing = Hash.new
+		 @forSort = @ratings.group_by(&:skate_spot_id)
+     @forSort.each do |k,v|
+				@ss = SkateSpot.find(k)
+				@tmp = Hash.new
+				@tmp["avgDiff"] = ("%.2f" % (@ss.ratings.average(:difficulty).truncate(2))).to_f
+				@tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
+				@tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
+				@useSort[k] = @tmp	
+				@testing[k] = @tmp	
 		 end
+
+		 # if params[:commit] == "Search"
+		 if params[:commit] == "Filter"
+				@sorted = @ratings.ratings_sort(params[:first], params[:second], params[:third], @useSort)
+				@orderedKeys = @sorted.collect {|ind| ind[0]}
+				@sortedRatings = @forSort.sort_by{|k,_| @orderedKeys.index(k)}.to_h
+     else
+        @sortedRatings = @ratings.group_by(&:skate_spot_id)
+     end
 	end
 
 	def index_street_spot
 		 @skate_spots = SkateSpot.where(:street_spot => true)
 		 @ratings = Rating.joins(:skate_spot).where(skate_spots: {street_spot: true})
-		 if params[:commit] == "Search"
-		 # if params[:search]
-			  if params[:first] == "Difficulty(HighLow)"
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, police: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, police: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Difficulty(LowHigh)"
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, police: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, police: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, police: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, police: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :asc, police: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Security(HighLow)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :desc, difficulty: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :desc, difficulty: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :desc, difficulty: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :desc, difficulty: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Security(LowHigh)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :asc, difficulty: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :asc, difficulty: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :asc, difficulty: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :asc, difficulty: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Pedestrian(HighLow)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :asc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Pedestrian(LowHigh)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :asc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :desc, police: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :asc, police: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :asc, police: :asc)
-								else
-								end
-						end
-		    end
+
+		 @grouped = @ratings.group_by(&:skate_spot_id)
+
+	 	 @useSort = Hash.new
+	 	 @testing = Hash.new
+		 @forSort = @ratings.group_by(&:skate_spot_id)
+     @forSort.each do |k,v|
+				@ss = SkateSpot.find(k)
+				@tmp = Hash.new
+				@tmp["avgDiff"] = ("%.2f" % (@ss.ratings.average(:difficulty).truncate(2))).to_f
+				@tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
+				@tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
+				@useSort[k] = @tmp	
+				@testing[k] = @tmp	
 		 end
+
+		 # if params[:commit] == "Search"
+		 if params[:commit] == "Filter"
+				@sorted = @ratings.ratings_sort(params[:first], params[:second], params[:third], @useSort)
+				@orderedKeys = @sorted.collect {|ind| ind[0]}
+				@sortedRatings = @forSort.sort_by{|k,_| @orderedKeys.index(k)}.to_h
+     else
+        @sortedRatings = @ratings.group_by(&:skate_spot_id)
+     end
 	end
 
 	def index
 		 @skate_spots = SkateSpot.all
 		 @ratings = Rating.all
-		 @grouped_ratings = @ratings.group_by(&:skate_spot_id)
-		 @rating = Rating.first
+		 @grouped = @ratings.group_by(&:skate_spot_id)
+
+	 	 @useSort = Hash.new
+	 	 @testing = Hash.new
+		 @forSort = @ratings.group_by(&:skate_spot_id)
+     @forSort.each do |k,v|
+				@ss = SkateSpot.find(k)
+				@tmp = Hash.new
+				@tmp["avgDiff"] = ("%.2f" % (@ss.ratings.average(:difficulty).truncate(2))).to_f
+				@tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
+				@tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
+				@useSort[k] = @tmp	
+				@testing[k] = @tmp	
+		 end
+
 		 # if params[:commit] == "Search"
 		 if params[:commit] == "Filter"
-		 # if params[:search]
-			  if params[:first] == "Difficulty(HighLow)"
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, police: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, police: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, police: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :desc, pedestrian: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Difficulty(LowHigh)"
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, police: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, police: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, police: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, police: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(difficulty: :asc, pedestrian: :asc, police: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Security(HighLow)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :desc, difficulty: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :desc, difficulty: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :desc, difficulty: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :desc, difficulty: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :desc, pedestrian: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Security(LowHigh)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :asc, difficulty: :desc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :asc, difficulty: :desc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Pedestrian(HighLow)"
-										@ratings = @ratings.order(police: :asc, difficulty: :asc, pedestrian: :desc)
-				        elsif params[:third] == "Pedestrian(LowHigh)"
-										@ratings = @ratings.order(police: :asc, difficulty: :asc, pedestrian: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Pedestrian(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(police: :asc, pedestrian: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Pedestrian(HighLow)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, difficulty: :asc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :desc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :desc, difficulty: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :asc, difficulty: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :desc, police: :asc, difficulty: :asc)
-								else
-								end
-						end
-				end
-			  if params[:first] == "Pedestrian(LowHigh)"
-				    if params[:second] == "Difficulty(HighLow)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :desc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Difficulty(LowHigh)"
-				        if params[:third] == "Security(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :asc, police: :desc)
-				        elsif params[:third] == "Security(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, difficulty: :asc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(HighLow)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :desc, police: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :desc, police: :asc)
-								else
-								end
-						end
-				    if params[:second] == "Security(LowHigh)"
-				        if params[:third] == "Difficulty(HighLow)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :asc, police: :desc)
-				        elsif params[:third] == "Difficulty(LowHigh)"
-										@ratings = @ratings.order(pedestrian: :asc, police: :asc, police: :asc)
-								else
-								end
-						end
-		    end
-		 end
+				@sorted = @ratings.ratings_sort(params[:first], params[:second], params[:third], @useSort)
+				@orderedKeys = @sorted.collect {|ind| ind[0]}
+				@sortedRatings = @forSort.sort_by{|k,_| @orderedKeys.index(k)}.to_h
+     else
+        @sortedRatings = @ratings.group_by(&:skate_spot_id)
+     end
 	end
 
 	def testing_this

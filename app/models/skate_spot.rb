@@ -6,6 +6,7 @@ class SkateSpot < ActiveRecord::Base
   # has_one :location
   has_many :events
 	# has_many :microposts, dependent: :destroy
+	serialize :user_votes, Hash
 
   #geocoded_by :complete_address
   geocoded_by :gmaps4rails_address
