@@ -65,66 +65,16 @@ class RatingsController < ApplicationController
     end
   end
 
-	def index_park_spot
-		 @skate_spots = SkateSpot.where(:park_spot => true)
-		 @ratings = Rating.joins(:skate_spot).where(skate_spots: {park_spot: true})
-		 @grouped = @ratings.group_by(&:skate_spot_id)
-
-	 	 @useSort = Hash.new
-	 	 @testing = Hash.new
-		 @forSort = @ratings.group_by(&:skate_spot_id)
-     @forSort.each do |k,v|
-				@ss = SkateSpot.find(k)
-				@tmp = Hash.new
-				@tmp["avgDiff"] = ("%.2f" % (@ss.ratings.average(:difficulty).truncate(2))).to_f
-				@tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
-				@tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
-				@useSort[k] = @tmp	
-				@testing[k] = @tmp	
-		 end
-
-		 # if params[:commit] == "Search"
-		 if params[:commit] == "Filter"
-				@sorted = @ratings.ratings_sort(params[:first], params[:second], params[:third], @useSort)
-				@orderedKeys = @sorted.collect {|ind| ind[0]}
-				@sortedRatings = @forSort.sort_by{|k,_| @orderedKeys.index(k)}.to_h
-     else
-        @sortedRatings = @ratings.group_by(&:skate_spot_id)
-     end
-	end
-
-	def index_street_spot
-		 @skate_spots = SkateSpot.where(:street_spot => true)
-		 @ratings = Rating.joins(:skate_spot).where(skate_spots: {street_spot: true})
-
-		 @grouped = @ratings.group_by(&:skate_spot_id)
-
-	 	 @useSort = Hash.new
-	 	 @testing = Hash.new
-		 @forSort = @ratings.group_by(&:skate_spot_id)
-     @forSort.each do |k,v|
-				@ss = SkateSpot.find(k)
-				@tmp = Hash.new
-				@tmp["avgDiff"] = ("%.2f" % (@ss.ratings.average(:difficulty).truncate(2))).to_f
-				@tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
-				@tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
-				@useSort[k] = @tmp	
-				@testing[k] = @tmp	
-		 end
-
-		 # if params[:commit] == "Search"
-		 if params[:commit] == "Filter"
-				@sorted = @ratings.ratings_sort(params[:first], params[:second], params[:third], @useSort)
-				@orderedKeys = @sorted.collect {|ind| ind[0]}
-				@sortedRatings = @forSort.sort_by{|k,_| @orderedKeys.index(k)}.to_h
-     else
-        @sortedRatings = @ratings.group_by(&:skate_spot_id)
-     end
-	end
 
 	def index
 		 @skate_spots = SkateSpot.all
-		 @ratings = Rating.all
+		 if params[:street] == "1"
+			 @ratings = Rating.joins(:skate_spot).where(skate_spots: {street_spot: true})
+		 elsif params[:park] == "1"
+			 @ratings = Rating.joins(:skate_spot).where(skate_spots: {park_spot: true})
+		 else
+			 @ratings = Rating.all
+		 end
 		 @grouped = @ratings.group_by(&:skate_spot_id)
 
 	 	 @useSort = Hash.new

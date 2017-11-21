@@ -74,24 +74,6 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 										 <%= submit_tag "Filter", class: "btn btn-default btn-sm" %><br>
 									<% end %>
 					<% end %>
-				 <% if current_page?(controller: 'ratings', action: 'index_park_spot') %>
-										 <%= yield(:text) %></p>
-				        <%= form_tag(ratings_index_park_spot_path, :method => "get", id: "search-form") do %>
-											<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-											<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-											<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-										 <%= submit_tag "Filter", class: "btn btn-default btn-sm" %><br>
-									<% end %>
-					<% end %>
-				 <% if current_page?(controller: 'ratings', action: 'index_street_spot') %>
-										 <%= yield(:text) %></p>
-				        <%= form_tag(ratings_index_street_spot_path, :method => "get", id: "search-form") do %>
-											<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-											<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-											<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-										 <%= submit_tag "Filter", class: "btn btn-default btn-sm" %><br>
-									<% end %>
-					<% end %>
    </div>
 
 
