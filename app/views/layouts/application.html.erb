@@ -36,45 +36,48 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 
   <div class="container">
    <div class="center jumbotron">
-					 <h1>Skate App <span id="bar">|</span> <small><!--|&nbsp;--><%= yield(:title) %></small></h1>
+		 <h1>Skate App <span id="bar">|</span> <small><!--|&nbsp;--><%= yield(:title) %></small></h1>
      <p>
-     <% if current_page?(controller: 'sessions', action: 'new') %>
-        New user? <%= link_to "Sign up now!", signup_path %>
-     <% end %>  
-     <br>
-     <%= yield(:p) %></p>
+			 <% if current_page?(controller: 'sessions', action: 'new') %>
+					New user? <%= link_to "Sign up now!", signup_path %>
+			 <% end %>  
+			 <br>
+			 <%= yield(:p) %></p>
 
-     <% if current_page?(controller: 'skate_spots', action: 'index') %>
-						 <p-small>Confused on skate spot sizing? Visit our <%= link_to "Help", static_pages_help_path, :title => "Click for skate spot size info" %> page to learn about skate spot sizes.</p>
-     <% end %>  
+			 <% if current_page?(controller: 'skate_spots', action: 'index') %>
+				 <p-small>Confused on skate spot sizing? Visit our <%= link_to "Help", static_pages_help_path, :title => "Click for skate spot size info" %> page to learn about skate spot sizes.</p>
+			 <% end %>  
 
-<% if current_page?(controller: 'skate_spots', action: 'show') %>
- <% if logged_in? %>
-  <%=link_to"<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
- <%=link_to"<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
- <% else %>
-  <i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
-  <i class='glyphicon glyphicon-thumbs-down'></i><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
- <% end %>  
-<% end %>  
+			<% if current_page?(controller: 'skate_spots', action: 'show') %>
+				<% if logged_in? %>
+					<%=link_to"<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
+					<%=link_to"<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
+				<% else %>
+					<i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
+					<i class='glyphicon glyphicon-thumbs-down'></i><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
+				 <% end %>  
+			<% end %>  
 
-     <p-small>
-       <% if current_page?(controller: 'static_pages', action: 'home') %>
-         Developed by: Kendra Kuivenhoven
-       <% end %>  
-     </p-small>
+			<p-small>
+				<% if current_page?(controller: 'static_pages', action: 'home') %>
+					Developed by: Kendra Kuivenhoven
+				<% end %>  
+			</p-small>
 
-     <!--% if current_page?(controller: 'ratings', action: 'index') || current_page?(controller: 'ratings', action: 'index_park_spot') %-->
-					<% if current_page?(controller: 'ratings', action: 'index') %>
-										 <%= yield(:text) %></p>
-				        <%= form_tag(ratings_path, :method => "get", id: "search-form") do %>
-											<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-											<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-											<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
-										 <%= submit_tag "Filter", class: "btn btn-default btn-sm" %><br>
-									<% end %>
-					<% end %>
-   </div>
+			<% if current_page?(controller: 'ratings', action: 'index') %>
+			  <%= yield(:text) %></p>
+			  <%= form_tag(ratings_path, :method => "get", id: "search-form") do %>
+					<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+					<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+					<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
+				<%= submit_tag "Filter", class: "btn btn-default btn-sm" %><br>
+				<% if params[:commit] == "Filter" %>
+					<br><p-small>You selected these filter options: <i><%= params[:first] %></i>, <i><%= params[:second] %></i>, <i><%= params[:third] %>.</i></p-small><br>
+				<% end %>
+			<% end %>
+			
+	<% end %>
+</div>
 
 
    <div>
