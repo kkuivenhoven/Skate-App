@@ -37,7 +37,7 @@ https://www.railstutorial.org/book/sign_up-->
 </div>
 
 <% if current_user.following?(@user) %>
-		<div class="panel panel-default">
+		<div class="panel panel-default" style="margin-top: 30px; margin-bottom: 30px;">
 			<div class="panel-heading">
 							<h4>Rating Feed</h4>
 			</div>
@@ -47,12 +47,11 @@ https://www.railstutorial.org/book/sign_up-->
 		</div>
 <% end %>
 
-<div class="container" id="RecSpaceDiv">
-	<div class="row">
-	</div>
-</div>
-<%= render partial: 'users/event' %>
+<% if @events.count > 0 %>
+	<%= render partial: 'users/event' %>
+<% end %>
 
+<% if @all_latlng.any? %>
 <% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
 				<div class="container">
 				<center><h5>Skate Spots you have created</h5></center>
@@ -124,42 +123,47 @@ https://www.railstutorial.org/book/sign_up-->
 				</div>
 
 				</div>
+<% end %>
 
 
-<div id="user_index_map"></div>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=userinitMap">
-</script>
-<br>
+<% if @all_latlng.any? %>
+	<div id="user_index_map"></div>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=userinitMap">
+	</script>
+	<br>
+<% end %>
 
-<div class="table-responsive">
-	<table class="table skate_table">
-		<thead>
-			<tr>
-				<th>Name</th>
-        <th>Difficulty</th>
-        <th>Security</th>
-        <th>Pedestrian</th>
-        <th><center>Description</center></th>
-        <th colspan="3"></th>
-      </tr> 
-    </thead>
+<% if @ratings.any? %>
+	<div class="table-responsive">
+		<table class="table skate_table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Difficulty</th>
+					<th>Security</th>
+					<th>Pedestrian</th>
+					<th><center>Description</center></th>
+					<th colspan="3"></th>
+				</tr> 
+			</thead>
 
-    <tbody>
-      <% @ratings.each do |rating| %>
-      <% @s_rate = @skate_spots.find_by(:id => rating.skate_spot_id) %>
-        <tr> 
-            <td style="display: none"><%= @s_rate.name %></td>
-            <td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>     
-            <td><%= rating.difficulty %></td>
-            <td><%= rating.police %></td> 
-            <td><%= rating.pedestrian %></td>
-            <td><%= rating.description %></td>
-				</tr>
-			<% end %>
-  	</tbody>
-  </table>
-</div>
+			<tbody>
+				<% @ratings.each do |rating| %>
+				<% @s_rate = @skate_spots.find_by(:id => rating.skate_spot_id) %>
+					<tr> 
+							<td style="display: none"><%= @s_rate.name %></td>
+							<td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>     
+							<td><%= rating.difficulty %></td>
+							<td><%= rating.police %></td> 
+							<td><%= rating.pedestrian %></td>
+							<td><%= rating.description %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>
 
 <% end %>
 

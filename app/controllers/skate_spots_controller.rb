@@ -111,6 +111,9 @@ class SkateSpotsController < ApplicationController
 					if params[:streetPlaza][:streetPlaza] == "1"
 						@skate_spots = @skate_spots.where("street_plaza = ?", true)
 				  end
+					if params[:wcmxAccessible][:wcmxAccessible] == "1"
+						@skate_spots = @skate_spots.where("wcmx_accessible = ?", true)
+				  end
 					@skate_spots = @skate_spots.search(params[:search])
 			 elsif params[:downvotes][:downvoteFilter] == "1"
 					@skate_spots = @skate_spots.find(@down_IDs)
@@ -139,6 +142,9 @@ class SkateSpotsController < ApplicationController
 					if params[:streetPlaza][:streetPlaza] == "1"
 						@skate_spots = @skate_spots.where("street_plaza = ?", true)
 				  end
+					if params[:wcmxAccessible][:wcmxAccessible] == "1"
+						@skate_spots = @skate_spots.where("wcmx_accessible = ?", true)
+				  end
 					@skate_spots = @skate_spots.search(params[:search])
 			 else
 				  if params[:metal][:metal] == "1"
@@ -165,6 +171,9 @@ class SkateSpotsController < ApplicationController
 					end
 					if params[:streetPlaza][:streetPlaza] == "1"
 						@skate_spots = @skate_spots.where("street_plaza = ?", true)
+				  end
+					if params[:wcmxAccessible][:wcmxAccessible] == "1"
+						@skate_spots = @skate_spots.where("wcmx_accessible = ?", true)
 				  end
 					# @skate_spots = @skate_spots.search(params[:search])
 					# if params[:zip_code].length == 5
@@ -217,9 +226,9 @@ class SkateSpotsController < ApplicationController
 		@ratings = @skate_spot.ratings
 
 		@skate_spots = SkateSpot.where.not(id: @skate_spot.id)
-	  @sprSprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, gated: @skate_spot.gated, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition, skate_spot_size: @skate_spot_size, neighborhood_spot_size: @skate_spot.neighborhood_spot_size, regional_spot_size: @skate_spot.regional_spot_size)
+	  @sprSprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, gated: @skate_spot.gated, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition, skate_spot_size: @skate_spot.skate_spot_size, neighborhood_spot_size: @skate_spot.neighborhood_spot_size, regional_spot_size: @skate_spot.regional_spot_size, wcmx_accessible: @skate_spot.wcmx_accessible)
 
-	  @sprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition)
+	  @sprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition, wcmx_accessible: @skate_spot.wcmx_accessible)
 
 	  @match = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition)
 
@@ -501,11 +510,13 @@ class SkateSpotsController < ApplicationController
 
     def geo_skate_spot_params
       # params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot)
-      params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size)
+      # params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size)
+      params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size, :wcmx_accessible)
     end
 
     def skate_spot_params
-      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size)
+      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size, :wcmx_accessible)
+      # params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot, :gated, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size)
     end
 
 end

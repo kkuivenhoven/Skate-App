@@ -1,23 +1,36 @@
 <% @user ||= current_user %>
 <div class="stats">
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      <%= @user.following.count %>
-    </strong>
-    following
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
-      <%= @user.followers.count %>
-    </strong>
-    followers
-  </a>
+
+	<button type="button" class="btn btn-xs btn-info">
+		<a href="<%= following_user_path(@user) %>">
+			<center>Following
+				<strong id="following" class="stat">
+					<%= @user.following.count %>
+				</strong>
+			</center>
+		</a>
+	</button>
+
+	<button type="button" class="btn btn-xs btn-info">
+		<a href="<%= followers_user_path(@user) %>">
+			<center>Followers
+				<strong id="followers" class="stat">
+					<%= @user.followers.count %>
+				</strong>
+			</center>
+		</a>
+	</button>
+
 	<% if current_user.id == @user.id %>
-					<a href="<%= blocked_user_path(@user) %>">
-						<strong id="blocked" class="stat">
-							<%= @user.user_blocked.count %>
-						</strong>
-						blocked
-					</a>
+		<button type="button" class="btn btn-xs btn-info">
+			<a href="<%= blocked_user_path(@user) %>">
+				<center>Blocked
+					<strong id="blocked" class="stat">
+						<%= @user.user_blocked.count %>
+					</strong>
+				</center>
+			</a>
+		</button>
 	<% end %>
+
 </div>
