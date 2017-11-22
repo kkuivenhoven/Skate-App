@@ -37,10 +37,17 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 </script>
 
 <%= render partial: 'skate_spots/rating' %>
-<%= render partial: 'skate_spots/event' %>
-<%= render partial: 'skate_spots/recommender' %>
+
+<% if @events.any? %>
+	<%= render partial: 'skate_spots/event' %>
+<% end %>
+
+<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (!@m_skateSpots.nil?) %>
+	<%= render partial: 'skate_spots/recommender' %>
+<% end %>
+
 <div class="container" id="RecSpaceDiv">
-  <div class="row">
+  <div class="row"><br>
   </div>
 </div>
 
@@ -50,12 +57,14 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 
 <br>
 
+<% if @others.any? %>
 <div class="page-header skate_show_header">
  <br>
  <center><h5>Documented skate spots that are within a 60 mile radius.</h5></center>
  <div class="table-responsive">
    <!--table class="table table-hover skate_table"-->
-   <table class="table skate_table" id="ind_table">
+   <!--table class="table skate_table" id="ind_table"-->
+   <table class="table skate_table">
      <thead>
 	<!--table border="1" id="ind_table"-->
        <tr>
@@ -94,7 +103,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
    </tbody>
   </table>
  </div>
-
+<% end %>
 
 
 <!--/div-->

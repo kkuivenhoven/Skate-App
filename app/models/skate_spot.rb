@@ -72,4 +72,18 @@ class SkateSpot < ActiveRecord::Base
 			@skate_spot.longitude = get_long
   end
 
+  def self.get_recommendations(matchVals, lowDiff, highDiff, lowSec, highSec, lowPed, highPed)
+		@m_ids = Array.new
+		matchVals.each do |key, val|
+			diffBool = val["avgDiff"].between?(lowDiff, highDiff)
+			secBool = val["avgSec"].between?(lowSec, highSec)
+			pedBool = val["avgPed"].between?(lowPed, highPed)
+			if (diffBool == true) and (secBool == true) and (pedBool == true)
+				@m_ids << key
+			end
+		end
+		return @m_ids
+	end
+
+
 end

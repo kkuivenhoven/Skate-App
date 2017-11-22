@@ -78,7 +78,6 @@ class RatingsController < ApplicationController
 		 @grouped = @ratings.group_by(&:skate_spot_id)
 
 	 	 @useSort = Hash.new
-	 	 @testing = Hash.new
 		 @forSort = @ratings.group_by(&:skate_spot_id)
      @forSort.each do |k,v|
 				@ss = SkateSpot.find(k)
@@ -87,7 +86,6 @@ class RatingsController < ApplicationController
 				@tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
 				@tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
 				@useSort[k] = @tmp	
-				@testing[k] = @tmp	
 		 end
 
 		 # if params[:commit] == "Search"

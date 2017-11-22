@@ -1,10 +1,66 @@
 <div class="container" id="skateRec">
 <h4>Recommended Skate Spots</h4>
 
-<%= @final_spots %><br>
 
 <p>These skate spots are based on skate spots with similar ratings, material, and skate spot size.</p>
-<% if !@final_spots.nil? %>
+
+<table class="table skate_table">
+	<thead>
+		<tr>
+			<th>(***) Name</th>
+			<th>(**) Name</th>
+			<th>(*) Name</th>
+		</tr>
+	</thead>
+	<tbody>	
+		<tr>
+
+			<td style="width: 33%">
+				<table class="table skate_table">
+					<% if !@sprSpr_skateSpots.nil? %>
+						<% @sprSpr_skateSpots.each do |skate_spot| %>
+							<tr>
+								<td>
+									<span class="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
+								</td>
+							</tr>
+						<% end %>
+					<% end %>
+				</table>
+			</td>
+
+			<td style="width: 33%">
+				<table class="table skate_table">
+					<% if !@spr_skateSpots.nil? %>
+						<% @spr_skateSpots.each do |skate_spot| %>
+							<tr>
+								<td>
+									<span class="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
+								</td>
+							</tr>
+						<% end %>
+					<% end %>
+				</table>
+			</td>
+
+			<td style="width: 33%">
+				<table class="table skate_table">
+					<% if !@m_skateSpots.nil? %>
+						<% @m_skateSpots.each do |skate_spot| %>
+							<tr>
+								<td>
+									 <span class="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
+								</td>
+							</tr>
+						<% end %>
+					<% end %>
+				</table>
+			</td>
+
+		</tr>
+ </tbody>	
+</table>
+<!--% if !@final_spots.nil? %>
 <table class="table skate_table" id="myTable">
  <thead>
   <tr>
@@ -17,69 +73,68 @@
     <th>Type</th>
     <th>Size</th>
     <th>Address</th>
-    <!--th onclick="sortNumsTable(2)">Zip Code</th-->
   </tr>
   </thead>
   <tbody>
-  <% @final_spots.each do |skate_spot| %>
+  % @final_spots.each do |skate_spot| %>
   <tr>
    <td>
-    <span style="display:none"><%= skate_spot.name %></span>
+    <span style="display:none">%= skate_spot.name %></span>
     <li class="dropdown">
-      <span class="skate_link"><%= link_to "#{skate_spot.name}", skate_spot %></span>
-      <% if logged_in? %>
-       <% if current_user.id == skate_spot.user_id %>
+      <span class="skate_link">%= link_to "#{skate_spot.name}", skate_spot %></span>
+      % if logged_in? %>
+       % if current_user.id == skate_spot.user_id %>
         <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
           <b class="skate_caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
-          <li><%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <li>%= link_to "Edit", edit_skate_spot_path(skate_spot) %></li>
+          <li>%= link_to "Destroy", skate_spot, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul>
-      <% end %>
-      <% end %>
+      % end %>
+      % end %>
     </li>
    </td>
 
-		<td><%= (@skate_spot.distance_from([skate_spot.latitude, skate_spot.longitude])).round(2) %> miles</td>
+		<td>%= (@skate_spot.distance_from([skate_spot.latitude, skate_spot.longitude])).round(2) %> miles</td>
 
    <td>
-      <% if skate_spot.gated %>Yes
-      <% else %>No
-      <% end %>
+      % if skate_spot.gated %>Yes
+      % else %>No
+      % end %>
    </td>
 
-   <td><%= skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %></td>
-   <td><%= skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %></td>
-
-   <td>
-      <% if skate_spot.wood %>Wooden
-      <% elsif skate_spot.metal %>Metal
-      <% elsif skate_spot.concrete %>Concrete
-      <% else %>No material listed
-      <% end %>
-   </td>
+   <td>%= skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %></td>
+   <td>%= skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %></td>
 
    <td>
-      <% if skate_spot.transition %>Transition
-      <% elsif skate_spot.street_plaza %>Street Plaza
-      <% else %>Not listed
-      <% end %>
-   </td>
-   <td>
-      <% if skate_spot.skate_spot_size %>Skate spot size
-      <% elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
-      <% elsif skate_spot.regional_spot_size %>Regional spot size
-      <% else %>No size listed
-      <% end %>
+      % if skate_spot.wood %>Wooden
+      % elsif skate_spot.metal %>Metal
+      % elsif skate_spot.concrete %>Concrete
+      % else %>No material listed
+      % end %>
    </td>
 
-   <td><%= skate_spot.complete_address %></td>
+   <td>
+      % if skate_spot.transition %>Transition
+      % elsif skate_spot.street_plaza %>Street Plaza
+      % else %>Not listed
+      % end %>
+   </td>
+   <td>
+      % if skate_spot.skate_spot_size %>Skate spot size
+      % elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
+      % elsif skate_spot.regional_spot_size %>Regional spot size
+      % else %>No size listed
+      % end %>
+   </td>
+
+   <td>%= skate_spot.complete_address %></td>
   </tr>
-  <% end %>
+  % end %>
   </tbody>
 </table>
-<% else %>
+ else %>
 					<center>There are no recommendations for this skate spot.</center>
-<% end %>
-</div>
+ end %>
+</div-->
