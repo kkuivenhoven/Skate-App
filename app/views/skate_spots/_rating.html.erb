@@ -16,9 +16,9 @@
               <center>This spot hasn't been rated yet.</center>
             <% else %>
                Rating averages:<br>
-               - difficulty: <%= @skate_spot.ratings.average(:difficulty) %> <br>
-               - patrol:     <%= @skate_spot.ratings.average(:police) %> <br>
-               - pedestrian:     <%= @skate_spot.ratings.average(:pedestrian) %> <br>
+                &emsp;difficulty &rarr; <%= @skate_spot.ratings.average(:difficulty) %> <br>
+                &emsp;security &rarr; <%= @skate_spot.ratings.average(:police) %> <br>
+                &emsp;pedestrian &rarr; <%= @skate_spot.ratings.average(:pedestrian) %> <br>
                <!--- most frequented time of day: 
                % if @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Afternoon").count and @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Evening").count and @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Night").count %>
                      morning
@@ -32,27 +32,29 @@
                   none
                % end %-->
              <% end %>
-        <ul class="list-group">
+        <ul class="list-group" style="list-style: none;">
+				<% i = 0 %>	
          <% @skate_spot.ratings.each do |rating| %>
+					<% i += 1 %>
           <li class="list-group-item">
            <tr>
             <td>
+              <!--li class="dropdown"-->
               <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rating
-                <b class="skate_caret"></b>
-               </a>
-               <ul class="dropdown-menu">
-                <li><%= link_to 'Show', [rating.skate_spot, rating] %></li>
-                <li><%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating) %></li>
-                <li><%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %></li>
-               </ul>
+               <!--a href="#" class="dropdown-toggle" data-toggle="dropdown"-->Rating #<%= i %>
+                <!--b class="skate_caret"></b-->
+               <!--/a-->
+               <!--ul class="dropdown-menu">
+                <li>%= link_to 'Show', [rating.skate_spot, rating] %></li>
+                <li>%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating) %></li>
+                <li>%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+               </ul-->
              </li>
            <!--</td>-->
-           <td><%= rating.difficulty %></td>
-           <td><%= rating.police %></td>
-           <td><%= rating.pedestrian %></td>
-           <td><%= rating.time %></td>
-           <td><%= rating.description %></td>
+           <td>&emsp;difficulty &rarr;<%= rating.difficulty %><br>
+           &emsp;security &rarr;<%= rating.police %><br>
+           &emsp;pedestrian &rarr;<%= rating.pedestrian %><br>
+           &emsp;description &rarr;<%= rating.description %></td>
          </td>
         </tr>
        </li>
@@ -64,7 +66,7 @@
        </div>
     <% else %>
        <div class="panel-footer">
-         Shred.
+         <%= link_to "New Rating", new_skate_spot_rating_path(@skate_spot) %>
        </div>
     <% end %>
    </div>

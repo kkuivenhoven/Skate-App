@@ -276,6 +276,7 @@ class SkateSpotsController < ApplicationController
 			end
 
 			if @sprSprMatch.count != 0
+				@id_vals = Array.new
 				@sprSprSort = Hash.new
 				@sprSprRatings.each do |k,v|
 					 @ss = SkateSpot.find(k)
@@ -284,8 +285,12 @@ class SkateSpotsController < ApplicationController
 					 @tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
 					 @tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
 					 @sprSprSort[k] = @tmp  
+					 @id_vals << k
 				end 
-				@sprSpr_ids = SkateSpot.get_recommendations(@sprSprSort, @diffAvg, @diffAvg, @secAvg, @secAvg, @pedAvg, @pedAvg)
+				# @sprSpr_ids = SkateSpot.get_recommendations(@sprSprSort, @diffAvg, @diffAvg, @secAvg, @secAvg, @pedAvg, @pedAvg)
+				@sprSpr_ids = @skate_spots.get_recommendations(@sprSprSort, @diffAvg, @diffAvg, @secAvg, @secAvg, @pedAvg, @pedAvg)
+				# @sprSpr_ids = SkateSpot.where(id: @id_vals).get_recommendations(@sprSprSort, @diffAvg, @diffAvg, @secAvg, @secAvg, @pedAvg, @pedAvg)
+			  @sprSpr_ids.delete_if {|s| s == @skate_spot.id}
 				@sprSpr_skateSpots = SkateSpot.find(@sprSpr_ids)
 			end 
 
@@ -299,21 +304,25 @@ class SkateSpotsController < ApplicationController
 					 @tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
 					 @sprSort[k] = @tmp  
 				end 
-				@spr_ids = SkateSpot.get_recommendations(@sprSort, @lowdiff, @highdiff, @lowSec, @highSec, @lowPed, @highPed)
+				# @spr_ids = SkateSpot.get_recommendations(@sprSort, @lowdiff, @highdiff, @lowSec, @highSec, @lowPed, @highPed)
+				@spr_ids = @skate_spots.get_recommendations(@sprSort, @lowdiff, @highdiff, @lowSec, @highSec, @lowPed, @highPed)
+			  @spr_ids.delete_if {|s| s == @skate_spot.id}
 				@spr_skateSpots = SkateSpot.find(@spr_ids)
 			end 
 
 			if @match.count != 0
 				@m_sort = Hash.new
 				@m_ratings.each do |k,v|
-					 @ss = SkateSpot.find(k)
+					 @ss1 = SkateSpot.find(k)
 					 @tmp = Hash.new
-					 @tmp["avgDiff"] = ("%.2f" % (@ss.ratings.average(:difficulty).truncate(2))).to_f
-					 @tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
-					 @tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
+					 @tmp["avgDiff"] = ("%.2f" % (@ss1.ratings.average(:difficulty).truncate(2))).to_f
+					 @tmp["avgSec"] = ("%.2f" % (@ss1.ratings.average(:police).truncate(2))).to_f
+					 @tmp["avgPed"] = ("%.2f" % (@ss1.ratings.average(:pedestrian).truncate(2))).to_f
 					 @m_sort[k] = @tmp  
 				end 
-				@m_ids = SkateSpot.get_recommendations(@m_sort, @m_lowdiff, @m_highdiff, @m_lowSec, @m_highSec, @m_lowPed, @m_highPed)
+				# @m_ids = SkateSpot.get_recommendations(@m_sort, @m_lowdiff, @m_highdiff, @m_lowSec, @m_highSec, @m_lowPed, @m_highPed)
+				@m_ids = @skate_spots.get_recommendations(@m_sort, @m_lowdiff, @m_highdiff, @m_lowSec, @m_highSec, @m_lowPed, @m_highPed)
+			  @m_ids.delete_if {|s| s == @skate_spot.id}
 				@m_skateSpots = SkateSpot.find(@m_ids)
 			end 
 

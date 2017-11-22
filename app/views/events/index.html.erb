@@ -45,7 +45,7 @@
       <tr>
 					<td><%= event.name %></td>
 					<td><%= event.description %></td>
-					<td><%= event.date %></td>
+					<td><%= event.date.localtime.strftime "%B %e, %Y at %l:%M %p" %></td>
 					<td><span class="skate_link"><%= link_to "#{@s_event.name}", @s_event %></span></td>
    
       </tr>

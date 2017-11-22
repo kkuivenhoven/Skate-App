@@ -42,20 +42,23 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 	<%= render partial: 'skate_spots/event' %>
 <% end %>
 
-<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (!@m_skateSpots.nil?) %>
-	<%= render partial: 'skate_spots/recommender' %>
-<% end %>
+<div style="margin-top: 30px">
 
-<div class="container" id="RecSpaceDiv">
-  <div class="row"><br>
-  </div>
+	<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (!@m_skateSpots.nil?) %>
+		<div style="margin-bottom: 30px">
+			<%= render partial: 'skate_spots/recommender' %>
+		</div>
+	<% end %>
+
+	<div class="row">
+	</div>
+
 </div>
 
 
 
 <span style="display: none" id="skate_latlng"><%= @latlng%></span>
 
-<br>
 
 <% if @others.any? %>
 <div class="page-header skate_show_header">

@@ -107,14 +107,14 @@ if Rails.env.development?
 										street: "Toomes Ave",
 										city: "Corning", state: "CA", country: "USA",
 										zip_code: "96021", latitude: 39.921631, longitude: -122.191405,
-										street_spot: false, park_spot: true, gated: 0, concrete: 1, 
+										street_spot: false, park_spot: true, gated: 1, concrete: 1, 
 										regional_spot_size: 1, transition: 1, street_plaza: 1)
 
 	SkateSpot.create!(name: "Sunken Gardens Neighborhood Park", user_id: 1, number: 3800,
 										street: "Pacific Ave",
 										city: "Livermore", state: "CA", country: "USA",
 										zip_code: "94550", latitude: 37.676079, longitude: 121.750087,
-										street_spot: false, park_spot: true, gated: 0, concrete: 1, metal: 1,
+										street_spot: false, park_spot: true, gated: 1, concrete: 1, metal: 0,
 										neighborhood_spot_size: 1, transition: 1, street_plaza: 0)
 
 	SkateSpot.create!(name: "Zero Gravity Skatepark", user_id: 1, number: 920,
@@ -257,41 +257,64 @@ if Rails.env.development?
 								 description: "15-stair near sidewalk. Tore this spot up.",
 								 skate_spot_id: SkateSpot.first.id, user_id: 3)
 
-	Rating.create!(difficulty: 3, police: 1, pedestrian: 5,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "ledge next to stair-set",
-								 skate_spot_id: SkateSpot.second.id, user_id: 3)
+								 skate_spot_id: SkateSpot.first.id, user_id: 1)
 
-	Rating.create!(difficulty: 4, police: 5, pedestrian: 1,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "7-stair near sidewalk",
 								 skate_spot_id: SkateSpot.third.id, user_id: 1)
 
-	Rating.create!(difficulty: 5, police: 5, pedestrian: 0,
+	# Rating.create!(difficulty: 5, police: 5, pedestrian: 0,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "10-stair near sidewalk",
 								 skate_spot_id: SkateSpot.fourth.id, user_id: 1)
 
-	Rating.create!(difficulty: 5, police: 3, pedestrian: 1,
+	# Rating.create!(difficulty: 5, police: 3, pedestrian: 1,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "3-stair",
 								 skate_spot_id: SkateSpot.fourth.id, user_id: 1)
 
-	Rating.create!(difficulty: 5, police: 2, pedestrian: 2,
+	# Rating.create!(difficulty: 5, police: 2, pedestrian: 2,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "ledge, people sitting",
 								 skate_spot_id: SkateSpot.fourth.id, user_id: 1)
 
-	Rating.create!(difficulty: 5, police: 3, pedestrian: 3,
+	# Rating.create!(difficulty: 5, police: 3, pedestrian: 3,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "few people sitting",
 								 skate_spot_id: SkateSpot.fifth.id, user_id: 4)
 
-	Rating.create!(difficulty: 4, police: 4, pedestrian: 4,
+	# Rating.create!(difficulty: 4, police: 4, pedestrian: 4,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "lots of people sitting",
-								 skate_spot_id: SkateSpot.first.id, user_id: 4)
+								 skate_spot_id: SkateSpot.second.id, user_id: 4)
 
-	Rating.create!(difficulty: 3, police: 4, pedestrian: 0,
+	# Rating.create!(difficulty: 3, police: 4, pedestrian: 0,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "no one here except for security",
 								 skate_spot_id: SkateSpot.second.id, user_id: 5)
 
-	Rating.create!(difficulty: 1, police: 2, pedestrian: 5,
+	# Rating.create!(difficulty: 1, police: 2, pedestrian: 5,
+	Rating.create!(difficulty: 1, police: 1, pedestrian: 3,
 								 description: "easy skate spot, lots of people",
-								 skate_spot_id: SkateSpot.first.id, user_id: 1)
+								 skate_spot_id: SkateSpot.fifth.id, user_id: 1)
+
+	Rating.create!(difficulty: 2, police: 2, pedestrian: 4,
+								 description: "hang loose",
+								 skate_spot_id: 7, user_id: 1)
+
+	Rating.create!(difficulty: 2, police: 2, pedestrian: 4,
+								 description: "lorem ipsum",
+								 skate_spot_id: 7, user_id: 6)
+
+	Rating.create!(difficulty: 2, police: 2, pedestrian: 4,
+								 description: " lorem ipsum",
+								 skate_spot_id: 7, user_id: 9)
+
+	Rating.create!(difficulty: 2, police: 2, pedestrian: 4,
+								 description: "okay",
+								 skate_spot_id: SkateSpot.fifth.id, user_id: 9)
 
 	# Microposts
 	users = User.order(:created_at).take(6)
