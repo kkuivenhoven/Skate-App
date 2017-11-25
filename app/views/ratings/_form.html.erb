@@ -1,37 +1,24 @@
-<!--%= form_for([@rating.skate_spot, @rating]) do |f| %>
- instead of: %= form_for(@rating) do |f| %>
-  % if @rating.errors.any? %>
-    <div id="error_explanation">
-      <h2>%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
-
-      <ul>
-      % @rating.errors.full_messages.each do |message| %>
-        <li>%= message %></li>
-      % end %>
-      </ul>
-    </div>
-  % end %-->
-
 <% provide(:button_text, 'Submit') %>
   <div class="panel panel-default">
     <div class="panel-body">
 
+		<p-small>In the first three fields, enter in a number between 0 and 10.</p-small><br>
+		<p-small><i>Note: For difficulty, security, and pedestrian fields, 0 indicates none and 10 indicates at highest level.</i></p-small><br>
     <%= form_for([@rating.skate_spot,@rating]) do |f| %>  
+		
 
     <%= f.label :difficulty %><br>
-    <%= f.number_field :difficulty, class: 'form-control' %>
+    <%= f.number_field :difficulty, class: 'form-control', min: 0, max: 10 %>
 
     <%= f.label :police, "Likelihood of being kicked out?" %><br>
-    <%= f.number_field :police, class: 'form-control' %>
+    <%= f.number_field :police, class: 'form-control', min: 0, max: 10 %>
 
     <%= f.label :pedestrian, "Is there a lot of people to watch out for?" %><br>
-    <%= f.number_field :pedestrian, class: 'form-control' %>
+    <%= f.number_field :pedestrian, class: 'form-control', min: 0, max: 10 %>
 
     <%= f.label :description %><br>
-    <!--%= f.text_field :description, class: 'form-control' %-->
     <%= f.text_field :description, class: 'form-control', :maxlength=>"140" %>
 
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 
-		<!--%= f.hidden_field "user_id", current_user.id %-->
 <% end %>
