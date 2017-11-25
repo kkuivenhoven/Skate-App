@@ -64,6 +64,14 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 				<% end %>  
 			</p-small>
 
+
+			<% if current_page?(controller: 'static_pages', action: 'help') %>
+				<p-small>
+							Please contact skateapp4all@gmail.com for assistance.
+				</p-small>
+			<% end %>  
+
+
 			<% if current_page?(controller: 'ratings', action: 'index') %>
 			  <%= yield(:text) %></p>
 			  <%= form_tag(ratings_path, :method => "get", id: "search-form") do %>

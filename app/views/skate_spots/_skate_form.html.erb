@@ -42,17 +42,22 @@
 			<%= f.check_box :street_spot %>
       <%= f.label :street_spot, "Street spot" %>
 			<br>
-			
-			<b>Skate Spot Material is...</b><br>
+
+			<b>Skate Spot is...</b><br>
 			<%= f.check_box :gated %>
       <%= f.label :gated, "Gated" %>&nbsp;
+			<br>
+			
+			<b>Skate Spot Material is...</b><br>
+			<%= f.check_box :concrete %>
+      <%= f.label :concrete, "Concrete" %>&nbsp;
 			<%= f.check_box :wood %>
       <%= f.label :wood, "Wooden" %>&nbsp;
 			<%= f.check_box :metal %>
       <%= f.label :metal, "Metal" %>
 			<br>
 			
-			<b>Skate Spot contains...</b><br>
+			<b>Skate Spot style...</b><br>
 			<%= f.check_box :transition %>
       <%= f.label :transition, "Transition" %>&nbsp;
 			<%= f.check_box :street_plaza %>
