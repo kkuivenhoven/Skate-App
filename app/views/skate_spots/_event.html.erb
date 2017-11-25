@@ -2,7 +2,7 @@
  <br>
  <center><h5>Skate Spot Events</h5></center>
     <% if logged_in? %>
-     <%= link_to 'Create an Event', new_skate_spot_event_path(@skate_spot) %>
+     <center><%= link_to 'Create an Event', new_skate_spot_event_path(@skate_spot) %></center>
     <% end %>
 <% if @events.count > 0 %>
  <div class="table-responsive">
