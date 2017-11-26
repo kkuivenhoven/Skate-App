@@ -42,14 +42,16 @@ https://www.railstutorial.org/book/sign_up-->
 		</div>
 <% end %>
 
-<% if @events.count > 0 %>
+<!--% if @events.count > 0 %-->
 	<%= render partial: 'users/event' %>
-<% end %>
+<!--% end %-->
 
 <% if @all_latlng.any? %>
 <% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
 				<div class="container">
-				<center><h5>Skate Spots you have created</h5></center>
+<div class="page-header skate_show_header">
+ <br>
+				<center><h5><b>Skate Spots you have documented</b></h5></center>
 					<div class="table-responsive">
 						<table class="table skate_table">
 						 <thead>
@@ -117,6 +119,7 @@ https://www.railstutorial.org/book/sign_up-->
 				 </div>
 				</div>
 
+				</div>
 				</div>
 <% end %>
 
