@@ -19,18 +19,6 @@
                 &emsp;difficulty &rarr; <%= @skate_spot.ratings.average(:difficulty) %> <br>
                 &emsp;security &rarr; <%= @skate_spot.ratings.average(:police) %> <br>
                 &emsp;pedestrian &rarr; <%= @skate_spot.ratings.average(:pedestrian) %> <br>
-               <!--- most frequented time of day: 
-               % if @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Afternoon").count and @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Evening").count and @skate_spot.ratings.where(time: "Morning").count > @skate_spot.ratings.where(time: "Night").count %>
-                     morning
-               % elsif @skate_spot.ratings.where(time: "Afternoon").count > @skate_spot.ratings.where(time: "Morning").count and @skate_spot.ratings.where(time: "Afternoon").count > @skate_spot.ratings.where(time: "Evening").count and @skate_spot.ratings.where(time: "Afternoon").count > @skate_spot.ratings.where(time: "Night").count %>
-                     afternoon
-               % elsif @skate_spot.ratings.where(time: "Evening").count > @skate_spot.ratings.where(time: "Morning").count and @skate_spot.ratings.where(time: "Evening").count > @skate_spot.ratings.where(time: "Afternoon").count and @skate_spot.ratings.where(time: "Evening").count > @skate_spot.ratings.where(time: "Night").count %>
-                     evening 
-               % elsif @skate_spot.ratings.where(time: "Night").count > @skate_spot.ratings.where(time: "Morning").count and @skate_spot.ratings.where(time: "Night").count > @skate_spot.ratings.where(time: "Afternoon").count and @skate_spot.ratings.where(time: "Night").count > @skate_spot.ratings.where(time: "Evening").count %>
-                     night
-               % else %>
-                  none
-               % end %-->
              <% end %>
         <ul class="list-group" style="list-style: none;">
 				<% i = 0 %>	
@@ -39,19 +27,11 @@
           <li class="list-group-item">
            <tr>
             <td>
-              <!--li class="dropdown"-->
               <li class="dropdown">
-               <!--a href="#" class="dropdown-toggle" data-toggle="dropdown"-->Rating #<%= i %>
-                <!--b class="skate_caret"></b-->
-               <!--/a-->
-               <!--ul class="dropdown-menu">
-                <li>%= link_to 'Show', [rating.skate_spot, rating] %></li>
-                <li>%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating) %></li>
-                <li>%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %></li>
-               </ul-->
+               Rating #<%= i %>
              </li>
-           <!--</td>-->
-           <td>&emsp;difficulty &rarr;<%= rating.difficulty %><br>
+           <td>
+					 &emsp;difficulty &rarr;<%= rating.difficulty %><br>
            &emsp;security &rarr;<%= rating.police %><br>
            &emsp;pedestrian &rarr;<%= rating.pedestrian %><br>
            &emsp;description &rarr;<%= rating.description %></td>

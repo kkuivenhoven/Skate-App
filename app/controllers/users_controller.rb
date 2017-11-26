@@ -21,26 +21,39 @@ class UsersController < ApplicationController
   #this function shows a users profile; user has been found by id
   def show
     @user = User.find(params[:id])
-	  # if ((!current_user.blocked_by.nil?) and (!current_user.user_blocked_by?(@user)))
-	  # if ((current_user.blocked_by.nil?) or (!current_user.user_blocked_by?(@user)))
 		# check to see if the current user is blocked by @user
-	  # if (!current_user.user_blocked_by?(@user))
-	  if (!current_user.user_blocked_by?(@user)) # or (current_user.user_has_blocked(@user)))
-						# @rating_items = current_user.rating_feed.paginate(page: params[:page])
-						@rating_items = @user.rating_feed.paginate(page: params[:page])
-						@all_latlng = Array.new
-						@skate_spots = @user.skate_spots
-						@skate_spots.each do |s| 
-										@all_latlng << s.name
-										@all_latlng << s.latitude
-										@all_latlng << s.longitude
-						end 
-						@microposts = @user.microposts.paginate(page: params[:page])
-						@ratings = @user.ratings
-						@events = Event.all
-						# @rating = @skate_spot.ratings.build
+	  if (!current_user.user_blocked_by?(@user))
+			@rating_items = @user.rating_feed.paginate(page: params[:page])
+
+			@all_latlng = Array.new
+			@skate_spots = @user.skate_spots
+			@skate_spots.each do |s| 
+				@all_latlng << s.name
+				@all_latlng << s.latitude
+				@all_latlng << s.longitude
+			end 
+			@microposts = @user.microposts.paginate(page: params[:page])
+			@events = Event.all
+
+			@ratings = @user.ratings
+     @useSort = Hash.new
+     @forSort = @ratings.group_by(&:skate_spot_id)
+     @forSort.each do |k,v|
+        @ss = SkateSpot.find(k)
+        @tmp = Hash.new
+        @tmp["avgDiff"] = ("%.2f" % (@ss.ratings.average(:difficulty).truncate(2))).to_f
+        @tmp["avgSec"] = ("%.2f" % (@ss.ratings.average(:police).truncate(2))).to_f
+        @tmp["avgPed"] = ("%.2f" % (@ss.ratings.average(:pedestrian).truncate(2))).to_f
+        @useSort[k] = @tmp  
+     end 
+
+			@grouped = @ratings.group_by(&:skate_spot_id)
+
+
+
+			# @rating = @skate_spot.ratings.build
 	  else
-							redirect_to users_url
+			redirect_to users_url
 	  end
   end
   
