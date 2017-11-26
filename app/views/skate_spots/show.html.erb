@@ -2,14 +2,6 @@
 <% provide(:title, "#{@skate_spot.name}") %>
 <% provide(:p, "#{@skate_spot.complete_address}") %>
 
-<!--div class="container" style="background-color:white">
-  <i class="glyphicon glyphicon-thumbs-up"></i>
-	<i class="glyphicon glyphicon-thumbs-down"></i><br>
-			%= link_to "Upvote", {:controller => "skate_spots", :action => "like_ss", :skate_spot => @skate_spot.id }%>
-			%= link_to "Downvote", {:controller => "skate_spots", :action => "dislike_ss", :skate_spot => @skate_spot.id }%>
-	<br>
-</div>
-<br-->
 
 <% if current_user != nil %>
 <% if current_user.id == @skate_spot.user_id %>
@@ -44,7 +36,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 
 <div style="margin-top: 30px">
 
-	<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (!@m_skateSpots.nil?) %>
+	<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (@m_skateSpots.count > 0) %>
 		<div style="margin-bottom: 30px">
 			<%= render partial: 'skate_spots/recommender' %>
 		</div>
