@@ -11,10 +11,10 @@ class UsersController < ApplicationController
   def index
     @users = User.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
 		if params[:search]
-						@users = @users.search(params[:search])
+			@users = @users.search(params[:search])
 		else
-					  @users = @users.order(:name)
-						@users = @users.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
+		  @users = @users.order(:name)
+		@users = @users.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
 		end
   end
   
