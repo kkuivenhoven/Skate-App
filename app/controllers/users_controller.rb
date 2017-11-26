@@ -26,7 +26,8 @@ class UsersController < ApplicationController
 		# check to see if the current user is blocked by @user
 	  # if (!current_user.user_blocked_by?(@user))
 	  if (!current_user.user_blocked_by?(@user)) # or (current_user.user_has_blocked(@user)))
-						@rating_items = current_user.rating_feed.paginate(page: params[:page])
+						# @rating_items = current_user.rating_feed.paginate(page: params[:page])
+						@rating_items = @user.rating_feed.paginate(page: params[:page])
 						@all_latlng = Array.new
 						@skate_spots = @user.skate_spots
 						@skate_spots.each do |s| 
@@ -93,11 +94,13 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
 	def followers
     @user = User.find(params[:id])
     @users = @user.followers.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
 	end
   
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
 	def following
     @user = User.find(params[:id])
     @users = @user.following.where(activated: true). paginate(page: params[:page], :per_page => 20).order('name')
@@ -137,17 +140,20 @@ class UsersController < ApplicationController
     end
 
     #confirms the correct user
+    # https://www.railstutorial.org/book, Hartl Michael, 2014
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless @user == current_user
     end
   
     #confirms an admin user
+    # https://www.railstutorial.org/book, Hartl Michael, 2014
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
 
      # confirms a logged-in user
+     # https://www.railstutorial.org/book, Hartl Michael, 2014
      def logged_in_user
        unless logged_in?
          store_location

@@ -5,32 +5,42 @@ http://stackoverflow.com/questions/31620546/accordion-doesnt-collapse-properly-w
 
 <% @users.each_with_index do |user, index| %>
 				<!--% if !current_user.user_blocked_by?(user) %-->
-				<div class="panel-group" id="accordion-<%= index %>"> <!--role="tablist" aria-multiselectable="true">-->
+				<!--div class="panel-group" id="accordion-%= index %>"--> <!--role="tablist" aria-multiselectable="true">-->
+				<div class="panel-group" id="accordion-<%= index %>"><!-- role="tablist" aria-multiselectable="true"-->
 					<div class="panel panel-default">
 
 						<div class="panel-heading">
 							<h4 class="panel-title">
 								<span class="user_link">
-									<!--a data-toggle="collapse" data-parent="#accordion" href="#collapse-%= index %>">
-										<a href="#" data-toggle="tooltip" title="Expand for more details">%= user.name %></a>
-									</a-->
-									<%= link_to user.name, user %>
+									<a data-toggle="collapse" data-target="#collapse-<%= index %>" data-parent="#accordion-<%=index %>" href="#collapse-<%= index %>">
+										<!--a href="#" data-toggle="tooltip" title="Expand for more details"--><%= user.name %><!--/a-->
+									</a>
+									<!--%= link_to user.name, user %-->
 								</span>
+									 <% if current_user.admin? && !current_user?(user) %>
+										 <!-- only admin users are able to see "delete" links for user accounts -->
+										 | <span class="user_link"><%= link_to "Delete", user, method: :delete,
+														 data: { confirm: "You sure?" } %></span>
+									 <% end %>
 							</h4>
 						</div>
 
 						<div id="collapse-<%= index %>" class="panel-collapse collapse">
 						<!--<div id="collapse1" class="panel-collapse collapse">-->
 							<div class="panel-body">
-								<li>
-									 <span class="user_link"><%= link_to user.name, user %></span><br>
-									 <%= gravatar_for user, size: 50 %>
-									 <% if current_user.admin? && !current_user?(user) %>
-										 <!-- only admin users are able to see "delete" links for user accounts -->
-										 | <span class="user_link"><%= link_to "delete", user, method: :delete,
-														 data: { confirm: "You sure?" } %></span>
-									 <% end %>
-								 </li>
+								
+								 <div class="column">
+									 <div class="row">
+										 <%= gravatar_for user, size: 50 %>
+										 <span class="user_link"><%= link_to "View #{user.name.pluralize} profile", user %></span><br>
+										</div><br>
+									 <div class="row">
+										 &nbsp;&rarr;&nbsp;<%= user.skate_spots.count %> documented skate spots<br>
+										 &nbsp;&rarr;&nbsp;<%= user.ratings.count %> ratings<br>
+										 &nbsp;&rarr;&nbsp;<%= user.followers.count %> followers<br>
+										 &nbsp;&rarr;&nbsp;<%= user.following.count %> following<br>
+										</div>
+								 </div>
 							 </div>
 						 </div>
 					

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :skate_spots
   has_many :ratings, :through => :skate_spots
-	has_many :microposts, dependent: :destroy
+	has_many :microposts, dependent: :destroy # https://www.railstutorial.org/book, Hartl Michael, 2014 
 	has_many :skate_comments, :through => :skate_spots, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
@@ -17,24 +17,24 @@ class User < ActiveRecord::Base
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
 
-  has_many :following, through: :active_relationships, source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following, through: :active_relationships, source: :followed # https://www.railstutorial.org/book, Hartl Michael, 2014
+  has_many :followers, through: :passive_relationships, source: :follower # https://www.railstutorial.org/book, Hartl Michael, 2014
 	
 	serialize :blocked_by, Hash
 	serialize :user_blocked, Hash
 
-  attr_accessor :remember_token, :activation_token, :reset_token
-  before_save   :downcase_email
-  before_create :create_activation_digest
+  attr_accessor :remember_token, :activation_token, :reset_token # https://www.railstutorial.org/book, Hartl Michael, 2014
+  before_save   :downcase_email # https://www.railstutorial.org/book, Hartl Michael, 2014
+  before_create :create_activation_digest # https://www.railstutorial.org/book, Hartl Michael, 2014
 
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 } # https://www.railstutorial.org/book, Hartl Michael, 2014
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false } # https://www.railstutorial.org/book, Hartl Michael, 2014
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
-  class << self
+  class << self # https://www.railstutorial.org/book, Hartl Michael, 2014
     # Returns the hash digest of the given string.
     def digest(string)
     #def User.digest(string)
@@ -51,12 +51,14 @@ class User < ActiveRecord::Base
   end
 
   # Remembers a user in the database for use in persistent sessions.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
   # Returns true if the given token matches the digest.
+	# https://www.railstutorial.org/book, Hartl Michael, 2014
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
@@ -64,10 +66,8 @@ class User < ActiveRecord::Base
   end
 
   # Forgets a user.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def forget
-    #user.forget
-    #cookies.delete(:user_id)
-    #cookies.delete(:remember_token)
     update_attribute(:remember_digest, nil)
   end
 
@@ -76,24 +76,27 @@ class User < ActiveRecord::Base
   end
 
   # Logs out the current user.
+	# https://www.railstutorial.org/book, Hartl Michael, 2014
   def log_out
-    #forget(current_user)
     current_user && forget(current_user)
     session.delete(:user_id)
     @current_user = nil
   end
 
   # Activates an account.
+	# https://www.railstutorial.org/book, Hartl Michael, 2014
   def activate
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
   # Sends activation email.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
 
   # Sets the password reset attributes.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def create_reset_digest
     self.reset_token = User.new_token
     update_columns(reset_digest: User.digest(reset_token),
@@ -101,11 +104,13 @@ class User < ActiveRecord::Base
   end
 
   # Sends password reset email.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
   end
 
   # Returns true if a password reset has expired.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
@@ -125,11 +130,13 @@ class User < ActiveRecord::Base
   end
 
   # Follows a user.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def follow(other_user)
     following << other_user
   end
 
   # Unfollows a user.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def unfollow(other_user)
     following.delete(other_user)
   end
@@ -141,6 +148,7 @@ class User < ActiveRecord::Base
   end
 
   # Returns true if the current user is following the other user.
+  # https://www.railstutorial.org/book, Hartl Michael, 2014
   def following?(other_user)
     following.include?(other_user)
   end
@@ -180,11 +188,13 @@ class User < ActiveRecord::Base
   private
 
     # Converts email to all lower-case.
+    # https://www.railstutorial.org/book, Hartl Michael, 2014
     def downcase_email
       self.email = email.downcase
     end
 
     # Creates and assigns the activation token and digest.
+    # https://www.railstutorial.org/book, Hartl Michael, 2014
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)

@@ -1,3 +1,5 @@
+# Sources:
+# https://www.railstutorial.org/book/following_users
 class RelationshipsController < ApplicationController
   before_action :logged_in_user
 

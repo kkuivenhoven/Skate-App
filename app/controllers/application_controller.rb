@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
 
      # confirms a logged-in user
+     # https://www.railstutorial.org/book, Hartl Michael, 2014
      def logged_in_user
        unless logged_in?
          store_location
