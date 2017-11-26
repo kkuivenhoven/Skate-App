@@ -13,6 +13,7 @@
     //color: #b7ff44; }
     color: #caff77; }
   .jumbotron p {
+		color: blue;
     margin-bottom: 15px;
     font-size: 21px;
     font-weight: 200; }
@@ -24,6 +25,7 @@
     max-width: 100%; }
   @media (max-width: 768px) {
 		.jumbotron p {
+		color: red;
 			margin-bottom: 12px;
 			font-size: 16px;
 			font-weight: 150; }
