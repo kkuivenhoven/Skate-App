@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 			request.user_agent =~ /\b(Android|iPhone|iPad|Windows Phone|Opera Mobi|Kindle|BackBerry|PlayBook)\b/i
 		end
 		flash[:info] = "request.user_agent is: #{request.user_agent =~ /\b(Android|iPhone|iPad|Windows Phone|Opera Mobi|Kindle|BackBerry|PlayBook)\b/i}"
+		flash[:success] = "session[:mobile_param] is: #{session[:mobile_param]}"
 	end
 
   private
