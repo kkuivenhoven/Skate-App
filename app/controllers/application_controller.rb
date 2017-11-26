@@ -3,22 +3,25 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include SessionsHelper
-	before_action :on_mobile?
+	before_action :user_on_mobile?
 
-	def on_mobile?
-		if session[:mobile_param]
-			session[:mobile_param] == "1"
-		else
-			# request.user_agent =~ /Mobile|webOS/
-			request.user_agent =~ /\b(Android|iPhone|iPad|Windows Phone|Opera Mobi|Kindle|BackBerry|PlayBook)\b/i
-		end
-		flash[:danger] = "request.user_agent is: #{request.user_agent}"
-		flash[:info] = "request.user_agent is: #{request.user_agent =~ /\b(Android|iPhone|iPad|Windows Phone|Opera Mobi|Kindle|BackBerry|PlayBook)\b/i}"
-		flash[:success] = "session[:mobile_param] is: #{session[:mobile_param]}"
-	end
 
   private
    
+			MOBILE_BROWSERS = ["playbook", "windows phone", "android", "ipod", "iphone", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
+
+		def user_on_mobile?
+			type = request.user_agent.downcase
+			MOBILE_BROWSERS.each do |m|
+				if type.match(m)
+					session[:mobile_param] = 1
+				else
+					session[:mobile_param] = 0
+				end
+			end
+		end
+
+
      # confirms a logged-in user
      def logged_in_user
        unless logged_in?

@@ -15,6 +15,12 @@ $gray-medium-light: #eaeaea;
   margin-top: 15px;
 }
 
+@media (max-width: 768px) {
+	body {
+		font-size: 75%;
+	}
+}
+
 /* Background Image */
 /* Sources for help: http://stackoverflow.com/questions/19055811/twitter-bootstrap-responsive-background-image-inside-div */ 
 html body {

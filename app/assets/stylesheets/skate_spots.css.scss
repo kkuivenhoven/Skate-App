@@ -1,21 +1,36 @@
 .filterTable1{
-	width: 45%;
 	float: left;
-	td {
-		width: 22%;
+	width: 45%;
+	@media (min-width: 769px) {
+		td {
+			width: 22%;
+		}
+	}
+	@media (max-width: 768px) {
+		td {
+			width: 22%;
+			font-size: 75%;
+		}
 	}
 }
 
 .filterTable2{
 	width: 45%;
 	float: right;
-	td {
-		width: 22%;
+	@media (min-width: 769px) {
+		td {
+			width: 22%;
+		}
+	}
+	@media (max-width: 768px) {
+		td {
+			width: 22%;
+			font-size: 75%;
+		}
 	}
 }
 
 .filterCell{
-				//text-align: right;
 }
 
 .skate_table {
