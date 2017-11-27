@@ -10,6 +10,9 @@
      <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
 		<% if session[:mobile_param] == 1 %><br><% end %>
     
+   <% if !@skate_spots.present? %>
+     <center><p>There are no skate spots containing the term(s) <%= params[:search] %>.</p></center>
+   <% end %>
        <!--table class="filterTable">
         <tr>
         <td class="filterCell">&nbsp;&nbsp;--><center><b>Filter by...</b></center><!--/td>
@@ -71,9 +74,6 @@
       </table>
 
 
-   <% end %>
-   <% if !@skate_spots.present? %>
-     <p>There are no skate spots containing the term(s) <%= params[:search] %>.</p>
    <% end %>
   </div>
 </div>

@@ -114,7 +114,10 @@ class SkateSpotsController < ApplicationController
 					if params[:wcmxAccessible][:wcmxAccessible] == "1"
 						@skate_spots = @skate_spots.where("wcmx_accessible = ?", true)
 				  end
-					@skate_spots = @skate_spots.search(params[:search])
+byebug
+					if @skate_spots.count != 0
+						@skate_spots = @skate_spots.search(params[:search])
+					end
 			 elsif params[:downvotes][:downvoteFilter] == "1"
 					@skate_spots = @skate_spots.find(@down_IDs)
 				  if params[:metal][:metal] == "1"
@@ -145,7 +148,9 @@ class SkateSpotsController < ApplicationController
 					if params[:wcmxAccessible][:wcmxAccessible] == "1"
 						@skate_spots = @skate_spots.where("wcmx_accessible = ?", true)
 				  end
-					@skate_spots = @skate_spots.search(params[:search])
+					if @skate_spots.count != 0
+						@skate_spots = @skate_spots.search(params[:search])
+					end
 			 else
 				  if params[:metal][:metal] == "1"
 						@skate_spots = @skate_spots.where("metal = ?", true)
@@ -181,7 +186,9 @@ class SkateSpotsController < ApplicationController
 					# 			@skate_spots = @skate_spots.near(Geocoder.coordinates("#{params[:mileage]}"))
 					# 	 end
 					# end
-					@skate_spots = @skate_spots.search(params[:search])
+					if @skate_spots.count != 0
+						@skate_spots = @skate_spots.search(params[:search])
+				 end
 			 end
 			 @all_latlng = Array.new
 			 @skate_spots.each do |s|
