@@ -59,11 +59,12 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 				 <% end %>  
 			<% end %>  
 
-			<p-small>
-				<% if current_page?(controller: 'static_pages', action: 'home') %>
-					Developed by: Kendra Kuivenhoven
-				<% end %>  
-			</p-small>
+			<% if current_page?(controller: 'static_pages', action: 'home') %>
+				<br><%= yield(:text) %></p>
+				<p-small>
+					Developed by: Kendra Kuivenhoven<br>
+				</p-small>
+			<% end %>  
 
 
 			<% if current_page?(controller: 'static_pages', action: 'help') %>

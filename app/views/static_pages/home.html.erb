@@ -1,5 +1,16 @@
 <% provide(:title, "Home") %>
 <% provide(:p, " Created by a skater, for skaters.") %>
+<% provide(:text, "<b>Document, rate, and search for various skate parks and city spots throughout the USA.</b>
+<br><br>
+<span style='color: #f4ffe3'>Users can do the following:<br>
+<li>add a skate park or city spot to the site based on GPS/Geolocation coordinates</li>
+<li>rate spots</li>
+<li>upvote or downvote spots</li>
+<li>view the spots that are within 120 mile radius of their GPS location
+<li>follow, unfollow, block other users</li>
+<li>view followings documented skate spots</li>
+<li>reply to other users descriptions of skate spots from their posted ratings</li></span>
+".html_safe) %>
 
 <% if logged_in? %>
   <div class="container">
