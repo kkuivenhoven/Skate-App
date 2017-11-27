@@ -4,13 +4,16 @@ class SkateSpotsController < ApplicationController
 	end
 
   def index
-	 if (!params[:zip_code].nil?) and (!params[:mileage].nil?)
+	 # if (!params[:zip_code].nil?) and (!params[:mileage].nil?)
+	 if (params[:zip_code].length >= 0) and (params[:mileage].length >= 0)
 		 if (params[:zip_code].length == 5) and (params[:mileage].length > 1)
 				@skate_spots = SkateSpot.near(Geocoder.coordinates("#{params[:zip_code]}"), params[:mileage])
 				if params[:street] == "1"
 					@skate_spots = @skate_spots.where(:street_spot => true)
 				elsif params[:park] == "1"
 					@skate_spots = @skate_spots.where(:park_spot => true)
+				# else
+					# @skate_spots = SkateSpot.all
 				end
 		 else
 				if params[:street] == "1"
@@ -83,9 +86,13 @@ class SkateSpotsController < ApplicationController
 		@upCount = @upCount.to_f/SkateSpot.count
 		@downCount = @downCount.to_f/SkateSpot.count
 
+		# if params[:commit] == "Search"
 		if params[:search]
+		  # if @skate_spots.any?
 			 if params[:upvotes][:upvoteFilter] == "1"
-					@skate_spots = @skate_spots.find(@up_IDs)
+				@skate_spots = @skate_spots.find(@up_IDs)
+				# @skate_spots = SkateSpot.find(@up_IDs)
+				if @skate_spots.any?
 				  if params[:metal][:metal] == "1"
 						@skate_spots = @skate_spots.where("metal = ?", true)
 					end
@@ -117,8 +124,10 @@ class SkateSpotsController < ApplicationController
 					if @skate_spots.count != 0
 						@skate_spots = @skate_spots.search(params[:search])
 					end
+				end
 			 elsif params[:downvotes][:downvoteFilter] == "1"
-					@skate_spots = @skate_spots.find(@down_IDs)
+				@skate_spots = @skate_spots.find(@down_IDs)
+				if @skate_spots.any?
 				  if params[:metal][:metal] == "1"
 						@skate_spots = @skate_spots.where("metal = ?", true)
 					end
@@ -150,7 +159,9 @@ class SkateSpotsController < ApplicationController
 					if @skate_spots.count != 0
 						@skate_spots = @skate_spots.search(params[:search])
 					end
+				end
 			 else
+				if @skate_spots.any?
 				  if params[:metal][:metal] == "1"
 						@skate_spots = @skate_spots.where("metal = ?", true)
 				  end
@@ -188,6 +199,7 @@ class SkateSpotsController < ApplicationController
 					if @skate_spots.count != 0
 						@skate_spots = @skate_spots.search(params[:search])
 				 end
+				end
 			 end
 			 @all_latlng = Array.new
 			 @skate_spots.each do |s|
