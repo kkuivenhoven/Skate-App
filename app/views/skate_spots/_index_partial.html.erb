@@ -11,7 +11,7 @@
 		<% if session[:mobile_param] == 1 %><br><% end %>
     
    <% if !@skate_spots.present? %>
-     <center><p>There are no skate spots containing the term(s) <%= params[:search] %>.</p></center>
+     <center><p style='color: #f4ffe3'>There are no skate spots containing the term(s) <%= params[:search] %>.</p></center>
    <% end %>
        <!--table class="filterTable">
         <tr>
@@ -85,6 +85,7 @@
 </div>
 
 
+<% if @skate_spots.count != 0 %>
 <div class="table-responsive">
 <!--table class="table skate_table" id="myTable"-->
 <table class="table skate_table" id="myTable">
@@ -160,5 +161,5 @@
   </tbody>
 </table>
 </div>
-
+<% end %>
 
