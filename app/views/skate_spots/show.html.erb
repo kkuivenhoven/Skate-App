@@ -30,7 +30,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 
 <div style="margin-top: 30px">
 
-	<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (@m_skateSpots.count > 0) %>
+	<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (@m_skateSpots.nil?) %> <!--count > 0) %-->
 		<div style="margin-bottom: 30px">
 			<%= render partial: 'skate_spots/recommender' %>
 		</div>

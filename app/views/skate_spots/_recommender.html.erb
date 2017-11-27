@@ -46,7 +46,7 @@
 
 			<td style="width: 33%">
 				<table class="table skate_table">
-					<% if @m_skateSpots.count > 0 %>
+					<% if !@m_skateSpots.nil? %><!--count > 0 %-->
 						<% @m_skateSpots.each do |skate_spot| %>
 							<tr>
 								<td>
