@@ -4,5 +4,5 @@
   </ol>
   <%= will_paginate @rating_items %>
 <% else %>
-	<p>No one you are following has rated any spots.</p>
+	<p>No one <%= @user.name %> is following has rated any spots.</p>
 <% end %>
