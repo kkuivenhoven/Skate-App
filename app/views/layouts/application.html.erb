@@ -67,6 +67,11 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 				</p-small>
 			<% end %>  
 
+			<% if current_page?(controller: 'events', action: 'index') %>
+					<%= yield(:text) %><br>
+					<span style='color: #f4ffe3'>Visit the <%= link_to "Help", static_pages_help_path %> page to learn how to create an event.</span><br>
+			<% end %>  
+
 			<% if current_page?(controller: 'users', action: 'index') %>
 					<%= yield(:text) %>
 			<% end %>  
