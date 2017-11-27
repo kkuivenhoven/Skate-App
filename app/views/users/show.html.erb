@@ -133,7 +133,8 @@ https://www.railstutorial.org/book/sign_up-->
 <% end %>
 
 <% if @ratings.any? %>
-	<center><h5><%= @user.name.pluralize %> Ratings</h5></center>
+<div class="page-header skate_show_header">
+	<br><center><h5><b><%= @user.name.pluralize %> Ratings</b></h5></center>
 	<div class="table-responsive">
 		<table class="table skate_table">
 			<thead>
@@ -154,6 +155,7 @@ https://www.railstutorial.org/book/sign_up-->
 					<tr> 
 							<td style="display: none"><%= @s_rate.name %></td>
 							<td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>     
+<% byebug %>
           <td><%= @s_rate.ratings.average(:difficulty).truncate(2) %></td>
           <td><%= @s_rate.ratings.average(:police).truncate(2) %></td>
           <td><%= @s_rate.ratings.average(:pedestrian).truncate(2) %></td>
@@ -179,6 +181,7 @@ https://www.railstutorial.org/book/sign_up-->
 			</tbody>
 		</table>
 	</div>
+</div>
 <% end %>
 
 <% end %>

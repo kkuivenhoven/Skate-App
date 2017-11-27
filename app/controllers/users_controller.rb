@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         @useSort[k] = @tmp  
      end 
 
-			# @grouped = @ratings.group_by(&:skate_spot_id)
+			@grouped = @ratings.group_by(&:skate_spot_id)
 
 
 
