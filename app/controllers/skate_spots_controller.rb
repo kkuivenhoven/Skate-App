@@ -114,7 +114,6 @@ class SkateSpotsController < ApplicationController
 					if params[:wcmxAccessible][:wcmxAccessible] == "1"
 						@skate_spots = @skate_spots.where("wcmx_accessible = ?", true)
 				  end
-byebug
 					if @skate_spots.count != 0
 						@skate_spots = @skate_spots.search(params[:search])
 					end
