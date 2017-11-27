@@ -3,4 +3,6 @@
     <%= render @rating_items %>
   </ol>
   <%= will_paginate @rating_items %>
+<% else %>
+	<p>No one you are following has rated any spots.</p>
 <% end %>
