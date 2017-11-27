@@ -61,8 +61,9 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 
 			<% if current_page?(controller: 'static_pages', action: 'home') %>
 				<br><%= yield(:text) %></p>
+				<span style='color: #f4ffe3'>Questions? Visit our <%= link_to "Help", static_pages_help_path %> page</span><br>
 				<p-small>
-					Developed by: Kendra Kuivenhoven<br>
+					<br>Developed by: Kendra Kuivenhoven<br>
 				</p-small>
 			<% end %>  
 
