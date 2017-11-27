@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 # root 'welcome#index'
   root 'static_pages#home'
 
-	match '/google0d522795c8df8607.html',
+	get '/google0d522795c8df8607.html',
 		to: proc { |env| [200, {}, ["google-site-verification: google0d522795c8df8607.html"]] }
 
   get 'static_pages/home'
