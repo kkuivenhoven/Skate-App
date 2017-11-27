@@ -35,9 +35,9 @@ class UsersController < ApplicationController
 			@microposts = @user.microposts.paginate(page: params[:page])
 			@events = Event.all
 
-			@ratings = @user.ratings
-     @useSort = Hash.new
+		 @ratings = Rating.where(user_id: @user.id)
      @forSort = @ratings.group_by(&:skate_spot_id)
+     @useSort = Hash.new
      @forSort.each do |k,v|
         @ss = SkateSpot.find(k)
         @tmp = Hash.new
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         @useSort[k] = @tmp  
      end 
 
-			@grouped = @ratings.group_by(&:skate_spot_id)
+			# @grouped = @ratings.group_by(&:skate_spot_id)
 
 
 
