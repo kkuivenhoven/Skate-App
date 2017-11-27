@@ -3,7 +3,11 @@
 <% provide(:title, "Ratings") %>
 <% provide(:p, "Below are the skate spots that have been rated by users.") %>
 <% provide(:text, "Select how you would like to sort the ratings") %>
-
-
+<% provide(:span, "<span style='color: #f4ffe3'>Examples:<br>
+&rarr; <i>Difficulty(HighLow), Security(LowHigh), Pedestrian(LowHigh)</i><br>
+&rarr; <i>Pedestrian(LowHigh), Difficulty(LowHigh), Security(HighLow)</i><br>
+&rarr; <i>Security(HighLow), Pedestrian(HighLow), Difficulty(LowHigh)</i><br>
+</span>
+".html_safe) %>
 <%= render 'index_partial' %>
 

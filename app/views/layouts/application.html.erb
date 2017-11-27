@@ -85,9 +85,10 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 					<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
 					<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
 				<%= submit_tag "Filter", class: "btn btn-default btn-sm" %><br>
+				<%= yield(:span) %>
 				<% if params[:commit] == "Filter" %>
 					<br><p-small>You selected these filter options: <i><%= params[:first] %></i>, <i><%= params[:second] %></i>, <i><%= params[:third] %>.</i></p-small><br>
-				<% end %>
+				<% end %><br>
 			<% end %>
 			
 	<% end %>
