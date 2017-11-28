@@ -4,8 +4,8 @@ class SkateSpotsController < ApplicationController
 	end
 
   def index
-	 # if (!params[:zip_code].nil?) and (!params[:mileage].nil?)
-	 if (params[:zip_code].length >= 0) and (params[:mileage].length >= 0)
+	 if (!params[:zip_code].nil?) and (!params[:mileage].nil?)
+	 # if (params[:zip_code].length >= 0) and (params[:mileage].length >= 0)
 		 if (params[:zip_code].length == 5) and (params[:mileage].length > 1)
 				@skate_spots = SkateSpot.near(Geocoder.coordinates("#{params[:zip_code]}"), params[:mileage])
 				if params[:street] == "1"
