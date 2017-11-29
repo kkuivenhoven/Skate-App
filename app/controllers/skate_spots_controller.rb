@@ -45,38 +45,44 @@ class SkateSpotsController < ApplicationController
 
 		@upCount = 0
 		@downCount = 0
-		@UV_vals = @skate_spots.pluck(:user_votes)
-		@UV_vals.delete_if &:empty?
-    @UV_vals.each do |uv| 
-      uv.each do |k,v|
-			 if v == "1" 
-				@upCount += 1
-			 elsif v == "0" 
-				@downCount += 1
-			 end 
-      end
-    end
-
-		@notNil = @skate_spots.where.not(user_votes: nil)
-		@values = @notNil.pluck(:id, :user_votes)
-		@up_IDs = Array.new 
-		@down_IDs = Array.new
-		@values.each do |v|
-			@up_Tot = 0
-			@down_Tot = 0
-			v[1].each do |k, val|
-				if val == "1" 
-					@up_Tot += 1
-				end 
-				if val == "0" 
-					@down_Tot += 1
+		# @UV_vals = @skate_spots.pluck(:user_votes)
+		@UV_notNil = @skate_spots.where.not(user_votes: nil)
+		if @UV_notNil.any?
+			@UV_vals = @UV_notNil.pluck(:user_votes)
+			@UV_vals.delete_if &:empty?
+			@UV_vals.each do |uv| 
+				uv.each do |k,v|
+				 if v == "1" 
+					@upCount += 1
+				 elsif v == "0" 
+					@downCount += 1
+				 end 
 				end
 			end
-			if @up_Tot > @upCount.to_i
-					 @up_IDs << v[0]
-			end 
-			if @down_Tot > @downCount.to_i
-					 @down_IDs << v[0]
+		end
+
+		@notNil = @skate_spots.where.not(user_votes: nil)
+		if @notNil.any?
+			@values = @notNil.pluck(:id, :user_votes)
+			@up_IDs = Array.new 
+			@down_IDs = Array.new
+			@values.each do |v|
+				@up_Tot = 0
+				@down_Tot = 0
+				v[1].each do |k, val|
+					if val == "1" 
+						@up_Tot += 1
+					end 
+					if val == "0" 
+						@down_Tot += 1
+					end
+				end
+				if @up_Tot > @upCount.to_i
+						 @up_IDs << v[0]
+				end 
+				if @down_Tot > @downCount.to_i
+						 @down_IDs << v[0]
+				end
 			end
 		end
 
@@ -196,7 +202,9 @@ class SkateSpotsController < ApplicationController
 					# 			@skate_spots = @skate_spots.near(Geocoder.coordinates("#{params[:mileage]}"))
 					# 	 end
 					# end
-					if @skate_spots.count != 0
+byebug
+					# if @skate_spots.count != 0
+					if @skate_spots.length != 0
 						@skate_spots = @skate_spots.search(params[:search])
 				 end
 				end
