@@ -98,11 +98,6 @@ class RatingsController < ApplicationController
      end
 	end
 
-	def testing_this
-		 @skate_spots = SkateSpot.all
-		 @ratings = Rating.all
-	end
-
 	def show
     @rating = Rating.find(params[:id])
     @skate_spot = SkateSpot.find_by(:id => @rating.skate_spot_id)

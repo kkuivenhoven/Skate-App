@@ -202,7 +202,6 @@ class SkateSpotsController < ApplicationController
 					# 			@skate_spots = @skate_spots.near(Geocoder.coordinates("#{params[:mileage]}"))
 					# 	 end
 					# end
-byebug
 					# if @skate_spots.count != 0
 					if @skate_spots.length != 0
 						@skate_spots = @skate_spots.search(params[:search])

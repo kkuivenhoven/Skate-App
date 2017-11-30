@@ -17,13 +17,12 @@ https://www.railstutorial.org/book/sign_up-->
       <h3>
         <%= gravatar_for @user %>
 				<%= render 'follow_form' if logged_in? %>
-        <div class="col-sm-2">
-        </div>
+        <div class="col-sm-2"></div>
       </h3>
     </section>
-        <section class="stats">
-           <%= render 'shared/stats' %>
-				</section>
+		<section class="stats">
+			 <%= render 'shared/stats' %>
+		</section>
  </div>
 
 <div class="container">

@@ -9,7 +9,8 @@
     <% if current_user.following?(rating.user) %>
 				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Reply</button>
 		<% else %>
-				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" disabled>Reply</button>
+				<!--button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" disabled>Reply</button-->
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Reply</button>
 		<% end %>
     <% if current_user?(rating.user) %>
 			<%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %>

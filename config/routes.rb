@@ -40,13 +40,9 @@ Rails.application.routes.draw do
 	  # get 'ratings/reply/:id', to: 'ratings#reply'
 	  # post 'ratings/:id', to: 'ratings#reply', as: 'rating_responses'
   end
-	 post 'ratings/:id', to: 'ratings#reply', as: 'rating_responses'
+	post 'ratings/:id', to: 'ratings#reply', as: 'rating_responses'
   delete 'ratings/:id', to: 'ratings#delete_reply', as: 'rating_delete_reply'
   get 'ratings/index', to: 'ratings#index', as: 'ratings'
-  get 'ratings/testing_this', to: 'ratings#testing_this', as: 'testing_this'
-  # get 'ratings/index_park_spot'
-  # get 'ratings/index_street_spot'
-  # get 'ratings/reply'
 
   get 'events/index', to: 'events#index', as: 'events'
 
