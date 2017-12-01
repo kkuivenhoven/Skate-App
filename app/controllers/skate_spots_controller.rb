@@ -7,7 +7,8 @@ class SkateSpotsController < ApplicationController
 	 if (!params[:zip_code].nil?) and (!params[:mileage].nil?)
 	 # if (params[:zip_code].length >= 0) and (params[:mileage].length >= 0)
 		 if (params[:zip_code].length == 5) and (params[:mileage].length > 1)
-				@skate_spots = SkateSpot.near(Geocoder.coordinates("#{params[:zip_code]}"), params[:mileage])
+				@skate_spots = SkateSpot.near(Geocoder.coordinates("#{params[:zip_code]}"), params[:mileage], :order => 'distance')
+				# byebug
 				if params[:street] == "1"
 					@skate_spots = @skate_spots.where(:street_spot => true)
 				elsif params[:park] == "1"
