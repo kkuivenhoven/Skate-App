@@ -1,5 +1,7 @@
 <% provide(:title, "New Rating") %>
 <% provide(:p, "#{@skate_spot.complete_address}") %>
+<% provide(:text, "<span style='color: #f4ffe3'>You are creating a rating for #{@skate_spot.name }.</span>".html_safe) %>
+<!--% provide(:button_text, 'Save Changes') %-->
 
 <div class="btn-group btn-group-justified">
   <div class="btn-group">

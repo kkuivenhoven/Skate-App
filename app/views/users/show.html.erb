@@ -5,10 +5,13 @@ https://www.railstutorial.org/book/sign_up-->
 <% provide(:title, @user.name) %>
 <% if current_user.id == @user.id %>
     <% provide(:p, "Your documented street spots: #{@user.skate_spots.count}") %>
+		<% provide(:text, "<span style='color: #f4ffe3'>Welcome to your profile page.</span>".html_safe) %>
 <% elsif current_user.following?(@user) %>
 		<% provide(:p, "#{@user.name}'s documented street spots: #{@user.skate_spots.count}") %>
+		<% provide(:text, "<span style='color: #f4ffe3'>Welcome to #{@user.name}'s profile page.</span>".html_safe) %>
 <% else %>
 		<% provide(:p, "Follow #{@user.name}'s to see documented street spots, ratings, and more.") %>
+		<% provide(:text, "<span style='color: #f4ffe3'>Welcome to #{@user.name}'s profile page.</span>".html_safe) %>
 <% end %>
 
 <div class="row">
