@@ -4,7 +4,7 @@ class SkateSpot < ActiveRecord::Base
   has_many :skate_comments
   has_many :ratings
   # has_one :location
-  has_many :events
+  has_many :events, dependent: :destroy
 	# has_many :microposts, dependent: :destroy
 	serialize :user_votes, Hash
 
