@@ -109,7 +109,6 @@ class RatingsController < ApplicationController
 		@response.user_id = current_user.id
 		@response.rating_id = @rating.id
 		@user = User.find_by(id: params[:user_id])
-byebug
     if @response.save
       flash[:success] = "Response has been successfully created!"
 		  redirect_to @user
