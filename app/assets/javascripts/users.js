@@ -10,11 +10,20 @@
 	function checkInput(){
 		var test = document.getElementById('user_about_me');
 			alert("before its over 180");
+			alert("test.innerHTML: " + test.innerHTML);
 		if(test.innerHTML.length > 180){
 			alert("its over 180");
 		}
 	
 
-	}*/
+	}
 
 //}); 
+
+$(document).ready(function() {
+	$('user_about_me').keypress(function() {
+			var dInput = this.value;
+			alert(dInput);
+			//$(".dDimension:contains('" + dInput + "')").css("display","block");
+	}); 
+});*/

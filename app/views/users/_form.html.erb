@@ -27,8 +27,12 @@ http://www.w3schools.com/bootstrap/bootstrap_panels.asp
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+		<!-- note: about_me was not a part of project proposal - this is a personal touch.
+		need to limit character input to avoid the situation of users inputting malicious code.
+		in the works - possibly not getting done until after finals -->
     <%= f.label :about_me %>
     <!--%= f.text_area :about_me,  onchange: 'checkInput()', class: 'form-control input' %-->
+    <!--%= f.text_area :about_me, class: 'form-control input' %-->
     <%= f.text_area :about_me,  class: 'form-control' %>
 
     <%= f.label :profile_picture %>
