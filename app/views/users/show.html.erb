@@ -28,7 +28,15 @@ https://www.railstutorial.org/book/sign_up-->
  <div class="col-sm-8">
 		<section class="user_info">
 			<b>About <%= @user.name %></b><br>
-			<%= @user.about_me %>
+			<% if @user.about_me.length != 0 %>
+				<%= @user.about_me %>
+			<% else %>
+				<% if current_user.id == @user.id %>
+					<p>
+						To add an about me, please go to the user options in the navigation bar. Next, select the 'Settings' option. You'll see a section above where you can change your profile picture that says 'About Me'. You are free to fill that section out with rad things about yourself. (:
+					</p>
+				<% end %>
+			<% end %>
 		</section>
  </div>
 
