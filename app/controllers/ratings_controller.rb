@@ -146,7 +146,6 @@ class RatingsController < ApplicationController
 
     #filters the description to make sure that inappropriate words are not present.
     def filter 
-      sex_filter = LanguageFilter::Filter.new(matchlist: :sex, exceptionlist: [], replacement: :vowels) 
       hate_filter = LanguageFilter::Filter.new(matchlist: :hate, exceptionlist: [], replacement: :vowels) 
       profanity_filter = LanguageFilter::Filter.new(matchlist: :profanity, exceptionlist: [], replacement: :vowels) 
       violence_filter = LanguageFilter::Filter.new(matchlist: :violence, exceptionlist: [], replacement: :vowels) 
@@ -157,10 +156,6 @@ class RatingsController < ApplicationController
       elsif hate_filter.match?(@rating.description) 
         flash[:warning] = "Your post has been sanitized for the following hate language: #{hate_filter.matched(@rating.description)}."
         @rating.description = hate_filter.sanitize(@rating.description)
-        @rating.save 
-      elsif sex_filter.match?(@rating.description) 
-        flash[:warning] = "Your post has been sanitized for the following sex language: #{sex_filter.matched(@rating.description)}."
-        @rating.description = sex_filter.sanitize(@rating.description)
         @rating.save 
       elsif violence_filter.match?(@rating.description)
         flash[:warning] = "Your post has been sanitized for the following violent language: #{violence_filter.matched(@rating.description)}."
