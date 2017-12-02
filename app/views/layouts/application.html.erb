@@ -67,6 +67,9 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 					</script>
 			 <% end %>
 
+					<%= yield(:text) %><br>
+
+
 			 <% if current_page?(controller: 'skate_spots', action: 'index') %>
 				 <p-small style='color: #f4ffe3'>Confused on what the skate spot sizes mean? Visit our <%= link_to "Help", static_pages_help_path, :title => "Click for skate spot size info" %> page to learn about skate spot sizing.</p>
 			 <% end %>  
@@ -82,7 +85,7 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 			<% end %>  
 
 			<% if current_page?(controller: 'static_pages', action: 'home') %>
-				<br><%= yield(:text) %></p>
+				<!--br>%= yield(:text) %></p-->
 				<span style='color: #f4ffe3'>Questions? Visit the <%= link_to "Help", static_pages_help_path %> page</span><br>
 				<!--% if Rails.env.development? %-->
 					<p-small>
@@ -92,23 +95,19 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 			<% end %>  
 
 			<% if current_page?(controller: 'events', action: 'index') %>
-					<%= yield(:text) %><br>
+					<!--%= yield(:text) %><br-->
 					<span style='color: #f4ffe3'>Visit the <%= link_to "Help", static_pages_help_path %> page to learn how to create an event.</span><br>
 			<% end %>  
 
-			<% if current_page?(controller: 'users', action: 'index') %>
-					<%= yield(:text) %>
-			<% end %>  
-
 			<% if current_page?(controller: 'static_pages', action: 'help') %>
-				<p-small>
+				<p-small style='color: #f4ffe3'>
 							Please contact skateapp4all@gmail.com for assistance.
 				</p-small>
 			<% end %>  
 
 
 			<% if current_page?(controller: 'ratings', action: 'index') %>
-			  <%= yield(:text) %></p>
+			  <!--%= yield(:text) %></p-->
 			  <%= form_tag(ratings_path, :method => "get", id: "search-form") do %>
 					<%= select_tag "first", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
 					<%= select_tag "second", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
