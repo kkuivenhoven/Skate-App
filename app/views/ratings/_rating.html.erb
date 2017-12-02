@@ -50,7 +50,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Reply</h4>
       </div>
       <div class="modal-body">
 				<% @response = rating.responses.new %>
@@ -58,16 +58,17 @@
 	
 				<%= f.label :message %><br>
 				<%= f.text_field :message, class: 'form-control' %>
+				<br>
 
 				<%= hidden_field_tag "user_id", @user.id %>
 			  <!--%= link_to 'Reply', [rating.skate_spot, rating], method: :reply %-->
 				<%= f.submit "Submit", class: "btn btn-primary" %>
 				<% end %>
       </div>
-      <div class="modal-footer">
+      <!--div class="modal-footer"-->
 			<!--%= link_to 'Reply', [rating.skate_spot, rating], method: :reply %-->
         <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
-      </div>
+      <!--/div-->
     </div>
 
   </div>
