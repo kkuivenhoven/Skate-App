@@ -25,9 +25,13 @@ https://www.railstutorial.org/book/sign_up-->
 		</section>
  </div>
 
-<div class="container">
-	<div class="row">
-	</div>
+ <div class="col-sm-8">
+		<section class="user_info">
+			<b>About <%= @user.name %></b><br>
+			<%= @user.about_me %>
+		</section>
+ </div>
+
 </div>
 
 <% if (current_user.following?(@user)) or (current_user.id == @user.id) %>
@@ -45,13 +49,12 @@ https://www.railstutorial.org/book/sign_up-->
 	<%= render partial: 'users/event' %>
 <!--% end %-->
 
-<% if @all_latlng.any? %>
-<% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
-				<div class="container">
-<div class="page-header skate_show_header">
- <br>
-				<center><h5><b>Skate Spots you have documented</b></h5></center>
-					<div class="table-responsive">
+	<% if @all_latlng.any? %>
+		<% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
+			<div class="container"> <!-- -->
+				<div class="page-header skate_show_header"> <!-- -->
+				  <br><center><h5><b>Skate Spots you have documented</b></h5></center>
+					<div class="table-responsive"> <!-- -->
 						<table class="table skate_table">
 						 <thead>
 							 <tr>
@@ -63,7 +66,6 @@ https://www.railstutorial.org/book/sign_up-->
 								 <th>Address</th>
 							 </tr>
 						 </thead>
-				 
 						<tbody>
 						 <% @user.skate_spots.each do |skate_spot| %>
 							 <tr>
@@ -80,111 +82,97 @@ https://www.railstutorial.org/book/sign_up-->
 										 </ul>
 									 </li>
 								 </td>
-
-
-   <td>
-      <% if skate_spot.gated %>Yes
-      <% else %>No
-      <% end %>
-   </td>  
-   <td>
-      <% if skate_spot.wood %>Wooden
-      <% elsif skate_spot.metal %>Metal
-      <% elsif skate_spot.concrete %>Concrete
-      <% else %>No material listed
-      <% end %>
-   </td>  
-   <td>
-      <% if skate_spot.transition %>Transition
-      <% elsif skate_spot.street_plaza %>Street Plaza
-      <% else %>Not listed
-      <% end %>
-   </td>  
-   <td>
-      <% if skate_spot.skate_spot_size %>Skate spot size
-      <% elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
-      <% elsif skate_spot.regional_spot_size %>Regional spot size
-      <% else %>No size listed
-      <% end %>
-   </td>  
-
-
+								 <td><% if skate_spot.gated %>Yes<% else %>No<% end %>
+								 </td>  
+								 <td><% if skate_spot.wood %>Wooden
+										<% elsif skate_spot.metal %>Metal
+										<% elsif skate_spot.concrete %>Concrete
+										<% else %>No material listed<% end %>
+								 </td>  
+								 <td><% if skate_spot.transition %>Transition
+										<% elsif skate_spot.street_plaza %>Street Plaza
+										<% else %>Not listed<% end %>
+								 </td>  
+								 <td><% if skate_spot.skate_spot_size %>Skate spot size
+										<% elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
+										<% elsif skate_spot.regional_spot_size %>Regional spot size
+										<% else %>No size listed<% end %>
+								 </td>  
 								 <td><%= skate_spot.complete_address %></td>
 							 </tr>
 						 </tr>
 						<% end %>
 					 </tbody>
 					</table>
-				 </div>
-				</div>
+				 </div> <!-- -->
+				</div> <!-- -->
+			</div> <!-- -->
+		<!--/div-->
+	<% end %>
 
-				</div>
-				</div>
-<% end %>
 
+	<% if @all_latlng.any? %>
+		<div id="user_index_map"></div>
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=userinitMap">
+		</script>
+		<br>
+	<% end %>
 
-<% if @all_latlng.any? %>
-	<div id="user_index_map"></div>
-	<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=userinitMap">
-	</script>
-	<br>
-<% end %>
+	<% if @ratings.any? %>
+		<div class="page-header skate_show_header">
+			<br><center><h5><b><%= @user.name.pluralize %> Ratings</b></h5></center>
+			<div class="table-responsive">
+				<table class="table skate_table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Difficulty</th>
+							<th>Security</th>
+							<th>Pedestrian</th>
+							<th>Spot&nbsp;type</th>
+							<th style="max-width: 250px; word-wrap: break-word;"><center>Descriptions</center></th>
+							<th colspan="3"></th>
+						</tr> 
+					</thead>
+					<tbody>
+						<% @useSort.each do |key, val| %>
+						<% @s_rate = SkateSpot.find(key) %>
+							<tr> 
+									<td style="display: none"><%= @s_rate.name %></td>
+									<td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>     
+							<td><%= @s_rate.ratings.average(:difficulty).truncate(2) %></td>
+							<td><%= @s_rate.ratings.average(:police).truncate(2) %></td>
+							<td><%= @s_rate.ratings.average(:pedestrian).truncate(2) %></td>
+							<td>
+									<% if @s_rate.park_spot %>
+											<center>Park&nbsp;spot</center>
+									<% elsif @s_rate.street_spot %>
+											<center>Street&nbsp;spot</center>
+									<% else %>
+											<center>Type of spot&nbsp;not indicated</center>
+									<% end %>
+							</td>
+							<td style="width: 250px; height: 75px;"><!--%= rating.description %-->
+								<div style="width: 250px; height: 75px; overflow: auto">
+									<% @s_rate.ratings.each do |r| %>
+										&#8226;&nbsp;<%= r.description %><br>
+									<% end %>
+								</div>
 
-<% if @ratings.any? %>
-<div class="page-header skate_show_header">
-	<br><center><h5><b><%= @user.name.pluralize %> Ratings</b></h5></center>
-	<div class="table-responsive">
-		<table class="table skate_table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Difficulty</th>
-					<th>Security</th>
-					<th>Pedestrian</th>
-					<th>Spot&nbsp;type</th>
-					<th style="max-width: 250px; word-wrap: break-word;"><center>Descriptions</center></th>
-					<th colspan="3"></th>
-				</tr> 
-			</thead>
+							</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<% end %>
 
-			<tbody>
-				<% @useSort.each do |key, val| %>
-				<% @s_rate = SkateSpot.find(key) %>
-					<tr> 
-							<td style="display: none"><%= @s_rate.name %></td>
-							<td><span class="skate_link"><%= link_to "#{@s_rate.name}", @s_rate %></span></td>     
-          <td><%= @s_rate.ratings.average(:difficulty).truncate(2) %></td>
-          <td><%= @s_rate.ratings.average(:police).truncate(2) %></td>
-          <td><%= @s_rate.ratings.average(:pedestrian).truncate(2) %></td>
-          <td>
-              <% if @s_rate.park_spot %>
-                  <center>Park&nbsp;spot</center>
-              <% elsif @s_rate.street_spot %>
-                  <center>Street&nbsp;spot</center>
-              <% else %>
-                  <center>Type of spot&nbsp;not indicated</center>
-              <% end %>
-          </td>
-          <td style="width: 250px; height: 75px;"><!--%= rating.description %-->
-            <div style="width: 250px; height: 75px; overflow: auto">
-              <% @s_rate.ratings.each do |r| %>
-                &#8226;&nbsp;<%= r.description %><br>
-              <% end %>
-            </div>
-
-          </td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-</div>
-<% end %>
-
-<% end %>
+	<% end %>
 
 
 
 <span style="visibility:hidden" id="all_latlng"><%= @all_latlng%></span>
 
+</div>
