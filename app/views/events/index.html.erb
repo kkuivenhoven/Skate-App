@@ -42,7 +42,7 @@
 		</tr>
 	 <% else %>
     <% @events.each do |event| %>
-		<% @s_event = @skate_spots.find_by(:id => event.skate_spot_id) %> 
+		<% @s_event = SkateSpot.find_by(:id => event.skate_spot_id) %> 
       <tr>
 					<td><!--%= event.name %-->
 						<% if current_user.id == event.user_id %>
