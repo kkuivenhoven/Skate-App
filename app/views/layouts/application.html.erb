@@ -59,8 +59,7 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 			 <% if (current_page?(controller: 'skate_spots', action: 'index')) or (current_page?(controller: 'skate_spots', action: 'show'))%>
 				  <% if current_page?(controller: 'skate_spots', action: 'index') %>
 						<% mapVal = "allinitMap" %>
-				  <% end %>
-					<% if current_page?(controller: 'skate_spots', action: 'show') %>
+					<% elsif current_page?(controller: 'skate_spots', action: 'show') %>
 						<% mapVal = "ind_initMap" %>
 				  <% end %>
 					<script async defer
