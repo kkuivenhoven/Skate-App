@@ -7,10 +7,10 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(rating.created_at) %> ago.
     <% if current_user.following?(rating.user) %>
-				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Reply</button>
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
 		<% else %>
 				<!--button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" disabled>Reply</button-->
-				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Reply</button>
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
 		<% end %>
     <% if current_user?(rating.user) %>
 			<%= link_to 'Destroy', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -43,7 +43,8 @@
 <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button-->
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<!--div id="myModal" class="modal fade" role="dialog"-->
+<div id="myModal_<%= rating.id %>" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
