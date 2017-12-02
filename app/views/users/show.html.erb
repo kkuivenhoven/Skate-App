@@ -26,7 +26,7 @@ https://www.railstutorial.org/book/sign_up-->
  </div>
 
  <div class="col-sm-8">
-		<section class="user_info">
+		<div class="skate_section">
 			<b>About <%= @user.name %></b><br>
 			<% if @user.about_me.present? %>
 				<%= @user.about_me %>
@@ -37,7 +37,7 @@ https://www.railstutorial.org/book/sign_up-->
 					</p>
 				<% end %>
 			<% end %>
-		</section>
+		</div>
  </div>
 
 </div>
