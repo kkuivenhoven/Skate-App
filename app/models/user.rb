@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   before_save   :downcase_email # https://www.railstutorial.org/book, Hartl Michael, 2014
   before_create :create_activation_digest # https://www.railstutorial.org/book, Hartl Michael, 2014
 
+  validates :about_me, presence: true, length: { maximum: 180 }, on: :create, allow_nil: true # https://www.railstutorial.org/book, Hartl Michael, 2014
   validates :name, presence: true, length: { maximum: 50 } # https://www.railstutorial.org/book, Hartl Michael, 2014
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false } # https://www.railstutorial.org/book, Hartl Michael, 2014

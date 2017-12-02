@@ -28,7 +28,8 @@ http://www.w3schools.com/bootstrap/bootstrap_panels.asp
     <%= f.password_field :password_confirmation, class: 'form-control' %>
 
     <%= f.label :about_me %>
-    <%= f.text_area :about_me, class: 'form-control', style: 'width:100%;' %>
+    <!--%= f.text_area :about_me,  onchange: 'checkInput()', class: 'form-control input' %-->
+    <%= f.text_area :about_me,  class: 'form-control' %>
 
     <%= f.label :profile_picture %>
     <br>
