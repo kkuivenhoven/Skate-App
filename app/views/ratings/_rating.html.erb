@@ -25,19 +25,16 @@
 				<% rating.responses.each do |resp| %>
 					<li id="response-<%= resp.id %>">
 						<% @resp_user = User.find_by(id: resp.user_id) %>
-<h1><%= resp.user_id %></h1><br>
-<%= @resp_user.inspect %>
 						<!--% @resp_user = User.find(resp.user_id) %-->
-						<!--%= link_to gravatar_for(@resp_user, size: 50), @resp_user %-->
-							<!--span class="user">%= link_to @resp_user.name, @resp_user %></span-->
-							<!--span class="content">%= resp.message %></span>
+						<%= link_to gravatar_for(@resp_user, size: 50), @resp_user %>
+							<span class="user"><%= link_to @resp_user.name, @resp_user %></span>
+							<span class="content"><%= resp.message %></span>
 							<span class="timestamp">
-								Posted %= time_ago_in_words(resp.created_at) %> ago.
-								% if current_user?(@resp_user) %>
-									-%= link_to 'Destroy', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-									%= link_to 'Destroy', rating_delete_reply_path(rating_id: rating.id, user_id: current_user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-								% end %>
-							</span-->
+								Posted <%= time_ago_in_words(resp.created_at) %> ago.
+								<% if current_user?(@resp_user) %>
+									<%= link_to 'Destroy', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+								<% end %>
+							</span>
 					</li>
 				<% end %>
 			<% end %>
