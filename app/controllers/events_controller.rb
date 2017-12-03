@@ -42,10 +42,12 @@ class EventsController < ApplicationController
 				@event = @skate_spot.events.find(params[:id])
 				if @event.destroy
 						flash[:success] = "Event has been successfully deleted!"
-						redirect_to skate_spot_path(@skate_spot)
+						# redirect_to skate_spot_path(@skate_spot)
+						redirect_to events_path
 				else
 						flash[:success] = "Event has not been deleted. Please try again"
-						redirect_to skate_spot_path(@skate_spot)
+						# redirect_to skate_spot_path(@skate_spot)
+						redirect_to events_path
 				end
 		end
 

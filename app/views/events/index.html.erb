@@ -46,9 +46,18 @@
       <tr>
 					<td><!--%= event.name %-->
 						<% if current_user.id == event.user_id %>
-							<span class="skate_link"><%= link_to event.name.capitalize, edit_skate_spot_path(id: event.skate_spot_id) %></span>
+						  <div class="dropdown">
+							 <span class="skate_link"><%= link_to event.name.capitalize, edit_skate_spot_path(id: event.skate_spot_id) %></span>
+							 <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
+									<b class="skate_caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><%= link_to "Edit", edit_skate_spot_event_path(event.skate_spot, event) %></li>
+									<li><%= link_to "Destroy", skate_spot_event_path(event.skate_spot, event), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+								</ul>
+							</div>
 						<% else %>
-							<%= event.name %>
+							<%= event.name.capitalize %>
 						<% end %>
 					</td>
 					<td><%= event.description %></td>

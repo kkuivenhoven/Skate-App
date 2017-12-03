@@ -11,7 +11,8 @@
     <%= f.text_field :description, class: 'form-control', maxlength: 180 %>
 
 		<%= f.label :date %><br>
-		<%= f.datetime_select :date, class: 'form-control', prompt: true, ampm: true %><br><br>
+		<!--%= f.datetime_select :date, class: 'form-control', prompt: true, ampm: true %><br><br-->
+		<%= f.datetime_select :date, class: 'form-control', ampm: true %><br><br>
 
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 
