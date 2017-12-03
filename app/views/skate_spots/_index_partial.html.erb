@@ -11,7 +11,36 @@
 		<% if session[:mobile_param] == 1 %><br><% end %>
     
    <% if !@skate_spots.present? %>
-     <center><p style='color: #f4ffe3'>There are no skate spots containing the term(s) <%= params[:search] %>.</p></center>
+     <center><p style='color: #f4ffe3'>
+			<% @paramsWO = params.except(:utf8, :search, :commit, :controller, :action, :zip_code, :mileage) %>
+			<% @filterTrue = @paramsWO.select { |he| params[he].values.first == "1" } %>
+			<% if params[:search].length != 0 %>
+				<% if @filterTrue.length != 0 %>
+					There are no skate spots containing the word(s) <%= params[:search] %> matching the 
+				<% else %>
+					There are no skate spots containing the word(s) <%= params[:search] %>.
+				<% end %>
+			<% else %>
+				There are no skate spots matching the 
+			<% end %>
+			<% @filterTrue.each_with_index do |(key, value), index| %>
+				<% if value.values.first == "1" %> <!-- l -->
+					<% if index < (@filterTrue.length - 1) %> <!-- o -->
+						<% if index < (@filterTrue.length - 2) %> <!-- i -->
+							<i><%= key %></i>, 
+						<% else %>
+							<i><%= key %></i> 
+						<% end %> <!-- i -->
+					<% else %> <!-- o -->
+						<% if (index == (@filterTrue.length - 1)) and (@filterTrue.length == 1) %> <!-- j -->
+							<i><%= key %></i> filter option.
+						<% else %>
+							and <i><%= key %></i> filter options.
+						<% end %> <!-- j -->
+					<% end %> <!-- o -->
+				<% end %> <!-- l -->
+			<% end %>
+				</p></center>
    <% end %>
        <!--table class="filterTable">
         <tr>
@@ -20,10 +49,12 @@
         </tr-->
        <table class="filterTable1">
         <tr>
+					<!-- meaning all spots that have upvotes > downvotes -->
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Upvoted" %></td>
           <td><%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br></td>
         </tr>
         <tr>
+					<!-- meaning all spots that have upvotes < downvotes -->
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Downvoted" %></td>
           <td><%= check_box "downvotes", "downvoteFilter" %>&nbsp;</td>
         </tr>
@@ -86,7 +117,7 @@
 
 
 <!--% if @skate_spots.count != 0 %-->
-<% if @skate_spots.any? %>
+<% if @skate_spots.present? %>
 <div class="table-responsive">
 <!--table class="table skate_table" id="myTable"-->
 <table class="table skate_table" id="myTable">

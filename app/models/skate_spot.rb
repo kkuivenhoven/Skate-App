@@ -84,4 +84,53 @@ class SkateSpot < ActiveRecord::Base
 	end
 
 
+	def self.find_spots(params, skate_spots, vote_IDs)
+	 @skate_spots = skate_spots
+   if vote_IDs.count != 0
+		 if (@skate_spots.ids & vote_IDs).any?
+			 vote_IDs = (@skate_spots.ids & vote_IDs)
+			 @skate_spots = @skate_spots.find(vote_IDs)
+		 else
+			 @skate_spots = nil
+     end
+	 end
+	 if @skate_spots.present?
+			if params[:metal][:metal] == "1"
+				@skate_spots.select { |ss| ss.metal == true }
+			end
+			if params[:wood][:wood] == "1"
+				@skate_spots.select { |ss| ss.wood == true }
+			end
+			if params[:concrete][:concrete] == "1"
+				@skate_spots.select { |ss| ss.concrete == true }
+			end
+			if params[:gated][:gated] == "1"
+				@skate_spots.select { |ss| ss.gated == true }
+			end
+			if params[:spotSize][:spotSize] == "1"
+				@skate_spots.select { |ss| ss.skate_spot_size == true }
+			elsif params[:neighSize][:neighspotSize] == "1"
+				@skate_spots.select { |ss| ss.neighborhood_spot_size == true }
+			elsif params[:regSize][:regSize] == "1"
+				@skate_spots.select { |ss| ss.regional_spot_size == true }
+			end
+			if params[:transition][:transition] == "1"
+				@skate_spots.select { |ss| ss.transition == true }
+			end
+			if params[:streetPlaza][:streetPlaza] == "1"
+				@skate_spots = @skate_spots.select { |ss| ss.street_plaza == true }
+			end
+			if params[:wcmxAccessible][:wcmxAccessible] == "1"
+				@skate_spots = @skate_spots.select { |ss| ss.wcmx_accessible == true }
+			end
+			if @skate_spots.count != 0
+				if params[:search].length != 0
+					@skate_spots.select { |ss| params[:search] }
+				end
+			end
+	  end 
+		return @skate_spots
+	end
+
+
 end

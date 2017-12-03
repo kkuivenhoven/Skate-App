@@ -104,7 +104,6 @@ class UsersController < ApplicationController
  	# updates skate_spots user_id to admin id since admin should never be deleted
   def destroy
     @user = User.find(params[:id]) 
-		# @events = Event.find_each("user_id = #{@user.id}")
 		@admin = User.where(:admin => true).first
 		rateArray = Array.new
 		if @user.skate_spots.any?
