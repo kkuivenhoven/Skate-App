@@ -53,14 +53,12 @@ class EventsController < ApplicationController
 				@skate_spots = SkateSpot.all
 				@events = Event.all
 		    if params[:search]
-				#	 @all_events = Event.all
+				   #	 @all_events = Event.all
 			     @events = @events.search(params[:search])
-				# 	 @event = @events.first
+					 # @event = @events.first
 					 # @all_events.each do |e|
-					 # 		@dist = @event.distance_from([e.latitude, e.longitude]).round(2)
-				 	#			byebug
-				 #	 end
-
+					 #	 @dist = @event.distance_from([e.latitude, e.longitude]).round(2)
+					 # end
 			     @time = Time.now + 60.days
 			     @start = Time.now - 1.days
 			     @events = @events.where(:date => @start..@time)

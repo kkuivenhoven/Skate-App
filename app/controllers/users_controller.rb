@@ -100,9 +100,21 @@ class UsersController < ApplicationController
     end
   end
   
-  #destroys/deletes a specified user account
+  # destroys/deletes a specified user account
+ 	# updates skate_spots user_id to admin id since admin should never be deleted
   def destroy
-    User.find(params[:id]).destroy #method chaining combines find & destroy
+    @user = User.find(params[:id]) 
+		# @events = Event.find_each("user_id = #{@user.id}")
+		@admin = User.where(:admin => true).first
+		rateArray = Array.new
+		if @user.skate_spots.any?
+			@user.skate_spots.update_all("user_id = #{@admin.id}")
+		end
+	  Event.where(:user_id => @user.id).update_all("user_id = #{@admin.id}")
+	  # rateArray << Rating.where(:user_id => @user.id).ids
+	  Rating.where(:user_id => @user.id).destroy_all
+    # User.find(params[:id]).destroy #method chaining combines find & destroy
+    @user.destroy 
     flash[:success] = "User deleted"
     redirect_to users_url
   end
