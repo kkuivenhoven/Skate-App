@@ -2,7 +2,11 @@
 
 <% provide(:title, "Events") %>
 <% provide(:p, "Below are all the posted events.") %>
-<% provide(:text, "<span style='color: #f4ffe3'>If you created an event, you can click the event to edit it.</span>".html_safe) %>
+<% if logged_in? %>
+	<% provide(:text, "<span style='color: #f4ffe3'>If you created an event, you can click the event to edit it.</span>".html_safe) %>
+<% else %>
+	<% provide(:text, "<span style='color: #f4ffe3'>If you want to create an event, you must either </span>".html_safe) %>
+<% end %>
 
 <div class="container">
   <div class="row">

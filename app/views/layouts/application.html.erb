@@ -96,7 +96,11 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 
 			<% if current_page?(controller: 'events', action: 'index') %>
 					<!--%= yield(:text) %><br-->
-					<span style='color: #f4ffe3'>Visit the <%= link_to "Help", static_pages_help_path %> page to learn how to create an event.</span><br>
+					<% if logged_in? %>
+						<span style='color: #f4ffe3'>Visit the <%= link_to "Help", static_pages_help_path %> page to learn how to create an event.</span><br>
+					<% else %>  
+					  <span style='color: #f4ffe3'><%= link_to 'log in', login_path %> or <%= link_to 'sign up', new_user_path %> for an account if you don't already have one.</span>
+					<% end %>  
 			<% end %>  
 
 			<% if current_page?(controller: 'static_pages', action: 'help') %>
