@@ -45,7 +45,7 @@
 		<% @s_event = SkateSpot.find_by(:id => event.skate_spot_id) %> 
       <tr>
 					<td><!--%= event.name %-->
-						<% if current_user.id == event.user_id %>
+						<% if (logged_in?) and (current_user.id == event.user_id) %>
 						  <div class="dropdown">
 							 <span class="skate_link"><%= link_to event.name.capitalize, edit_skate_spot_path(id: event.skate_spot_id) %></span>
 							 <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
