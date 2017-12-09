@@ -1,7 +1,49 @@
  
-@import "bootstrap-sprockets";
+//@import "bootstrap-sprockets";
 @import "bootstrap";
-@import "alert";
+@import "now-ui-kit.scss";
+@import "now-ui-kit/_variables.scss";
+@import "background.scss";
+@import "now-ui-kit/_alerts.scss";
+@import "now-ui-kit/_badges.scss";
+@import "now-ui-kit/_buttons.scss";
+@import "jumbotron.scss";
+@import "now-ui-kit/_cards.scss";
+//@import "now-ui-kit/_carousel.scss";
+@import "now-ui-kit/_checkboxes-radio.scss";
+@import "now-ui-kit/_dropdown.scss";
+@import "now-ui-kit/_footers.scss";
+@import "now-ui-kit/_images.scss";
+@import "now-ui-kit/_inputs.scss";
+@import "now-ui-kit/_misc.scss";
+@import "now-ui-kit/_mixins.scss";
+@import "now-ui-kit/_modals.scss";
+@import "now-ui-kit/_navbar.scss";
+@import "now-ui-kit/_nucleo-outline.scss";
+@import "now-ui-kit/_pagination.scss";
+@import "now-ui-kit/_pills.scss";
+@import "now-ui-kit/_popups.scss";
+@import "now-ui-kit/_progress.scss";
+@import "now-ui-kit/_responsive.scss";
+@import "now-ui-kit/_sections.scss";
+@import "now-ui-kit/_social-buttons.scss";
+@import "now-ui-kit/_tabs.scss";
+@import "now-ui-kit/_typography.scss";
+@import "now-ui-kit/mixins/_badges.scss";
+@import "now-ui-kit/mixins/_buttons.scss";
+@import "now-ui-kit/mixins/_datepicker.scss";
+@import "now-ui-kit/mixins/_dropdown.scss";
+@import "now-ui-kit/mixins/_inputs.scss";
+@import "now-ui-kit/mixins/_modals.scss";
+@import "now-ui-kit/mixins/_navbar.scss";
+@import "now-ui-kit/mixins/_pages.scss";
+@import "now-ui-kit/mixins/_popovers.scss";
+@import "now-ui-kit/mixins/_transparency.scss";
+@import "now-ui-kit/mixins/_vendor-prefixes.scss";
+@import "now-ui-kit/plugins/_plugin-bootstrap-switch.scss";
+@import "now-ui-kit/plugins/_plugin-datepicker.scss";
+@import "now-ui-kit/plugins/_plugin-nouislider.scss";
+/*@import "alert";
 @import "btn-group";
 @import "buttonTypes";
 @import "carets";
@@ -40,7 +82,7 @@
 @import "tooltip";
 @import "users";
 @import "visibleHiddenPullrightleft";
-@import "well";
+@import "well";*/
 
 
 

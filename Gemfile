@@ -20,7 +20,10 @@ gem 'coffee-rails', '~> 4.1.0'
 # For friendship relationships
 gem 'has_friendship'
 
-gem 'bootstrap-sass',          '3.2.0.0'
+# gem 'bootstrap-sass',          '3.2.0.0'
+# gem 'bootstrap-sass',          '3.5.2'
+gem 'sprockets-rails', '>= 2.3.2'
+gem 'bootstrap', '~> 4.0.0.beta2.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'faker',                   '1.4.2'

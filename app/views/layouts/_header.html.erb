@@ -3,113 +3,131 @@ https://www.railstutorial.org/book, Hartl Michael, 2014
 http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 
 <!--header class="navbar navbar-inverse"-->
-<header class="navbar navbar-inverse">
- <div class="container-fluid">
+<!--header class="navbar navbar-expand-lg bg-info"-->
   <!--%= link_to "Skate Spot App", root_path, id: "logo" %>-->
-   <nav>
-      <ul class="nav navbar-nav navbar-left">
-				 <!--a href="#content" class="skip">Skip to main content</a-->
-         <!--% if !current_page?(controller: 'static_pages', action: 'home') %-->
-					 <li><%= link_to "Home", root_path %></li>
-         <!--% end %>
-	      % if !current_page?(controller: 'static_pages', action: 'help') %-->
-					<li><%= link_to "Help  ", static_pages_help_path %></li>
-	      <!--% end %-->
-					<!--li>%= link_to "Testing  ", static_pages_testing_path %></li-->
+   <nav class="navbar navbar-expand-lg bg-info">
+			<div class="container">
+					<div class="navbar-translate">
+						<a class="navbar-brand" href="#pablo">
+							Skate App
+						</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+   	        <span class="navbar-toggler-bar bar1"></span>
+	        <span class="navbar-toggler-bar bar2"></span>
+	        <span class="navbar-toggler-bar bar3"></span>
+ 	    </button>
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                User Options <b class="skate_caret"></b>
+
+					</div>
+
+<div class="collapse navbar-collapse justify-content-end" id="navigation">
+	<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="navbar-brand" href="#">
+							 <%= link_to "Home", root_path, class: "navbar-brand" %>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="navbar-brand" href="#">
+							<%= link_to "Help", static_pages_help_path, class: "navbar-brand" %>
+						</a>
+					</li>
+
+
+					<li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">
+                User Options<b class="caret"></b>
               </a>
-              <ul class="dropdown-menu">
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                <% if logged_in? %>
-               <li><%= link_to "All Users", users_path %></li>
-                <li class="divider"></li>
-                <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+								  <%= link_to "All Users", users_path, class: "dropdown-item navbar-brand" %>
+									<div class="dropdown-divider"></div>
+									<%= link_to "Profile", current_user, class: "dropdown-item navbar-brand" %>
+									<%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item navbar-brand" %>
+									<div class="dropdown-divider"></div>
+									<%= link_to "Log out", logout_path, method: "delete", class: "dropdown-item navbar-brand" %>
                <% else %>
-                <li><%= link_to "Log in", login_path %></li>
-                <li class="divider"></li>
-                <li><%= link_to "Create account", new_user_path %></li>
+									<%= link_to "Log in", login_path, class: "dropdown-item navbar-brand" %>
+									<div class="dropdown-divider"></div>
+									<%= link_to "Create account", new_user_path, class: "dropdown-item navbar-brand" %>
                <% end %>
-              </ul>
-            </li>
+            </div>
+					</li>
 
 
-     <!--<ul class="nav navbar-nav navbar-right">-->
-		 <li class="dropdown">
-         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-           Skate Spot Options<b class="skate_caret"></b>
-         </a>
-         <ul class="dropdown-menu">
-			    <li><%= link_to "View all Skate Spots", skate_spots_path(street: 0, park: 0) %></li>
-			    <li><%= link_to "View all Street Spots", skate_spots_path(street: 1, park: 0) %></li>
-			    <li><%= link_to "View all Park Spots", skate_spots_path(street: 0, park: 1)%></li>
-			    <!--li><= link_to "Recommender", skate_spots_recommender_path %></li-->
-             <!--% if !current_page?(controller: 'static_pages', action: 'home') %>-->
-              <!--li class="divider">
-              </li-->
-               <!-- When submit the form, the view rendered will be the index view of our articles resource -->
-               <!--%= form_tag(skate_spots_path, :method => "get", class: "navbar-form", id: "search-form") do %>
-                 <div class="input-append">
-                   %= text_field_tag :search, params[:search], class: "span2", placeholder: "Search all Skate Spots" %>
-                   < In order to have the "search" icon int the button, we need to use plain HTML instead 
-                   of using a Rails form helper -->
-                     <!--button class="btn btn-default btn-xs" type="submit"><i class="icon-search icon-white">Search >></i></button-->
-                     <!--<button class="btn-xs btn-primary-xs" type="submit"><i class="icon-search icon-white"> Search</i></button>-->
-                 <!--/div>
-               % end %-->
-            <!--% end %>-->
-            <% if logged_in? %>
-									<li class="divider"></li>
-									<li><%= link_to "New Skate Spot", new_skate_spot_path %></li>
-									<li><%= link_to "New Skate Spot by Geolocation", new_by_geo_path %></li>
-             <% end %>
-           </ul>
-          </li>
 
 
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Rating Options<b class="skate_caret"></b>
-            </a>
-            <!-- <ul class="dropdown-menu"> -->
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+				 <li class="nav-item dropdown">
+						 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarSkateLinkMenu">
+							 Skate Spot Options<b class="caret"></b>
+						 </a>
+						 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarSkateLinkMenu">
+								<%= link_to "View all Skate Spots", skate_spots_path(street: 0, park: 0), class: "dropdown-item navbar-brand" %>
+								<%= link_to "View all Street Spots", skate_spots_path(street: 1, park: 0), class: "dropdown-item navbar-brand" %>
+								<%= link_to "View all Park Spots", skate_spots_path(street: 0, park: 1), class: "dropdown-item navbar-brand" %>
+								<% if logged_in? %>
+											<div class="dropdown-divider"></div>
+											<%= link_to "New Skate Spot", new_skate_spot_path, class: "dropdown-item navbar-brand" %>
+											<%= link_to "New Skate Spot by Geolocation", new_by_geo_path, class: "dropdown-item navbar-brand" %>
+								 <% end %>
+						 </ul>
+					</li>
+
+
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarRatingLinkMenu">Rating Options</a>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarRatingLinkMenu">
 							 <% if logged_in? %>
 								 <% if current_page?(controller: 'skate_spots', action: 'show') %>
-										<li><%= link_to "New Rating", new_skate_spot_rating_path(@skate_spot) %></li>
+										<%= link_to "New Rating", new_skate_spot_rating_path(@skate_spot), class: "dropdown-item navbar-brand" %>
 								 <% end %>
 								<% end %>
-						   <li><%= link_to "All Ratings", ratings_path(street: 0, park: 0) %></li>
-						   <li><%= link_to "Street Spot Ratings", ratings_path(street: 1, park: 0) %></li>
-						   <li><%= link_to "Park Spot Ratings", ratings_path(street: 0, park: 1) %></li>
+						   <%= link_to "All Ratings", ratings_path(street: 0, park: 0), class: "dropdown-item navbar-brand" %>
+						   <%= link_to "Street Spot Ratings", ratings_path(street: 1, park: 0), class: "dropdown-item navbar-brand" %>
+						   <%= link_to "Park Spot Ratings", ratings_path(street: 0, park: 1), class: "dropdown-item navbar-brand" %>
 						   <!--li>%= link_to "Testing Ratings", testing_this_path %></li-->
             </ul>
          </li>
 
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Event Options<b class="skate_caret"></b>
-            </a>
-            <!-- <ul class="dropdown-menu"> -->
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-						   <li><%= link_to "All Events", events_path %></li>
+
+					<!--li class="nav-item">
+						<a class="navbar-brand" href="#">
+							 %= link_to "All Events", events_path, class: "navbar-brand" %>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="navbar-brand" href="#">
+							 %= link_to "Reources", static_pages_skate_links_path, class: "navbar-brand" %>
+						</a>
+					</li-->
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarEventLinkMenu">
+								Event Options
+						</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarEventLinkMenu">
+						   <%= link_to "All Events", events_path, class: "dropdown-item navbar-brand" %>
             </ul>
          </li>
 
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Resources<b class="skate_caret"></b>
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarResourcesLinkMenu">
+              Resources
             </a>
-            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-										 <li><%= link_to "Collections  ", static_pages_skate_links_path %></li>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarResourcesLinkMenu">
+							 <%= link_to "Collections", static_pages_skate_links_path, class: "dropdown-item navbar-brand" %>
 						</ul>
 					</li>	
 
+		</ul>
+	</div>
 
-      </ul>
+
+
+				</div>
+
     </nav>
-  </div>
-</header>
