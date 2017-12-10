@@ -1,3 +1,5 @@
+/* Tutorial source: https://www.w3schools.com/howto/howto_js_sort_table.asp
+ */
 function sortnameTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("rateTable");

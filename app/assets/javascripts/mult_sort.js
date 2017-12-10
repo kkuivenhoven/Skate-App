@@ -1,3 +1,9 @@
+/* Source: https://stackoverflow.com/questions/29642295/sorting-html-table-by-two-columns
+ * Original intent was to learn/understand this multi sort function in order to create my own
+ * for the ratings table sort. Instead I wrote that portion in Ruby. Leaving this here 
+ * because in the future, I want to change my ratings sort feature to a jQuery method to
+ * eliminate the need to refresh the page for the ratings sort.
+ */
 $(function() {
   function sortByColumn3(row1, row2) {
     var v1, v2;

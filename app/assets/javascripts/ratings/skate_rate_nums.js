@@ -1,4 +1,7 @@
-/* http://stackoverflow.com/questions/9094299/issue-with-comparing-two-numbers-in-javascript*/
+/** 
+ * Sources: http://stackoverflow.com/questions/9094299/issue-with-comparing-two-numbers-in-javascript
+ * https://www.w3schools.com/howto/howto_js_sort_table.asp
+ */
 function skate_sortthenums(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable");
