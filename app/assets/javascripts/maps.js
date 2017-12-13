@@ -25,7 +25,6 @@ function ind_initMap() {
 				var the_coords = getcoords();
 				var ind_coords = indall_coords();
 				var copy_ind = ind_coords;
-				//alert(ind_coords);
 				var ind_array = $.map(ind_coords, function(value, index) {
 						  		return [value];
 				});
@@ -49,7 +48,8 @@ function ind_initMap() {
 				   mapTypeId: google.maps.MapTypeId.ROADMAP
 				});
 
-				var infowindow = new google.maps.InfoWindow();
+				//var infowindow = new google.maps.InfoWindow();
+				var infoWindow = new google.maps.InfoWindow();
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -97,8 +97,10 @@ function ind_initMap() {
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
+          //infowindow.setContent(locations[i][0]);
+          //infowindow.open(map, marker);
+          infoWindow.setContent(locations[i][0]);
+          infoWindow.open(map, marker);
         }   
       })(marker, i));
     }  
