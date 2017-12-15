@@ -131,7 +131,8 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 
    <div>
     <% flash.each do |message_type, message| %>
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <!--a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a-->
+        <button href="#" type="button" class="close" data-dismiss="alert" aria-label="close">&times;</button>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
 
