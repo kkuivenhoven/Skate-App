@@ -58,6 +58,10 @@ Rails.application.routes.draw do
     end
   end
 
+		resources :conversations do
+			resources :messages
+		end
+
 	get 'microposts/news_feed' => 'microposts#news_feed'
 
   resources :users, 			  only: [:show, :index, :new, :create, :edit, :update, :destroy, :search_results]

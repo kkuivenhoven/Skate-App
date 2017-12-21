@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   has_many :following, through: :active_relationships, source: :followed # https://www.railstutorial.org/book, Hartl Michael, 2014
   has_many :followers, through: :passive_relationships, source: :follower # https://www.railstutorial.org/book, Hartl Michael, 2014
+
+	has_many :conversations, :foreign_key => :sender_id
 	
 	serialize :blocked_by, Hash
 	serialize :user_blocked, Hash
