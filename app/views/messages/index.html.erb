@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<%= sync partial: 'message_row', collection: @messages %>
+<%= sync_new partial: 'message_row', resource: Message.new %>
+
+
