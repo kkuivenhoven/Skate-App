@@ -18,4 +18,3 @@ This app allows users to document and rate skate spots in urban and rural areas.
 If used, additional resources, tutorials and sources that pertain to a particular file or feature are listed in comments at the top of the file. 
 
 
-
