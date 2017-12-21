@@ -85,17 +85,22 @@ var ready = function () {
          */
 
         createChatBox: function (conversation_id, minimizeChatBox) {
+						/* if chatbox_id is not displayed on the page, change the css
+						 * so that the chatbox_id will be displayed, using block */
             if ($("#chatbox_" + conversation_id).length > 0) {
                 if ($("#chatbox_" + conversation_id).css('display') == 'none') {
                     $("#chatbox_" + conversation_id).css('display', 'block');
                     chatBox.restructure();
                 }
+								/* focus/put the cursor in the chatbox */
                 $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
                 return;
             }
 
+						/* add chatbox to page */
             $("body").append('<div id="chatbox_' + conversation_id + '" class="chatbox"></div>')
 
+						/* get conversations show page for that specific conversation */
             $.get("conversations/" + conversation_id, function (data) {
                 $('#chatbox_' + conversation_id).html(data);
                 $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
@@ -105,12 +110,14 @@ var ready = function () {
 
             chatBoxeslength = 0;
 
+						/* determine number of chatBoxes displayed currently on users page */
             for (x in chatBoxes) {
                 if ($("#chatbox_" + chatBoxes[x]).css('display') != 'none') {
                     chatBoxeslength++;
                 }
             }
 
+						/* adjust the CSS for if just one chatBox displayed or multiple */
             if (chatBoxeslength == 0) {
                 $("#chatbox_" + conversation_id).css('right', '20px');
             } else {

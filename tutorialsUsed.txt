@@ -1,0 +1,4 @@
+For the chatbox feature, I used several tutorials. I used several tutorials so that I could cross-reference the material in order to get a deeper understanding of the code needed to create a general chatbox feature. The following tutorials were used/cross-referenced: 
+	• http://josephndungu.com/tutorials/gmail-like-chat-application-in-ruby-on-rails#reply-box-210
+  • https://medium.com/@danamulder/tutorial-create-a-simple-messaging-system-on-rails-d9b94b0fbca1	
+

@@ -10,14 +10,19 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="description" content="Skate app allows you to document (by address or GPS locations) and rate various skate parks and street skating spots. Skate app also allows users to interact with other users.">
-	<meta name="keywords" content="Skate,Skateboarding,Document,Rate,Interact,Skating,Skateboard,Skateboards,Skatepark,Street,Social,Shred,Shredder,Skater,WCMX">
-	<meta name="author" content="Kendra Kuivenhoven">
+	<meta name="description" content="Skate app allows you to document (by address or GPS locations) and rate various skate parks and street skating spots. Skate app also allows users to interact with other users."/>
+	<meta name="keywords" content="Skate,Skateboarding,Document,Rate,Interact,Skating,Skateboard,Skateboards,Skatepark,Street,Social,Shred,Shredder,Skater,WCMX"/>
+	<meta name="author" content="Kendra Kuivenhoven"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skate App</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<meta content='<%= logged_in? ? current_user.id : "" %>' name='user-id'/>
+	<!--meta name='user-id' content='%= logged_in? ? current_user.id : "" %>'/-->
+	<% if !logged_in? %>
+		<meta name="user-id" content=""/>
+	<% else %>
+		<meta name="user-id" content="<%= current_user.id %>"/>
+	<% end %>
 
 	<!-- Note: I have left commented code here due to the fact that the way these source files are loading
 						 incase need to revert back to prior order of loading source files -->

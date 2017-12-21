@@ -3,11 +3,20 @@
 	var id ="<%= @conversation.id %>";
 	var chatbox = $("#chatbox_" + id + " .chatboxcontent");
 	var sender_id = "<%= @message.user.id %>";
+	//var theUser_id = "%= @the_user.id %>";
 	var receiver_id = $('meta[name=user-id]').attr("content");
+	//var receiver_id = $('%= current_user.id %>').attr("content");
+	//alert("the_user.id = " + "%= @the_user.id %>".class);
+	//alert("the_user.id = " + theUser_id);
+	//var receiver_id = %= @the_user.id %>;
+	//alert("meta stuff: " + $('meta[name=user-id]').attr("content"));
 
 	chatbox.append("<%= j render( partial: @message ) %>");
 	chatbox.scrollTop(chatbox[0].scrollHeight);
 
+	/* this if statement ensures that the receiver receiving 
+		 the message sees the senderPersons message on the appropriate
+		 side of the conversation box */
 	if(sender_id != receiver_id){
 		chatBox.chatWith(id);
 		chatbox.children().last().removeClass("self").addClass("other");
