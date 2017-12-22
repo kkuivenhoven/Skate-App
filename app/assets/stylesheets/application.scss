@@ -1,6 +1,8 @@
  
+@import "z_colorVariables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "messages";
 @import "chat";
 @import "alert";
 @import "btn-group";
@@ -42,9 +44,5 @@
 @import "users";
 @import "visibleHiddenPullrightleft";
 @import "well";
-
-
-
-
 
 

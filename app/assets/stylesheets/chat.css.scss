@@ -4,7 +4,7 @@
  *
  */
 
-.chatbox {
+/*.chatbox {
     position: fixed;
     position: expression("absolute");
     width: 280px;
@@ -45,6 +45,17 @@
     background: #e5e5e5;
     line-height: 1.3em;
     list-style: none;
+
+		.timeRight {
+			float: right;
+			color: #aaa;
+		}
+
+		.timeLeft {
+			float: left;
+			color: #999;
+		}		
+					
 }
 
 .chatboxcontent li {
@@ -112,17 +123,17 @@
 .chatboxmessagecontent p {
     font-size: 12px;
     margin: 0 0 0.2rem 0;
-    -ms-word-break: break-all;
+    -ms-word-break: break-all;*/
 
     /* Non standard for webkit */
-    word-break: break-word;
+    //word-break: break-word;
 
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-}
+    //-webkit-hyphens: auto;
+    //-moz-hyphens: auto;
+    //hyphens: auto;
+//}
 
-.chatboxmessagecontent time {
+/*.chatboxmessagecontent time {
     font-size: 9px;
     color: #ccc;
 }
@@ -175,4 +186,4 @@
 
 .chatboxtitle {
     float: left;
-}
+}*/

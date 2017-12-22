@@ -4,8 +4,6 @@
 /* mixins, variables, etc. */
 // for color scheme ideas: https://designschool.canva.com/blog/website-color-schemes/
 
-$gray-medium-light: #eaeaea;
-
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -52,7 +50,8 @@ html body {
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; }
+  -webkit-text-size-adjust: 100%; 
+}
 
 body {
   margin: 0; }
@@ -322,6 +321,7 @@ html {
   font-size: 10px;
   -webkit-tap-highlight-color: transparent; }
 
+/* main font color (font-color) */
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;

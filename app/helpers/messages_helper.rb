@@ -9,6 +9,14 @@ module MessagesHelper
 		end
 	end
 
+	def right_or_left(message)
+		if message.user == current_user 
+			return "Right"
+		else
+			return "Left"
+		end
+	end
+
 	def message_interlocutor(message)
 		# message.user == message.conversation.sender ? message.conversation.sender : message.conversation.recipient
 		if message.user == message.conversation.sender

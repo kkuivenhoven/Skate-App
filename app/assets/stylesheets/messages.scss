@@ -1,3 +1,167 @@
-// Place all the styles related to the messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/**
+	* Sources/tutorials: 
+	*   • https://www.w3schools.com/howto/howto_css_chat.asp
+	*		• http://qnimate.com/facebook-style-chat-box-popup-using-javascript-and-css/
+	*		• http://josephndungu.com/tutorials/gmail-like-chat-application-in-ruby-on-rails
+	*
+	* CSS guidance/help:
+	* 	• https://stackoverflow.com/questions/446060/css-two-divs-next-to-each-other	
+	* 	• https://www.w3schools.com/cssref/pr_border-bottom_style.asp
+	* 	• https://codepen.io/Varo/pen/gbZzgr?editors=1100
+	*/
+
+.chatbox {
+	display: none;
+	position: fixed;
+	//bottom: 0px;
+	//right: 220px;
+	//height: 285px;
+	//width: 300px;
+	//height: 350px;
+	width: 280px;
+	border-style: solid;
+	border-color: #f7f7f7;
+	background-color: #ffffff;
+	border-top: 5px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.chatbox .chatboxhead {
+	background-color: #f7f7f7;
+	border-top: 5px;
+	border-radius: 5px 5px 0px 0px !important;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.chatboxoptions{
+	//background-color: firebrick;
+	float: right;
+	i {
+		 display: inline;
+		 font-size: 16px;
+	}
+}
+
+.chatboxtitle{
+	//background-color: coral;
+	float: left;
+	h1, i {
+		 display: inline;
+		 font-size: 16px;
+	}
+}
+
+.chatbox .chatboxinput {
+	background-color: #ffffff;
+	padding: 10px;
+}
+
+.chatbox .chatboxcontent {
+	background-color: #ffffff;
+	border: 5px;
+	border-radius: 5px;
+	padding: 10px;
+	overflow-y: auto;
+	height: 200px;
+}
+	
+.chatbox .chatboxinput {
+	background: #fafafa;
+	//border: 5px;
+	//border-style: solid;
+	//border-radius: 5px;
+	padding: 10px;
+}
+
+.chatboxtextarea {
+	width: 100%;
+	height: 44px;
+	border: 1px solid $chat-border-light;
+	border-radius: 5px;
+	overflow: hidden;
+	resize: none !important;
+}
+
+.chatboxtextareaselected {
+	border: 2px solid coral;
+	margin: 0;
+}
+
+//.userMessage {
+.chatboxcontent .userMessage {
+	border: 2px solid #dedede;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px 0;
+	width: 75%;
+	//height: 25%;
+	//float: right;
+}
+
+.userMessage img {
+	float: left;
+	max-width: 60px;
+	width: 100%;
+	margin-right: 20px;
+	border-radius: 50%;
+}
+
+.userMessage img.right {
+	float: right;
+	margin-left: 20px;
+	margin-right: 0;
+}
+
+.msgRight .nameRight {
+	float: left;
+	color: #aaa;
+	font-size: 10px;
+	width: 50%;
+}
+
+.msgLeft .nameLeft {
+	float: left;
+	color: #999;
+	font-size: 10px;
+	width: 50%;
+}
+
+.msgRight .timeRight {
+	float: right;
+	color: #aaa;
+	font-size: 9px;
+	width: 50%;
+	text-align: right;
+}
+
+.msgLeft .timeLeft {
+	float: right;
+	color: #999;
+	font-size: 9px;
+	width: 50%;
+	text-align: right;
+}
+
+.msgRight {
+	color: #aaa;
+	float: right;
+	p {
+		color: $bodyFont-color;
+		font-size: 12px;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.msgLeft {
+	color: #999;
+	float: left;
+	p {
+		color: $bodyFont-color;
+		font-size: 12px;
+		margin: 0;
+		padding: 0;
+	}
+}

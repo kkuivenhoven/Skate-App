@@ -19,7 +19,8 @@
 		 side of the conversation box */
 	if(sender_id != receiver_id){
 		chatBox.chatWith(id);
-		chatbox.children().last().removeClass("self").addClass("other");
+		//chatbox.children().last().removeClass("self").addClass("other");
+		chatbox.children().last().removeClass("msgRight").addClass("msgLeft");
 		chatbox.scrollTop(chatbox[0].scrollHeight);
 		chatBox.notify();
 	}

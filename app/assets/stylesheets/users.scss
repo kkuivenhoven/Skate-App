@@ -1,9 +1,10 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .skate_section {
 		//background-color: #7daddb;
-		background-color: rgba(#2CA8FF, .40);
+		background-color: $BG-blue-light;
 		border-radius: 6px;
 		color: inherit;
 		width: 100%;

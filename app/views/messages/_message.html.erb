@@ -1,11 +1,20 @@
-<li class="<%= self_or_other(message) %>">
+<!--li class="%= self_or_other(message) %>">
 	<div class="avatar">
 		<img src="http://placehold.it/50x50" />
 	</div>
 	<div class="chatboxmessagecontent">
-		<time datetime="<%= message.created_at %>" title="<%= message.created_at.strftime("%l:%M %p") %>">
-			<%= message_interlocutor(message).name %> • <%= message.created_at.strftime("%l:%M %p") %>
+		<time datetime="%= message.created_at %>" title="%= message.created_at.strftime("%l:%M %p") %>">
+			%= message_interlocutor(message).name %> • %= message.created_at.strftime("%l:%M %p") %>
 		</time>
-		<p><%= message.body %></p>
+		<p>%= message.body %></p>
 	</div>
-</li>
+</li-->
+
+<div class="userMessage msg<%= right_or_left(message) %>">
+	<!--img src="http://placehold.it/50x50" alt="Avatar"-->
+	<span class="name<%= right_or_left(message) %>">
+		<%= message_interlocutor(message).name %> <!--i class="fa fa-clock-o"></i> %= message.created_at.strftime("%l:%M %p") %-->
+	</span>
+	<span class="time<%= right_or_left(message) %>"><i class="fa fa-clock-o"></i> <%= message.created_at.strftime("%l:%M %p") %></span>
+	<p><%= message.body %></p>
+</div>

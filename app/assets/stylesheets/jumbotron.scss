@@ -1,3 +1,9 @@
+
+.blurb_JT {
+	color: $jTron-txt;
+}
+
+
 .jumbotron {
   padding: 30px 15px;
   margin-bottom: 30px;
@@ -5,14 +11,16 @@
   //background-color: #A0A0A0; }
   //background-color: #6d97bf; }
   //background-color: #7daddb; }
-  background-color: rgba(#2CA8FF, .40); }
+  //background-color: rgba(#2CA8FF, .40); }
+  background-color: $BG-blue-light; }
   //background-color: #ffd896; }
   .jumbotron h1,
   .jumbotron .h1 {
     //color: inherit; }
     //color: #c5ff68; }
     //color: #b7ff44; }
-    color: #caff77; }
+    //color: #caff77; }
+    color: $jTron-h1; }
   .jumbotron p {
 		//color: blue;
     margin-bottom: 15px;
