@@ -19,7 +19,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                User Options <b class="skate_caret"></b>
+                Users <b class="skate_caret"></b>
               </a>
               <ul class="dropdown-menu">
                <% if logged_in? %>
@@ -41,7 +41,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
      <!--<ul class="nav navbar-nav navbar-right">-->
 		 <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-           Skate Spot Options<b class="skate_caret"></b>
+           Skate Spots <b class="skate_caret"></b>
          </a>
          <ul class="dropdown-menu">
 			    <li><%= link_to "View all Skate Spots", skate_spots_path(street: 0, park: 0) %></li>
@@ -73,7 +73,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Rating Options<b class="skate_caret"></b>
+              Ratings <b class="skate_caret"></b>
             </a>
             <!-- <ul class="dropdown-menu"> -->
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -91,7 +91,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Event Options<b class="skate_caret"></b>
+              Events <b class="skate_caret"></b>
             </a>
             <!-- <ul class="dropdown-menu"> -->
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -108,8 +108,48 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 						</ul>
 					</li>	
 
-
       </ul>
+
+
+
+		<% if logged_in? %>
+      <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Inbox <b class="skate_caret"></b>
+            </a>
+            <!-- <ul class="dropdown-menu"> -->
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+								<% curUser_convs.each_with_index do |conv, index| %>
+											<li><%= link_to "#{getUser_chat(conv).name}", "#", class: "btn btn-success btn-xs start-conversation",
+																	"data-sid" => current_user.id, "data-rip" => getUser_chat(conv).id %></li>
+									<% index +=1 %>
+								<% end %>
+								<% if current_user.following.any? %>
+									<li class="divider"></li>
+									<p>Following</p>
+									<% current_user.following.each_with_index do |flwing, index| %>
+												<li><%= link_to "#{flwing.name}", "#", class: "btn btn-success btn-xs start-conversation",
+																		"data-sid" => current_user.id, "data-rip" => flwing.id %></li>
+										<% index +=1 %>
+									<% end %>
+								<% end %>
+								<% if current_user.followers.any? %>
+									<li class="divider"></li>
+									<p>Followers</p>
+									<% current_user.followers.each_with_index do |flw, index| %>
+												<li><%= link_to "#{flw.name}", "#", class: "btn btn-success btn-xs start-conversation",
+																		"data-sid" => current_user.id, "data-rip" => flw.id %></li>
+										<% index +=1 %>
+									<% end %>
+								<% end %>
+            </ul>
+         </li>
+      </ul>
+		<% end %>
+
+
+
     </nav>
   </div>
 </header>

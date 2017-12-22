@@ -101,7 +101,8 @@ var ready = function () {
             $("body").append('<div id="chatbox_' + conversation_id + '" class="chatbox"></div>')
 
 						/* get conversations show page for that specific conversation */
-            $.get("conversations/" + conversation_id, function (data) {
+            //$.get("conversations/" + conversation_id, function (data) {
+            $.get("/conversations/" + conversation_id, function (data) {
                 $('#chatbox_' + conversation_id).html(data);
                 $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
             }, "html");

@@ -152,19 +152,51 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 
 
    <div>
-    <% flash.each do |message_type, message| %>
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    <% end %>
+			<% flash.each do |message_type, message| %>
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+			<% end %>
 
-   <!--%= yield :scripts %-->
-<script type="text/javascript">
-<%= yield(:javascript)%>
-</script>
-
+			 <!--%= yield :scripts %-->
+			<script type="text/javascript">
+				<%= yield(:javascript)%>
+			</script>
    </div>
+
+<!--% if logged_in? %>
+	<div class="container" style="background-color:gray">
+		<h1>stuff</h1>
+		% curUser_convs.each_with_index do |conv, index| %>
+			<tr>
+				<td>%= conv.inspect %></td>
+				<td>
+					%= link_to "Chat with #{getUser_chat(conv).name}", "#", class: "btn btn-success btn-xs start-conversation",
+											"data-sid" => current_user.id, "data-rip" => getUser_chat(conv).id %>
+				</td>
+			</tr><br>
+			% index +=1 %>
+		% end %>
+
+	</div-->
+
+	<!--div class="container" style="background-color:white">
+		% getAllUsers.each_with_index do |user, index| %>
+				<tr>
+					<td>%= index +=1 %></td>
+					<td>%= user.name %></td>
+					<td>
+						%= link_to "Start Chat", "#", class: "btn btn-success btn-xs start-conversation",
+												"data-sid" => current_user.id, "data-rip" => user.id %>
+					</td>
+				</tr><br>
+		% end %>
+	</div--><!--chat-->
+<!--% end %-->
+
    <%= yield %>
-	<%= debug(params) if Rails.env.development? %>
+
+	 <%= debug(params) if Rails.env.development? %>
+
   </div>
 
 </body>
