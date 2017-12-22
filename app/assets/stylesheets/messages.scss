@@ -9,6 +9,16 @@
 	* 	• https://www.w3schools.com/cssref/pr_border-bottom_style.asp
 	* 	• https://codepen.io/Varo/pen/gbZzgr?editors=1100
 	*/
+.msg_link {
+   a { 
+       color: inherit;
+   }   
+    a:hover {
+        color: inherit;
+        background-color: #b7b7b7;
+        text-decoration: none;
+    }   
+}
 
 .chatbox {
 	display: none;

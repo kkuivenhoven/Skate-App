@@ -2,7 +2,7 @@
   <div class="chatboxtitle">
     <i class="fa fa-comments"></i>
 
-    <h1><%= @reciever.name %> </h1>
+    <h1 class="msg_link"><%= link_to "#{@reciever.name}", @reciever %> </h1>
 		<!--img class="chatImg" src="http://placehold.it/50x50" alt="Avatar"-->
   </div>
   <div class="chatboxoptions">
