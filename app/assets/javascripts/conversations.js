@@ -1,331 +1,119 @@
 /**
- * Chat logic
- *
- * Most of the js functionality is inspired from anatgarg.com
- * jQuery tag Module from the tutorial
- * http://anantgarg.com/2009/05/13/gmail-facebook-style-jquery-chat/
- *
- */
-
+	* Sources/Inspiration: 
+	*		• http://josephndungu.com/tutorials/gmail-like-chat-application-in-ruby-on-rails
+	* 
+	* The various stackoverflow posts and API pages I used to help get a deeper understanding
+	* of the jQuery and methods implemented by Joseph Ndungu in his tutorial so that I could
+	* write a "my own" version that was inspired by Joseph Ndungu.
+	* 	• https://api.jquery.com/jquery.post/
+	* 	• https://stackoverflow.com/questions/3407133/how-do-i-get-the-scroll-position-of-a-document
+	*		• https://stackoverflow.com/questions/270612/scroll-to-bottom-of-div
+	*		• https://www.w3schools.com/jquery/css_scrolltop.asp
+	*		• https://www.sitepoint.com/jqueryhtml5-input-focus-cursor-positions/
+	* 			(referenced for positioning cursor in input textbox)
+	*		• http://www.javascripter.net/faq/trim.htm
+	* 			(for removing trailing and leading spaces in a string)
+	*		• https://stackoverflow.com/questions/1193405/jquery-toggle-and-if-visible
+	* 			(for slideToggle() callback for textarea focus when header is clicked)
+	*	• https://stackoverflow.com/questions/10284597/get-count-of-child-elements-from-one-instance-of-a-class
+	* 			(for getting child elements)
+	*
+	*/
 
 var chatboxFocus = new Array();
 var chatBoxes = new Array();
 
 var ready = function () {
 
-    chatBox = {
+	var convID;
+	var numChats;
 
-        /**
-         * creates an inline chatbox on the page by calling the
-         * createChatBox function passing along the unique conversation_id
-         * 
-         * @param conversation_id
-         */
-
-        chatWith: function (conversation_id) {
-
-            chatBox.createChatBox(conversation_id);
-            $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
-        },
-
-        /**
-         * closes the chatbox by essentially hiding it from the page
-         * 
-         * @param conversation_id
-         */
-
-        close: function (conversation_id) {
-            /*$('#chatbox_' + conversation_id).slideToggle(300, 'swing', function () {
-								chatBox.restructure();
-						});*/
-            $('#chatbox_' + conversation_id).css('display', 'none');
-            //$('#chatbox_' + conversation_id).fadeOut(300);
-            //$('#chatbox_' + conversation_id + " .chatboxcontent").fadeOut(300);
-            //$('#chatbox_' + conversation_id + " .chatboxinput").fadeOut(300);
-            chatBox.restructure();
-        },
-
-/* https://codepen.io/mehmetmert/pen/zbKpv?editors=1010 */
-				animCollapse: function (conversation_id) {
-            $('#chatbox_' + conversation_id + " .chatboxcontent").slideToggle(300, 'swing');
-            $('#chatbox_' + conversation_id + " .chatboxinput").slideToggle(300, 'swing');
-            //$('#chatbox_' + conversation_id + " .chatboxinput").fadeOut(300);
-				},
-
-        /**
-         * Plays a notification sound when a new chat message arrives
-         */
-
-        notify: function () {
-            var audioplayer = $('#chatAudio')[0];
-            audioplayer.play();
-        },
-
-        /**
-         * Handles 'smart layouts' of the chatboxes. Like when new chatboxes are
-         * added or removed from the view, it restructures them so that they appear
-         * neatly aligned on the page
-         */
-
-        restructure: function () {
-            align = 0;
-            for (x in chatBoxes) {
-                chatbox_id = chatBoxes[x];
-
-                if ($("#chatbox_" + chatbox_id).css('display') != 'none') {
-                    if (align == 0) {
-                        $("#chatbox_" + chatbox_id).css('right', '20px');
-                    } else {
-                        width = (align) * (280 + 7) + 20;
-                        $("#chatbox_" + chatbox_id).css('right', width + 'px');
-                    }
-                    align++;
-                }
-            }
-
-        },
-
-        /**
-         * Takes in two parameters. It is responsible for fetching the specific conversation's
-         * html page and appending it to the body of our home page e.g if conversation_id = 1
-         *
-         * $.get("conversations/1, function(data){
-         *    // rest of the logic here
-         * }, "html")
-         *
-         * @param conversation_id
-         * @param minimizeChatBox
-         */
-
-        createChatBox: function (conversation_id, minimizeChatBox) {
-						/* if chatbox_id is not displayed on the page, change the css
-						 * so that the chatbox_id will be displayed, using block */
-            if ($("#chatbox_" + conversation_id).length > 0) {
-                if ($("#chatbox_" + conversation_id).css('display') == 'none') {
-                    $("#chatbox_" + conversation_id).css('display', 'block');
-                    chatBox.restructure();
-                }
-								/* focus/put the cursor in the chatbox */
-                $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
-                return;
-            }
-
-						/* add chatbox to page */
-            $("body").append('<div id="chatbox_' + conversation_id + '" class="chatbox"></div>')
-
-						/* get conversations show page for that specific conversation */
-            //$.get("conversations/" + conversation_id, function (data) {
-            $.get("/conversations/" + conversation_id, function (data) {
-                $('#chatbox_' + conversation_id).html(data);
-                $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
-            }, "html");
-
-            $("#chatbox_" + conversation_id).css('bottom', '0px');
-
-            chatBoxeslength = 0;
-
-						/* determine number of chatBoxes displayed currently on users page */
-            for (x in chatBoxes) {
-                if ($("#chatbox_" + chatBoxes[x]).css('display') != 'none') {
-                    chatBoxeslength++;
-                }
-            }
-
-						/* adjust the CSS for if just one chatBox displayed or multiple */
-            if (chatBoxeslength == 0) {
-                $("#chatbox_" + conversation_id).css('right', '20px');
-            } else {
-                width = (chatBoxeslength) * (280 + 7) + 20;
-                $("#chatbox_" + conversation_id).css('right', width + 'px');
-            }
-
-            chatBoxes.push(conversation_id);
-
-            if (minimizeChatBox == 1) {
-                minimizedChatBoxes = new Array();
-
-                if ($.cookie('chatbox_minimized')) {
-                    minimizedChatBoxes = $.cookie('chatbox_minimized').split(/\|/);
-                }
-                minimize = 0;
-                for (j = 0; j < minimizedChatBoxes.length; j++) {
-                    if (minimizedChatBoxes[j] == conversation_id) {
-                        minimize = 1;
-                    }
-                }
-
-                if (minimize == 1) {
-                    $('#chatbox_' + conversation_id + ' .chatboxcontent').css('display', 'none');
-                    $('#chatbox_' + conversation_id + ' .chatboxinput').css('display', 'none');
-                }
-            }
-
-            chatboxFocus[conversation_id] = false;
-
-            $("#chatbox_" + conversation_id + " .chatboxtextarea").blur(function () {
-                chatboxFocus[conversation_id] = false;
-                $("#chatbox_" + conversation_id + " .chatboxtextarea").removeClass('chatboxtextareaselected');
-            }).focus(function () {
-                chatboxFocus[conversation_id] = true;
-                $('#chatbox_' + conversation_id + ' .chatboxhead').removeClass('chatboxblink');
-                $("#chatbox_" + conversation_id + " .chatboxtextarea").addClass('chatboxtextareaselected');
-            });
-
-            $("#chatbox_" + conversation_id).click(function () {
-                if ($('#chatbox_' + conversation_id + ' .chatboxcontent').css('display') != 'none') {
-                    $("#chatbox_" + conversation_id + " .chatboxtextarea").focus();
-                }
-            });
-
-            $("#chatbox_" + conversation_id).show();
-
-        },
-
-        /**
-         * Responsible for listening to the keypresses when chatting. If the Enter button is pressed,
-         * we submit our conversation form to our rails app
-         *
-         * @param event
-         * @param chatboxtextarea
-         * @param conversation_id
-         */
-
-        checkInputKey: function (event, chatboxtextarea, conversation_id) {
-            if (event.keyCode == 13 && event.shiftKey == 0) {
-                event.preventDefault();
-
-                message = chatboxtextarea.val();
-                message = message.replace(/^\s+|\s+$/g, "");
-
-                if (message != '') {
-                    $('#conversation_form_' + conversation_id).submit();
-                    $(chatboxtextarea).val('');
-                    $(chatboxtextarea).focus();
-                    $(chatboxtextarea).css('height', '44px');
-                }
-            }
-
-            var adjustedHeight = chatboxtextarea.clientHeight;
-            var maxHeight = 94;
-
-            if (maxHeight > adjustedHeight) {
-                adjustedHeight = Math.max(chatboxtextarea.scrollHeight, adjustedHeight);
-                if (maxHeight)
-                    adjustedHeight = Math.min(maxHeight, adjustedHeight);
-                if (adjustedHeight > chatboxtextarea.clientHeight)
-                    $(chatboxtextarea).css('height', adjustedHeight + 8 + 'px');
-            } else {
-                $(chatboxtextarea).css('overflow', 'auto');
-            }
-
-        },
-
-        /**
-         * Responsible for handling minimize and maximize of the chatbox
-         *
-         * @param conversation_id
-         */
-
-        toggleChatBoxGrowth: function (conversation_id) {
-            if ($('#chatbox_' + conversation_id + ' .chatboxcontent').css('display') == 'none') {
-
-                var minimizedChatBoxes = new Array();
-
-                if ($.cookie('chatbox_minimized')) {
-                    minimizedChatBoxes = $.cookie('chatbox_minimized').split(/\|/);
-                }
-
-                var newCookie = '';
-
-                for (i = 0; i < minimizedChatBoxes.length; i++) {
-                    if (minimizedChatBoxes[i] != conversation_id) {
-                        newCookie += conversation_id + '|';
-                    }
-                }
-
-                newCookie = newCookie.slice(0, -1)
+	$(document).on('click', '.start-conversation', function (e) {
+		e.preventDefault();
+		var senderID = $(this).data('sid');
+		var recipientID = $(this).data('rip');
+		$.post("/conversations", { sender_id: senderID, recipient_id: recipientID }, function (response) {
+				convID = response.conversation_id;
+				$("body").append('<div id="chatbox_' + response.conversation_id + '" class="chatbox"></div>');	
+				$.get("/conversations/" + response.conversation_id, {}, function (data) {
+					$('#chatbox_' + response.conversation_id).html(data);
+					// the below line "...sets the vertical position of the scrollbar for ALL matched elements" (w3schools)
+					$('#chatbox_' + convID + ' .chatboxcontent').scrollTop($('#chatbox_' + convID + ' .chatboxcontent')[0].scrollHeight);
+					$('.chatboxtextarea').focus();
+				}, "html");
+				$('#chatbox_' + response.conversation_id).css('bottom', '0px');
+				$('#chatbox_' + response.conversation_id).css('right', '20px');
+				$('#chatbox_' + response.conversation_id).css('display', 'block');
+				if($('.chatbox').length == 1){
+					numChats = 1;
+				}
+				else{
+					numChats++;
+					restructure();
+				}
+		});
+	});
 
 
-                $.cookie('chatbox_minimized', newCookie);
-                $('#chatbox_' + conversation_id + ' .chatboxcontent').css('display', 'block');
-                $('#chatbox_' + conversation_id + ' .chatboxinput').css('display', 'block');
-                $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
-            } 
-						else { /*else our chatbox_id is displayed */
-
-                var newCookie = conversation_id;
-
-                if ($.cookie('chatbox_minimized')) {
-                    newCookie += '|' + $.cookie('chatbox_minimized');
-                }
+	function restructure(){
+		var allChats = $('.chatbox:visible');
+		allChats.each(function(index, elem){
+			var moveOver = (index) * (280 + 7) + 20;
+			$('#' + elem.id).css('right', moveOver + 'px');
+		});
+	}
 
 
-                $.cookie('chatbox_minimized', newCookie);
-                $('#chatbox_' + conversation_id + ' .chatboxcontent').css('display', 'none');
-                $('#chatbox_' + conversation_id + ' .chatboxinput').css('display', 'none');
-            }
+	$(document).on('click', '.closeChat', function (e) { 
+		e.preventDefault();
+		$('#chatbox_' + $(this).data('cid')).css('display', 'none');
+		$('.chatboxtextarea').focusout();
+		if(numChats != 1){
+			restructure();
+		}
+		numChats--;
+	});
 
-        }
+
+	$(document).on('click', '.chatboxhead', function (e) {
+		e.preventDefault();
+		$('#chatbox_' + $(this).data('cid') + " .chatboxcontent").slideToggle(300, 'swing');
+		$('#chatbox_' + $(this).data('cid') + " .chatboxinput").slideToggle(300, 'swing', function(){
+				if($(this).css('display') == "none"){
+					//$('.chatboxtextarea').focusout();
+				}
+				else{
+					//$('.chatboxtextarea').focus();
+					$(this).children().children()[2].focus();
+				}
+		});
+		$('#chatbox_' + $(this).data('cid') + ' .chatboxcontent').scrollTop($('#chatbox_' + $(this).data('cid') + ' .chatboxcontent')[0].scrollHeight);
+	});
 
 
 
-    }
-
-
-    /**
-     * Cookie plugin
-     *
-     * Copyright (c) 2006 Klaus Hartl (stilbuero.de)
-     * Dual licensed under the MIT and GPL licenses:
-     * http://www.opensource.org/licenses/mit-license.php
-     * http://www.gnu.org/licenses/gpl.html
-     *
-     */
-
-    jQuery.cookie = function (name, value, options) {
-        if (typeof value != 'undefined') { // name and value given, set cookie
-            options = options || {};
-            if (value === null) {
-                value = '';
-                options.expires = -1;
-            }
-            var expires = '';
-            if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
-                var date;
-                if (typeof options.expires == 'number') {
-                    date = new Date();
-                    date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
-                } else {
-                    date = options.expires;
-                }
-                expires = '; expires=' + date.toUTCString(); // use expires attribute, max-age is not supported by IE
-            }
-            // CAUTION: Needed to parenthesize options.path and options.domain
-            // in the following expressions, otherwise they evaluate to undefined
-            // in the packed version for some reason...
-            var path = options.path ? '; path=' + (options.path) : '';
-            var domain = options.domain ? '; domain=' + (options.domain) : '';
-            var secure = options.secure ? '; secure' : '';
-            document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
-        } else { // only name given, get cookie
-            var cookieValue = null;
-            if (document.cookie && document.cookie != '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = jQuery.trim(cookies[i]);
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-    };
-
+	$(document).on('keydown', '.chatboxtextarea', function(e) {
+		var id = $(this).data('cid');
+		if(e.keyCode == 13){ // had to change e.which to e.keyCode, 
+												 // o.w. e.preventDefault() would prevent user from typing input
+			e.preventDefault(); 
+			//var mensaje = $('.chatboxtextarea').val();
+			var mensaje = $(this).val();
+			// need to use /^\s+|\s+$/g to replace/remove trailing ^ leading spaces in mensaje 
+			mensaje = mensaje.replace(/^\s+|\s+$/g, "");
+			if(mensaje != ''){
+				$('#conversation_form_' + id).submit();
+				//$('.chatboxtextarea').val('');
+				//$('.chatboxtextarea').focus();
+				$(this).val('');
+				$(this).focus();
+			}
+		}
+	});
 
 }
 
+
 $(document).ready(ready);
 $(document).on("page:load", ready);
+

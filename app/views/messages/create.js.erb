@@ -18,11 +18,13 @@
 		 the message sees the senderPersons message on the appropriate
 		 side of the conversation box */
 	if(sender_id != receiver_id){
-		chatBox.chatWith(id);
+		//chatBox.chatWith(id);
 		//chatbox.children().last().removeClass("self").addClass("other");
 		chatbox.children().last().removeClass("msgRight").addClass("msgLeft");
+		chatbox.children().last().children('span')[0].className = "nameLeft";
+		chatbox.children().last().children('span')[1].className = "timeLeft";
 		chatbox.scrollTop(chatbox[0].scrollHeight);
-		chatBox.notify();
+		//chatBox.notify();
 	}
 
 <% end %>
