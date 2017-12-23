@@ -31,7 +31,7 @@ $(document).ready(function() {
 
 
 var ready = function () {
-
+	
     /**
      * When the send message link on our home page is clicked
      * send an ajax request to our rails app with the sender_id and
@@ -69,6 +69,13 @@ var ready = function () {
 
         var id = $(this).data('cid');
         chatBox.close(id);
+    });
+
+/* https://codepen.io/mehmetmert/pen/zbKpv?editors=1010 */
+		$(document).on('click', '.chatboxhead', function (e) {
+				e.preventDefault();
+        var id = $(this).data('cid');
+        chatBox.animCollapse(id);
     });
 
 

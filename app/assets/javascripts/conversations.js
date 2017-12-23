@@ -35,9 +35,22 @@ var ready = function () {
          */
 
         close: function (conversation_id) {
+            /*$('#chatbox_' + conversation_id).slideToggle(300, 'swing', function () {
+								chatBox.restructure();
+						});*/
             $('#chatbox_' + conversation_id).css('display', 'none');
+            //$('#chatbox_' + conversation_id).fadeOut(300);
+            //$('#chatbox_' + conversation_id + " .chatboxcontent").fadeOut(300);
+            //$('#chatbox_' + conversation_id + " .chatboxinput").fadeOut(300);
             chatBox.restructure();
         },
+
+/* https://codepen.io/mehmetmert/pen/zbKpv?editors=1010 */
+				animCollapse: function (conversation_id) {
+            $('#chatbox_' + conversation_id + " .chatboxcontent").slideToggle(300, 'swing');
+            $('#chatbox_' + conversation_id + " .chatboxinput").slideToggle(300, 'swing');
+            //$('#chatbox_' + conversation_id + " .chatboxinput").fadeOut(300);
+				},
 
         /**
          * Plays a notification sound when a new chat message arrives
@@ -237,7 +250,8 @@ var ready = function () {
                 $('#chatbox_' + conversation_id + ' .chatboxcontent').css('display', 'block');
                 $('#chatbox_' + conversation_id + ' .chatboxinput').css('display', 'block');
                 $("#chatbox_" + conversation_id + " .chatboxcontent").scrollTop($("#chatbox_" + conversation_id + " .chatboxcontent")[0].scrollHeight);
-            } else {
+            } 
+						else { /*else our chatbox_id is displayed */
 
                 var newCookie = conversation_id;
 
