@@ -56,6 +56,13 @@
 		width: 100%;
 }
 
+.skate_table tr, thead, tbody {
+		background-color: rgba(#2CA8FF, .40);
+		border-radius: 6px;
+		color: inherit;
+		width: 100%;
+}
+
 .skate_table > tbody > tr:hover {
 	/*background-color: #b7b7b7; }*/
 	background-color: #6d97bf; }
