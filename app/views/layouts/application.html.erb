@@ -93,11 +93,11 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 
 			<% if current_page?(controller: 'skate_spots', action: 'show') %>
 				<% if logged_in? %>
-					<%=link_to"<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
-					<%=link_to"<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
+					<%=link_to"<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= UV_1(@skate_spot) %>
+					<%=link_to"<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= UV_0(@skate_spot) %>
 				<% else %>
-					<i class='glyphicon glyphicon-thumbs-up'></i><%= @skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %>&nbsp;
-					<i class='glyphicon glyphicon-thumbs-down'></i><%= @skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %>&nbsp;
+					<i class='glyphicon glyphicon-thumbs-up'></i><%= UV_1(@skate_spot) %>
+					<i class='glyphicon glyphicon-thumbs-down'></i><%= UV_0(@skate_spot) %>
 				 <% end %>  
 			<% end %>  
 
