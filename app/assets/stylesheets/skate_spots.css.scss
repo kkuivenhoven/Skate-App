@@ -1,5 +1,11 @@
+.filterCell{
+}
+
 .filterTable1{
 	float: left;
+	tbody {
+		background-color: rgba(0, 0, 0, 0);
+	}
 	@media (min-width: 769px) {
 		width: 45%;
 		td {
@@ -17,6 +23,9 @@
 
 .filterTable2{
 	float: right;
+	tbody {
+		background-color: rgba(0, 0, 0, 0);
+	}
 	@media (min-width: 769px) {
 		width: 45%;
 		td {
@@ -32,32 +41,34 @@
 	}
 }
 
-.filterCell{
-}
 
-
-.user_ST {
-		//background-color: #a0a0a0;
-		//background-color: #6d97bf;
-		//background-color: #7daddb;
-		//background-color: rgba(#2CA8FF, .40);
-		border-radius: 6px;
-		color: inherit;
-		width: 100%;
+.skate_table_new {
+	background-color: $BG-blue-light;
+	border-radius: 6px;
+	color: inherit;
+	width: 100%;
+	thead, tbody, tr, td {
+		background-color: rgba(0, 0, 0, 0);
+	}
+	@media (max-width: 768px) {
+		thead, tbody, tr, td {
+			font-size: x-small;
+		}
+	}
 }
 
 .skate_table {
 		//background-color: #a0a0a0;
 		//background-color: #6d97bf;
 		//background-color: #7daddb;
-		background-color: rgba(#2CA8FF, .40);
+		background-color: $BG-blue-light;
 		border-radius: 6px;
 		color: inherit;
 		width: 100%;
 }
 
 .skate_table tr, thead, tbody {
-		background-color: rgba(#2CA8FF, .40);
+		background-color: $BG-blue-light;
 		border-radius: 6px;
 		color: inherit;
 		width: 100%;
@@ -90,42 +101,51 @@
 }
 
 .skate_show_header{
-				border-radius: 5px;
-				//background-color: #a0a0a0;
-				//background-color: #7daddb;
-				background-color: rgba(#2CA8FF, .40);
-				h5 {
-						font-size: 1.1em;
-				}
+	background-color: $BG-blue-light;
+	border-radius: 5px;
+	border-bottom: 0px;
+	h5 {
+			font-size: 1.1em;
+	}
+	.skate_table_new {
+		background-color: rgba(0, 0, 0, 0);
+	}
+}
+
+.skate_table_rec {
+	background: none;
+	thead, tbody {
+		background: none;
+	}
 }
 
 //#skateSearch {
 .skateSearch {
-				border-radius: 5px;
-				//background-color: #a0a0a0;
-				//background-color: #7daddb;
-				background-color: rgba(#2CA8FF, .40);
-				//width: 250px;
-				width: 100%;
-				padding: 10px 10px;
-				float: left;
-				display: inline;
+	border-radius: 5px;
+	//background-color: #a0a0a0;
+	//background-color: #7daddb;
+	background-color: $BG-blue-light;
+	//width: 250px;
+	width: 100%;
+	padding: 10px 10px;
+	float: left;
+	display: inline;
 }
 
 #skateRec {
-				border-radius: 5px;
-				//background-color: #a0a0a0;
-				//background-color: #7daddb;
-				background-color: rgba(#2CA8FF, .40);
-				padding: 10px 10px;
-				float: left;
-				display: inline;
-				width: 100%
+	border-radius: 5px;
+	//background-color: #a0a0a0;
+	//background-color: #7daddb;
+	background-color: $BG-blue-light;
+	padding: 10px 10px;
+	float: left;
+	display: inline;
+	width: 100%
 }
 
 #myTable {
-				float: left;
-				clear: left;
+	float: left;
+	clear: left;
 }
 
 #spaceDiv {

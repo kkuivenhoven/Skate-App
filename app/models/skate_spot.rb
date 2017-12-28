@@ -50,6 +50,14 @@ class SkateSpot < ActiveRecord::Base
 		[num_and_st, city, state, zip_code].join(', ')
 	end
 
+	def complete_address_LB
+		addr = [num_and_st].join(', ')
+		lineBreak = ",<br>"
+		partialAddr = addr + lineBreak + city
+		fullAddr = [partialAddr, state, zip_code].join(', ').html_safe
+	  return fullAddr	
+	end
+
 	def gmaps4rails_address
 		return "#{complete_address}"
 	end

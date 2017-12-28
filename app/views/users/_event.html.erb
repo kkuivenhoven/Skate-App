@@ -2,13 +2,13 @@
 				<br><center><h5><b>Skate Spot Events</b></h5></center>
 <% if @events.count > 0 %>
  <div class="table-responsive">
-   <!--table class="table skate_table"-->
    <table class="table user_ST">
      <thead>
        <tr>
         <th>Name</th>
         <th>Description</th>
         <th>Date</th>
+        <th>Skate Spot</th>
        </tr>
      </thead>
 
@@ -18,7 +18,8 @@
         <tr>
           <td><%= event.name %></td>
           <td><%= event.description %></td>
-          <td><%= event.date.localtime.strftime "%B %e, %Y at %l:%M %p" %></td>
+          <td><%= event.eventDate_LB %></td>
+					<td><%= SkateSpot.find_by(:id => event.skate_spot_id).name %></td>
         </tr>
       </tr>
      <% end %>
