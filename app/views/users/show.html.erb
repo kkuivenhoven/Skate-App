@@ -95,20 +95,9 @@ https://www.railstutorial.org/book/sign_up-->
 								 </td>
 								 <td><% if skate_spot.gated %>Yes<% else %>No<% end %>
 								 </td>  
-								 <td><% if skate_spot.wood %>Wooden
-										<% elsif skate_spot.metal %>Metal
-										<% elsif skate_spot.concrete %>Concrete
-										<% else %>No material listed<% end %>
-								 </td>  
-								 <td><% if skate_spot.transition %>Transition
-										<% elsif skate_spot.street_plaza %>Street Plaza
-										<% else %>Not listed<% end %>
-								 </td>  
-								 <td><% if skate_spot.skate_spot_size %>Skate spot size
-										<% elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
-										<% elsif skate_spot.regional_spot_size %>Regional spot size
-										<% else %>No size listed<% end %>
-								 </td>  
+								 <td><%= material_words(skate_spot) %></td>  
+								 <td><%= ss_type(skate_spot) %></td>  
+								 <td><%= ss_size(skate_spot) %></td>  
 								 <td><%= skate_spot.complete_address %></td>
 							 </tr>
 						 </tr>

@@ -171,25 +171,9 @@
       <% end %>
    </td>
 
-   <td>
-      <% if skate_spot.wood && skate_spot.concrete && skate_spot.metal%>Wood, Concrete, Metal
-      <% elsif skate_spot.wood && skate_spot.concrete %>Wood, Concrete
-      <% elsif skate_spot.wood && skate_spot.metal %>Wood, Metal
-      <% elsif skate_spot.concrete && skate_spot.metal %>Concrete, Metal
-      <% elsif skate_spot.wood %>Wooden
-      <% elsif skate_spot.metal %>Metal
-      <% elsif skate_spot.concrete %>Concrete
-      <% else %>No material listed
-      <% end %>
-   </td>
+   <td><%= material_words(skate_spot) %></td>
 
-   <td>
-      <% if skate_spot.skate_spot_size %>Skate spot size
-      <% elsif skate_spot.neighborhood_spot_size %>Neighborhood spot size
-      <% elsif skate_spot.regional_spot_size %>Regional spot size
-      <% else %>No size listed
-      <% end %>
-   </td>
+   <td><%= ss_size(skate_spot) %></td>
 
    <td><%= skate_spot.complete_address_LB %></td>
   </tr>
