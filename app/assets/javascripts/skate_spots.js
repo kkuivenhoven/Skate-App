@@ -54,3 +54,24 @@ function allinitMap() {
     }
 }
 
+/*var ready = function () {
+	var halfDocHeight = (($(document).height())/2);
+	var bodyHT = $("body").height();
+	var stopHT = (($("body").height())/2);
+	var userHeight = $(document).scrollTop();
+	alert(userHeight);
+	//if(userHeight >= stopHT){
+	if($(window).scrollTop() >= $(document).height()){
+		//$("#preventModal").modal();
+		alert("match");
+	}
+	else{
+		alert("nah");
+	}
+}
+
+
+$(document).ready(ready);
+$(document).on("page:load", ready);*/
+
+
