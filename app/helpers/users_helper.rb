@@ -9,6 +9,28 @@ module UsersHelper
   end
 
 
+	def UR_diff(s_rate)
+		return s_rate.ratings.average(:difficulty).truncate(2)
+	end
+
+	def UR_sec(s_rate)
+		return s_rate.ratings.average(:police).truncate(2)
+	end
+
+	def UR_ped(s_rate)
+		return s_rate.ratings.average(:pedestrian).truncate(2)
+	end
+
+	def UR_parkStreet(s_rate)
+		if @s_rate.park_spot
+				return "Park spot"
+		elsif @s_rate.street_spot
+				return "Street spot"
+		else 
+				return "Type of spot not indicated"
+		end 
+	end
+
 
 end
 
