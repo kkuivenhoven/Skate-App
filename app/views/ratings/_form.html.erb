@@ -1,22 +1,36 @@
+<!-- Tutorial/inspiration:
+		• http://railscasts.com/episodes/253-carrierwave-file-uploads
+-->
+
   <div class="panel panel-default">
     <div class="panel-body">
 
 		<p-small>In the first three fields, enter in a number between 0 and 10.</p-small><br>
-		<p-small><i>Note: For difficulty, security, and pedestrian fields, 0 indicates none and 10 indicates at highest level.</i></p-small><br>
+		<p-small class="importantNote">Note: For difficulty, security, and pedestrian fields, 0 indicates none and 10 indicates at highest level.</p-small><br><br>
     <%= form_for([@rating.skate_spot,@rating]) do |f| %>  
 		
 
-    <%= f.label :difficulty %><br>
-    <%= f.number_field :difficulty, class: 'form-control', min: 0, max: 10 %>
+    <%= f.label :difficulty, "Is the skate spot difficulty level beginner(0), intermediate(5), or advanced(10)?" %><br>
+    <%= f.number_field :difficulty, class: 'form-control', min: 0, max: 10 %><br>
 
     <%= f.label :police, "Likelihood of being kicked out?" %><br>
-    <%= f.number_field :police, class: 'form-control', min: 0, max: 10 %>
+		<p-small class="otherNotes">Note: 10 means high likelihood of being kicked out while 0 means zero likelihood of being kicked out.</p-small>
+    <%= f.number_field :police, class: 'form-control', min: 0, max: 10 %><br>
 
     <%= f.label :pedestrian, "Is there a lot of people to watch out for?" %><br>
-    <%= f.number_field :pedestrian, class: 'form-control', min: 0, max: 10 %>
+		<p-small class="otherNotes">Note: 10 means there's a lot of people while 0 means there's zero people to watch out for.</p-small>
+    <%= f.number_field :pedestrian, class: 'form-control', min: 0, max: 10 %><br>
 
-    <%= f.label :description %><br>
-    <%= f.text_field :description, class: 'form-control', :maxlength=>"140" %>
+    <%= f.label :description, "Description:" %><br>
+		<p-small class="otherNotes">Note: You may use this area to mention the best and worst features of the spot, best time of day to go, etc.</p-small>
+    <%= f.text_field :description, class: 'form-control', :maxlength=>"140" %><br>
+
+    <%= f.label :image, "Upload an image of the spot:" %><br>
+		<%= f.file_field :image, class: 'form-control' %>
+
+		<%= f.label :remote_image_url, "Or you may paste an image URL of the spot:" %><br>
+		<%= f.text_field :remote_image_url, class: 'form-control' %><br>
+
 
     <%= f.submit class: "btn btn-primary" %>
 

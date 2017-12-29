@@ -1,10 +1,14 @@
-#Sources: 
-#http://guides.rubyonrails.org/active_record_validations.html#numericality
+# Sources: 
+# http://guides.rubyonrails.org/active_record_validations.html#numericality
+# http://railscasts.com/episodes/253-carrierwave-file-uploads
 
 class Rating < ActiveRecord::Base
   belongs_to :user
   belongs_to :skate_spot  
 	has_many :responses
+
+	attr_accessor :image, :remote_image_url
+	mount_uploader :image, ImageUploader
  
   #validates_presence_of makes sure that the user has provided input for that specified attribute
   #validates_numericality_of makes sure that the user has provided numbers for input that are between 0 and 10

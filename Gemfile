@@ -4,6 +4,11 @@ source 'https://rubygems.org'
 
 gem 'sendgrid-ruby'
 
+# For image upload
+# gem 'carrierwave',             '~> 1.0'
+gem 'carrierwave',             '0.10.0'
+gem 'mini_magick',             '3.8.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
@@ -26,8 +31,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'faker',                   '1.4.2'
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
-gem 'carrierwave',             '0.10.0'
-gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.36.0'
 gem 'geocoder' #needed for converting lat,long to address
 gem 'area' #needed for converting zipcode to lat,long

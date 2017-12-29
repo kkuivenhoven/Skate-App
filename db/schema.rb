@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202011017) do
+ActiveRecord::Schema.define(version: 20171229164146) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171202011017) do
     t.integer  "skate_spot_id"
     t.integer  "sender_id"
     t.integer  "recipient_id"
+    t.string   "image"
   end
 
   add_index "ratings", ["skate_spot_id"], name: "index_ratings_on_skate_spot_id"

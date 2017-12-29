@@ -172,8 +172,9 @@ class RatingsController < ApplicationController
       
     #the attributes the the rating table that are needed for create edit and update
     def rating_params
-      params.require(:rating).permit(:difficulty, :police, :pedestrian, :description)
-      #params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
+      params.require(:rating).permit(:difficulty, :police, :pedestrian, :description, :image)
+      # params.require(:rating).permit(:difficulty, :police, :pedestrian, :description)
+      # params.require(:rating).permit(:difficulty, :police, :pedestrian, :time, :description)
     end
 
     def response_params
