@@ -19,7 +19,8 @@ module ApplicationHelper
 
 	def getImg(rating)
 		if rating.image.present?
-			return rating.image_url(:large_thumb)
+			# return rating.image_url(:large_thumb)
+			return rating.image_url(:thumb)
 		end
 	end
 
