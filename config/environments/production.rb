@@ -26,6 +26,7 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
+	# https://stackoverflow.com/questions/22215696/how-do-i-minify-css-in-rails-4
   config.assets.css_compressor = :sass
 
   # SO said to add this so here it is
