@@ -32,7 +32,7 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 	<!--%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	%= javascript_include_tag 'application' %>
 	= javascript_include_tag 'application', async: Rails.env.production? %-->
-	<%= javascript_include_tag 'application', async: Rails.env.production?, :cache => 'cached/all' %>
+	<%= javascript_include_tag 'application', async: Rails.env.production?, cache: 'cached/all' %>
   <%= csrf_meta_tags %>
 	<!--%= javascript_include_tag 'application', 'jquery', 'data-turbolinks-track' => true %-->
 	<!-- https://stackoverflow.com/questions/8616764/what-is-the-sensor-parameter-in-google-places-api-good-for 
