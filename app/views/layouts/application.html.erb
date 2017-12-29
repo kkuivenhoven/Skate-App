@@ -27,7 +27,8 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script-->
 	<!--script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script-->
 	<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!--%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %-->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true, async: Rails.env.production? %>
 	<!--%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	%= javascript_include_tag 'application' %-->
 	<%= javascript_include_tag 'application', async: Rails.env.production? %>
