@@ -24,7 +24,9 @@ $gray-medium-light: #eaeaea;
 /* Background Image */
 /* Sources for help: http://stackoverflow.com/questions/19055811/twitter-bootstrap-responsive-background-image-inside-div */ 
 html body {
-   background: url(http://i66.tinypic.com/2u3uubm.jpg) no-repeat center fixed;
+   //background: url(http://i66.tinypic.com/2u3uubm.jpg) no-repeat center fixed;
+   //background: url(http://i66.tinypic.com/25kiib7.png) no-repeat center fixed;
+   background-image: url("http://i66.tinypic.com/25kiib7.png");// no-repeat center fixed;
    //background: url(http://i66.tinypic.com/2u3uubm.jpg) no-repeat center fixed;
    //background: url(http://i64.tinypic.com/102qsnl.jpg) no-repeat center fixed;
    /*background: url(https://binaryfortressdownloads.com/Download/WPF/Images/23343/WallpaperFusion-venice-skate-park-1680x480.jpg) no-repeat center fixed;*/
@@ -41,9 +43,9 @@ html body {
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
-  //background-size: 100%;
-  //background-position: center;
-  //height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 } 
 
 @charset "UTF-8";
