@@ -7,7 +7,7 @@ class Rating < ActiveRecord::Base
   belongs_to :skate_spot  
 	has_many :responses
 
-	attr_accessor :image, :remote_image_url
+#	attr_accessor :image, :remote_image_url
 	mount_uploader :image, ImageUploader
  
   #validates_presence_of makes sure that the user has provided input for that specified attribute
