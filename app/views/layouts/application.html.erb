@@ -1,7 +1,9 @@
 <!-- deploying to heroku: http://docs.railsbridge.org/intro-to-rails/deploying_to_heroku -->
 <!--Sources:
 https://www.railstutorial.org/book, Hartl Michael, 2014
-http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flash-messages-for-twitter-bootstrap-defaults-->
+http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flash-messages-for-twitter-bootstrap-defaults
+https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-development-mode/
+-->
 
 <!DOCTYPE html>
 <!--script src="//maps.google.com/maps/api/js?key=[AIzaSyAi1wyResdXi_VeCzL95Q4G4MLXG9qAM-M]"></script>
@@ -25,8 +27,9 @@ http://stackoverflow.com/questions/8705590/custom-classes-and-formatting-on-flas
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script-->
 	<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<!--%= javascript_include_tag 'application', 'data-turbolinks-track' => true %-->
-	<%= javascript_include_tag 'application' %>
+	<!--%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	%= javascript_include_tag 'application' %-->
+	<%= javascript_include_tag 'application', async: Rails.env.production? %>
   <%= csrf_meta_tags %>
 	<!--%= javascript_include_tag 'application', 'jquery', 'data-turbolinks-track' => true %-->
 	<!-- https://stackoverflow.com/questions/8616764/what-is-the-sensor-parameter-in-google-places-api-good-for 
