@@ -1,6 +1,8 @@
 window.onload = function(){
 	var first = 0;
 	var pathname = window.location.pathname;	// returns path only
+	var logged_in = $('meta[name=logged_in_user]').attr("content");
+	if(logged_in == "false"){
 	if((pathname == "/skate_spots") || (pathname == "/ratings/index") || ((pathname.search("/skate_spots")) == 0 ) || (pathname == "/events/index") || (pathname =="/static_pages/skate_links")){
 		$(window).scroll(function() {
 			var docSize = $(document).height();
@@ -20,6 +22,7 @@ window.onload = function(){
 					first = 0;
 			});
 		});
+	}
 	}
 }
 

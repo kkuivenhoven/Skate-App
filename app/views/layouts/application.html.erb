@@ -16,6 +16,7 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 	<meta name="keywords" content="Skate,Skateboarding,Document,Rate,Interact,Skating,Skateboard,Skateboards,Skatepark,Street,Social,Shred,Shredder,Skater,WCMX">
 	<meta name="author" content="Kendra Kuivenhoven">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="logged_in_user" content="<%= logged_in? %>">
   <title>Skate App</title>
 	<!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
 
@@ -175,6 +176,7 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 
 </body>
 
+<% if !logged_in? %>
 <div class="modal" id="preventModal" role="dialog">
   <div class="modal-dialog">
 
@@ -196,6 +198,7 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
     </div>
   </div>
 </div>
+<% end %>
 
 
 </html>
