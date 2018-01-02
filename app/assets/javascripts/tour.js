@@ -42,7 +42,8 @@ $( document ).ready(function() {
 				content: "Links to various skateboarding social media organizations!",
 				placement: "bottom"
 			}
-		]});	
+		]
+	});	
 		
 		tour.init();
 
