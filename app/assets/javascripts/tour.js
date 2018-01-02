@@ -49,6 +49,9 @@ $( document ).ready(function() {
 
 		//if(restartTour == 0){
 			tour.start();
+		if(tour.ended()){
+			tour.restart();
+		}
 		/*}
 		if(restartTour == 1){*/
 			//tour.restart();
