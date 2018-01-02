@@ -28,6 +28,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # For friendship relationships
 gem 'has_friendship'
 
+gem 'bootstrap-tour-rails' 
+
 gem 'bootstrap-sass',          '3.2.0.0'
 gem 'faker',                   '1.4.2'
 gem 'will_paginate',           '3.0.7'

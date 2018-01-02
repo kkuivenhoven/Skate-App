@@ -46,6 +46,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
+    bootstrap-tour-rails (0.4.0)
     bootstrap-will_paginate (0.0.10)
       will_paginate
     builder (3.2.3)
@@ -235,7 +236,7 @@ GEM
       subexec (~> 0.2.1)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.10.3)
+    minitest (5.11.0)
     minitest-reporters (1.0.5)
       ansi
       builder
@@ -347,7 +348,7 @@ GEM
     turbolinks-source (5.0.3)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
-    uglifier (4.1.1)
+    uglifier (4.1.2)
       execjs (>= 0.3.0, < 3)
     underscore-rails (1.8.3)
     web-console (2.3.0)
@@ -365,6 +366,7 @@ DEPENDENCIES
   area
   bcrypt (~> 3.1.7)
   bootstrap-sass (= 3.2.0.0)
+  bootstrap-tour-rails
   bootstrap-will_paginate (= 0.0.10)
   byebug
   carrierwave (= 0.10.0)
