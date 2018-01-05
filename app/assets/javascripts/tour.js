@@ -4,7 +4,7 @@ $( document ).ready(function() {
 	if(user_logged_in == "true"){
 		if(tour == null){
 			tour = new Tour({
-				storage: false,
+				//storage: false,
 				steps: [
 					{
 						element: $('#main_nav'),
