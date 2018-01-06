@@ -94,7 +94,8 @@ class SkateSpot < ActiveRecord::Base
 
 	def self.find_spots(params, skate_spots, vote_IDs)
 	 @skate_spots = skate_spots
-   if vote_IDs.count != 0
+   # if vote_IDs.count != 0
+   if !vote_IDs.nil?
 		 if (@skate_spots.ids & vote_IDs).any?
 			 vote_IDs = (@skate_spots.ids & vote_IDs)
 			 @skate_spots = @skate_spots.find(vote_IDs)
@@ -131,7 +132,8 @@ class SkateSpot < ActiveRecord::Base
 			if params[:wcmxAccessible][:wcmxAccessible] == "1"
 				@skate_spots = @skate_spots.select { |ss| ss.wcmx_accessible == true }
 			end
-			if @skate_spots.count != 0
+			# if @skate_spots.count != 0
+			if @skate_spots.length != 0
 				if params[:search].length != 0
 					@skate_spots.select { |ss| params[:search] }
 				end
