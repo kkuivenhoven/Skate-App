@@ -95,7 +95,8 @@ class SkateSpot < ActiveRecord::Base
 	def self.find_spots(params, skate_spots, vote_IDs)
 	 @skate_spots = skate_spots
    # if vote_IDs.count != 0
-   if !vote_IDs.nil?
+   # if !vote_IDs.nil?
+   if vote_IDs.length != 0
 		 if (@skate_spots.ids & vote_IDs).any?
 			 vote_IDs = (@skate_spots.ids & vote_IDs)
 			 @skate_spots = @skate_spots.find(vote_IDs)
