@@ -1,5 +1,9 @@
 class StaticPagesController < ApplicationController
 
+	def letsencrypt
+		render text: "#{params[:id]}.9l4va-Uy7XrFPGS51hnH7HwkF2nn3XhwfuR8U5ylxIM"
+	end
+
   #the homepage of the app
   def home
     if logged_in?
