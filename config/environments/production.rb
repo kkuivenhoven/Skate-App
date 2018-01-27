@@ -72,7 +72,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   # host = 'tranquil-mesa-66470.herokuapp.com'
-  host = 'skateapp4all.org'
+  host = 'www.skateapp4all.org'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
