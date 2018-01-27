@@ -1,6 +1,7 @@
 <% provide(:title, "Home") %>
 <% provide(:p, " Created by a skater, for skaters.") %>
-<% provide(:text, "<b>Document, rate, and search for skate parks and city spots throughout the USA.</b>
+<% provide(:text, "<b>Document, rate, and search for skate parks and city spots throughout the USA.</b>".html_safe) %>
+<!--% provide(:text, "<b>Document, rate, and search for skate parks and city spots throughout the USA.</b>
 <br><br>
 <span style='color: #f4ffe3'>Users can do the following:<br>
 <li>add a skate park or city spot to the site based on GPS/Geolocation coordinates</li>
@@ -13,22 +14,39 @@
 <li>post about upcoming events at skate parks and city spots</li>
 <li>a recommender feature that will recommend spots for you based on the spot you are looking at</li>
 </span>
-".html_safe) %>
+".html_safe) %-->
 
-<% if logged_in? %>
+
+<div class="col-md-12 container homeDiv">
+	<div class="row">
+		Hello! Welcome to www.skateapp4all.org, a social media site with a twist designed for skaters. 
+		<br><br>
+		The twist is that those that have an account can document various skate spots based either on GPS location or address. They may also give a spot a detailed rating, upvote or downvote spots, and view spots that are within 120 mile radius of a specified zip code and view all of the documented skate spots. Users with an account may also post about upcoming skate events. In addition, a recommender feature is used to determine which other skate spots is similar to the skate spots that the user is looking at.
+		<br><br>
+		The social media aspect allows users with an account to see all other users. They may also follow, unfollow, or block other users at their discretion. In addition, they may also see the documented spots and ratings of people they follow. Furthermore, they may also reply to detailed ratings posted by their followers.
+	</div>
+</div>
+
+
+
+
+<!--% if logged_in? %>
   <div class="container">
 					<div class="row">
 						<aside class="col-md-4">
 							<section class="user_info">
-								<!--%= render 'shared/user_info' %-->
+								%= render 'shared/user_info' %>
 							</section>
 							<section class="stats">
-								<!--%= render 'shared/stats' %-->
+								%= render 'shared/stats' %>
 							</section>
 							<section class="micropost_form">
-								<!--%= render 'shared/micropost_form' %-->
+								%= render 'shared/micropost_form' %>
 							</section>
 						</aside>
 					</div>
   </div>
-<% end %>
+ end %-->
+
+
+
