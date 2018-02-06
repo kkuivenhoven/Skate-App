@@ -70,4 +70,6 @@ Rails.application.routes.draw do
 	resources :relationships,       only: [:create, :destroy]
   delete 'blockUser'  => 'relationships#blockUser'
 
+	resources :organizations,       only: [:new, :create, :edit, :update, :destroy]
+
 end

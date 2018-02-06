@@ -240,6 +240,22 @@ puts ">> 2. event created"
 
 puts NEW_LINE + "++ Ratings created"
 
+
+	Organization.create!(name: "Calling All Skaters", category: "Christian skateboarding", 
+									user_id: 3,
+									website: "http://www.callingallskaters.org", 
+									email: "headquarters@callingallskaters.org",
+									phone_num: "", 
+									youtube: "https://www.youtube.com/channel/UCuATp5D-rm-vmr-jzhCROYQ", 
+									instagram: "https://www.instagram.com/callingallskatersofficial/", 
+									facebook: "", 
+									twitter: "", 
+									image_logo: "https://static1.squarespace.com/static/544eac4ce4b09c33e858788f/t/559f4e39e4b0da93269c212b/1438042561351/CASCrestBacked.png?format=2500w")
+
+puts NEW_LINE + "<> Organizations created"
+
+
+
 =begin
 	# Microposts
 	users = User.order(:created_at).take(6)

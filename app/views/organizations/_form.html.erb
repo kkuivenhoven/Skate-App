@@ -1,0 +1,47 @@
+<!--Sources:
+   https://www.railstutorial.org/book, Hartl Michael, 2014 -->
+   
+<% provide(:button_text, 'Submit') %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+  
+    <%= form_for(@organization) do |f| %>
+  
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :category, "Category" %>
+      <%= f.text_field :category, class: 'form-control' %>
+
+      <%= f.label :website %>
+      <%= f.text_field :website, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
+  
+      <%= f.label :phone_num %>
+      <%= f.text_field :phone_num, class: 'form-control' %>
+
+      <%= f.label :youtube %>
+      <%= f.text_field :youtube, class: 'form-control' %>
+
+      <%= f.label :instagram %>
+      <%= f.text_field :instagram, class: 'form-control' %>
+
+      <%= f.label :facebook %>
+      <%= f.text_field :facebook, class: 'form-control' %>
+
+      <%= f.label :twitter %>
+      <%= f.text_field :twitter, class: 'form-control' %>
+
+      <%= f.label :image_logo, "URL for Organization Logo" %>
+      <%= f.text_field :image_logo, class: 'form-control' %>
+
+      <br>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
+    <% end %>
+
+  </div>
+</div>

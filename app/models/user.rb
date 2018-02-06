@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :responses, dependent: :destroy
   has_many :skate_spots
   has_many :ratings, :through => :skate_spots
+  has_many :organizations, dependent: :destroy
 	has_many :microposts, dependent: :destroy # https://www.railstutorial.org/book, Hartl Michael, 2014 
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",

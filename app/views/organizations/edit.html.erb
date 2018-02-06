@@ -1,0 +1,6 @@
+<% provide(:title, "#{@organization.name}") %>
+<% provide(:p, "#{@organization.category}") %>
+<% provide(:text, "<span style='color: #f4ffe3'>You are editing the #{@organization.name} organization.</span>".html_safe) %>
+
+<%= render 'form' %>
+
