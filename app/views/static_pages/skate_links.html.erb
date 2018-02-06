@@ -26,6 +26,7 @@
 			</tr>
 		</thead>
 		<tbody>
+		<% if @organizations.count > 0 %>
 			<% @organizations.each do |org| %>
 				<tr>
 					<td><a href="<%= org.website %>"><img border="0" src="<%= org.image_logo %>"></a></td>
@@ -53,6 +54,7 @@
 					<td><a href="<%= org.twitter %>" class="btn btn-link fa fa-twitter" role="button"></a></td>
 				</tr>
 			<% end %>
+		<% end %>
 		</tbody>
 	</table>
 </div>
