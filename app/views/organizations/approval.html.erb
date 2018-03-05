@@ -1,0 +1,89 @@
+<% provide(:title, "Organization Queue") %>
+<% provide(:p, "Admin user has the ability to approve or disprove an organizations visibility to the public.") %>
+<% provide(:text, "<span style='color: #f4ffe3'>To approve an organization, navigate to the edit page via the carret next to the name of organization.
+<br>On the edit page, check the box at the bottom of the page to approve the organization.
+<br>To disprove a page, uncheck the approval box.</span>".html_safe) %>
+
+<div class="page-header staticHeader">
+<br><center><h3>Various Skateboarding Organizations</h3><br>
+</center>
+<div class="table-responsive">
+  <table class="table table-condensed rsrcTable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Approved</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Email</th>
+        <th>YouTube</th>
+        <th>Instagram</th>
+        <th>Facebook</th>
+        <th>Twitter</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% if @organizations.count > 0 %>
+      <% @organizations.each do |org| %>
+        <tr>
+
+
+          <td><a href="<%= org.website %>"><img border="0" src="<%= org.image_logo %>"></a></td>
+          <td><%= org_approved(org) %></td>
+
+          <td>
+              <li class="dropdown" style="list-style-type: none;">
+                <span class="skate_link"><a href="<%= org.website %>"><%= org.name %></a></span>
+                  <% if logged_in? %>
+                   <% if current_user.id == org.user_id %>
+                      <a href="#" class="dropdown-toggle caret_link" data-toggle="dropdown">
+                        <b class="skate_caret"></b>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to "Admin Edit", organizations_admin_edit_path(org.id) %></li>
+                       <li><%= link_to "Destroy", org, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                     </ul>
+                  <% end %>
+                <% end %>
+             </li>
+          </td>
+
+          <td><%= org.category %></td>
+
+          <% if org.email.length != 0 %>
+            <td><a href="mailto:<%= org.email %>"><span class="glyphicon glyphicon-envelope"></span> <%= org.name %></a></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+          <% if org.youtube.length != 0 %>
+            <td><a href="https://www.youtube.com/<%= org.youtube %>"><i class="fa fa-youtube" aria-hidden="true"><%= org.name %> is on YouTube</i></a></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+          <% if org.instagram.length != 0 %>
+            <td><a href="https://www.instagram.com/<%= org.instagram %>" class="btn btn-link fa fa-instagram" role="button">@<%= org.instagram %></a></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+          <% if org.facebook.length != 0 %>
+            <td><a href="https://www.facebook.com/<%= org.facebook %>" class="btn btn-link fa fa-facebook" role="button"><%= org.name %> is on Facebook</a></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+          <% if org.twitter.length != 0 %>
+            <td><a href="https://www.twitter.com/<%= org.twitter %>" class="btn btn-link fa fa-twitter" role="button">@<%= org.twitter %></a></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

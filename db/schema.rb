@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206204448) do
+ActiveRecord::Schema.define(version: 20180209213203) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -58,9 +58,10 @@ ActiveRecord::Schema.define(version: 20180206204448) do
     t.string   "facebook"
     t.string   "twitter"
     t.string   "image_logo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "user_id"
+    t.boolean  "approved",   default: false
   end
 
   create_table "ratings", force: :cascade do |t|

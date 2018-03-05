@@ -38,6 +38,11 @@
       <%= f.text_field :image_logo, class: 'form-control' %>
 
       <br>
+			
+			<% if current_user.admin == true and params["action"] != "new" %>
+				<%= f.check_box :approved %>
+				<%= f.label :approved, "Admin approval" %><br><br>
+			<% end %>
 
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 

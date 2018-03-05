@@ -30,6 +30,7 @@
 			<% @organizations.each do |org| %>
 				<tr>
 					<td><a href="<%= org.website %>"><img border="0" src="<%= org.image_logo %>"></a></td>
+
 					<td>
 							<li class="dropdown" style="list-style-type: none;">
 								<span class="skate_link"><a href="<%= org.website %>"><%= org.name %></a></span>
@@ -46,12 +47,39 @@
 								<% end %>
 						 </li>
 					</td>
+
 					<td><%= org.category %></td>
-					<td><a href="mailto:<%= org.email %>"><span class="glyphicon glyphicon-envelope"></span> <%= org.name %></a></td>
-					<td><a href="<%= org.youtube %>"><i class="fa fa-youtube" aria-hidden="true"></i></a></td>
-					<td><a href="<%= org.instagram %>" class="btn btn-link fa fa-instagram" role="button"></a></td>
-					<td><a href="<%= org.facebook %>" class="btn btn-link fa fa-facebook" role="button"></a></td>
-					<td><a href="<%= org.twitter %>" class="btn btn-link fa fa-twitter" role="button"></a></td>
+
+					<% if org.email.length != 0 %>
+						<td><a href="mailto:<%= org.email %>"><span class="glyphicon glyphicon-envelope"></span> <%= org.name %></a></td>
+					<% else %>
+						<td></td>
+					<% end %>
+
+					<% if org.youtube.length != 0 %>
+						<td><a href="https://www.youtube.com/<%= org.youtube %>"><i class="fa fa-youtube" aria-hidden="true"><%= org.name %> is on YouTube</i></a></td>
+					<% else %>
+						<td></td>
+					<% end %>
+
+					<% if org.instagram.length != 0 %>
+						<td><a href="https://www.instagram.com/<%= org.instagram %>" class="btn btn-link fa fa-instagram" role="button">@<%= org.instagram %></a></td>
+					<% else %>
+						<td></td>
+					<% end %>
+
+					<% if org.facebook.length != 0 %>
+						<td><a href="https://www.facebook.com/<%= org.facebook %>" class="btn btn-link fa fa-facebook" role="button"><%= org.name %> is on Facebook</a></td>
+					<% else %>
+						<td></td>
+					<% end %>
+
+					<% if org.twitter.length != 0 %>
+						<td><a href="https://www.twitter.com/<%= org.twitter %>" class="btn btn-link fa fa-twitter" role="button">@<%= org.twitter %></a></td>
+					<% else %>
+						<td></td>
+					<% end %>
+
 				</tr>
 			<% end %>
 		<% end %>

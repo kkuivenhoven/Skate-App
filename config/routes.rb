@@ -71,5 +71,7 @@ Rails.application.routes.draw do
   delete 'blockUser'  => 'relationships#blockUser'
 
 	resources :organizations,       only: [:new, :create, :edit, :update, :destroy]
+	get 'organizations/approval' => 'organizations#approval'
+  get 'organizations/admin_edit'
 
 end

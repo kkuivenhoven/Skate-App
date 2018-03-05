@@ -22,7 +22,7 @@ class StaticPagesController < ApplicationController
   end
 
 	def skate_links
-		@organizations = Organization.all
+		@organizations = Organization.where(:approved => true)
   end
 
 	def testing

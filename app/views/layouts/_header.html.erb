@@ -108,6 +108,16 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 						</ul>
 					</li>	
 
+			<% if current_user == User.where(admin: true).first %>
+          <li class="dropdown" id="Admin_approval_nav">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Approval<b class="skate_caret"></b>
+            </a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+										 <li><%= link_to "Admin Approval Queue", organizations_approval_path %></li>
+						</ul>
+					</li>	
+			<% end %>
 
       </ul>
     </nav>

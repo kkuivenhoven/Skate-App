@@ -24,4 +24,13 @@ module ApplicationHelper
 		end
 	end
 
+	def org_approved(org)
+		if org.approved == false
+			val = "<span style='color: #9b0101';>" + org.approved.to_s.capitalize + "</span>"
+		else
+			val = org.approved.to_s.capitalize
+		end
+		return val.html_safe
+	end
+
 end
