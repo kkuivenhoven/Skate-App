@@ -5,9 +5,40 @@ https://solidfoundationwebdev.com/blog/posts/fixed-footer-in-bootstrap-3
 
 <footer class="navbar-default navbar-fixed-bottom" id="main_footer">
 	<div class="container-fluid">
-		<span>Whoever believes in him is not condemned, 
-					but whoever does not believe stands condemned
-					already because they have not believed
-					in the name of God's one and only Son. &#8226; John 3:18</span>
+		<% if params["controller"] == "static_pages" %>
+			<span>
+				Hope means that we must trust and wait for
+				what is still unseen. &#8226; Romans 8:24
+			</span>
+		<% elsif params["controller"] == "organizations" %>
+			<span>
+				Whoever believes in the Son has eternal life, 
+				but whoever rejects the Son will not see life,
+				for God's wrath remains on him. &#8226; John 3:36
+			</span>
+		<% elsif params["controller"] == "users" %>
+			<span>
+					A man without self-control is like a city
+					broken into and left without walls. &#8226; Proverbs 25:28
+			</span>
+		<% elsif params["controller"] == "skate_spots" %>
+			<span>
+					A little while, and the wicked will be no more;
+					though you look for them, they will not be found. &#8226; Psalm 37:10
+			</span>
+		<% elsif params["controller"] == "ratings" %>
+			<span>
+					"Everyone who does evil hates the light, and will
+					not come into the light for fear his deeds will 
+					be exposed." &#8226; John 3:20
+			</span>
+		<% elsif params["controller"] == "events" %>
+			<span>
+					If any of you lacks wisdom, he should ask God,
+					who gives generously to all without finding fault,
+					and it will be given to him.
+					&#8226; James 1:5
+			</span>
+		<% end %>
 	</div>
 </footer>
