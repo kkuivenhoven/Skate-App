@@ -104,17 +104,25 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
               Resources<b class="skate_caret"></b>
             </a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-										 <li><%= link_to "Collections  ", static_pages_skate_links_path %></li>
+							 <li><%= link_to "Collections  ", static_pages_skate_links_path %></li>
 						</ul>
 					</li>	
 
 			<% if current_user == User.where(admin: true).first %>
           <li class="dropdown" id="Admin_approval_nav">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Approval<b class="skate_caret"></b>
+              Approval 
+								<% if @organizations %>
+									<% if @organizations.where(:approved => false).count > 0 %>
+										(<font color="red"><%= @organizations.where(:approved => false).count %></font>)
+									<% else %>
+										(<%= @organizations.where(:approved => false).count %>)
+									<% end %>	
+								<% end %>	
+							<b class="skate_caret"></b>
             </a>
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-										 <li><%= link_to "Admin Approval Queue", organizations_approval_path %></li>
+							 <li><%= link_to "Admin Approval Queue", organizations_approval_path %></li>
 						</ul>
 					</li>	
 			<% end %>
