@@ -1,3 +1,6 @@
+# Sources/resources:
+# https://stackoverflow.com/questions/11806004/rails-activerecord-db-sort-operation-case-insensitive
+
 class StaticPagesController < ApplicationController
 
 	def letsencrypt
@@ -22,7 +25,8 @@ class StaticPagesController < ApplicationController
   end
 
 	def skate_links
-		@organizations = Organization.where(:approved => true)
+		# @organizations = Organization.where(:approved => true).order(name: :asc)
+		@organizations = Organization.where(:approved => true).order("lower(name) ASC").all
   end
 
 	def testing
