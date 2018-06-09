@@ -5,6 +5,10 @@
 
 module ApplicationHelper
 
+	def getOrganizations
+		@organizations = Organization.all.order(:approved)
+	end
+
 	def UV_1(skate_spot)
 		total = skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count
 		all = total.to_s + "&nbsp;"

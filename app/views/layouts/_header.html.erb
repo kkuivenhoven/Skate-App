@@ -112,7 +112,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
           <li class="dropdown" id="Admin_approval_nav">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Approval 
-								<% if @organizations %>
+								<% if @organizations or getOrganizations %>
 									<% if @organizations.where(:approved => false).count > 0 %>
 										(<font color="red"><%= @organizations.where(:approved => false).count %></font>)
 									<% else %>
