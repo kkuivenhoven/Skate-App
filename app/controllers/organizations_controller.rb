@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
 	before_action :login_required
-	before_action :admin_only
+	before_action :admin_only, except: [:new, :create]
 	before_action :org_id, only: [:admin_edit]
 
 	def approval
