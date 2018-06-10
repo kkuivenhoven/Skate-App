@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+/*$( document ).ready(function() {
 	var tour;
 	var user_logged_in = $('meta[name=logged_in_user]').attr("content");
 	if(user_logged_in == "true"){
@@ -56,3 +56,4 @@ $( document ).ready(function() {
 	}
 });
 
+*/
