@@ -13,7 +13,8 @@ class OrganizationsController < ApplicationController
 
 	def create
 		@organization = Organization.new(org_params)
-		@organization.user_id = current_user.id
+		# @organization.user_id = current_user.id
+		@organization.user_id = User.where(:admin => true).ids.first
 		if @organization.save
 			flash[:success] = "Organization has been successfully created!"
 			redirect_to static_pages_skate_links_path
