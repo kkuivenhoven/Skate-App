@@ -69,7 +69,13 @@
           <% end %>
 
           <% if org.facebook.length != 0 %>
-            <td><a href="https://www.facebook.com/<%= org.facebook %>" class="btn btn-link fa fa-facebook" role="button"><%= org.name %> is on Facebook</a></td>
+            <td>
+							<!--a href="https://www.facebook.com/%= org.facebook %>" class="btn btn-link fa fa-facebook" role="button">%= org.name %> is on Facebook</a-->
+							<a href="https://www.facebook.com/<%= org.facebook %>" class="btn btn-link fa fa-facebook" role="button">
+								<span class="glyphicon glyphicon-expand"></span>
+								<%= org.name %>
+							</a>
+						</td>
           <% else %>
             <td></td>
           <% end %>
