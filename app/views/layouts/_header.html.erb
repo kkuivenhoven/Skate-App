@@ -92,7 +92,16 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 
           <li class="dropdown" id="EO_nav">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Event Options<b class="skate_caret"></b>
+              Event Options
+							<% if getEvents or @events %>
+								<% if @events.where(['date > ? ', DateTime.now]).count > 0 %>
+									(<font color="red"><%= @events.where(['date > ? ', DateTime.now]).count %></font>)
+								<% else %>
+									(<%= @events.where(['date > ? ', DateTime.now]).count %>)
+								<% end %>	
+							<% end %>	
+
+							<b class="skate_caret"></b>
             </a>
             <!-- <ul class="dropdown-menu"> -->
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">

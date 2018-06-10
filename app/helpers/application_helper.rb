@@ -5,6 +5,10 @@
 
 module ApplicationHelper
 
+	def getEvents
+		@events = Event.all
+	end
+
 	def getOrganizations
 		@organizations = Organization.all.order(:approved)
 	end
