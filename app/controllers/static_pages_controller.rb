@@ -24,6 +24,9 @@ class StaticPagesController < ApplicationController
   def help
   end
 
+  def contact
+  end
+
 	def skate_links
 		# @organizations = Organization.where(:approved => true).order(name: :asc)
 		@organizations = Organization.where(:approved => true).order("lower(name) ASC").all

@@ -13,6 +13,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 					 <li><%= link_to "Home", root_path %></li>
          <!--% end %>
 	      % if !current_page?(controller: 'static_pages', action: 'help') %-->
+					<li><%= link_to "Contact  ", static_pages_contact_path %></li>
 					<li><%= link_to "Help  ", static_pages_help_path %></li>
 	      <!--% end %-->
 					<!--li>%= link_to "Testing  ", static_pages_testing_path %></li-->
