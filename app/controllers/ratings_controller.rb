@@ -109,13 +109,51 @@ class RatingsController < ApplicationController
 		@response.user_id = current_user.id
 		@response.rating_id = @rating.id
 		@user = User.find_by(id: params[:user_id])
+		# @hashtag = HashTag.new
+		@hashtag = @response.message.scan(/#\w+/).flatten	
+		if HashTag.where(:name => @hashtag[0].to_s).count == 0
+			@ht = HashTag.new
+			@ht.name = @hashtag[0].to_s
+			# @ht.update_attribute(:reply_ids, @ht.reply_ids.merge!(@response.id => params[:reply_id]))
+			@ht.update_attribute(:reply_ids, @ht.reply_ids.merge!(@response.id => @response.id))
+			@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+			if @response.save
+				if @ht.save
+					flash[:success] = "Response successful"
+					redirect_to @user
+				else
+					flash[:danger] = "Response unsuccessful"
+					redirect_to @user
+				end
+			end
+		else
+			@ht = HashTag.where(:name => @hashtag[0].to_s)
+			@ht.first.update_attribute(:reply_ids, @ht.first.reply_ids.merge!(@response.id => @response.id))
+			@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+			if @response.save
+				flash[:success] = "Response successful"
+				redirect_to @user
+			else
+				flash[:danger] = "Response unsuccessful"
+				redirect_to @user
+			end
+# byebug
+			# @ht.update_attribute(:reply_ids, @ht.reply_ids.merge!(@response.id => @response.id))
+		end
+=begin
     if @response.save
-      flash[:success] = "Response has been successfully created!"
-		  redirect_to @user
+			if @ht.save
+				flash[:success] = "@ht successful"
+				redirect_to @user
+			else
+				flash[:danger] = "@ht unsuccessful"
+				redirect_to @user
+			end
     else
       flash[:danger] = "Response has been unsuccessfully created. Please try again."
 		  redirect_to @user
     end
+=end
 	end
 
 	def delete_reply

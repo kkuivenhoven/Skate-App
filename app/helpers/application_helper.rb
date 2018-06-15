@@ -4,6 +4,36 @@
 # 			(i.e. getImg(rating) method)
 
 module ApplicationHelper
+	
+	def mappedTags
+		@tags = HashTag.all.map{ |c| [c.name, c.reply_ids]}.to_h
+		return @tags
+	end
+
+	def collectHT
+		@grpd_HT = HashTag.all.group_by(&:name)
+		return @grpd_HT
+	end
+
+	def getRating(id)
+		@rating_items = Rating.where(id: id)
+		@skate_spot = SkateSpot.where(id: @rating_items.first.skate_spot_id)
+		# return Rating.where(id: id)
+		return @rating_items
+	end
+	
+	def retrieveSpots(ids)
+		@all_spots = SkateSpot.where(:id => ids)
+		return @all_spots
+	end
+
+	def getMsg(resp)
+		if HashTag.where(:name => resp.to_s).count > 0
+			@ht = HashTag.where(:name => resp)
+		else
+			return
+		end
+	end
 
 	def getEvents
 		@events = Event.all

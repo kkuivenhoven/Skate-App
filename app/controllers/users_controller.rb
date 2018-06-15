@@ -49,8 +49,6 @@ class UsersController < ApplicationController
 
 			@grouped = @ratings.group_by(&:skate_spot_id)
 
-
-
 			# @rating = @skate_spot.ratings.build
 	  else
 			redirect_to users_url

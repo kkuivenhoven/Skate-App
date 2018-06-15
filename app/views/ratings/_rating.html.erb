@@ -28,12 +28,26 @@
 						<!--% @resp_user = User.find(resp.user_id) %-->
 						<%= link_to gravatar_for(@resp_user, size: 50), @resp_user %>
 							<span class="user"><%= link_to @resp_user.name, @resp_user %></span>
-							<span class="content"><%= resp.message %></span>
+							<span class="content">
+								<!--% if HashTag.where(:name => resp.message).count > 0 %-->
+								<% if getMsg(resp.message) %>
+									<li style="color:red"><%= resp.message %></li><br>
+									<%= link_to "#{ resp.message }", hash_tag_show_path(id: @ht.first.id) %>
+<!--(Hashtag.where(:name => resp.message).first.id) %-->
+								<% else %>
+									<%= resp.message %>
+								<% end %>
+							</span>
+
+
 							<span class="timestamp">
 								Posted <%= time_ago_in_words(resp.created_at) %> ago.
-								<% if current_user?(@resp_user) %>
-									<%= link_to 'Destroy', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-								<% end %>
+									<% if current_user?(@resp_user) %>
+										<!--% @user = @resp_user %-->
+										<% if params[:controller] != "hash_tag" %>
+											<%= link_to 'Destroy', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+										<% end %>
+									<% end %>
 							</span>
 					</li>
 				<% end %>
@@ -64,7 +78,9 @@
 				<%= f.text_field :message, class: 'form-control' %>
 				<br>
 
+			<% if params[:controller] != "hash_tag" %>
 				<%= hidden_field_tag "user_id", @user.id %>
+			<% end %>
 			  <!--%= link_to 'Reply', [rating.skate_spot, rating], method: :reply %-->
 				<%= f.submit "Submit", class: "btn btn-primary" %>
 				<% end %>

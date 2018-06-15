@@ -2,6 +2,10 @@
 #https://www.railstutorial.org/book, Hartl Michael, 2014
 
 Rails.application.routes.draw do
+  get 'hash_tag/index'
+
+  get 'hash_tag/show'
+
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
 

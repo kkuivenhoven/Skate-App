@@ -1,0 +1,77 @@
+<% provide(:title, "HashTag") %>
+<% provide(:p, "Trending skateparks for #{@hashtag.name} hashtag.") %>
+
+<% @skate_ids = Array.new %>
+<% @ok.each do |o| %>
+	<% @rating_items = getRating(o.rating_id) %>
+	<% @skate_ids.push(@skate_spot.first.id) %>
+<% end %>
+
+<% @stuff = @skate_ids.uniq.map{|t| [t,@skate_ids.count(t)]}.to_h %>
+
+<!--div class="homeDiv">
+	<div class="homeDiv firstHalf">
+		<span>I love him.</span>
+	</div>
+	<div class="homeDiv">
+		<span>yes; he needs this, God.</span>
+	</div>
+</div-->
+
+<% retrieveSpots(@skate_ids.uniq) %>
+<% collectHT %>
+<% mappedTags %>
+
+<!--div class="homeDiv">
+	% @all_spots.each do |as| %>
+		<button type="button" class="btn btn-primary btn-block">
+			%= as.name %>(%= @stuff[as.id] %>)
+		</button><br>
+	% end %>
+</div-->
+
+<div class="row homeDiv">
+	<div class="col-xs-6">
+		<h4>Trending skate spots:</h4>
+		<% @all_spots.each do |as| %>
+			<button type="button" class="btn btn-default">
+				<%= as.name %>&nbsp;(<%= @stuff[as.id] %>)
+			</button><br>
+		<% end %>
+	</div>
+
+
+	<div class="col-xs-6">
+		<h4>Other trending hashtags:</h4>
+		<span style="color: #caff77">
+
+			<% @new = @tags.group_by{ |joy| joy.second.count } %>
+
+			<span style="color: black;">
+				<% @new.each do |n| %>
+
+					<button type="button" class="btn btn-primary btn-xs" style="color: white">
+						<%= n[1][0][0] %>
+					</button>
+
+					<br>
+				<% end %>
+			</span>
+
+		</span>
+	</div>
+</div>
+
+
+<!--br><br><br>
+<div class="homeDiv">
+	% retrieveSpots(@skate_ids.uniq) %>
+	% @all_spots.each do |as| %>
+		<button type="button" class="btn btn-default btn-block">
+			%= as.name %>(%= @stuff[as.id] %>)
+		</button><br>
+	% end %>
+</div-->
+
+
+
