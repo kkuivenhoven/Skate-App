@@ -111,8 +111,8 @@ class RatingsController < ApplicationController
 		@user = User.find_by(id: params[:user_id])
 		# @hashtag = HashTag.new
 
-		@shit = @response.message.gsub(/\s+/m, ' ').strip.split(" ")
-		@hashtags = @shit.join.scan(/#\w+/)
+		@messages = @response.message.gsub(/\s+/m, ' ').strip.split(" ")
+		@hashtags = @messages.join.scan(/#\w+/)
 
 		@hashtags.each do |hr|
 			if HashTag.where(:name => hr).count == 0
