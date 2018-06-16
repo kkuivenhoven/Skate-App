@@ -30,10 +30,12 @@
 							<span class="user"><%= link_to @resp_user.name, @resp_user %></span>
 							<span class="content">
 								<!--% if HashTag.where(:name => resp.message).count > 0 %-->
-								<% if getMsg(resp.message) %>
+								<% getMsg(resp.message) %>
+								<!--% if getMsg(resp.message) %-->
+								<% if !@ht.nil? and @ht.first.reply_ids.count > 0 %>
 									<li style="color:red"><%= resp.message %></li><br>
 									<%= link_to "#{ resp.message }", hash_tag_show_path(id: @ht.first.id) %>
-<!--(Hashtag.where(:name => resp.message).first.id) %-->
+									<!--(Hashtag.where(:name => resp.message).first.id) %-->
 								<% else %>
 									<%= resp.message %>
 								<% end %>

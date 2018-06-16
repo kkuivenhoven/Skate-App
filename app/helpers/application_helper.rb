@@ -28,8 +28,10 @@ module ApplicationHelper
 	end
 
 	def getMsg(resp)
-		if HashTag.where(:name => resp.to_s).count > 0
-			@ht = HashTag.where(:name => resp)
+		# if HashTag.where(:name => resp.to_s).count > 0
+		if HashTag.where("name like ?", resp).count > 0
+			# @ht = HashTag.where(:name => resp)
+			@ht = HashTag.where("name like ?", resp)
 		else
 			return
 		end
