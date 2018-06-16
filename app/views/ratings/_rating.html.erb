@@ -3,7 +3,7 @@
 		<li id="rating-<%= rating.id %>">
 			<%= link_to gravatar_for(rating.user, size: 50), rating.user %>
 			<span class="user"><%= link_to rating.user.name, rating.user %> at <%= link_to "#{rating.skate_spot.name}", skate_spot_url(rating.skate_spot.id) %></span>
-			<span class="content"><%= rating.description %></span>
+			<span class="content" style="color:blue;"><%= rating.description %></span>
 			<span class="timestamp">
 				Posted <%= time_ago_in_words(rating.created_at) %> ago.
 				<% if current_user.following?(rating.user) %>

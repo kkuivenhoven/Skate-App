@@ -18,11 +18,54 @@ class RatingsController < ApplicationController
     @rating = @skate_spot.ratings.build
   end
 
+
   #POST /skate_spots/:skate_spot_id/ratings
   def create
     #create the rating
     @rating = @skate_spot.ratings.create(rating_params)
     @rating.user_id = current_user.id
+	
+		noError = 0
+		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
+		@hashtags = @messages.join.scan(/#\w+/)
+		@hashtags.each do |hr|
+			if HashTag.where(:name => hr).count == 0
+				@ht = HashTag.new
+				@ht.name = hr.to_s
+				@ht.update_attribute(:reply_ids, @ht.reply_ids.merge!(@rating.id => @rating.id))
+				@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+				if @rating.save
+					if @ht.save
+						noError = 1
+						# flash[:success] = "Rating has been successfully created!"
+						# redirect_to skate_spot_path(@skate_spot)
+					# else
+						# flash[:danger] = "Rating has been unsuccessfully created. Please try again."
+						# render 'new'
+					end
+				end
+			else
+				@ht = HashTag.where(:name => hr)
+				@ht.first.update_attribute(:reply_ids, @ht.first.reply_ids.merge!(@rating.id => @rating.id))
+				@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+				if @rating.save
+					noError = 1
+					# flash[:success] = "Rating has been successfully created!"
+					# redirect_to skate_spot_path(@skate_spot)
+				# else
+					# flash[:danger] = "Rating has been unsuccessfully created. Please try again."
+					# render 'new'
+				end
+			end
+		end
+    if noError == 1
+      flash[:success] = "Rating has been successfully created!"
+      redirect_to skate_spot_path(@skate_spot)
+    elsif noError == 0
+      flash[:danger] = "Rating has been unsuccessfully created. Please try again."
+      render 'new'
+    end
+=begin
     if @rating.save
       flash[:success] = "Rating has been successfully created!"
       redirect_to skate_spot_path(@skate_spot)
@@ -30,7 +73,10 @@ class RatingsController < ApplicationController
       flash[:danger] = "Rating has been unsuccessfully created. Please try again."
       render 'new'
     end
+=end
   end
+
+
 
   #GET /skate_spots/:skate_spot_id/ratings/:id/edit
   def edit
@@ -123,10 +169,8 @@ class RatingsController < ApplicationController
 				if @response.save
 					if @ht.save
 						flash[:success] = "Response successful"
-						# redirect_to @user
 					else
 						flash[:danger] = "Response unsuccessful"
-						# redirect_to @user
 					end
 				end
 			else
