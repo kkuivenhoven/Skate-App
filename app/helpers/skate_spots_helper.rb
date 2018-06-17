@@ -1,5 +1,18 @@
 module SkateSpotsHelper
 
+	def getTags(id)
+		@ht_ids = Array.new
+
+		HashTag.all.each do |h_tag|
+			if h_tag.skate_spot_ids.keys.include?(id) == true
+				@ht_ids.push(h_tag.id)
+			end
+		end
+		
+		@pop_tags = HashTag.where(id: @ht_ids)
+		return @pop_tags
+	end
+
 
 	def material_words(skate_spot)
       if skate_spot.wood && skate_spot.concrete && skate_spot.metal

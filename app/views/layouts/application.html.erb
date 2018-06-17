@@ -75,6 +75,14 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 				  <% if current_page?(controller: 'skate_spots', action: 'index') %>
 						<% mapVal = "allinitMap" %>
 					<% elsif current_page?(controller: 'skate_spots', action: 'show') %>
+
+						<% getTags(@skate_spot.id) %>
+						<% @pop_tags.each do |pt| %>
+							<span class="skate_link">
+								<%= link_to "#{ pt.name }", hash_tag_show_path(id: pt.id) %>
+							</span>
+						<% end %><br>
+
 						<% mapVal = "ind_initMap" %>
 				  <% end %>
 					<script async defer
