@@ -1,36 +1,19 @@
 <% provide(:title, "HashTag") %>
 <% provide(:p, "Trending skateparks for #{@hashtag.name} hashtag.") %>
 
-<div class="row homeDiv">
+<!--div class="row homeDiv">
 	<div class="col-xs-6">
 		<h4>Trending skate spots:</h4>
-		<% if @patinar_ids.any? %>
-			<% @all_ss.each do |as| %>
+		% if @patinar_ids.any? %>
+			% @all_ss.each do |as| %>
 				<button type="button" class="btn btn-default">
-					<span class="skate_link"><%= link_to "#{as.name}", as %></span>
+					<span class="skate_link">%= link_to "#{as.name}", as %></span>
 				</button><br>
-			<% end %>
-		<% end %>
-
+			% end %>
+		% end %>
 		</span>
 	</div>
-
-	<!--div class="col-xs-6">
-		<h4>Other trending hashtags:</h4>
-		<span style="color: #caff77">
-		< @new = @tags.group_by{ |joy| joy.second.count } %>
-			<span style="color: black;">
-				% @new.each do |n| %>
-					<button type="button" class="btn btn-primary btn-xs" style="color: white">
-						%= link_to "#{n[1][0][0]}", hash_tag_show_path(id: HashTag.where(:name => n[1][0][0]).first.id) %>
-					</button><br>
-				% end %>
-			</span>
-
-		</span>
-	</div-->
-
-</div>
+</div-->
 
 <% if !@ok.nil? %>
 	<% @skate_ids = Array.new %>
@@ -54,21 +37,27 @@
 <div class="row homeDiv">
 	<div class="col-xs-6">
 		<h4>Trending skate spots:</h4>
-		<% if @all_spots.any? %>
-			<% @all_spots.each do |as| %>
+		<% if @patinar_ids.any? %>
+			<% @all_ss.each do |as| %>
 				<button type="button" class="btn btn-default">
 					<span class="skate_link"><%= link_to "#{as.name}", as %></span>
 				</button><br>
 			<% end %>
-			<% if @other_spots.any? %>
-					<span style="color: red;">HEYYYO</span>
-			<% end %>
-		<% else %>
-			Testing
 		<% end %>
-		<span style="color: blue;">testing.<br><br>
 
-		</span>
+		<!--% if @all_spots.any? %>
+			% @all_spots.each do |as| %>
+				<button type="button" class="btn btn-default">
+					<span class="skate_link">%= link_to "#{as.name}", as %></span>
+				</button><br>
+			% end %>
+			% if @other_spots.any? %>
+					<span style="color: red;">HEYYYO</span>
+			% end %>
+		% else %>
+			Testing
+		% end %>
+		<span style="color: blue;">testing.<br><br></span-->
 	</div>
 
 	<div class="col-xs-6">
