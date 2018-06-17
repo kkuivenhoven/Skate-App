@@ -9,16 +9,8 @@
 
 <% @stuff = @skate_ids.uniq.map{|t| [t,@skate_ids.count(t)]}.to_h %>
 
-<!--div class="homeDiv">
-	<div class="homeDiv firstHalf">
-		<span>I love him.</span>
-	</div>
-	<div class="homeDiv">
-		<span>yes; he needs this, God.</span>
-	</div>
-</div-->
-
 <% retrieveSpots(@skate_ids.uniq) %>
+<% getOthers(@hashtag.rating_ids.keys.uniq) %>
 <% collectHT %>
 <% mappedTags %>
 
@@ -33,11 +25,21 @@
 <div class="row homeDiv">
 	<div class="col-xs-6">
 		<h4>Trending skate spots:</h4>
-		<% @all_spots.each do |as| %>
-			<button type="button" class="btn btn-default">
-				<span class="skate_link"><%= link_to "#{as.name}", as %></span>
-			</button><br>
+		<% if @all_spots.any? %>
+			<% @all_spots.each do |as| %>
+				<button type="button" class="btn btn-default">
+					<span class="skate_link"><%= link_to "#{as.name}", as %></span>
+				</button><br>
+			<% end %>
+			<% if @other_spots.any? %>
+					<span style="color: red;">HEYYYO</span>
+			<% end %>
+		<% else %>
+			I'm so scared of this unemployment shit. Please help me get a job, God.
 		<% end %>
+		<span style="color: blue;">SUP.<br><br>
+
+		</span>
 		<!--br><br>
 		% @all_spots.each do |as| %>
 			<button type="button" class="btn btn-default">

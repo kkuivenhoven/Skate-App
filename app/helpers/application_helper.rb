@@ -22,7 +22,14 @@ module ApplicationHelper
 		return @rating_items
 	end
 	
+	def getOthers(ids)
+byebug
+		@other_spots = SkateSpot.where(:id => ids)
+		return @other_spots
+	end
+
 	def retrieveSpots(ids)
+byebug
 		@all_spots = SkateSpot.where(:id => ids)
 		return @all_spots
 	end

@@ -3,9 +3,20 @@
 		<li id="rating-<%= rating.id %>">
 			<%= link_to gravatar_for(rating.user, size: 50), rating.user %>
 			<span class="user"><%= link_to rating.user.name, rating.user %> at <%= link_to "#{rating.skate_spot.name}", skate_spot_url(rating.skate_spot.id) %></span>
+
 			<% if rating.description.gsub(/\s+/m, ' ').strip.split(" ").join.scan(/#\w+/).count > 0 %>
 				<span class="content" style="color:blue;">
-					<%= rating.description %>
+					<!--% @c = rating.description %>
+					% @o = @c.scan(/^\w+/) %><br>
+					% @p = @c.scan(/#\w+/) %><br>
+					<br>%= rating.description %-->
+				<% rating.description.gsub!(/#\w+/) do |tag| %>
+					<% @stuff = HashTag.where(name: tag) %>
+					<!--%= link_to "#{ tag }", hash_tag_show_path(id: @stuff.ids.first) %-->
+					<%= link_to "#{ tag }", hash_tag_show_path(name: tag) %>
+					<!--%= link_to("#{tag}", ) %><br-->
+					<!--%= link_to "#{ tag }", hash_tag_show_path(id: @ht.first.id) %-->
+				<% end %>
 				</span>
 			<% else %>
 				<span class="content">
