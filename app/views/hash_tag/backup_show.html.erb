@@ -15,24 +15,24 @@
 	</div>
 </div-->
 
-<!--% if !@ok.nil? %>
-	% @skate_ids = Array.new %>
-	% @ok.each do |o| %>
-		% if o.class.name == "Rating" %>
-			% @rating_items = o %>
-			% @skate_ids.push(o.skate_spot_id) %>
-		% else %>
-			% @rating_items = getRating(o.rating_id) %>
-			% @skate_ids.push(@skate_spot.first.id) %>
-		% end %>
-	% end %>
+<% if !@ok.nil? %>
+	<% @skate_ids = Array.new %>
+	<% @ok.each do |o| %>
+		<% if o.class.name == "Rating" %>
+			<% @rating_items = o %>
+			<% @skate_ids.push(o.skate_spot_id) %>
+		<% else %>
+			<% @rating_items = getRating(o.rating_id) %>
+			<% @skate_ids.push(@skate_spot.first.id) %>
+		<% end %>
+	<% end %>
 
- @stuff = @skate_ids.uniq.map{|t| [t,@skate_ids.count(t)]}.to_h %>
+<% @stuff = @skate_ids.uniq.map{|t| [t,@skate_ids.count(t)]}.to_h %>
 
- retrieveSpots(@skate_ids.uniq) %>
- getOthers(@hashtag.rating_ids.keys.uniq) %>
- collectHT %-->
- <% mappedTags %>
+<% retrieveSpots(@skate_ids.uniq) %>
+<% getOthers(@hashtag.rating_ids.keys.uniq) %>
+<% collectHT %>
+<% mappedTags %>
 
 
 <div class="row homeDiv">
@@ -45,7 +45,6 @@
 				</button><br>
 			<% end %>
 		<% end %>
-	</div>
 
 		<!--% if @all_spots.any? %>
 			% @all_spots.each do |as| %>
@@ -60,15 +59,16 @@
 			Testing
 		% end %>
 		<span style="color: blue;">testing.<br><br></span-->
+	</div>
 
 	<div class="col-xs-6">
 		<h4>Other trending hashtags:</h4>
 		<span style="color: #caff77">
 			<% @new = @tags.group_by{ |joy| joy.second.count } %>
 			<span style="color: black;">
-				<% @new.each do |nu| %>
+				<% @new.each do |n| %>
 					<button type="button" class="btn btn-primary btn-xs" style="color: white">
-						<%= link_to "#{nu[1][0][0]}", hash_tag_show_path(id: HashTag.where(:name => nu[1][0][0]).first.id) %>
+						<%= link_to "#{n[1][0][0]}", hash_tag_show_path(id: HashTag.where(:name => n[1][0][0]).first.id) %>
 						<!--%= link_to "#{n[1][0][0]}", hash_tag_show_path(name: n[1][0][0]) %-->
 					</button><br>
 				<% end %>
@@ -91,4 +91,5 @@
 </div-->
 
 
+<% end %>
 
