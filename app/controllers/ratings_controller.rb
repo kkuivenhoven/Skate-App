@@ -92,6 +92,18 @@ class RatingsController < ApplicationController
   #DELETE /skate_spots/:skate_spot_id/ratings/1
   def destroy
     @rating = @skate_spot.ratings.find(params[:id])
+		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
+		@hashtags = @messages.join.scan(/#\w+/)
+		@hashtags.each do |hr|
+			if HashTag.where(:name => hr).count == 0
+			else
+				@laTags = HashTag.where(:name => hr)
+				@laTags.first.rating_ids.delete(@rating.id)
+				@laTags.first.update_attribute(:rating_ids, @laTags.first.rating_ids)
+				@laTags.first.skate_spot_ids.delete(@skate_spot.id)
+				@laTags.first.update_attribute(:skate_spot_ids, @laTags.first.skate_spot_ids)
+			end
+		end
     if @rating.destroy
       flash[:success] = "Rating has been successfully deleted!"
       redirect_to skate_spot_path(@skate_spot)

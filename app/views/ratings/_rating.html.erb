@@ -10,6 +10,7 @@
 					% @o = @c.scan(/^\w+/) %><br>
 					% @p = @c.scan(/#\w+/) %><br>
 					<br>%= rating.description %-->
+				<%= rating.description %><br>
 				<% rating.description.gsub!(/#\w+/) do |tag| %>
 					<% @stuff = HashTag.where(name: tag) %>
 					<!--%= link_to "#{ tag }", hash_tag_show_path(id: @stuff.ids.first) %-->
