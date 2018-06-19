@@ -162,6 +162,28 @@ class RatingsController < ApplicationController
 		@messages = @response.message.gsub(/\s+/m, ' ').strip.split(" ")
 		@hashtags = @messages.join.scan(/#\w+/)
 
+		@ok = Array.new
+		@messages.each do |cc_o|
+			if cc_o.scan(/#\w+/).length > 0
+				cc_o = "link_to('#{ cc_o }', hash_tag_show_path(name: tag))"
+				@ok.push(cc_o.to_s)
+			else
+				@ok.push(cc_o.to_s)
+			end
+		end
+
+		@response.message = @ok.join(" ")
+
+=begin
+		@messages.each do |mes|
+			if mes.scan(/#\w+/).length > 0
+          @stuff = HashTag.where(name: tag)
+          link_to "#{ tag }", hash_tag_show_path(name: tag)
+				# byebug
+			end
+		end
+=end
+
 		@hashtags.each do |hr|
 			if HashTag.where(:name => hr).count == 0
 				@ht = HashTag.new

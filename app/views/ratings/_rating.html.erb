@@ -10,15 +10,20 @@
 					% @o = @c.scan(/^\w+/) %><br>
 					% @p = @c.scan(/#\w+/) %><br>
 					<br>%= rating.description %-->
+				<!--% @cc = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
+				% @copy = rating.description.to_s %>
+				% rating.description %><br>
+
+					% @copy.gsub!(/#\w+/) do |tag| %>
+						% tag = "link_to('#{ tag }', hash_tag_show_path(name: tag))".html_safe %>
+					% end %><br-->
+
 				<%= rating.description %><br>
-				<% rating.description.gsub!(/#\w+/) do |tag| %>
-					<% @stuff = HashTag.where(name: tag) %>
-					<!--%= link_to "#{ tag }", hash_tag_show_path(id: @stuff.ids.first) %-->
-					<%= link_to "#{ tag }", hash_tag_show_path(name: tag) %>
-					<!--%= link_to("#{tag}", ) %><br-->
-					<!--%= link_to "#{ tag }", hash_tag_show_path(id: @ht.first.id) %-->
-				<% end %>
+
 				</span>
+
+			<span style="color:red"><%= @copy %></span><br>
+
 			<% else %>
 				<span class="content">
 					<%= rating.description %>
