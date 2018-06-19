@@ -18,7 +18,17 @@
 						% tag = "link_to('#{ tag }', hash_tag_show_path(name: tag))".html_safe %>
 					% end %><br-->
 
-				<%= rating.description %><br>
+									<% @jU = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
+									<% @jU.each do |jp| %>
+										<% if jp.include?("#") %>
+											<span style="color:red">
+												<%= link_to "#{jp}", hash_tag_show_path(name: jp) %>
+											</span>
+										<% else %>
+											<%= jp %>
+										<% end %>
+									<% end %>
+				<!--%= rating.description %><br-->
 
 				</span>
 
@@ -72,10 +82,7 @@
 									
 									<% @cU = resp.message.gsub(/\s+/m, ' ').strip.split(" ") %>
 									<% @cU.each do |cp| %>
-										<!--% if cp.scan(/#\w+/).count > 0 %-->
-										<!--% if cp.include?("link_to") %-->
 										<% if cp.include?("#") %>
-											<!--span style="color:red"><= cp %></span-->
 											<span style="color:red">
 												<%= link_to "#{cp}", hash_tag_show_path(name: cp) %>
 											</span>

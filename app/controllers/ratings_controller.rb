@@ -28,6 +28,18 @@ class RatingsController < ApplicationController
 		noError = 0
 		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
 		@hashtags = @messages.join.scan(/#\w+/)
+
+		@ok = Array.new
+		@messages.each do |cc_o|
+			if cc_o.scan(/#\w+/).length > 0
+				@ok.push(cc_o.to_s)
+			else
+				@ok.push(cc_o.to_s)
+			end
+		end
+
+		@rating.description = @ok.join(" ")
+
 		@hashtags.each do |hr|
 			if HashTag.where(:name => hr).count == 0
 				@ht = HashTag.new
@@ -165,8 +177,6 @@ class RatingsController < ApplicationController
 		@ok = Array.new
 		@messages.each do |cc_o|
 			if cc_o.scan(/#\w+/).length > 0
-				# cc_o = "link_to('#{cc_o}',hash_tag_show_path(name:tag))"
-				# cc_o = "link_to('#{cc_o}',hash_tag_show_path(name:tag))"
 				@ok.push(cc_o.to_s)
 			else
 				@ok.push(cc_o.to_s)
