@@ -165,7 +165,8 @@ class RatingsController < ApplicationController
 		@ok = Array.new
 		@messages.each do |cc_o|
 			if cc_o.scan(/#\w+/).length > 0
-				cc_o = "link_to('#{ cc_o }', hash_tag_show_path(name: tag))"
+				# cc_o = "link_to('#{cc_o}',hash_tag_show_path(name:tag))"
+				# cc_o = "link_to('#{cc_o}',hash_tag_show_path(name:tag))"
 				@ok.push(cc_o.to_s)
 			else
 				@ok.push(cc_o.to_s)

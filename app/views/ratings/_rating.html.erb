@@ -69,7 +69,25 @@
 									<%= link_to "#{ resp.message }", hash_tag_show_path(id: @ht.first.id) %>
 									<!--(Hashtag.where(:name => resp.message).first.id) %-->
 								<% else %>
-									<%= resp.message %>
+									
+									<% @cU = resp.message.gsub(/\s+/m, ' ').strip.split(" ") %>
+									<% @cU.each do |cp| %>
+										<!--% if cp.scan(/#\w+/).count > 0 %-->
+										<!--% if cp.include?("link_to") %-->
+										<% if cp.include?("#") %>
+											<!--span style="color:red"><= cp %></span-->
+											<span style="color:red">
+												<%= link_to "#{cp}", hash_tag_show_path(name: cp) %>
+											</span>
+										<% else %>
+											<%= cp %>
+										<% end %>
+									<% end %>
+
+
+									<!--br><br>put on for the squad #teamJesus<br>
+									%= resp.message %-->
+
 								<% end %>
 							</span>
 
