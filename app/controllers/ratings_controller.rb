@@ -27,16 +27,22 @@ class RatingsController < ApplicationController
 	
 		noError = 0
 		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
-		@hashtags = @messages.join.scan(/#\w+/)
+		@hashtags = @messages.join(' ').scan(/#\w+\s{0}/)
+		# @hashtags = @messages.join.scan(/#\w+\s{0}/)
+		# @hashtags = @messages.join.scan(/#\w+/)
+		# @hashtags = @messages.join.scan(/(?:\s|^)(?:#(?!(?:\d+|\w+?_|_\w+?)(?:\s|$)))(\w+)(?=\s|$)/i)
 
 		@ok = Array.new
 		@messages.each do |cc_o|
-			if cc_o.scan(/#\w+/).length > 0
+			# if cc_o.scan(/#\w+/).length > 0
+			if cc_o.scan(/#\w+\s{0}/).length > 0
+			# if cc_o.scan(/(?:\s|^)(?:#(?!(?:\d+|\w+?_|_\w+?)(?:\s|$)))(\w+)(?=\s|$)/i).length > 0
 				@ok.push(cc_o.to_s)
 			else
 				@ok.push(cc_o.to_s)
 			end
 		end
+
 
 		@rating.description = @ok.join(" ")
 
@@ -172,7 +178,8 @@ class RatingsController < ApplicationController
 		# @hashtag = HashTag.new
 
 		@messages = @response.message.gsub(/\s+/m, ' ').strip.split(" ")
-		@hashtags = @messages.join.scan(/#\w+/)
+		# @hashtags = @messages.join.scan(/#\w+/)
+		@hashtags = @messages.join(' ').scan(/#\w+\s{0}/)
 
 		@ok = Array.new
 		@messages.each do |cc_o|
