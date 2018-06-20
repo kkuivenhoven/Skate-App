@@ -83,8 +83,9 @@
 							</span>
 
 				<% else %>
-						NIL ALL ACROSS THE BOARD
-						<%= User.find_by(id: resp.user_id) %>
+						NIL ALL ACROSS THE BOARD<br>
+						should see user: <%= User.find_by(id: resp.user_id) %><br>
+						resp.user_id: <%= resp.user_id %>
 
 				<% end %>
 
