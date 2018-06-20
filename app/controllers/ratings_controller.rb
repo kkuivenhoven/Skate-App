@@ -112,6 +112,8 @@ class RatingsController < ApplicationController
     @rating = @skate_spot.ratings.find(params[:id])
 		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
 		@hashtags = @messages.join.scan(/#\w+/)
+		deleteTag = 0
+		atId = 0
 		@hashtags.each do |hr|
 			if HashTag.where(:name => hr).count == 0
 			else
@@ -120,12 +122,21 @@ class RatingsController < ApplicationController
 				@laTags.first.update_attribute(:rating_ids, @laTags.first.rating_ids)
 				@laTags.first.skate_spot_ids.delete(@skate_spot.id)
 				@laTags.first.update_attribute(:skate_spot_ids, @laTags.first.skate_spot_ids)
+				if @laTags.first.skate_spot_ids.count == 0
+					deleteTag = 1
+				end
 			end
 		end
     if @rating.destroy
+			if deleteTag == 1
+				@laTags.first.destroy
+			end
       flash[:success] = "Rating has been successfully deleted!"
       redirect_to skate_spot_path(@skate_spot)
     else
+			if deleteTag == 1
+				@laTags.first.destroy
+			end
       flash[:danger] = "Deletion unsuccessful. Please try again."
       redirect_to skate_spot_path(@skate_spot)
     end

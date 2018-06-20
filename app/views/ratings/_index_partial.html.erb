@@ -34,7 +34,29 @@
           <td style="width: 250px; height: 75px;"><!--%= rating.description %-->
             <div style="width: 250px; height: 75px; overflow: auto">
               <% @s_rate.ratings.each do |r| %>
-                &#8226;&nbsp;<%= r.description %><br>
+                &#8226;&nbsp;<!--%= r.description %><br-->
+
+									<% if r.description.gsub(/\s+/m, ' ').strip.split(" ").join.scan(/#\w+/).count > 0 %>
+										<span class="content">
+												<% @jU = r.description.gsub(/\s+/m, ' ').strip.split(" ") %>
+												<% @jU.each do |jp| %>
+													<% if jp.include?("#") %>
+														<span style="color:red">
+															<%= link_to "#{jp}", hash_tag_show_path(name: jp) %>
+														</span>
+													<% else %>
+														<%= jp %>
+													<% end %>
+												<% end %>
+										</span>
+									<% else %>
+										<span class="content">
+											<%= r.description %>
+										</span>
+									<% end %>
+									<br>
+
+
               <% end %>
             </div>
 
