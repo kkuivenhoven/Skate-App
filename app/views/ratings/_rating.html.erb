@@ -5,19 +5,7 @@
 			<span class="user"><%= link_to rating.user.name, rating.user %> at <%= link_to "#{rating.skate_spot.name}", skate_spot_url(rating.skate_spot.id) %></span>
 
 			<% if rating.description.gsub(/\s+/m, ' ').strip.split(" ").join.scan(/#\w+/).count > 0 %>
-				<span class="content" style="color:blue;">
-					<!--% @c = rating.description %>
-					% @o = @c.scan(/^\w+/) %><br>
-					% @p = @c.scan(/#\w+/) %><br>
-					<br>%= rating.description %-->
-				<!--% @cc = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
-				% @copy = rating.description.to_s %>
-				% rating.description %><br>
-
-					% @copy.gsub!(/#\w+/) do |tag| %>
-						% tag = "link_to('#{ tag }', hash_tag_show_path(name: tag))".html_safe %>
-					% end %><br-->
-
+				<span class="content">
 									<% @jU = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
 									<% @jU.each do |jp| %>
 										<% if jp.include?("#") %>
@@ -28,11 +16,7 @@
 											<%= jp %>
 										<% end %>
 									<% end %>
-				<!--%= rating.description %><br-->
-
 				</span>
-
-			<span style="color:red"><%= @copy %></span><br>
 
 			<% else %>
 				<span class="content">
