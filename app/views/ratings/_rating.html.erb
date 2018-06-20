@@ -72,13 +72,13 @@
 							<span class="user"><%= link_to @resp_user.name, @resp_user %></span>
 							<span class="content">
 								<!--% if HashTag.where(:name => resp.message).count > 0 %-->
-								<% getMsg(resp.message) %>
+								<!--% getMsg(resp.message) %-->
 								<!--% if getMsg(resp.message) %-->
-								<% if !@ht.nil? and @ht.first.reply_ids.count > 0 %>
-									<li style="color:red"><%= resp.message %></li><br>
-									<%= link_to "#{ resp.message }", hash_tag_show_path(id: @ht.first.id) %>
+								<!--% if !@ht.nil? and @ht.first.reply_ids.count > 0 %-->
+									<!--li style="color:red">%= resp.message %></li><br>
+									%= link_to "#{ resp.message }", hash_tag_show_path(id: @ht.first.id) %-->
 									<!--(Hashtag.where(:name => resp.message).first.id) %-->
-								<% else %>
+								<!--% else %-->
 									
 									<% @cU = resp.message.gsub(/\s+/m, ' ').strip.split(" ") %>
 									<% @cU.each do |cp| %>
@@ -95,7 +95,7 @@
 									<!--br><br>put on for the squad #teamJesus<br>
 									%= resp.message %-->
 
-								<% end %>
+								<!--% end %-->
 							</span>
 
 
