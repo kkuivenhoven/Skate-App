@@ -349,7 +349,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.11)
+    uglifier (4.1.12)
       execjs (>= 0.3.0, < 3)
     underscore-rails (1.8.3)
     web-console (2.3.0)
@@ -403,4 +403,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.15.1
+   1.15.3
