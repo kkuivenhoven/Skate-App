@@ -10,6 +10,11 @@ module ApplicationHelper
 		return @tags
 	end
 
+	def otherTags
+		@other_tags = HashTag.all.map{ |c| [c.name, c.rating_ids]}.to_h
+		return @other_tags
+	end
+
 	def collectHT
 		@grpd_HT = HashTag.all.group_by(&:name)
 		return @grpd_HT

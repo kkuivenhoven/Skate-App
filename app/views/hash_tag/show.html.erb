@@ -33,6 +33,7 @@
  getOthers(@hashtag.rating_ids.keys.uniq) %>
  collectHT %-->
  <% mappedTags %>
+ <% otherTags %>
 
 
 <div class="row homeDiv">
@@ -64,13 +65,27 @@
 	<div class="col-xs-6">
 		<h4>Other trending hashtags:</h4>
 		<span style="color: #caff77">
+
 			<% @new = @tags.group_by{ |joy| joy.second.count } %>
 			<span style="color: black;">
 				<% @new.each do |nu| %>
 					<button type="button" class="btn btn-primary btn-xs" style="color: white">
 						<%= link_to "#{nu[1][0][0]}", hash_tag_show_path(id: HashTag.where(:name => nu[1][0][0]).first.id) %>
-						<!--%= link_to "#{n[1][0][0]}", hash_tag_show_path(name: n[1][0][0]) %-->
 					</button><br>
+				<% end %>
+			</span>
+
+<br><br>
+
+			<% @other_new = @other_tags.group_by{ |joy| joy.second.count } %>
+			<span style="color: black;">
+				<% @other_new.each do |o_nu| %>
+					<% o_nu.second.each do |on| %>
+						<button type="button" class="btn btn-primary btn-xs" style="color: white">
+							<%= link_to "#{on[0]}", hash_tag_show_path(id: HashTag.where(:name => o_nu[1][0][0]).first.id) %>
+						</button><br>
+					<% end %>
+<br>
 				<% end %>
 			</span>
 

@@ -78,8 +78,8 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 
 						<% getTags(@skate_spot.id) %>
 						<% @pop_tags.each do |pt| %>
-							<span class="skate_link">
-								<%= link_to "#{ pt.name }", hash_tag_show_path(id: pt.id) %>
+							<span class="skate_link" style="color: #f4ffe3">
+								<b><%= link_to "#{ pt.name }", hash_tag_show_path(id: pt.id) %></b>
 							</span>
 						<% end %><br>
 
