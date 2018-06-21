@@ -118,6 +118,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 						</ul>
 					</li>	
 
+	 <% if logged_in? %>
 			<% if current_user == User.where(admin: true).first %>
           <li class="dropdown" id="Admin_approval_nav">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -137,6 +138,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 						</ul>
 					</li>	
 			<% end %>
+		<% end %>
 
       </ul>
     </nav>
