@@ -140,9 +140,9 @@ class SkateSpotsController < ApplicationController
 		@ratings = @skate_spot.ratings
 
 		@skate_spots = SkateSpot.where.not(id: @skate_spot.id)
-	  @sprSprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, gated: @skate_spot.gated, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition, skate_spot_size: @skate_spot.skate_spot_size, neighborhood_spot_size: @skate_spot.neighborhood_spot_size, regional_spot_size: @skate_spot.regional_spot_size, wcmx_accessible: @skate_spot.wcmx_accessible)
+	  @sprSprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, gated: @skate_spot.gated, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition, skate_spot_size: @skate_spot.skate_spot_size, neighborhood_spot_size: @skate_spot.neighborhood_spot_size, regional_spot_size: @skate_spot.regional_spot_size, wcmx_accessible: @skate_spot.wcmx_accessible, bmx_accessible: @skate_spot.bmx_accessible)
 
-	  @sprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition, wcmx_accessible: @skate_spot.wcmx_accessible)
+	  @sprMatch = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, wood: @skate_spot.wood, metal: @skate_spot.metal, concrete: @skate_spot.concrete, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition, wcmx_accessible: @skate_spot.wcmx_accessible, bmx_accessible: @skate_spot.bmx_accessible)
 
 	  @match = @skate_spots.where(street_spot: @skate_spot.street_spot, park_spot: @skate_spot.park_spot, street_plaza: @skate_spot.street_plaza, transition: @skate_spot.transition)
 
@@ -330,11 +330,11 @@ class SkateSpotsController < ApplicationController
     #Use callbacks to share common setup or constraints between actions
 
     def geo_skate_spot_params
-      params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot, :gated, :concrete, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size, :wcmx_accessible)
+      params.require(:skate_spot).permit(:name, :latitude, :longitude, :park_spot, :street_spot, :gated, :concrete, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size, :wcmx_accessible, :bmx_accessible)
     end
 
     def skate_spot_params
-      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot, :gated, :concrete, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size, :wcmx_accessible)
+      params.require(:skate_spot).permit(:name, :number, :street, :city, :state, :country, :zip_code, :park_spot, :street_spot, :gated, :concrete, :wood, :metal, :transition, :street_plaza, :skate_spot_size, :neighborhood_spot_size, :regional_spot_size, :wcmx_accessible, :bmx_accessible)
     end
 
 end

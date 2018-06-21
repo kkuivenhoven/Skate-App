@@ -133,6 +133,9 @@ class SkateSpot < ActiveRecord::Base
 			if params[:wcmxAccessible][:wcmxAccessible] == "1"
 				@skate_spots = @skate_spots.select { |ss| ss.wcmx_accessible == true }
 			end
+			if params[:bmxAccessible][:bmxAccessible] == "1"
+				@skate_spots = @skate_spots.select { |ss| ss.bmx_accessible == true }
+			end
 			# if @skate_spots.count != 0
 			if @skate_spots.length != 0
 				if params[:search].length != 0

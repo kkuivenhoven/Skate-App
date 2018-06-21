@@ -78,6 +78,10 @@
 			<%= f.check_box :wcmx_accessible %>
       <%= f.label :wcmx_accessible, "yes, WCMX accessible" %>&nbsp;
       <br>
+			<b>Skate Spot is BMX accessible:</b><br>
+			<%= f.check_box :bmx_accessible %>
+      <%= f.label :bmx_accessible, "yes, BMX accessible" %>&nbsp;
+      <br>
       <br>
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
     <% end %>
