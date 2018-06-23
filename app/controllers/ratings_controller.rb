@@ -112,8 +112,20 @@ class RatingsController < ApplicationController
     @rating = @skate_spot.ratings.find(params[:id])
 		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
 		@hashtags = @messages.join.scan(/#\w+/)
-		deleteTag = 0
-		atId = 0
+		@second = @rating.responses.all.map{ |c| [c.id, c.message]}.to_h
+		if @second.count > 0
+			@second.each do |key, val|
+				@you = val.gsub(/\s+/m, ' ').strip.split(" ")
+				@rock = @you.join.scan(/#\w+/)
+				if HashTag.where(:name => @rock[0]).count >0
+					if HashTag.where(:name => @rock[0]).count == 1
+						# HashTag.where(:id => HashTag.where(:name => @rock[0]).first.id).destroy
+						HashTag.destroy(HashTag.where(:id => HashTag.where(:name => @rock[0])))
+					elsif HashTag.where(:name => @rock[0]).count > 1
+					end
+				end
+			end
+		end
 		@hashtags.each do |hr|
 			if HashTag.where(:name => hr).count == 0
 			else
@@ -123,20 +135,14 @@ class RatingsController < ApplicationController
 				@laTags.first.skate_spot_ids.delete(@skate_spot.id)
 				@laTags.first.update_attribute(:skate_spot_ids, @laTags.first.skate_spot_ids)
 				if @laTags.first.skate_spot_ids.count == 0
-					deleteTag = 1
+					HashTag.destroy(HashTag.where(:id => HashTag.where(:id => @laTags.first.id)))
 				end
 			end
 		end
     if @rating.destroy
-			if deleteTag == 1
-				@laTags.first.destroy
-			end
       flash[:success] = "Rating has been successfully deleted!"
       redirect_to skate_spot_path(@skate_spot)
     else
-			if deleteTag == 1
-				@laTags.first.destroy
-			end
       flash[:danger] = "Deletion unsuccessful. Please try again."
       redirect_to skate_spot_path(@skate_spot)
     end
@@ -203,16 +209,6 @@ class RatingsController < ApplicationController
 
 		@response.message = @ok.join(" ")
 
-=begin
-		@messages.each do |mes|
-			if mes.scan(/#\w+/).length > 0
-          @stuff = HashTag.where(name: tag)
-          link_to "#{ tag }", hash_tag_show_path(name: tag)
-				# byebug
-			end
-		end
-=end
-
 		@hashtags.each do |hr|
 			if HashTag.where(:name => hr).count == 0
 				@ht = HashTag.new
@@ -221,9 +217,9 @@ class RatingsController < ApplicationController
 				@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
 				if @response.save
 					if @ht.save
-						flash[:success] = "Response successful"
+						flash[:success] = "Response successfully posted"
 					else
-						flash[:danger] = "Response unsuccessful"
+						flash[:danger] = "Response unsuccessfully posted"
 					end
 				end
 			else
@@ -231,7 +227,7 @@ class RatingsController < ApplicationController
 				@ht.first.update_attribute(:reply_ids, @ht.first.reply_ids.merge!(@response.id => @response.id))
 				@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
 				if @response.save
-					flash[:success] = "Response successful"
+					flash[:success] = "Response successfully posted"
 					# redirect_to @user
 				else
 					flash[:danger] = "Response unsuccessful"
@@ -247,6 +243,23 @@ class RatingsController < ApplicationController
 		@rating = Rating.find(params[:rating_id])
 		@user = User.find_by(id: params[:user_id])
     @response = @rating.responses.find(params[:resp_id])
+		@messages = @response.message.gsub(/\s+/m, ' ').strip.split(" ")
+		@hashtags = @messages.join.scan(/#\w+/)
+
+		@hashtags.each do |hr|
+			if HashTag.where(:name => hr).count == 0
+			else
+				@laTags = HashTag.where(:name => hr)
+				@laTags.first.rating_ids.delete(@rating.id)
+				@laTags.first.update_attribute(:rating_ids, @laTags.first.rating_ids)
+				@laTags.first.skate_spot_ids.delete(@rating.skate_spot_id)
+				@laTags.first.update_attribute(:skate_spot_ids, @laTags.first.skate_spot_ids)
+				if @laTags.first.skate_spot_ids.count == 0
+					HashTag.destroy(HashTag.where(:id => HashTag.where(:id => @laTags.first.id)))
+				end
+			end
+		end
+
     if @response.destroy
       flash[:success] = "Response has been successfully deleted!"
 		  redirect_to @user

@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20180621223602) do
     t.boolean  "regional_spot_size"
     t.text     "user_votes"
     t.boolean  "wcmx_accessible",        default: false
-    t.boolean  "bmx_accessible"
+    t.boolean  "bmx_accessible",         default: false
   end
 
   add_index "skate_spots", ["rating_id"], name: "index_skate_spots_on_rating_id"
