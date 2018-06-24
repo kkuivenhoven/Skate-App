@@ -16,7 +16,7 @@ class OrganizationsController < ApplicationController
 		# @organization.user_id = current_user.id
 		@organization.user_id = User.where(:admin => true).ids.first
 		if @organization.save
-			flash[:success] = "Organization has been successfully created!"
+			flash[:success] = "Organization has been successfully added to the admin approval queue."
 			redirect_to static_pages_skate_links_path
 		else
 			flash[:danger] = "Organization has been unsuccessfully created. Please try again."
