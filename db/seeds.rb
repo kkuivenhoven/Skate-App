@@ -112,7 +112,7 @@ puts "12. Brentwood created"
 							 email: "hannazanzi@example.org",
 							 password:              "foobar",
 							 password_confirmation: "foobar",
-							 admin: false,
+							 admin: true,
 							 activated: true,
 							 activated_at: Time.zone.now)
 puts NEW_LINE + "* 1. HZ user created"
