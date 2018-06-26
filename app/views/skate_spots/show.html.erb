@@ -24,7 +24,12 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=ind_initMap">
 </script-->
 
-<%= render partial: 'skate_spots/rating' %>
+<% if user_on_mobile? %>
+	<%= render partial: 'skate_spots/rating' %><br>&nbsp;<br>&nbsp;<br>
+
+<% else %>
+	<%= render partial: 'skate_spots/rating' %>
+<% end %>
 
 <%= render partial: 'skate_spots/event' %>
 

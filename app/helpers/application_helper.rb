@@ -4,7 +4,22 @@
 # 			(i.e. getImg(rating) method)
 
 module ApplicationHelper
+
+		MOBILE_BROWSERS = ["playbook", "windows phone", "android", "ipod", "iphone", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
 	
+		def user_on_mobile?
+			type = request.user_agent.downcase
+			MOBILE_BROWSERS.each do |m|
+				if type.match(m)
+					session[:mobile_param] = 1
+					return true
+				else
+					session[:mobile_param] = 0
+					return false
+				end
+			end
+		end
+
 	def collectHT
 		@grpd_HT = HashTag.all.group_by(&:name)
 		return @grpd_HT

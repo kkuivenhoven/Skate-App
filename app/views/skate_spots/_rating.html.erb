@@ -1,80 +1,25 @@
 <div id="skate_rating">
 
-<div class="row">
- <div class="col-sm-4">
-   <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse1">
-          Click to view ratings
-           </a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse">
-            <% if @skate_spot.ratings.count == 0 %>
-              <center>This spot hasn't been rated yet.</center>
-            <% else %>
-               Rating averages:<br>
-                &emsp;difficulty &rarr; <%= @skate_spot.ratings.average(:difficulty) %> <br>
-                &emsp;security &rarr; <%= @skate_spot.ratings.average(:police) %> <br>
-                &emsp;pedestrian &rarr; <%= @skate_spot.ratings.average(:pedestrian) %> <br>
-             <% end %>
-        <ul class="list-group" style="list-style: none;">
-				<% i = 0 %>	
-         <% @skate_spot.ratings.each do |rating| %>
-					<% i += 1 %>
-          <li class="list-group-item">
-           <tr>
-            <td>
-              <li class="dropdown">
-               Rating #<%= i %>
-             </li>
-            <td>
-							 &emsp;difficulty &rarr;<%= rating.difficulty %><br>
-							 &emsp;security &rarr;<%= rating.police %><br>
-							 &emsp;pedestrian &rarr;<%= rating.pedestrian %><br>
-							 &emsp;description &rarr;
-								<% if rating.description.gsub(/\s+/m, ' ').strip.split(" ").join.scan(/#\w+/).count > 0 %>
-										<span class="content">
-                  <% @jU = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
-                  <% @jU.each do |jp| %>
-                    <% if jp.include?("#") %>
-                        <%= link_to "#{jp}", hash_tag_show_path(name: jp) %>
-                    <% else %>
-                      <%= jp %>
-                    <% end %>
-                  <% end %>
-									</span>
-								<% else %>
-									<span class="content">
-										<%= rating.description %>
-									</span>
-								<% end %><br>
-							 <%= image_tag getImg(rating) %>
-				   </td>
-         </td>
-        </tr>
-       </li>
-      <% end %>
-     </ul>
-    <% if @skate_spot.ratings.count == 0 %>
-       <div class="panel-footer">
-         <%= link_to 'Be the first to rate this spot!', new_skate_spot_rating_path(@skate_spot) %>
-       </div>
-    <% else %>
-       <div class="panel-footer">
-         <%= link_to "New Rating", new_skate_spot_rating_path(@skate_spot) %>
-       </div>
-    <% end %>
-   </div>
-  </div> 
- </div>
+	
+	<div class="row">
+		<div class="container col-sm-4">
+			<table class="table">
+				<thead>
+					<th>Difficulty</th>
+					<th>Pedestrians</th>
+					<th>Security</th>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td><%= @skate_spot.ratings.average(:difficulty) %></td>
+						<td><%= @skate_spot.ratings.average(:pedestrian) %></td>
+						<td><%= @skate_spot.ratings.average(:police) %></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+	</div>
 
 </div>
-
-
-
-</div>
-
-
