@@ -14,18 +14,9 @@
 			<% if @patinar_ids.any? %>
 				<% @all_ss.each do |as| %>
 
-					<% if session[:mobile_param] == 0 %>
-						<button type="button" class="btn btn-default">
-							<span class="skate_link"><%= link_to "#{as.name}", as %></span>
-						</button><br>
-
-					<% else %>
-
 						<button type="button" class="btn btn-default btn-xs">
 							<span class="skate_link"><%= link_to "#{as.name}", as %></span>
 						</button><br>
-					<% end %>
-
 
 				<% end %>
 			<% end %>
