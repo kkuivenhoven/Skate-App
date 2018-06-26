@@ -1,95 +1,67 @@
 <% provide(:title, "HashTag") %>
 <% provide(:p, "Trending skateparks for #{@hashtag.name} hashtag.") %>
 
-<!--div class="row homeDiv">
-	<div class="col-xs-6">
-		<h4>Trending skate spots:</h4>
-		% if @patinar_ids.any? %>
-			% @all_ss.each do |as| %>
-				<button type="button" class="btn btn-default">
-					<span class="skate_link">%= link_to "#{as.name}", as %></span>
-				</button><br>
-			% end %>
-		% end %>
-		</span>
-	</div>
-</div-->
+<!--% mappedTags %>
+ otherTags %-->
+<% reRa_count %>
 
-<% if !@ok.nil? %>
-	<% @skate_ids = Array.new %>
-	<% @ok.each do |o| %>
-		<% if o.class.name == "Rating" %>
-			<% @rating_items = o %>
-			<% @skate_ids.push(o.skate_spot_id) %>
-		<% else %>
-			<% @rating_items = getRating(o.rating_id) %>
-			<% @skate_ids.push(@skate_spot.first.id) %>
-		<% end %>
-	<% end %>
-
-<% @stuff = @skate_ids.uniq.map{|t| [t,@skate_ids.count(t)]}.to_h %>
-
-<% retrieveSpots(@skate_ids.uniq) %>
-<% getOthers(@hashtag.rating_ids.keys.uniq) %>
-<% collectHT %>
-<% mappedTags %>
+<% byebug %>
 
 
-<div class="row homeDiv">
-	<div class="col-xs-6">
-		<h4>Trending skate spots:</h4>
-		<% if @patinar_ids.any? %>
-			<% @all_ss.each do |as| %>
-				<button type="button" class="btn btn-default">
-					<span class="skate_link"><%= link_to "#{as.name}", as %></span>
-				</button><br>
-			<% end %>
-		<% end %>
-
-		<!--% if @all_spots.any? %>
-			% @all_spots.each do |as| %>
-				<button type="button" class="btn btn-default">
-					<span class="skate_link">%= link_to "#{as.name}", as %></span>
-				</button><br>
-			% end %>
-			% if @other_spots.any? %>
-					<span style="color: red;">HEYYYO</span>
-			% end %>
-		% else %>
-			Testing
-		% end %>
-		<span style="color: blue;">testing.<br><br></span-->
-	</div>
-
-	<div class="col-xs-6">
-		<h4>Other trending hashtags:</h4>
-		<span style="color: #caff77">
-			<% @new = @tags.group_by{ |joy| joy.second.count } %>
-			<span style="color: black;">
-				<% @new.each do |n| %>
-					<button type="button" class="btn btn-primary btn-xs" style="color: white">
-						<%= link_to "#{n[1][0][0]}", hash_tag_show_path(id: HashTag.where(:name => n[1][0][0]).first.id) %>
-						<!--%= link_to "#{n[1][0][0]}", hash_tag_show_path(name: n[1][0][0]) %-->
+<div class="container">
+	<div class="row skateSearch">
+		<div class="col-xs-6">
+			<h4>Trending skate spots:</h4>
+			<% if @patinar_ids.any? %>
+				<% @all_ss.each do |as| %>
+					<button type="button" class="btn btn-default">
+						<span class="skate_link"><%= link_to "#{as.name}", as %></span>
 					</button><br>
 				<% end %>
+			<% end %>
+		</div>
+
+ 	<% if session[:mobile_param] == 0 %>
+		<div class="col-xs-6">
+			<h4>Other trending hashtags:</h4>
+			<span style="color: #caff77">
+
+					<% @reRa.each do |raw| %>
+						<button type="button" class="btn btn-default btn-xs" style="">
+							<span class="skate_link"><%= link_to "#{raw[0]} (#{raw[1]})", hash_tag_show_path(id: HashTag.where(:name => raw[0]).first.id) %></span>
+						</button><br>
+					<% end %>
+
+
+				<!--% @new = @tags.group_by{ |joy| joy.second.count } %>
+					% @new.each do |nu| %>
+						<button type="button" class="btn btn-primary btn-xs" style="color: white">
+							%= link_to "#{nu[1][0][0]}", hash_tag_show_path(id: HashTag.where(:name => nu[1][0][0]).first.id) %>
+						</button><br>
+					% end %>
+				</span>
+
+				<br>
+
+				% @other_new = @other_tags.group_by{ |joy| joy.second.count } %>
+				<span style="color: black;">
+					% @other_new.each do |o_nu| %>
+						% o_nu.second.each do |on| %>
+							<button type="button" class="btn btn-primary btn-xs" style="color: white">
+								%= link_to "#{on[0]}", hash_tag_show_path(id: HashTag.where(:name => o_nu[1][0][0]).first.id) %>
+							</button><br>
+						% end %>
+						<br>
+					% end %>
+				</span-->
+
 			</span>
+		</div>
+	<% end %>
 
-		</span>
 	</div>
-
 </div>
 
 
-<!--br><br><br>
-<div class="homeDiv">
-	% retrieveSpots(@skate_ids.uniq) %>
-	% @all_spots.each do |as| %>
-		<button type="button" class="btn btn-default btn-block">
-			%= as.name %>(%= @stuff[as.id] %>)
-		</button><br>
-	% end %>
-</div-->
 
-
-<% end %>
 

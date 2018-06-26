@@ -28,9 +28,6 @@ class RatingsController < ApplicationController
 		noError = 0
 		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
 		@hashtags = @messages.join(' ').scan(/#\w+\s{0}/)
-		# @hashtags = @messages.join.scan(/#\w+\s{0}/)
-		# @hashtags = @messages.join.scan(/#\w+/)
-		# @hashtags = @messages.join.scan(/(?:\s|^)(?:#(?!(?:\d+|\w+?_|_\w+?)(?:\s|$)))(\w+)(?=\s|$)/i)
 
 		@ok = Array.new
 		@messages.each do |cc_o|

@@ -5,25 +5,6 @@
 
 module ApplicationHelper
 	
-	def mappedTags
-		@tags = HashTag.all.map{ |c| [c.name, c.reply_ids]}.to_h
-		# @tags.each do |ta| 
-			# if @other_tags[ta[0]].count != 0
-			# 	@tags[ta[0]].merge!(@other_tags[ta[0]])
-			# end
-		# end
-
-		@tags.delete_if{|key, value| value.count == 0}
-
-		return @tags
-	end
-
-	def otherTags
-		@other_tags = HashTag.all.map{ |c| [c.name, c.rating_ids]}.to_h
-		@other_tags.delete_if{|key, value| value.count == 0}
-		return @other_tags
-	end
-
 	def collectHT
 		@grpd_HT = HashTag.all.group_by(&:name)
 		return @grpd_HT
