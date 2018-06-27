@@ -131,11 +131,11 @@
  <thead>
   <tr>
     <th onclick="sortTable(0)">Name</th>
-    <th>Gated</th>
-    <th onclick="skate_sortthenums(2)">Upvotes</th>
-    <th onclick="skate_sortthenums(3)">Downvotes</th>
+    <th onclick="skate_sortthenums(2)"><i class="glyphicon glyphicon-thumbs-up"></i></th>
+    <th onclick="skate_sortthenums(3)"><i class="glyphicon glyphicon-thumbs-down"></i></th>
     <th>Type</th>
     <th>Material</th>
+    <th>Gated</th>
     <th>Size</th>
     <th>Address</th>
     <!--th onclick="sortNumsTable(2)">Zip Code</th-->
@@ -162,20 +162,21 @@
     </li>
    </td>
 
-   <td><% if skate_spot.gated %>Yes<% else %>No<% end %></td>
 
    <td><%= skate_spot.user_votes.select{|key, hash| hash["1"] == "1" }.count %></td>
    <td><%= skate_spot.user_votes.select{|key, hash| hash["0"] == "0" }.count %></td>
 
    <td>
-      <% if skate_spot.transition && skate_spot.street_plaza %>Transition, Street Plaza
-      <% elsif skate_spot.transition %>Transition
-      <% elsif skate_spot.street_plaza %>Street Plaza
-      <% else %>Not listed
+      <% if skate_spot.transition && skate_spot.street_plaza %>&#9687; transition<br>&#9687; street slaza
+      <% elsif skate_spot.transition %>&#9687;transition
+      <% elsif skate_spot.street_plaza %>&#9687;street plaza
+      <% else %>&#9687;not listed
       <% end %>
    </td>
 
    <td><%= material_words(skate_spot) %></td>
+
+   <td><% if skate_spot.gated %>&#9687; yes<% else %>&#9687; no<% end %></td>
 
    <td><%= ss_size(skate_spot) %></td>
 

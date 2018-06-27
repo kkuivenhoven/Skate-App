@@ -10,10 +10,6 @@
 <% provide(:p, "The skate spots are ordered alphabetically. 
 					 Click the name of the skate spot for more details.") %>
 
-
-
-<%= render 'index_partial' %>
-
 <% if @skate_spots.present? %>
 <div id="index_map"></div>
 <!--script async defer
@@ -21,6 +17,10 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 </script-->
 <br>
 <% end %>
+
+
+
+<%= render 'index_partial' %>
 
 <span style="display:none" id="all_latlng"><%= @all_latlng%></span>
 
