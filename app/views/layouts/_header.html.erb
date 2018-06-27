@@ -8,39 +8,41 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
   <!--%= link_to "Skate Spot App", root_path, id: "logo" %>-->
    <nav>
       <ul class="nav navbar-nav navbar-left">
-				 <!--a href="#content" class="skip">Skip to main content</a-->
-         <!--% if !current_page?(controller: 'static_pages', action: 'home') %-->
 					 <li><%= link_to "Home", root_path %></li>
-         <!--% end %>
-	      % if !current_page?(controller: 'static_pages', action: 'help') %-->
-	      <!--% end %-->
-					<!--li>%= link_to "Testing  ", static_pages_testing_path %></li-->
+					 <% if logged_in? %>
+						 <li><%= link_to "Profile", current_user %></li>
+					 <% else %>
+						 <li><%= link_to "Log in", login_path %></li>
+						 <li><%= link_to "Sign Up", new_user_path %></li>
+					 <% end %>
 
+					 <% if logged_in? %>
             <li class="dropdown" id="UO_nav">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 User Options <b class="skate_caret"></b>
               </a>
               <ul class="dropdown-menu">
-               <% if logged_in? %>
+               <!--% if logged_in? %-->
                <li><%= link_to "All Users", users_path %></li>
-                <li class="divider"></li>
-                <li><%= link_to "Profile", current_user %></li>
+                <!--li class="divider"></li-->
+                <!--li>%= link_to "Profile", current_user %></li-->
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-               <% else %>
-                <li><%= link_to "Log in", login_path %></li>
+               <!--% else %>
+                <li>%= link_to "Log in", login_path %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Create account", new_user_path %></li>
-               <% end %>
+                <li>%= link_to "Sign up", new_user_path %></li>
+               % end %-->
               </ul>
             </li>
+					 <% end %>
 
 
      <!--<ul class="nav navbar-nav navbar-right">-->
 		 <li class="dropdown" id="SS_nav">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-           Skate Spot Options<b class="skate_caret"></b>
+           Skate Spots <b class="skate_caret"></b>
          </a>
          <ul class="dropdown-menu">
 			    <li><%= link_to "View all Skate Spots", skate_spots_path(street: 0, park: 0) %></li>
@@ -72,7 +74,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 
           <li class="dropdown" id="RO_nav">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Rating Options<b class="skate_caret"></b>
+              Ratings <b class="skate_caret"></b>
             </a>
             <!-- <ul class="dropdown-menu"> -->
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -90,7 +92,7 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 
           <li class="dropdown" id="EO_nav">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Event Options
+              Events
 							<% if getEvents or @events %>
 								<% if @events.where(['date > ? ', DateTime.now]).count > 0 %>
 									(<font color="red"><%= @events.where(['date > ? ', DateTime.now]).count %></font>)
@@ -137,8 +139,8 @@ http://www.jorgecoca.com/buils-search-form-ruby-rails/-->
 					</li>	
 			<% end %>
 		<% end %>
-					<li><%= link_to "Contact  ", static_pages_contact_path %></li>
 					<li><%= link_to "Help  ", static_pages_help_path %></li>
+					<li><%= link_to "Contact  ", static_pages_contact_path %></li>
 
       </ul>
     </nav>
