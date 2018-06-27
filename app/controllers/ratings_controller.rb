@@ -12,10 +12,16 @@ class RatingsController < ApplicationController
 
   #GET /skate_spots/:skate_spot_id/ratings/new
   def new
-		#@user = User.find_by(id: params[:user_id])
-		@user = current_user.id
-    #build a new rating
-    @rating = @skate_spot.ratings.build
+		@sids = @skate_spot.ratings.map{ |c| c.user_id }
+		if @sids.include?(current_user.id)
+      flash[:danger] = "Sorry, you've already rated #{@skate_spot.name}. Users can only give one rating per spot."
+      redirect_to skate_spot_path(@skate_spot)
+		else
+			#@user = User.find_by(id: params[:user_id])
+			@user = current_user.id
+			#build a new rating
+			@rating = @skate_spot.ratings.build
+		end
   end
 
 

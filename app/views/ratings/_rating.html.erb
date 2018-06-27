@@ -6,16 +6,16 @@
 
 			<% if rating.description.gsub(/\s+/m, ' ').strip.split(" ").join.scan(/#\w+/).count > 0 %>
 				<span class="content">
-									<% @jU = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
-									<% @jU.each do |jp| %>
-										<% if jp.include?("#") %>
-											<span style="color:red">
-												<%= link_to "#{jp}", hash_tag_show_path(name: jp) %>
-											</span>
-										<% else %>
-											<%= jp %>
-										<% end %>
-									<% end %>
+					<% @jU = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
+					<% @jU.each do |jp| %>
+						<% if jp.include?("#") %>
+							<span style="color:red">
+								<%= link_to "#{jp}", hash_tag_show_path(name: jp) %>
+							</span>
+						<% else %>
+							<%= jp %>
+						<% end %>
+					<% end %>
 				</span>
 
 			<% else %>
