@@ -148,6 +148,7 @@ class RatingsController < ApplicationController
 
 	def index
 		 @skate_spots = SkateSpot.all
+		 @names = SkateSpot.all.map{ |c| c.name }
 		 if params[:street] == "1"
 			 @ratings = Rating.joins(:skate_spot).where(skate_spots: {street_spot: true})
 		 elsif params[:park] == "1"

@@ -164,9 +164,15 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 					<%= select_tag "third", options_for_select(["Difficulty(HighLow)", "Difficulty(LowHigh)", "Security(HighLow)", "Security(LowHigh)", "Pedestrian(HighLow)", "Pedestrian(LowHigh)"]) %>&nbsp;&nbsp;
 				<%= submit_tag "Filter", class: "btn btn-default btn-sm" %><br>
 				<%= yield(:span) %>
+
 				<% if params[:commit] == "Filter" %>
-					<br><p-small>You selected these filter options: <i><%= params[:first] %></i>, <i><%= params[:second] %></i>, <i><%= params[:third] %>.</i></p-small><br>
+					<br><p-small>You selected these filter options: <br>
+						&rarr; <i><%= params[:first] %></i>, <i><%= params[:second] %></i>, <i><%= params[:third] %></i></p-small><br>
 				<% end %><br>
+
+				<span style="color: #caff77">Select a spot to rate a spot:</span><br>
+				<%= select_tag(:id, options_from_collection_for_select(@skate_spots, "id", "name"), :onchange => ("window.location.href = 'skate_spots/'+$(this).val()+'/ratings/new'; window.location.pathname = 'skate_spots/'+$(this).val()+'/ratings/new';")) %>
+
 			<% end %>
 			
 	<% end %>
