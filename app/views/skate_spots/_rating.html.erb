@@ -1,6 +1,24 @@
-<div id="skate_rating">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="<%= (@skate_spot.ratings.average(:difficulty).to_f)*10 %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= (@skate_spot.ratings.average(:difficulty).to_f)*10 %>%">
+            <span class="pull-left" style="color: white">&nbsp;Difficulty: <%= @skate_spot.ratings.average(:difficulty).to_f %>/10</span>
+          </div>
+        </div>
 
-	
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="<%= (@skate_spot.ratings.average(:police).to_f)*10 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@skate_spot.ratings.average(:police).to_f)*10 %>%">
+            <span class="pull-left" style="color: white">&nbsp;Security: <%= @skate_spot.ratings.average(:police).to_f %>/10</span>
+          </div>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow=" <%= (@skate_spot.ratings.average(:pedestrian).to_f)*10 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@skate_spot.ratings.average(:pedestrian).to_f)*10 %>%">
+            <span class="pull-left" style="color: white">&nbsp;Pedestrians: <%= @skate_spot.ratings.average(:pedestrian).to_f %>/10</span>
+          </div>
+        </div>
+
+
+
+<!--div id="skate_rating"
 	<div class="row">
 		<div class="container col-sm-4">
 			<table class="table">
@@ -12,9 +30,9 @@
 
 				<tbody>
 					<tr>
-						<td><%= @skate_spot.ratings.average(:difficulty) %></td>
-						<td><%= @skate_spot.ratings.average(:pedestrian) %></td>
-						<td><%= @skate_spot.ratings.average(:police) %></td>
+						<td>%= @skate_spot.ratings.average(:difficulty) %></td>
+						<td>%= @skate_spot.ratings.average(:pedestrian) %></td>
+						<td>%= @skate_spot.ratings.average(:police) %></td>
 					</tr>
 				</tbody>
 
@@ -22,4 +40,4 @@
 		</div>
 	</div>
 
-</div>
+/div-->

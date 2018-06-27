@@ -4,17 +4,17 @@
 
 
 <% if current_user != nil %>
-<% if current_user.id == @skate_spot.user_id %>
-<div class="btn-group btn-group-justified">
-  <div class="btn-group">
-	  <%= link_to('Edit', edit_skate_spot_path(@skate_spot), class: 'btn btn-primary') %>
-  </div>
-  <div class="btn-group">
-		<%= link_to 'Destroy', skate_spot_path(@skate_spot), method: :delete, class: 'btn btn-primary' %>
-  </div>
-</div>
-<br>
-<% end %>
+	<% if current_user.id == @skate_spot.user_id %>
+	<div class="btn-group btn-group-justified">
+		<div class="btn-group">
+			<%= link_to('Edit', edit_skate_spot_path(@skate_spot), class: 'btn btn-primary') %>
+		</div>
+		<div class="btn-group">
+			<%= link_to 'Destroy', skate_spot_path(@skate_spot), method: :delete, class: 'btn btn-primary' %>
+		</div>
+	</div>
+	<br>
+	<% end %>
 <% end %>
 
 <span style="display:none" id="show_latlng"><%= @show_latlng %></span>
@@ -24,12 +24,11 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiMVR9S_9Do&callback=ind_initMap">
 </script-->
 
-<% if user_on_mobile? %>
-	<%= render partial: 'skate_spots/rating' %><br>&nbsp;<br>&nbsp;<br>
-
-<% else %>
-	<%= render partial: 'skate_spots/rating' %>
-<% end %>
+<!--% if user_on_mobile? %>
+	%= render partial: 'skate_spots/rating' %><br>&nbsp;<br>&nbsp;<br>
+ else %>
+	%= render partial: 'skate_spots/rating' %>
+ end %-->
 
 <%= render partial: 'skate_spots/event' %>
 

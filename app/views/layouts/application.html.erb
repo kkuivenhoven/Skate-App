@@ -83,6 +83,7 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 							</span>
 						<% end %><br>
 
+
 						<% mapVal = "ind_initMap" %>
 				  <% end %>
 					<script async defer
@@ -99,12 +100,33 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 
 			<% if current_page?(controller: 'skate_spots', action: 'show') %>
 				<% if logged_in? %>
-					<%=link_to"<i class='glyphicon glyphicon-thumbs-up'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= UV_1(@skate_spot) %>
-					<%=link_to"<i class='glyphicon glyphicon-thumbs-down'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= UV_0(@skate_spot) %>
+					<span style="color: #caff77"><%=link_to"<i class='glyphicon glyphicon-thumbs-up' style='color: #caff77'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= UV_1(@skate_spot) %></span>
+					<span style="color: #caff77"><%= link_to"<i class='glyphicon glyphicon-thumbs-down' style='color: #caff77'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= UV_0(@skate_spot) %></span>
 				<% else %>
-					<i class='glyphicon glyphicon-thumbs-up'></i><%= UV_1(@skate_spot) %>
-					<i class='glyphicon glyphicon-thumbs-down'></i><%= UV_0(@skate_spot) %>
-				 <% end %>  
+					<span style="color: #caff77"><i class='glyphicon glyphicon-thumbs-up' style='color: #caff77'></i><%= UV_1(@skate_spot) %></span>
+					<span style="color: #caff77"><i class='glyphicon glyphicon-thumbs-down' style='color: #caff77'></i><%= UV_0(@skate_spot) %></span>
+				 <% end %> <br>&nbsp;<br> 
+
+				<span>Average ratings for this spot:</span><br>
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="<%= (@skate_spot.ratings.average(:difficulty).to_f)*10 %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= (@skate_spot.ratings.average(:difficulty).to_f)*10 %>%">
+						<span class="pull-left" style="color: white">&nbsp;Difficulty: <%= @skate_spot.ratings.average(:difficulty).to_f %>/10</span>
+					</div>
+				</div>
+
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="<%= (@skate_spot.ratings.average(:police).to_f)*10 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@skate_spot.ratings.average(:police).to_f)*10 %>%">
+						<span class="pull-left" style="color: white">&nbsp;Security: <%= @skate_spot.ratings.average(:police).to_f %>/10</span>
+					</div>
+				</div>
+
+				<div class="progress" style="margin-bottom: 10px;">
+					<div class="progress-bar" role="progressbar" aria-valuenow=" <%= (@skate_spot.ratings.average(:pedestrian).to_f)*10 %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= (@skate_spot.ratings.average(:pedestrian).to_f)*10 %>%">
+						<span class="pull-left" style="color: white">&nbsp;Pedestrians: <%= @skate_spot.ratings.average(:pedestrian).to_f %>/10</span>
+					</div>
+				</div>
+
+
 			<% end %>  
 
 			<% if current_page?(controller: 'static_pages', action: 'home') %>
