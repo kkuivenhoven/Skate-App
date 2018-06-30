@@ -170,7 +170,7 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 						&rarr; <i><%= params[:first] %></i>, <i><%= params[:second] %></i>, <i><%= params[:third] %></i></p-small><br>
 				<% end %><br>
 
-				<span style="color: #caff77">Select a spot to rate a spot:</span><br>
+				<span style="color: #caff77"><b>Select a spot to rate a spot:</b></span><br>
 				<%= select_tag(:id, options_from_collection_for_select(@skate_spots, "id", "name"), :onchange => ("window.location.href = 'skate_spots/'+$(this).val()+'/ratings/new'; window.location.pathname = 'skate_spots/'+$(this).val()+'/ratings/new';")) %>
 
 			<% end %>
