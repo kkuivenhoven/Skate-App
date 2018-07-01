@@ -1,11 +1,23 @@
-<h1>Editing Rating</h1>
+<% provide(:title, "Edit Rating") %>
+<% provide(:p, "#{@skate_spot.complete_address}") %>
+<% provide(:text, "<span style='color: #f4ffe3'>You are editing a rating for #{@skate_spot.name }.</span>".html_safe) %>
 
+<div class="btn-group btn-group-justified">
+  <div class="btn-group">
+    <%= link_to('Home', root_path, class: 'btn btn-primary') %>
+  </div>
+  <div class="btn-group">
+    <!-- /skate_spots/:skate_spot_id/ratings/ -->
+    <%= link_to('Back', skate_spot_ratings_path(@rating.skate_spot), class: 'btn btn-primary') %>
+    <!-- instead of: %= link_to 'Back', ratings_path %>-->
+  </div>
+</div>
 <%= render 'form' %>
 
 <!-- /skate_spots/:skate_spot_id/ratings/:id -->
-<%= link_to 'Show', [@rating.skate_spot, @rating] %> |
+<!--%= link_to 'Show', [@rating.skate_spot, @rating] %> |-->
 <!-- instead of: %= link_to 'Show', @rating %> |-->
 
 <!-- /skate_spots/:skate_spot_id/ratings/ -->
-<%= link_to 'Back', skate_spot_ratings_path(@rating.skate_spot) %>
+<!--%= link_to 'Back', skate_spot_ratings_path(@rating.skate_spot) %-->
 <!-- instead of: %= link_to 'Back', ratings_path %>-->

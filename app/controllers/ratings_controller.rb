@@ -37,15 +37,12 @@ class RatingsController < ApplicationController
 
 		@ok = Array.new
 		@messages.each do |cc_o|
-			# if cc_o.scan(/#\w+/).length > 0
 			if cc_o.scan(/#\w+\s{0}/).length > 0
-			# if cc_o.scan(/(?:\s|^)(?:#(?!(?:\d+|\w+?_|_\w+?)(?:\s|$)))(\w+)(?=\s|$)/i).length > 0
 				@ok.push(cc_o.to_s)
 			else
 				@ok.push(cc_o.to_s)
 			end
 		end
-
 
 		@rating.description = @ok.join(" ")
 
@@ -99,6 +96,51 @@ class RatingsController < ApplicationController
   #PUT /skate_spots/:skate_spot_id/ratings/:id
   def update
     @rating = @skate_spot.ratings.find(params[:id])
+
+		noError = 0
+		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
+		@hashtags = @messages.join(' ').scan(/#\w+\s{0}/)
+
+		@ok = Array.new
+		@messages.each do |cc_o|
+			if cc_o.scan(/#\w+\s{0}/).length > 0
+				@ok.push(cc_o.to_s)
+			else
+				@ok.push(cc_o.to_s)
+			end
+		end
+
+		@rating.description = @ok.join(" ")
+
+		@hashtags.each do |hr|
+			if HashTag.where(:name => hr).count == 0
+				@ht = HashTag.new
+				@ht.name = hr.to_s
+				@ht.update_attribute(:rating_ids, @ht.rating_ids.merge!(@rating.id => @rating.id))
+				@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+				if @rating.update(rating_params)
+					if @ht.save
+						noError = 1
+					end
+				end
+			else
+				@ht = HashTag.where(:name => hr)
+				@ht.first.update_attribute(:rating_ids, @ht.first.rating_ids.merge!(@rating.id => @rating.id))
+				@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+				if @rating.update(rating_params)
+					noError = 1
+				end
+			end
+		end
+    if noError == 1
+      flash[:success] = "Rating has been successfully updated!"
+      redirect_to skate_spot_path(@skate_spot)
+    elsif noError == 0
+      flash[:danger] = "Rating has been unsuccessfully updated. Please try again."
+      redirect_to skate_spot_path(@skate_spot)
+    end
+
+=begin
     if @rating.update(rating_params)
       flash[:success] = "Rating has been successfully updated!"
       redirect_to skate_spot_path(@skate_spot)
@@ -107,6 +149,7 @@ class RatingsController < ApplicationController
       flash[:danger] = "Rating has been unsuccesfully updated. Please try again."
       redirect_to skate_spot_path(@skate_spot)
     end
+=end
   end
 
   #destroy the specified rating
