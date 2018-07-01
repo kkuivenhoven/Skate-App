@@ -213,30 +213,38 @@ class RatingsController < ApplicationController
 
 		@response.message = @ok.join(" ")
 
-		@hashtags.each do |hr|
-			if HashTag.where(:name => hr).count == 0
-				@ht = HashTag.new
-				@ht.name = hr.to_s
-				@ht.update_attribute(:reply_ids, @ht.reply_ids.merge!(@response.id => @response.id))
-				@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
-				if @response.save
-					if @ht.save
+		if @hashtags.count > 0
+			@hashtags.each do |hr|
+				if HashTag.where(:name => hr).count == 0
+					@ht = HashTag.new
+					@ht.name = hr.to_s
+					@ht.update_attribute(:reply_ids, @ht.reply_ids.merge!(@response.id => @response.id))
+					@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+					if @response.save
+						if @ht.save
+							flash[:success] = "Response successfully posted"
+						else
+							flash[:danger] = "Response unsuccessfully posted"
+						end
+					end
+				else
+					@ht = HashTag.where(:name => hr)
+					@ht.first.update_attribute(:reply_ids, @ht.first.reply_ids.merge!(@response.id => @response.id))
+					@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+					if @response.save
 						flash[:success] = "Response successfully posted"
+						# redirect_to @user
 					else
-						flash[:danger] = "Response unsuccessfully posted"
+						flash[:danger] = "Response unsuccessful"
+						# redirect_to @user
 					end
 				end
+			end
+		else
+			if @response.save
+				flash[:success] = "Response successfully posted"
 			else
-				@ht = HashTag.where(:name => hr)
-				@ht.first.update_attribute(:reply_ids, @ht.first.reply_ids.merge!(@response.id => @response.id))
-				@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
-				if @response.save
-					flash[:success] = "Response successfully posted"
-					# redirect_to @user
-				else
-					flash[:danger] = "Response unsuccessful"
-					# redirect_to @user
-				end
+				flash[:danger] = "Response unsuccessful"
 			end
 		end
 

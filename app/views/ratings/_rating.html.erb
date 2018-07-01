@@ -67,9 +67,9 @@
 							</span>
 
 				<% else %>
-						NIL ALL ACROSS THE BOARD<br>
-						should see user: <%= User.find_by(id: resp.user_id) %><br>
-						resp.user_id: <%= resp.user_id %>
+						<!--NIL ALL ACROSS THE BOARD<br>
+						should see user: %= User.find_by(id: resp.user_id) %><br>
+						resp.user_id: %= resp.user_id %>-->
 
 				<% end %>
 
@@ -79,7 +79,7 @@
 									<% if current_user?(@resp_user) %>
 										<!--% @user = @resp_user %-->
 										<% if params[:controller] != "hash_tag" %>
-											<%= link_to 'Delete', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+											<%= link_to 'Delete', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-xs skate_link' %>
 										<% end %>
 									<% end %>
 							</span>
