@@ -26,11 +26,11 @@
 			<h4>Other trending hashtags:</h4>
 			<span style="color: #caff77">
 					<% @reRa.each do |raw| %>
-						<button type="button" class="btn btn-default btn-xs">
+						<button type="button" class="btn btn-default btn-xs" style="opacity: 0.95">
 							<span class="skate_link">
 								<%= link_to "#{raw[0]} (#{raw[1]})", hash_tag_show_path(id: HashTag.where(:name => raw[0]).first.id) %>
 							</span>
-						</button><br>
+						</button>
 					<% end %>
 			</span>
 		</div>
