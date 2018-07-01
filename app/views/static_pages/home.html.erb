@@ -29,6 +29,31 @@
 </div>
 
 
+<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBo632mq4TqzMYOWFpWUcwdU1tTO0XR3X8",
+    authDomain: "skatespots-3a8f0.firebaseapp.com",
+    databaseURL: "https://skatespots-3a8f0.firebaseio.com",
+    projectId: "skatespots-3a8f0",
+    storageBucket: "skatespots-3a8f0.appspot.com",
+    messagingSenderId: "233353418469"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+<div class="container">
+	<% base_uri = 'https://skatespots-3a8f0.firebaseio.com/' %>
+	<% db_secret = 'yZGqkNt8sd5en5F2ICXDqo2lhUgVqXbVuLEk8QbG' %>
+	<% firebase = Firebase::Client.new(base_uri, db_secret) %>
+
+	
+
+</div>
+
+
 
 
 <!--% if logged_in? %>
@@ -48,6 +73,12 @@
 					</div>
   </div>
  end %-->
+
+
+
+
+
+
 
 
 
