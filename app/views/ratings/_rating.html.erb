@@ -33,14 +33,14 @@
 			<span class="timestamp">
 				Posted <%= time_ago_in_words(rating.created_at) %> ago.
 				<% if current_user.following?(rating.user) %>
-						<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
+						<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
 						<!--button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Reply</button-->
 				<% else %>
 						<!--button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" disabled>Reply</button-->
-						<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
+						<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
 				<% end %>
 				<% if current_user?(rating.user) %>
-					<%= link_to 'Delete', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' } %>
+					<%= link_to 'Delete', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-xs skate_link' %>
 				<% end %>
 			</span>
 		</li>
