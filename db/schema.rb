@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621223602) do
+ActiveRecord::Schema.define(version: 20180701102058) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180621223602) do
     t.datetime "updated_at",     null: false
     t.text     "skate_spot_ids"
     t.text     "rating_ids"
+    t.text     "event_ids"
   end
 
   create_table "microposts", force: :cascade do |t|

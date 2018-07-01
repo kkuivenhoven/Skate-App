@@ -14,6 +14,60 @@ class EventsController < ApplicationController
 				@event.city = @skate_spot.city
 				@event.longitude = @skate_spot.longitude
 				@event.latitude = @skate_spot.latitude
+
+				noError = 0
+				@messages = @event.description.gsub(/\s+/m, ' ').strip.split(" ")
+				@hashtags = @messages.join(' ').scan(/#\w+\s{0}/)
+
+				@ok = Array.new
+				@messages.each do |cc_o|
+					if cc_o.scan(/#\w+/).length > 0
+						@ok.push(cc_o.to_s)
+					else
+						@ok.push(cc_o.to_s)
+					end
+				end
+
+				@event.description = @ok.join(" ")
+
+
+   if @hashtags.count > 0 
+      @hashtags.each do |hr|
+        if HashTag.where(:name => hr).count == 0
+          @ht = HashTag.new
+          @ht.name = hr.to_s
+          @ht.update_attribute(:reply_ids, @ht.event_ids.merge!(@event.id => @event.id))
+          @ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@event.skate_spot_id => @event.skate_spot_id))
+          if @event.save
+            if @ht.save
+							noError = 1
+            end 
+          end 
+        else
+          @ht = HashTag.where(:name => hr) 
+          @ht.first.update_attribute(:reply_ids, @ht.first.event_ids.merge!(@event.id => @event.id))
+          @ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@event.skate_spot_id => @event.skate_spot_id))
+          if @event.save
+							noError = 1
+          end 
+        end 
+      end 
+    else
+      if @event.save
+       	noError = 1 
+      end 
+    end 
+
+    if noError == 1
+      flash[:success] = "Event has been successfully created!"
+      redirect_to skate_spot_path(@skate_spot)
+    elsif noError == 0
+      flash[:danger] = "Event has been unsuccessfully created. Please try again."
+			render 'new'
+    end 
+
+
+=begin
 				if @event.save
 						flash[:success] = "Event has been successfully created!"
 						redirect_to skate_spot_path(@skate_spot)
@@ -21,6 +75,7 @@ class EventsController < ApplicationController
 						flash[:danger] = "Event has not been created. Please try again"
 						render 'new'
 				end
+=end
 		end
 
 		def edit

@@ -1,5 +1,6 @@
 class HashTag < ActiveRecord::Base
 
+	serialize :event_ids, Hash
 	serialize :rating_ids, Hash
 	serialize :reply_ids, Hash
 	serialize :skate_spot_ids, Hash
