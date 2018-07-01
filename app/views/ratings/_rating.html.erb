@@ -41,6 +41,7 @@
 				<% end %>
 				<% if current_user?(rating.user) %>
 					<%= link_to 'Delete', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-xs skate_link' %>
+					<%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating), class: 'btn btn-info btn-xs skate_link' %>
 				<% end %>
 			</span>
 		</li>
