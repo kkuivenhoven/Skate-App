@@ -90,6 +90,8 @@ class RatingsController < ApplicationController
   def edit
     #fetch the rating 
     @rating = @skate_spot.ratings.find(params[:id])
+		@messages = @rating.description.gsub(/\s+/m, ' ').strip.split(" ")
+		@hashtags = @messages.join(' ').scan(/#\w+\s{0}/)
   end
 
   #update the rating
