@@ -151,6 +151,9 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 					<% else %>  
 					  <span style='color: #f4ffe3'><%= link_to 'log in', login_path %> or <%= link_to 'sign up', new_user_path %> for an account if you don't already have one.</span>
 					<% end %>  
+				<br><span style="color: #caff77"><b>Select a spot to create an event for a spot:</b></span><br>
+				<%= select_tag(:id, options_from_collection_for_select(@skate_spots, "id", "name"), :onchange => ("window.location.href = 'skate_spots/'+$(this).val()+'/events/new'; window.location.pathname = 'skate_spots/'+$(this).val()+'/events/new';")) %>
+
 			<% end %>  
 
 			<% if current_page?(controller: 'static_pages', action: 'help') %>

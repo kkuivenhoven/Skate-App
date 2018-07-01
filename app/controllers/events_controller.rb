@@ -52,7 +52,7 @@ class EventsController < ApplicationController
 		end
 
 		def index
-				@skate_spots = SkateSpot.all
+				@skate_spots = SkateSpot.all.order(:name)
 				@events = Event.all
 		    if params[:search]
 				   #	 @all_events = Event.all
