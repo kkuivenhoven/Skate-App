@@ -126,8 +126,12 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 					</div>
 				</div>
 
-         <%= link_to "Rate this spot!", new_skate_spot_rating_path(@skate_spot), class: "btn btn-info btn-xs" %>
+         <%= link_to "Rate this spot!", new_skate_spot_rating_path(@skate_spot), class: "btn btn-info btn-xs" %><br>&nbsp;<br>
 
+					<%= render 'shared/mini_cal' %>
+					<% if logged_in? %>
+					 <%= link_to 'Create an Event', new_skate_spot_event_path(@skate_spot), class: "btn btn-info btn-xs" %>
+					<% end %>
 			<% end %>  
 
 			<% if current_page?(controller: 'static_pages', action: 'home') %>

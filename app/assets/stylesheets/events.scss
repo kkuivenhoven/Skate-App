@@ -1,3 +1,20 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.eventsCal {
+	background-color: none !important;
+	text-align: center;
+	thead {
+	}
+	th {
+		width: 27px;
+	}
+	td {
+		width: 27px;
+	}
+	.eventsCal_th {
+		text-align: center;
+	}
+	margin-bottom: 5px;
+}

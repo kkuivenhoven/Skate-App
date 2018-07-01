@@ -249,6 +249,12 @@ class SkateSpotsController < ApplicationController
 				@m_skateSpots = SkateSpot.find(@m_ids)
 			end 
     end
+
+		if !@events.nil?
+			@laFecha = DateTime.now.all_month
+			@newEvents = @events.map{ |c| c.date.to_date if @laFecha.cover?(c.date)}.compact
+			@keyEvents = @events.map{ |c| c.date if @laFecha.cover?(c.date)}.compact
+		end	
   end
 
 

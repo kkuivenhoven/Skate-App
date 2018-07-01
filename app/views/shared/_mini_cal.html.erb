@@ -1,0 +1,209 @@
+<table class="eventsCal">
+  <thead>
+    <tr>
+      <th class="arrow"><a href="">◀</a></th>
+      <th class="eventsCal_th" colspan="5">
+        <%= DateTime.now.strftime("%B") %>&nbsp;<%= DateTime.now.strftime("%Y") %>
+      </th>
+      <th class="arrow"><a href="">▶</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="eventsCal_th">S</th>
+      <th class="eventsCal_th">M</th>
+      <th class="eventsCal_th">T</th>
+      <th class="eventsCal_th">W</th>
+      <th class="eventsCal_th">T</th>
+      <th class="eventsCal_th">F</th>
+      <th class="eventsCal_th">S</th>
+    </tr>
+  <% DateTime.now.all_month.each do |date| %>
+      <% if date.strftime("%a") == "Sun" %>
+        <tr>
+            <% if date.day == 1 %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+							</td>
+            <% elsif date.day == DateTime.now.end_of_month.day %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+							</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            <% else %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+              </td>
+            <% end %>
+      <% end %>
+      <% if date.strftime("%a") == "Mon" %>
+            <% if date.day == 1 %>
+              <td></td>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+							</td>
+            <% elsif date.day == DateTime.now.end_of_month.day %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+							</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            <% else %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+              </td>
+            <% end %>
+      <% end %>
+      <% if date.strftime("%a") == "Tue" %>
+          <% if date.day == 1 %>
+            <td></td>
+            <td></td>
+            <td>
+							<% if !@newEvents.nil? %>
+								<%= checkDate(@newEvents, date, @keyEvents) %>
+							<% else %>
+								<%= date.strftime("%e") %>
+							<% end %>
+						</td>
+          <% elsif date.day == DateTime.now.end_of_month.day %>
+            <td>
+							<% if !@newEvents.nil? %>
+								<%= checkDate(@newEvents, date, @keyEvents) %>
+							<% else %>
+								<%= date.strftime("%e") %>
+							<% end %>
+						</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          <% else %>
+            <td>
+							<% if !@newEvents.nil? %>
+								<%= checkDate(@newEvents, date, @keyEvents) %>
+							<% else %>
+								<%= date.strftime("%e") %>
+							<% end %>
+						</td>
+          <% end %>
+      <% end %>
+      <% if date.strftime("%a") == "Wed" %>
+            <% if date.day == 1 %>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= date.strftime("%e") %></td>
+            <% elsif date.day == DateTime.now.end_of_month.day %>
+              <td><%= date.strftime("%e") %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            <% else %>
+              <td>
+							<% if !@newEvents.nil? %>
+								<%= checkDate(@newEvents, date, @keyEvents) %>
+							<% else %>
+								<%= date.strftime("%e") %>
+							<% end %>
+							</td>
+            <% end %>
+      <% end %>
+      <% if date.strftime("%a") == "Thu" %>
+            <% if date.day == 1 %>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= date.strftime("%e") %></td>
+            <% elsif date.day == DateTime.now.end_of_month.day %>
+              <td><%= date.strftime("%e") %></td>
+              <td></td>
+              <td></td>
+            <% else %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+							</td>
+            <% end %>
+      <% end %>
+      <% if date.strftime("%a") == "Fri" %>
+            <% if date.day == 1 %>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%= date.strftime("%e") %></td>
+            <% elsif date.day == DateTime.now.end_of_month.day %>
+              <td><%= date.strftime("%e") %></td>
+              <td></td>
+            <% else %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+							</td>
+            <% end %>
+      <% end %>
+      <% if date.strftime("%a") == "Sat" %>
+            <% if date.day == 1 %>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><b><%= date.strftime("%e") %></b></td>
+            <% elsif date.day == DateTime.now.end_of_month.day %>
+              <td><%= date.strftime("%e") %></td>
+            <% else %>
+              <td>
+								<% if !@newEvents.nil? %>
+									<%= checkDate(@newEvents, date, @keyEvents) %>
+								<% else %>
+									<%= date.strftime("%e") %>
+								<% end %>
+              </td>
+            <% end %>
+      </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>

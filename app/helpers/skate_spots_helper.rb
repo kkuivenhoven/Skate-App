@@ -1,5 +1,14 @@
 module SkateSpotsHelper
 
+	def checkDate(newEvents, date, keyEvents)
+		if @newEvents.include?(date.to_date)
+			@ev = Event.find_by(date: keyEvents[newEvents.index(date).to_i])
+			return "<span data-toggle='tooltip' data-placement='bottom' title='#{ @ev.name.capitalize } event @ #{ @ev.date.time.strftime("%l:%M %p") }' style='color: #f4ffe3'>#{ date.strftime("%e") }</span>".html_safe
+		else
+			return "#{ date.strftime("%e") }".html_safe
+		end
+	end
+
 	def getTags(id)
 		@ht_ids = Array.new
 
