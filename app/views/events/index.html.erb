@@ -8,18 +8,18 @@
 	<% provide(:text, "<span style='color: #f4ffe3'>If you want to create an event, you must either </span>".html_safe) %>
 <% end %>
 
-<div class="container">
+<!--div class="container">
   <div class="row">
-	 <%= form_tag(events_path, :method => "get", id: "search-form") do %>
-	 <%= text_field_tag :search, params[:search], placeholder: "Search Events" %>
-	 <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
-	 <% end %>
+	 %= form_tag(events_path, :method => "get", id: "search-form") do %>
+	 %= text_field_tag :search, params[:search], placeholder: "Search Events" %>
+	 %= submit_tag "Search", class: "btn btn-default btn-sm" %>
+	 % end %-->
 
 	 <!--% if (!@events.present?) and (!params[:search].nil?) %>
 		 <p>There are no events containing the term(s) %= params[:search] %>.</p>
 	 % end %-->
-  </div>
-</div>
+  <!--/div>
+</div-->
 
 
 <div class="table-responsive">

@@ -71,6 +71,22 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 			 <br>
 			 <%= yield(:p) %></p>
 
+
+				  <% if current_page?(controller: 'users', action: 'index') %>
+						<span style='color: #f4ffe3'>Click a users name to learn more.</span><br>
+
+						<%= form_tag(users_path, :method => "get", id: "search-form", class: 'input-group') do %>
+						<%= text_field_tag :search, params[:search], placeholder: "Search Users", class: 'searchBar' %>
+						&nbsp;<%= submit_tag "Search", class: "btn btn-default btn-sm" %>
+						<% end %>
+
+						<% if !@users.present? %>
+							<p>There are no users under the name <%= params[:search] %>.</p>
+						<% end %>
+							
+					<% end %>
+
+
 			 <% if (current_page?(controller: 'skate_spots', action: 'index')) or (current_page?(controller: 'skate_spots', action: 'show'))%>
 				  <% if current_page?(controller: 'skate_spots', action: 'index') %>
 						<% mapVal = "allinitMap" %>
@@ -151,6 +167,12 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 					<% else %>  
 					  <span style='color: #f4ffe3'><%= link_to 'log in', login_path %> or <%= link_to 'sign up', new_user_path %> for an account if you don't already have one.</span>
 					<% end %>  
+
+					<%= form_tag(events_path, :method => "get", id: "search-form") do %>
+					 <%= text_field_tag :search, params[:search], placeholder: "Search Events", class: 'searchBar' %>
+					 <%= submit_tag "Search", class: "btn btn-default btn-sm" %>
+					<% end %>
+
 				<br><span style="color: #caff77"><b>Select a spot to create an event for a spot:</b></span><br>
 				<%= select_tag(:id, options_from_collection_for_select(@skate_spots, "id", "name"), :onchange => ("window.location.href = 'skate_spots/'+$(this).val()+'/events/new'; window.location.pathname = 'skate_spots/'+$(this).val()+'/events/new';")) %>
 

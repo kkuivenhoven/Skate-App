@@ -2,13 +2,13 @@
 <div class="container">
   <div class="row skateSearch">
    <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
-     &nbsp;&nbsp;<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots" %>&nbsp;
+     &nbsp;&nbsp;<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots", class: 'searchBar' %>&nbsp;
 		<% if session[:mobile_param] == 1 %><br><% end %>
-     <%= text_field_tag :zip_code, params[:zip_code], placeholder: "Zip code" %>
+     <%= text_field_tag :zip_code, params[:zip_code], placeholder: "Zip code", class: 'searchBar' %>
 		<% if session[:mobile_param] == 1 %><br><% end %>
-     <%= select_tag "mileage", options_for_select(["30", "60", "90", "120"]), prompt: "Distance away in miles..." %>
+     <%= select_tag "mileage", options_for_select(["30", "60", "90", "120"]), prompt: "Distance away in miles...", class: 'searchBar' %>
 		<% if session[:mobile_param] == 1 %><br><% end %>
-     <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>
+     <%= submit_tag "Search", class: "btn btn-default btn-sm" %><br>&nbsp;<br>
 		<% if session[:mobile_param] == 1 %><br><% end %>
     
    <% if !@skate_spots.present? %>

@@ -3,22 +3,22 @@ https://www.railstutorial.org/book, Hartl Michael, 2014
 https://www.railstutorial.org/book/updating_and_deleting_users-->
 
 <% provide(:title, 'Users') %>
-<% provide(:p, 'Skate App users') %>
-<% provide(:text, "<span style='color: #f4ffe3'>Click a users name to learn more.</span>".html_safe) %>
+<% provide(:p, 'The skaters of skateapp4all.org') %>
+<!--% provide(:text, "<span style='color: #f4ffe3'>Click a users name to learn more.</span>".html_safe) %-->
 <!--<h1>All users</h1>-->
 
-<div class="container">
+<!--div class="container">
 	<div class="row">
-				<%= form_tag(users_path, :method => "get", id: "search-form", class: 'input-group') do %>
-				<%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
-				<%= submit_tag "Search", class: "btn btn-default btn-sm" %>
-				<% end %>
+				%= form_tag(users_path, :method => "get", id: "search-form", class: 'input-group') do %>
+				%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+				%= submit_tag "Search", class: "btn btn-default btn-sm" %>
+				% end %>
 
-				<% if !@users.present? %>
-					<p>There are no users under the name <%= params[:search] %>.</p>
-				<% end %>
+				% if !@users.present? %>
+					<p>There are no users under the name %= params[:search] %>.</p>
+				% end %>
   </div>
-</div>
+</div-->
 
 
 
