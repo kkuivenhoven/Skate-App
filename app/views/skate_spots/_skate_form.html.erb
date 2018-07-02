@@ -35,54 +35,63 @@
       <%= f.text_field :country, class: 'form-control' %>
 			
 			<br>
+			<h4 class="ssFont">Please check the boxes that best describe the skate spot.</h4><br>
 
-			<b>Skate Spot is a...</b><br>
-			<%= f.check_box :park_spot %>
-      <%= f.label :park_spot, "Park spot" %>&nbsp;
-			<%= f.check_box :street_spot %>
-      <%= f.label :street_spot, "Street spot" %>
-			<br>
+			<div class="filterSelect">
+				<b class="ssFont">Skate Spot is a...</b><br>
+					<%= f.check_box :park_spot, class: "filterCheck" %>
+					<%= f.label :park_spot, "Park spot", class: "filterLabel" %>
+					<%= f.check_box :street_spot, class: "filterCheck" %>
+					<%= f.label :street_spot, "Street spot", class: "filterLabel" %>
+			</div>
 
-			<b>Skate Spot is...</b><br>
-			<%= f.check_box :gated %>
-      <%= f.label :gated, "Gated" %>&nbsp;
-			<br>
+			<div class="filterSelect">
+				<b class="ssFont">Skate Spot is...</b><br>
+				<%= f.check_box :gated, class: "filterCheck" %>
+				<%= f.label :gated, "Gated", class: "filterLabel" %>
+			</div>
+				
+			<div class="filterSelect">
+				<b class="ssFont">Skate Spot Material is...</b><br>
+				<%= f.check_box :concrete, class: "filterCheck" %>
+				<%= f.label :concrete, "Concrete", class: "filterLabel" %>
+				<%= f.check_box :wood, class: "filterCheck" %>
+				<%= f.label :wood, "Wooden", class: "filterLabel" %>
+				<%= f.check_box :metal, class: "filterCheck" %>
+				<%= f.label :metal, "Metal", class: "filterLabel" %>
+			</div>
 			
-			<b>Skate Spot Material is...</b><br>
-			<%= f.check_box :concrete %>
-      <%= f.label :concrete, "Concrete" %>&nbsp;
-			<%= f.check_box :wood %>
-      <%= f.label :wood, "Wooden" %>&nbsp;
-			<%= f.check_box :metal %>
-      <%= f.label :metal, "Metal" %>
-			<br>
-			
-			<b>Skate Spot style...</b><br>
-			<%= f.check_box :transition %>
-      <%= f.label :transition, "Transition" %>&nbsp;
-			<%= f.check_box :street_plaza %>
-      <%= f.label :street_plaza, "Street Plaza" %>
-			<br>
+			<div class="filterSelect">
+				<b class="ssFont">Skate Spot style...</b><br>
+				<%= f.check_box :transition, class: "filterCheck" %>
+				<%= f.label :transition, "Transition", class: "filterLabel" %>
+				<%= f.check_box :street_plaza, class: "filterCheck" %>
+				<%= f.label :street_plaza, "Street Plaza", class: "filterLabel" %>
+			</div>
 
-			<b>Skate Spot size is...</b><br>
-			<%= f.check_box :skate_spot_size %>
-      <%= f.label :skate_spot_size, "Skate spot size" %>&nbsp;
-			<%= f.check_box :neighborhood_spot_size %>
-      <%= f.label :neighborhood_spot_size, "Neighborhood spot size" %>&nbsp;
-			<%= f.check_box :regional_spot_size %>
-      <%= f.label :regional_spot_size, "Regional spot size" %>
-      <br>
+			<div class="filterSelect">
+				<b class="ssFont">Skate Spot size is...</b><br>
+				<%= f.check_box :skate_spot_size, class: "filterCheck" %>
+				<%= f.label :skate_spot_size, "Skate spot size", class: "filterLabel" %>
+				<%= f.check_box :neighborhood_spot_size, class: "filterCheck" %>
+				<%= f.label :neighborhood_spot_size, "Neighborhood spot size", class: "filterLabel" %>
+				<%= f.check_box :regional_spot_size, class: "filterCheck" %>
+				<%= f.label :regional_spot_size, "Regional spot size", class: "filterLabel" %>
+			</div>
 			
-			<b>Check if skate Spot is WCMX accessible:</b><br>
-			<small>(Not sure what WCMX is? Learn more <a href="http://www.newmobility.com/2014/01/meet-wcmx-riders/">here</a>)</small><br>
-			<%= f.check_box :wcmx_accessible %>
-      <%= f.label :wcmx_accessible, "yes, WCMX accessible" %>&nbsp;
-      <br>
-			<b>Skate Spot is BMX accessible:</b><br>
-			<%= f.check_box :bmx_accessible %>
-      <%= f.label :bmx_accessible, "yes, BMX accessible" %>&nbsp;
-      <br>
-      <br>
+			<div class="filterSelect">
+				<b class="ssFont">Check if skate Spot is WCMX accessible:</b><br>
+				<small>(Not sure what WCMX is? Learn more <a href="http://www.newmobility.com/2014/01/meet-wcmx-riders/">here</a>)</small><br>
+				<%= f.check_box :wcmx_accessible, class: "filterCheck" %>
+				<%= f.label :wcmx_accessible, "yes, WCMX accessible", class: "filterLabel" %>
+			</div>
+
+			<div class="filterSelect">
+				<b class="ssFont">Skate Spot is BMX accessible:</b><br>
+				<%= f.check_box :bmx_accessible, class: "filterCheck" %>
+				<%= f.label :bmx_accessible, "yes, BMX accessible", class: "filterLabel" %>
+			</div>
+
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
     <% end %>
 

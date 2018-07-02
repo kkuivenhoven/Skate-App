@@ -52,12 +52,12 @@
         <tr>
 					<!-- meaning all spots that have upvotes > downvotes -->
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Upvoted" %></td>
-          <td><%= check_box "upvotes", "upvoteFilter" %>&nbsp;<br></td>
+          <td><%= check_box "upvotes", "upvoteFilter", class: "filterCheck" %>&nbsp;<br></td>
         </tr>
         <tr>
 					<!-- meaning all spots that have upvotes < downvotes -->
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Downvoted" %></td>
-          <td><%= check_box "downvotes", "downvoteFilter" %>&nbsp;</td>
+          <td><%= check_box "downvotes", "downvoteFilter", class: "filterCheck" %>&nbsp;</td>
         </tr>
         <tr>
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Material..." %><br>
@@ -67,14 +67,14 @@
           </td>
           <td>
             <br>
-             <%= check_box "wood", "wood" %><br>
-             <%= check_box "concrete", "concrete" %><br>
-             <%= check_box "metal", "metal" %><br>
+             <%= check_box "wood", "wood", class: "filterCheck" %><br>
+             <%= check_box "concrete", "concrete", class: "filterCheck" %><br>
+             <%= check_box "metal", "metal", class: "filterCheck" %><br>
           </td>
         </tr>
         <tr>
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Gated" %><br></td>
-          <td><%= check_box "gated", "gated" %></td>
+          <td><%= check_box "gated", "gated", class: "filterCheck" %></td>
         </tr>
       </table>
       <table class="filterTable2">
@@ -86,26 +86,26 @@
           </td sk8Srch_contain>
           <td>
             <br>
-             <%= check_box "spotSize", "spotSize" %><br>
-             <%= check_box "neighSize", "neighSize" %><br>
-             <%= check_box "regSize", "regSize" %><br>
+             <%= check_box "spotSize", "spotSize", class: "filterCheck" %><br>
+             <%= check_box "neighSize", "neighSize", class: "filterCheck" %><br>
+             <%= check_box "regSize", "regSize", class: "filterCheck" %><br>
           </td>
         </tr>
         <tr>
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Transition" %></td>
-          <td><%= check_box "transition", "transition" %>&nbsp;<br></td>
+          <td><%= check_box "transition", "transition", class: "filterCheck" %>&nbsp;<br></td>
         </tr>
         <tr>
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "Street plaza" %></td>
-          <td><%= check_box "streetPlaza", "streetPlaza" %>&nbsp;</td>
+          <td><%= check_box "streetPlaza", "streetPlaza", class: "filterCheck" %>&nbsp;</td>
         </tr>
         <tr>
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "WCMX accessible" %></td>
-          <td><%= check_box "wcmxAccessible", "wcmxAccessible" %>&nbsp;</td>
+          <td><%= check_box "wcmxAccessible", "wcmxAccessible", class: "filterCheck" %>&nbsp;</td>
         </tr>
         <tr>
           <td class="filterCell">&nbsp;&nbsp;<%= label_tag "BMX accessible" %></td>
-          <td><%= check_box "bmxAccessible", "bmxAccessible" %>&nbsp;</td>
+          <td><%= check_box "bmxAccessible", "bmxAccessible", class: "filterCheck" %>&nbsp;</td>
         </tr>
       </table>
 

@@ -1,5 +1,26 @@
 // file contains styling for skate_spots view pages
 
+.filterCheck {
+	height: 25px;
+	width: 25px;
+	vertical-align: middle;
+}
+
+.filterLabel {
+	margin-right: 20px;
+	font-size: 14px;
+	vertical-align: middle;
+}
+
+.filterSelect {
+	margin-bottom: 10px;
+}
+
+.ssFont {
+	font-size: 16px;
+	text-shadow: rgba(245, 245, 245, 0.5) 1px 4px 4px;
+}
+
 
 .progress {
 	background-color: $BG-white-light;
