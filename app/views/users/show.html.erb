@@ -14,7 +14,8 @@ https://www.railstutorial.org/book/sign_up-->
 		<% provide(:text, "<span style='color: #f4ffe3'>Welcome to #{@user.name}'s profile page.</span>".html_safe) %>
 <% end %>
 
-<div class="row">
+<!--div class="row homeDiv"-->
+<div class=" homeDiv">
  <div class="col-sm-4">
     <section class="user_info">
       <h3>
@@ -28,9 +29,7 @@ https://www.railstutorial.org/book/sign_up-->
 		</section>
  </div>
 
-<br>&nbsp;<br>
 
- <div class="col-sm-8">
 		<div class="skate_section">
 			<b>About <%= @user.name %></b><br>
 			<% if @user.about_me.present? %>
@@ -46,7 +45,6 @@ https://www.railstutorial.org/book/sign_up-->
 				<% end %>
 			<% end %>
 		</div>
- </div>
 
 </div>
 

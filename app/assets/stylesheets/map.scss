@@ -1,11 +1,17 @@
 #user_index_map {
 		height: 400px;
 		width: 100%;
+		border: 10px solid $txt-blue-light;
+		box-shadow: 0 1px 4px #acacac, 0 0 0 1px #dadada;
+		border-radius: 6px;
 }
 
 #index_map {
 		height: 400px;
 		width: 100%;
+		border: 10px solid $txt-blue-light;
+		box-shadow: 0 1px 4px #acacac, 0 0 0 1px #dadada;
+		border-radius: 6px;
 }
 
 #show_map {
@@ -15,4 +21,7 @@
 		float: right;
 		display:inline-block;
 		margin-bottom: 30px;
+		border: 10px solid $txt-blue-light;
+		box-shadow: 0 1px 4px #acacac, 0 0 0 1px #dadada;
+		border-radius: 6px;
 }

@@ -1,6 +1,6 @@
 <!--div class="container" id="skateSearch"-->
 <div class="container">
-  <div class="row skateSearch">
+  <div class="row skateSearch homeDiv">
    <%= form_tag(skate_spots_path, :method => "get", id: "search-form") do %>
      &nbsp;&nbsp;<%= text_field_tag :search, params[:search], placeholder: "Search SkateSpots", class: 'searchBar' %>&nbsp;
 		<% if session[:mobile_param] == 1 %><br><% end %>
@@ -124,7 +124,7 @@
 <!--% if @skate_spots.count != 0 %-->
 <% if @skate_spots.present? %>
 <!--div class="table-responsive"-->
-<div class="table-responsive">
+<div class="table-responsive homeDiv">
 <!--table class="table skate_table" id="myTable">
 <table class="table table-condensed skate_table" id="myTable"-->
 <table class="table table-condensed skate_table_new" id="myTable">
