@@ -1,11 +1,14 @@
 .jumbotron {
-  padding: 30px 15px;
-  margin-bottom: 30px;
-  color: inherit;
-  //background-color: #A0A0A0; }
-  //background-color: #6d97bf; }
-  //background-color: #7daddb; }
-  background-color: $BG-blue-medium; }
+		padding: 30px 15px;
+		margin-bottom: 30px;
+		color: inherit;
+		//background-color: #A0A0A0; }
+		//background-color: #6d97bf; }
+		//background-color: #7daddb; }
+		background-color: $BG-blue-medium; 
+		border: 10px solid $txt-blue;
+		box-shadow: 0 1px 4px #acacac, 0 0 0 1px #dadada;
+	}
   //background-color: #ffd896; }
   .jumbotron h1,
   .jumbotron .h1 {
