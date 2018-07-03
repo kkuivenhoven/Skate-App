@@ -17,5 +17,4 @@ This app allows users to document and rate skate spots in urban and rural areas.
 ## Notes:
 If used, additional resources, tutorials and sources that pertain to a particular file or feature are listed in comments at the top of the file. 
 
-##### The book "Ruby on Rails Tutorial" by Michael Hartl (https://www.railstutorial.org) 
-taught me the rudimentary fundamentals needed to build a strong and solid understanding of MVC and Ruby on Rails. I recommend his book at all whom seek to learn or to teach Ruby on Rails - excellently written.
+The book "Ruby on Rails Tutorial" by Michael Hartl (https://www.railstutorial.org) taught me the rudimentary fundamentals needed to build a strong and solid understanding of MVC and Ruby on Rails. I recommend his book at all whom seek to understand Ruby on Rails.
