@@ -1,8 +1,12 @@
-<div class="container" id="skateRec">
+<% if (!@sprSpr_skateSpots.nil?) and (!@spr_skateSpots.nil?) and (!@m_skateSpots.nil?) %>
+<div class="container homeDiv" id="skateRec">
 <center><h5><b>Recommended Skate Spots</b></h5></center>
 
 
-<center><p>These skate spots are based on skate spots with similar ratings, material, and skate spot size.</p></center>
+<center>
+	<p>These skate spots are based on skate spots with similar ratings, material, and skate spot size.
+	</p></center>
+
 
 
 <!--table class="table skate_table"-->
@@ -62,3 +66,5 @@
 		</tr>
  </tbody>	
 </table>
+
+<% end %>

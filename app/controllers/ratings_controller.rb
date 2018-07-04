@@ -46,23 +46,27 @@ class RatingsController < ApplicationController
 
 		@rating.description = @ok.join(" ")
 
-		@hashtags.each do |hr|
-			if HashTag.where(:name => hr).count == 0
-				@ht = HashTag.new
-				@ht.name = hr.to_s
-				@ht.update_attribute(:rating_ids, @ht.rating_ids.merge!(@rating.id => @rating.id))
-				@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
-				if @rating.save
-					if @ht.save
+		if @hashtags.count == 0
+			noError = 1
+		else
+			@hashtags.each do |hr|
+				if HashTag.where(:name => hr).count == 0
+					@ht = HashTag.new
+					@ht.name = hr.to_s
+					@ht.update_attribute(:rating_ids, @ht.rating_ids.merge!(@rating.id => @rating.id))
+					@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+					if @rating.save
+						if @ht.save
+							noError = 1
+						end
+					end
+				else
+					@ht = HashTag.where(:name => hr)
+					@ht.first.update_attribute(:rating_ids, @ht.first.rating_ids.merge!(@rating.id => @rating.id))
+					@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+					if @rating.save
 						noError = 1
 					end
-				end
-			else
-				@ht = HashTag.where(:name => hr)
-				@ht.first.update_attribute(:rating_ids, @ht.first.rating_ids.merge!(@rating.id => @rating.id))
-				@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
-				if @rating.save
-					noError = 1
 				end
 			end
 		end
@@ -73,15 +77,6 @@ class RatingsController < ApplicationController
       flash[:danger] = "Rating has been unsuccessfully created. Please try again."
       render 'new'
     end
-=begin
-    if @rating.save
-      flash[:success] = "Rating has been successfully created!"
-      redirect_to skate_spot_path(@skate_spot)
-    else
-      flash[:danger] = "Rating has been unsuccessfully created. Please try again."
-      render 'new'
-    end
-=end
   end
 
 
@@ -114,23 +109,27 @@ class RatingsController < ApplicationController
 
 		@rating.description = @ok.join(" ")
 
-		@hashtags.each do |hr|
-			if HashTag.where(:name => hr).count == 0
-				@ht = HashTag.new
-				@ht.name = hr.to_s
-				@ht.update_attribute(:rating_ids, @ht.rating_ids.merge!(@rating.id => @rating.id))
-				@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
-				if @rating.update(rating_params)
-					if @ht.save
+		if @hashtags.count == 0
+			noError = 1
+		else
+			@hashtags.each do |hr|
+				if HashTag.where(:name => hr).count == 0
+					@ht = HashTag.new
+					@ht.name = hr.to_s
+					@ht.update_attribute(:rating_ids, @ht.rating_ids.merge!(@rating.id => @rating.id))
+					@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+					if @rating.update(rating_params)
+						if @ht.save
+							noError = 1
+						end
+					end
+				else
+					@ht = HashTag.where(:name => hr)
+					@ht.first.update_attribute(:rating_ids, @ht.first.rating_ids.merge!(@rating.id => @rating.id))
+					@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
+					if @rating.update(rating_params)
 						noError = 1
 					end
-				end
-			else
-				@ht = HashTag.where(:name => hr)
-				@ht.first.update_attribute(:rating_ids, @ht.first.rating_ids.merge!(@rating.id => @rating.id))
-				@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@rating.skate_spot_id => @rating.skate_spot_id))
-				if @rating.update(rating_params)
-					noError = 1
 				end
 			end
 		end

@@ -32,18 +32,19 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 
 <!--%= render partial: 'skate_spots/event' %=-->
 
-<div style="margin-top: 30px">
+<!--div style="margin-top: 30px"-->
 
-	<% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (!@m_skateSpots.nil?) %> <!--count > 0) %-->
+	<!--% if (!@sprSpr_skateSpots.nil?) or (!@spr_skateSpots.nil?) or (!@m_skateSpots.nil?) %--> <!--count > 0) %-->
+	<% if (!@sprSpr_skateSpots.nil?) and (!@spr_skateSpots.nil?) and (!@m_skateSpots.nil?) %> <!--count > 0) %-->
 		<div style="margin-bottom: 30px">
 			<%= render partial: 'skate_spots/recommender' %>
 		</div>
 	<% end %>
 
-	<div class="row">
+	<div class="container">
 	</div>
 
-</div>
+<!--/div-->
 
 
 
@@ -51,7 +52,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-XKZoYCQoqSadvpEnrI5wqiM
 
 
 <% if @others.any? %>
-<div class="page-header skate_show_header">
+<div class="page-header skate_show_header homeDiv">
  <br>
  <center><h5>Skate spots that are within a 60 mile radius of <%= @skate_spot.name %></h5></center>
  <div class="table-responsive">
