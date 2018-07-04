@@ -14,7 +14,7 @@
 		<!--%= f.datetime_select :date, class: 'form-control', prompt: true, ampm: true %><br><br-->
 		<%= f.datetime_select :date, class: 'form-control', ampm: true %><br><br>
 
-    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary submitButton" %>
 
 		<!--%= f.hidden_field "user_id", current_user.id %-->
 <% end %>
