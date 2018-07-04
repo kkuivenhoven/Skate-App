@@ -7,17 +7,19 @@ http://www.w3schools.com/bootstrap/bootstrap_panels.asp-->
 
 
 <div class="panel panel-default">
-	<div class="panel panel-heading">
-		<h4><%= yield(:title) %></h4>
-	</div>
-  <div class="panel-body">
+	<!--div class="panel-heading">
+		<h4>%= yield(:title) %></h4>
+	</div-->
+  <div class="panel-body homeDiv">
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :password %>
-			<span class="session_link"><%= link_to "Forgot password?", new_password_reset_path %></span>
+			<span class="session_link">
+				<%= link_to "Forgot password?", new_password_reset_path %>
+			</span>
       <%= f.password_field :password, class: 'form-control' %>
 
       <!--needed for reference to past versions of this log in form
@@ -25,13 +27,7 @@ http://www.w3schools.com/bootstrap/bootstrap_panels.asp-->
       <%= f.check_box :remember_me, class: "filterCheck" %>
       <%= f.label :remember_me %>
 
-			<div class="container">
-				<div class="row">
-					<br><br> <!-- added for spacing purposes of form -->
-				</div>
-			</div>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <br><br><%= f.submit "Log In", class: "btn btn-primary" %>
     <% end %>
 
   </div>
