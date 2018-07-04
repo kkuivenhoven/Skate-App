@@ -31,56 +31,47 @@ class EventsController < ApplicationController
 				@event.description = @ok.join(" ")
 
 
-   if @hashtags.count > 0 
-      @hashtags.each do |hr|
-        if HashTag.where(:name => hr).count == 0
-          @ht = HashTag.new
-          @ht.name = hr.to_s
-          @ht.update_attribute(:reply_ids, @ht.event_ids.merge!(@event.id => @event.id))
-          @ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@event.skate_spot_id => @event.skate_spot_id))
-          if @event.save
-            if @ht.save
-							noError = 1
-            end 
-          end 
-        else
-          @ht = HashTag.where(:name => hr) 
-          @ht.first.update_attribute(:reply_ids, @ht.first.event_ids.merge!(@event.id => @event.id))
-          @ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@event.skate_spot_id => @event.skate_spot_id))
-          if @event.save
-							noError = 1
-          end 
-        end 
-      end 
-    else
-      if @event.save
-       	noError = 1 
-      end 
-    end 
-
-    if noError == 1
-      flash[:success] = "Event has been successfully created!"
-      redirect_to skate_spot_path(@skate_spot)
-    elsif noError == 0
-      flash[:danger] = "Event has been unsuccessfully created. Please try again."
-			render 'new'
-    end 
-
-
-=begin
-				if @event.save
-						flash[:success] = "Event has been successfully created!"
-						redirect_to skate_spot_path(@skate_spot)
+			 if @hashtags.count > 0 
+					@hashtags.each do |hr|
+						if HashTag.where(:name => hr).count == 0
+							@ht = HashTag.new
+							@ht.name = hr.to_s
+							@ht.update_attribute(:reply_ids, @ht.event_ids.merge!(@event.id => @event.id))
+							@ht.update_attribute(:skate_spot_ids, @ht.skate_spot_ids.merge!(@event.skate_spot_id => @event.skate_spot_id))
+							if @event.save
+								if @ht.save
+									noError = 1
+								end 
+							end 
+						else
+							@ht = HashTag.where(:name => hr) 
+							@ht.first.update_attribute(:reply_ids, @ht.first.event_ids.merge!(@event.id => @event.id))
+							@ht.first.update_attribute(:skate_spot_ids, @ht.first.skate_spot_ids.merge!(@event.skate_spot_id => @event.skate_spot_id))
+							if @event.save
+									noError = 1
+							end 
+						end 
+					end 
 				else
-						flash[:danger] = "Event has not been created. Please try again"
-						render 'new'
-				end
-=end
+					if @event.save
+						noError = 1 
+					end 
+				end 
+
+			if noError == 1
+				flash[:success] = "Event has been successfully created!"
+				redirect_to skate_spot_path(@skate_spot)
+			elsif noError == 0
+				flash[:danger] = "Event has been unsuccessfully created. Please try again."
+				render 'new'
+			end 
 		end
+
 
 		def edit
-				@event = @skate_spot.events.find(params[:id])
+			@event = @skate_spot.events.find(params[:id])
 		end
+
 
 		def update
 				@event = @skate_spot.events.find(params[:id])

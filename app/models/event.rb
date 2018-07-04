@@ -1,6 +1,10 @@
 class Event < ActiveRecord::Base
   belongs_to :skate_spot  
 
+	validates_presence_of :name
+	validates_presence_of :date
+	validates_presence_of :description
+
   def self.search(search)
     where("zip_code LIKE ? OR city LIKE ?", "%#{search}%", "%#{search}%") 
   end
