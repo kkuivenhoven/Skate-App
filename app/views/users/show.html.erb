@@ -45,8 +45,8 @@ https://www.railstutorial.org/book/sign_up-->
 				<% end %>
 			<% end %>
 		</div>
-
 </div>
+
 
 <% if (current_user.following?(@user)) or (current_user.id == @user.id) %>
 		<div class="panel panel-default" style="margin-top: 30px; margin-bottom: 30px;">
@@ -54,10 +54,11 @@ https://www.railstutorial.org/book/sign_up-->
 							<h4>Rating Feed</h4>
 			</div>
 			<div class="panel-body">
-							<%= render 'shared/rating_feed' %>
+					<%= render 'shared/rating_feed' %>
 			</div>
 		</div>
 <% end %>
+
 
 <!--% if @events.count > 0 %-->
 	<%= render partial: 'users/event' %>
@@ -66,7 +67,7 @@ https://www.railstutorial.org/book/sign_up-->
 	<% if @all_latlng.any? %>
 		<% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
 			<div class="container"> <!-- -->
-				<div class="page-header skate_show_header"> <!-- -->
+				<div class="page-header skate_show_header homeDiv"> <!-- -->
 				  <br><center><h5><b>Skate Spots you have documented</b></h5></center>
 					<div class="table-responsive"> <!-- -->
 						<table class="table user_ST">
@@ -123,7 +124,7 @@ https://www.railstutorial.org/book/sign_up-->
 	<% end %>
 
 	<% if @ratings.any? %>
-		<div class="page-header skate_show_header">
+		<div class="page-header skate_show_header homeDiv">
 			<br><center><h5><b><%= @user.name.pluralize %> Ratings</b></h5></center>
 			<div class="table-responsive">
 				<table class="table user_ST">
