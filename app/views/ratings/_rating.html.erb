@@ -33,15 +33,15 @@
 			<span class="timestamp">
 				Posted <%= time_ago_in_words(rating.created_at) %> ago.
 				<% if current_user.following?(rating.user) %>
-						<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
+						<br><button type="button" class="btn btn-info btn-xs btnModern" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
 						<!--button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Reply</button-->
 				<% else %>
 						<!--button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" disabled>Reply</button-->
-						<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
+						<br><button type="button" class="btn btn-info btn-xs btnModern" data-toggle="modal" data-target="#myModal_<%= rating.id %>">Reply</button>
 				<% end %>
 				<% if current_user?(rating.user) %>
-					<%= link_to 'Delete', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-xs skate_link' %>
-					<%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating), class: 'btn btn-info btn-xs skate_link' %>
+					<%= link_to 'Delete', [rating.skate_spot, rating], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-xs skate_link btnModern' %>
+					<%= link_to 'Edit', edit_skate_spot_rating_path(rating.skate_spot, rating), class: 'btn btn-info btn-xs skate_link btnModern' %>
 				<% end %>
 			</span>
 		</li>
@@ -77,10 +77,10 @@
 
 							<span class="timestamp">
 								Posted <%= time_ago_in_words(resp.created_at) %> ago.
-									<% if current_user?(@resp_user) %>
+									<% if current_user?(@resp_user) %><br>
 										<!--% @user = @resp_user %-->
 										<% if params[:controller] != "hash_tag" %>
-											<%= link_to 'Delete', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-xs skate_link' %>
+											<%= link_to 'Delete', rating_delete_reply_path(rating_id: rating.id, user_id: @user.id, resp_id: resp.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-xs skate_link btnModern' %>
 										<% end %>
 									<% end %>
 							</span>
