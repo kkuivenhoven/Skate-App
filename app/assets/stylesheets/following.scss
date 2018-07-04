@@ -1,8 +1,18 @@
 $grayMediumLight: #eaeaea;
 $grayLight: #999;
-$grayLighter: #eee;
 
 .stats {
+	button {
+		a {
+			color: $grayLighter; 
+		}
+		background: transparent;
+		transition: all 0.3s ease-out;
+		box-shadow:
+			inset 0 1px 0 rgba(255,255,255,0.5),
+			0 2px 2px rgba(0,0,0,0.3),
+			0 0 4px 1px rgba(0,0,0,0.2);
+	}
   overflow: auto;
   margin-top: 0;
   padding: 0;
@@ -19,7 +29,7 @@ $grayLighter: #eee;
     &:hover {
       text-decoration: none;
       color: inherit;
-      background-color: #b7b7b7;
+      background: transparent;
     }
   }
   strong {

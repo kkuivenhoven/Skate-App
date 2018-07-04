@@ -1,4 +1,9 @@
 .btnModern {
+	&:hover {
+		background: transparent !important;
+		color: $txt-blue-light !important;
+		border: 1px solid $grayLighter !important;
+	}
 	transition: all 0.3s ease-out;
 	box-shadow:
 		inset 0 1px 0 rgba(255,255,255,0.5),
@@ -7,6 +12,11 @@
 }
 
 .submitButton {
+	&:hover {
+		background: rgba(#fff, 0.95) !important;
+		color: $txt-blue-light !important;
+		border: 1px solid $grayLighter !important;
+	}
 	transition: all 0.3s ease-out;
 	box-shadow:
 		inset 0 1px 0 rgba(255,255,255,0.5),

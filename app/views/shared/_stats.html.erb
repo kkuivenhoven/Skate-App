@@ -1,34 +1,31 @@
 <% @user ||= current_user %>
 <div class="stats">
 
-	<button type="button" class="btn btn-xs btn-info">
+	<button type="button" class="btn btn-default">
 		<a href="<%= following_user_path(@user) %>">
-			<center>Following
+			Following
 				<strong id="following" class="stat">
 					<%= @user.following.count %>
 				</strong>
-			</center>
 		</a>
 	</button>
 
-	<button type="button" class="btn btn-xs btn-info">
+	<button type="button" class="btn btn-default">
 		<a href="<%= followers_user_path(@user) %>">
-			<center>Followers
+			Followers
 				<strong id="followers" class="stat">
 					<%= @user.followers.count %>
 				</strong>
-			</center>
 		</a>
 	</button>
 
 	<% if current_user.id == @user.id %>
-		<button type="button" class="btn btn-xs btn-info">
+		<button type="button" class="btn btn-default">
 			<a href="<%= blocked_user_path(@user) %>">
-				<center>Blocked
+				Blocked
 					<strong id="blocked" class="stat">
 						<%= @user.user_blocked.count %>
 					</strong>
-				</center>
 			</a>
 		</button>
 	<% end %>

@@ -1,6 +1,20 @@
 
 #main_nav {
 	box-shadow: 0 1px 3px #acacac, 0 0 0 0px #dadada;
+	li {
+		transition: all 0.3s ease-out;
+		&:hover {
+			background: transparent;
+			color: $txt-blue-light;
+		}
+		a {
+			transition: inherit;
+			&:hover { 
+				background: inherit;
+				color: inherit;
+			}
+		}
+	}
 }
 
 
