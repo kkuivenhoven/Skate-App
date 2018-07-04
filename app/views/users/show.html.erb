@@ -66,7 +66,7 @@ https://www.railstutorial.org/book/sign_up-->
 
 	<% if @all_latlng.any? %>
 		<% if (current_user.id == @user.id) || (current_user.following?(@user)) %>
-			<div class="container"> <!-- -->
+			<!--div class="container"--> <!-- -->
 				<div class="page-header skate_show_header homeDiv"> <!-- -->
 				  <br><center><h5><b>Skate Spots you have documented</b></h5></center>
 					<div class="table-responsive"> <!-- -->
@@ -110,7 +110,7 @@ https://www.railstutorial.org/book/sign_up-->
 					</table>
 				 </div> <!-- -->
 				</div> <!-- -->
-			</div> <!-- -->
+			<!--/div--> <!-- -->
 		<!--/div-->
 	<% end %>
 
