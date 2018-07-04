@@ -31,11 +31,12 @@ https://www.railstutorial.org/book/sign_up-->
 
 
 		<div class="skate_section">
-			<b>About <%= @user.name %></b><br>
+			<b>About <%= @user.name %></b>
 			<% if @user.about_me.present? %>
-				<%= @user.about_me %>
+				<br><%= @user.about_me %>
 			<% else %>
 				<% if current_user.id == @user.id %>
+					<%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-default btn-xs btnAbout' %><br>
 					<p>
 						To add an about me, please go to the user options in the navigation bar. 
 						Next, select the 'Settings' option. You'll see a section above where you 
