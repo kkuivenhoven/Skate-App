@@ -19,6 +19,10 @@ class StaticPagesController < ApplicationController
 			# @events = Event.where(:date => @start..@time)
 			@events = Event.all
     end
+		firebase_url = 'https://skatespots-3a8f0.firebaseio.com'
+		# firebase = Firebase::Client.new(firebase_url)
+		firebase_secret = 'yZGqkNt8sd5en5F2ICXDqo2lhUgVqXbVuLEk8QbG'
+		firebase = Firebase::Client.new(firebase_url, firebase_secret)
   end
 
   def help

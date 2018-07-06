@@ -4,6 +4,9 @@ ruby '2.3.3'
 
 gem 'sendgrid-ruby'
 
+gem 'rest-client', '1.6.7'
+gem 'firebase'
+
 # For image upload
 # gem 'carrierwave',             '~> 1.0'
 gem 'carrierwave',             '0.10.0'
