@@ -1,6 +1,7 @@
 class BroadcastsController < ApplicationController
 
 	def index
+=begin
 		headers = { 
 			"Content-Type" : "application/json",
 			"Authorization":"key=AAAANlTyluU:APA91bGM2jWiSSFni4tHUhZYqBxmTb4c2qHzE62az0HY7IfAg8T6yN51qJqoENp_LM3yMeUZ-Bn6PU-SoGTHiPT8ZPdn-N3xLT3uwqqGwLGlXIpC94pa-TYvHMT-iLTUdHXHFe96qWhqbBqr1BxOlq40dqmOy5MOfw"}
@@ -18,6 +19,7 @@ class BroadcastsController < ApplicationController
 			RestClient.post(url,payload,headers)
 		end
 		end
+=end
 	end					
 				
 
