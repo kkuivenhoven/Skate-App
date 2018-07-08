@@ -2,6 +2,7 @@
 # https://stackoverflow.com/questions/11806004/rails-activerecord-db-sort-operation-case-insensitive
 
 class StaticPagesController < ApplicationController
+	# require 'firebase'
 
 	def letsencrypt
 		render text: "#{params[:id]}.9l4va-Uy7XrFPGS51hnH7HwkF2nn3XhwfuR8U5ylxIM"
@@ -20,7 +21,6 @@ class StaticPagesController < ApplicationController
 			@events = Event.all
     end
 		firebase_url = 'https://skatespots-3a8f0.firebaseio.com'
-		# firebase = Firebase::Client.new(firebase_url)
 		firebase_secret = 'yZGqkNt8sd5en5F2ICXDqo2lhUgVqXbVuLEk8QbG'
 		firebase = Firebase::Client.new(firebase_url, firebase_secret)
   end

@@ -25,6 +25,11 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 
 	<!--script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js"></script>
+
 	<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script-->
 	<!--script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script-->
 	<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -37,24 +42,13 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 
 	<%= javascript_include_tag 'application', async: Rails.env.production? %>
   <%= csrf_meta_tags %>
+
 	<!--%= javascript_include_tag 'application', 'jquery', 'data-turbolinks-track' => true %-->
 	<!-- https://stackoverflow.com/questions/8616764/what-is-the-sensor-parameter-in-google-places-api-good-for 
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script-->
 
 	<script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/js/bootstrap-tour.min.js"></script-->
-	<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-	<script>
-		var config = {
-			apiKey: "AIzaSyBo632mq4TqzMYOWFpWUcwdU1tTO0XR3X8",
-			authDomain: "skatespots-3a8f0.firebaseapp.com",
-			databaseURL: "https://skatespots-3a8f0.firebaseio.com",
-			projectId: "skatespots-3a8f0",
-			storageBucket: "skatespots-3a8f0.appspot.com",
-			messagingSenderId: "233353418469"
-		};
-		firebase.initializeApp(config);
-	</script>
 
 	<% if Rails.env.development? %>
 	<% end %>

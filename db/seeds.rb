@@ -159,7 +159,7 @@ puts "* 5...20: 15 random users created"
 
 
 
-	Event.create!(name: "All Genders Competition", date: Time.zone.now,
+	Event.create!(name: "Local Skate Competition", date: Time.zone.now,
 								 description: "For all ages",
 								 skate_spot_id: SkateSpot.second.id, user_id: 1,
 								 zip_code: SkateSpot.second.zip_code,

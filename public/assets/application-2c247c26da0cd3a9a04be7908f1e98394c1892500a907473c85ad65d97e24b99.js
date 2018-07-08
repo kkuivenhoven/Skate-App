@@ -11,12 +11,6 @@
 // about supported directives.
 //
 
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap
-//= require bootstrap-sprockets
-//= require_tree .
-
 var config = { 
   apiKey: "AIzaSyBo632mq4TqzMYOWFpWUcwdU1tTO0XR3X8",
   authDomain: "skatespots-3a8f0.firebaseapp.com",
@@ -25,5 +19,13 @@ var config = {
   storageBucket: "skatespots-3a8f0.appspot.com",
   messagingSenderId: "233353418469"
 };
-
 firebase.initializeApp(config);
+
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-sprockets
+//= require_tree .
+
+
+;

@@ -71,6 +71,8 @@ GEM
     crass (1.0.4)
     debug_inspector (0.0.3)
     docile (1.3.1)
+    domain_name (0.5.20180417)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     excon (0.62.0)
     execjs (2.7.0)
@@ -84,6 +86,8 @@ GEM
       googleauth
       httpclient (>= 2.5.3)
       json
+    firebase-auth (0.1.4)
+      rest-client (~> 2.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.36.0)
@@ -112,9 +116,9 @@ GEM
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-    fog-aliyun (0.3.0)
-      fog-core (~> 1.27)
-      fog-json (~> 1.0)
+    fog-aliyun (0.3.2)
+      fog-core
+      fog-json
       ipaddress (~> 0.8)
       xml-simple (~> 1.1)
     fog-atmos (0.1.0)
@@ -145,15 +149,15 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-json (1.0.2)
-      fog-core (~> 1.0)
+    fog-json (1.2.0)
+      fog-core
       multi_json (~> 1.10)
     fog-local (0.5.0)
       fog-core (>= 1.27, < 3.0)
-    fog-powerdns (0.1.1)
-      fog-core (~> 1.27)
-      fog-json (~> 1.0)
-      fog-xml (~> 0.1)
+    fog-powerdns (0.2.0)
+      fog-core
+      fog-json
+      fog-xml
     fog-profitbricks (4.1.1)
       fog-core (~> 1.42)
       fog-json (~> 1.0)
@@ -219,6 +223,8 @@ GEM
     has_friendship (1.1.1)
       rails (>= 4.0.0, < 5.2.0)
       stateful_enum
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     httpclient (2.8.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -269,7 +275,8 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.0.0)
     nenv (0.3.0)
-    nokogiri (1.8.3)
+    netrc (0.11.0)
+    nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -324,8 +331,10 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
+    rest-client (2.0.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     ruby-graphviz (1.2.3)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
@@ -382,9 +391,12 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.12)
+    uglifier (4.1.14)
       execjs (>= 0.3.0, < 3)
     underscore-rails (1.8.3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.5)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -407,6 +419,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   faker (= 1.4.2)
   firebase
+  firebase-auth
   fog (= 1.36.0)
   geocoder
   guard-minitest (= 2.3.1)
@@ -421,7 +434,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails-erd
   rails_12factor (= 0.0.2)
-  rest-client (= 1.6.7)
+  rest-client (= 2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sendgrid-ruby

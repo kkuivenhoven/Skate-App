@@ -58,6 +58,9 @@ class UsersController < ApplicationController
   #this function creates a User object 
   def new
     @user = User.new
+		firebase_url = 'https://skatespots-3a8f0.firebaseio.com'
+		firebase_secret = 'yZGqkNt8sd5en5F2ICXDqo2lhUgVqXbVuLEk8QbG'
+		firebase = Firebase::Client.new(firebase_url, firebase_secret)
   end
   
   #fills in the necessary attributes in the User DB for that user

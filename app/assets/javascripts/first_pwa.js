@@ -1,4 +1,5 @@
-function FirstApp() {
+
+/*function FirstApp() {
     this.saveMessagingDeviceToken = function () {
         firebase.messaging().getToken().then(function (currentToken) {
             if (currentToken) {
@@ -23,4 +24,4 @@ function FirstApp() {
     };
 }
 var firstApp = new FirstApp();
-firstApp.saveMessagingDeviceToken();
+firstApp.saveMessagingDeviceToken();*/

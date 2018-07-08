@@ -3,9 +3,13 @@
 #Note: this Sessions Controller comes from https://www.railstutorial.org/book/log_in_log_out
 
 class SessionsController < ApplicationController
+	require 'firebase'
 
   #starts a new login session
   def new
+		firebase_url = 'https://skatespots-3a8f0.firebaseio.com'
+		firebase_secret = 'yZGqkNt8sd5en5F2ICXDqo2lhUgVqXbVuLEk8QbG'
+		firebase = Firebase::Client.new(firebase_url, firebase_secret)
   end
 
   #creates a new login session with the email and password, makes sure that the user is activated first
