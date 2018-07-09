@@ -18,4 +18,6 @@ function firebaseLoginUser(){
 }
 
 
-
+function firebaseLogoutUser(){
+	firebase.auth().signOut();
+}
