@@ -5,13 +5,14 @@ http://www.w3schools.com/bootstrap/bootstrap_panels.asp-->
 
 <% provide(:title, "Log In") %>
 
+<% setFirebase %>
 
 <!--div class="panel panel-default"-->
 	<!--div class="panel-heading">
 		<h4>%= yield(:title) %></h4>
 	</div-->
   <div class="panel-body homeDiv">
-    <%= form_for(:session, url: login_path) do |f| %>
+    <%= form_for(:session, url: login_path, :html => { :id => 'loginForm' }) do |f| %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
@@ -27,7 +28,7 @@ http://www.w3schools.com/bootstrap/bootstrap_panels.asp-->
       <%= f.check_box :remember_me, class: "filterCheck" %>
       <%= f.label :remember_me %>
 
-      <br><br><%= f.submit "Log In", class: "btn btn-primary submitButton" %>
+      <br><br><%= f.submit "Log In", class: "btn btn-primary submitButton", onclick: "firebaseLoginUser()" %>
     <% end %>
 
   </div>

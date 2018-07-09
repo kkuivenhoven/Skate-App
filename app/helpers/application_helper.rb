@@ -7,6 +7,12 @@ module ApplicationHelper
 
 		MOBILE_BROWSERS = ["playbook", "windows phone", "android", "ipod", "iphone", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
 	
+		def setFirebase
+			firebase_url = 'https://skatespots-3a8f0.firebaseio.com'
+			firebase_secret = 'yZGqkNt8sd5en5F2ICXDqo2lhUgVqXbVuLEk8QbG'
+			firebase = Firebase::Client.new(firebase_url, firebase_secret)   
+		end
+
 		def user_on_mobile?
 			type = request.user_agent.downcase
 			MOBILE_BROWSERS.each do |m|

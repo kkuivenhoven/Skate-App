@@ -58,23 +58,17 @@ class UsersController < ApplicationController
   #this function creates a User object 
   def new
     @user = User.new
+=begin
 		firebase_url = 'https://skatespots-3a8f0.firebaseio.com'
 		firebase_secret = 'yZGqkNt8sd5en5F2ICXDqo2lhUgVqXbVuLEk8QbG'
 		firebase = Firebase::Client.new(firebase_url, firebase_secret)
+=end
   end
   
   #fills in the necessary attributes in the User DB for that user
   #filters out any inappropriate usernames
   def create
     @user = User.new(user_params)
-    # hate_filter = LanguageFilter::Filter.new matchlist: :hate, replacement: :garbled
-    # prof_filter = LanguageFilter::Filter.new matchlist: :profanity, replacement: :garbled 
-    # sex_filter = LanguageFilter::Filter.new matchlist: :sex, replacement: :garbled 
-    # viol_filter = LanguageFilter::Filter.new matchlist: :violence, replacement: :garbled 
-    # if hate_filter.match?(@user.name) or prof_filter.match?(@user.name) or sex_filter.match?(@user.name) or viol_filter.match?(@user.name)
-      #  flash[:warning] = "Please pick a more appropriate user name."
-      # render 'new'
-    # elsif @user.save
     if @user.save
        @user.send_activation_email
        flash[:info] = "Please check your email to activate your account."
