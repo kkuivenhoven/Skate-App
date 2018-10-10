@@ -1,3 +1,7 @@
+/* Resources/help:
+	- https://stackoverflow.com/questions/16555644/how-can-i-make-a-link-inside-a-div-fill-the-entire-space-inside-the-div
+*/
+
 $grayMediumLight: #eaeaea;
 $grayLight: #999;
 
@@ -14,8 +18,12 @@ $grayLight: #999;
 }
 
 .stats {
+	.statsLinks {
+	}
 	button {
+		text-align: center;
 		a {
+			width: 100%;
 			color: $grayLighter; 
 		}
 		background: transparent;

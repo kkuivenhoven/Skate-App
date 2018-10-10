@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   get 'ratings/index', to: 'ratings#index', as: 'ratings'
 
   get 'events/index', to: 'events#index', as: 'events'
+  get 'events/:id', to: 'events#show'
 
   get 'signup' => 'users#new'
 
