@@ -122,8 +122,8 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 
 			<% if current_page?(controller: 'skate_spots', action: 'show') %>
 				<% if logged_in? %>
-					<span style="color: #caff77"><%=link_to"<i class='glyphicon glyphicon-thumbs-up' style='color: #caff77'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= UV_1(@skate_spot) %></span>
-					<span style="color: #caff77"><%= link_to"<i class='glyphicon glyphicon-thumbs-down' style='color: #caff77'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= UV_0(@skate_spot) %></span>
+					<span class="skate_link" style="color: #caff77"><%=link_to"<i class='glyphicon glyphicon-thumbs-up' style='color: #caff77'></i>".html_safe, {:controller => 'skate_spots', :action => 'like_ss', :skate_spot => @skate_spot.id, :vote_value => 1 }%><%= UV_1(@skate_spot) %></span>
+					<span class="skate_link" style="color: #caff77"><%= link_to"<i class='glyphicon glyphicon-thumbs-down' style='color: #caff77'></i>".html_safe, {:controller => 'skate_spots', :action => 'dislike_ss', :skate_spot => @skate_spot.id, :vote_value => 0 }%><%= UV_0(@skate_spot) %></span>
 				<% else %>
 					<span style="color: #caff77"><i class='glyphicon glyphicon-thumbs-up' style='color: #caff77'></i><%= UV_1(@skate_spot) %></span>
 					<span style="color: #caff77"><i class='glyphicon glyphicon-thumbs-down' style='color: #caff77'></i><%= UV_0(@skate_spot) %></span>
