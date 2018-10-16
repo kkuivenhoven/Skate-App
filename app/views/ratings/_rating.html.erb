@@ -9,7 +9,8 @@
 					<% @jU = rating.description.gsub(/\s+/m, ' ').strip.split(" ") %>
 					<% @jU.each do |jp| %>
 						<% if jp.include?("#") %>
-							<span class="skate_link" style="color:red">
+							<!--span class="skate_link" style="color:red"-->
+							<span class="skate_link">
 								<%= link_to "#{jp}", hash_tag_show_path(name: jp) %>
 							</span>
 						<% else %>
