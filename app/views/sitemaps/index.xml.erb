@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc><%= @host %></loc>
+	</url>
+	<% @skate_spots.each do |skate_spot| %>
+		<url>
+			<loc><%= "#{@host}/skate_spots/#{skate_spot.id}" %></loc>
+		</url>
+	<% end %>
+</urlset>
