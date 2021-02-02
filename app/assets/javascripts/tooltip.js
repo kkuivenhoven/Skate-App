@@ -9,6 +9,7 @@ window.onload = function(){
 				var winSize = $(window).height();
 				var half_ds = docSize/4;
 				var winScrl = $(window).scrollTop();
+				/*
 				if(first != 1){
 					if((winScrl+winSize) >= (3*half_ds)){
 							$('#preventModal').modal('show');
@@ -21,6 +22,7 @@ window.onload = function(){
 					$(document.body).children('div').children('div').removeClass("is-blurred");
 						first = 0;
 				});
+				*/
 			});
 		}
 	}

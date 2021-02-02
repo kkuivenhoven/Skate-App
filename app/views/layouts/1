@@ -232,7 +232,7 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 
 </body>
 
-<!--% if !logged_in? %>
+<% if !logged_in? %>
 <div class="modal" id="preventModal" role="dialog">
   <div class="modal-dialog">
 
@@ -248,13 +248,13 @@ https://rhardih.io/2015/03/rails-4-gotcha-asynchronous-loading-of-javascript-in-
 					Already have an account? Log in!</p>
       </div>
       <div class="modal-footer">
-				%= link_to('Log in!', login_path, class: 'btn btn-primary') %>
-				%= link_to('Sign up now!', signup_path, class: 'btn btn-primary') %>
+				<%= link_to('Log in!', login_path, class: 'btn btn-primary') %>
+				<%= link_to('Sign up now!', signup_path, class: 'btn btn-primary') %>
       </div>
     </div>
   </div>
 </div>
- end %-->
+<% end %>
 
 <br><br><br><br>
 <%= render 'layouts/footer' %>
